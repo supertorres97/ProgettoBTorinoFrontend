@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'projectTo';
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+
+  // Metodo per determinare se la navbar deve essere mostrata
+  showNavbar(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute !== '/404';  // Non mostrare la navbar sulla pagina 404
+  }
+
 }
