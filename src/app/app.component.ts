@@ -16,4 +16,10 @@ export class AppComponent {
     return currentRoute !== '/404';  // Non mostrare la navbar sulla pagina 404
   }
 
+  // Metodo per determinare se il footer deve essere mostrato
+  showFooter(){
+    const currentRoute = this.router.url;
+    return currentRoute !== '/login';
+  }
+
 }

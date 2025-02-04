@@ -19,7 +19,8 @@
     <div class="left">
       <a class="link" routerLink="/carrello"><h3>Carrello</h3></a>
       <img src="slash.png" alt="slash" style="height: 25px; rotate: -25deg;"/>
-      <a class="link" routerLink="/login"><h3>Login</h3></a>
+      <a class="link" *ngIf="!isLoggedIn" routerLink="/login"><h3>Login</h3></a>
+      <a class="link" *ngIf="isLoggedIn" routerLink="/profile"><h3>Il mio Profilo</h3></a>
     </div>
   </div>
 </nav>
