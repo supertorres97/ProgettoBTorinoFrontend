@@ -380,3 +380,10 @@ body{
   font-size: 1rem;
   margin: 0;
 } 
+
+#single-line-ellipsis{
+  display: -webkit-box;              /* Necessario per il flexbox specifico di WebKit */
+  -webkit-line-clamp: 3;             /* Limita a 3 righe */
+  -webkit-box-orient: vertical;      /* Imposta l'orientamento verticale */
+  overflow: hidden; 
+}
