@@ -1,0 +1,69 @@
+.footer {
+    background-color: #000;
+    color: #fff9ed;
+    padding: 20px;
+  }
+  
+  /* Contenitore flessibile per le due colonne */
+  .footer-container {
+    display: flex;
+    justify-content: center;  /* centra i contenuti */
+    align-items: center;
+    flex-wrap: wrap;  /* permette il wrapping in schermi piccoli */
+    gap: 20px;        /* spazio controllato tra le colonne */
+    padding: 0 20px;  /* padding orizzontale per non attaccare i contenuti ai bordi */
+  }
+  
+  /* Limita la larghezza delle colonne per evitare che siano troppo distanti */
+  .footer-left,
+  .footer-right {
+    flex: 1;
+    max-width: 300px;
+  }
+  
+  /* Allinea il testo della colonna sinistra a sinistra, se lo schermo è grande */
+  .footer-left {
+    text-align: left;
+  }
+  
+  /* Allinea la colonna destra (icone) a destra, se lo schermo è grande */
+  .footer-right {
+    text-align: right;
+  }
+  
+  /* Stile per i paragrafi della colonna sinistra */
+  .footer-left p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  /* Stile per le icone dei social */
+  .social-icons a {
+    color: #fff9ed;
+    margin: 0 10px;
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #ccc;
+  }
+  
+  /* Colore diverso per il link email */
+  #coloreMail {
+    color: rgb(229, 195, 153);
+  }
+  
+  /* Media query per schermi piccoli: le colonne si impilano verticalmente */
+  @media (max-width: 600px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+    .footer-left,
+    .footer-right {
+      max-width: none;
+      text-align: center;
+    }
+  }

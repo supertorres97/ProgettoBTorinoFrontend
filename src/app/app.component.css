@@ -1,0 +1,11 @@
+/* Il wrapper occuperà tutta l'altezza della viewport e utilizzerà il flexbox */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  /* Il contenuto principale cresce per occupare lo spazio libero */
+  .content {
+    flex: 1;
+  }
