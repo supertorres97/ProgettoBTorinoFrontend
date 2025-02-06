@@ -82,7 +82,7 @@
     display: block;
   }
   
-  .left {
+  .icons {
     display: flex;
     align-items: center;  /* Centra verticalmente gli elementi della lista */
     gap: 15px; /* Aggiunge spazio tra gli elementi */
@@ -90,11 +90,22 @@
     padding: 0;
     margin: 0;
     font-weight: 100;
+    justify-content: flex-end;
   }
 
-  .left a{
+  .icons a{
     text-decoration: none;
-    
+  }
+
+  .icons img {
+    width: 35px; /* Dimensione fissa */
+    height: auto; /* Mantiene il rapporto d'aspetto */
+    max-width: 100%; /* Rende l'immagine responsive */
+  }
+
+  .icons span{
+    font-size: 3rem;
+    font-family: 'Poiret One', cursive;
   }
 
   .link {

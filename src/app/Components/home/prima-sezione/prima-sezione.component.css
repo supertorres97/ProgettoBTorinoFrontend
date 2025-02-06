@@ -49,7 +49,7 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra leggera */
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 3rem;
+    margin-top: 7rem;
   }
   
   .FirstImage {
@@ -58,5 +58,5 @@
     width: 50%;
     height: fit-content;
     object-fit: cover; /* Evita distorsioni nelle immagini */
-    padding: 2.5rem;
+    padding: 3.5rem;
   }
