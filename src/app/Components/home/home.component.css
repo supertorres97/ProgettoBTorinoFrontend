@@ -37,286 +37,27 @@ body{
   button:hover {
     background-color: #0056b3;
   }
-  
-  .FirstSection {
-    display: flex;
-    flex-direction: row;
-    height: fit-content;
-    width: auto;
-    overflow: hidden;
-  }
-  
-  .FirstParagraph {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: auto;
-    padding: 150px 50px;
-    align-items: center;
-  }
 
-  .FirstParagraph h1 {
-    letter-spacing: 0.1em;
-    font-size: 4.7rem;
-    font-family: 'Poiret One', cursive;
-    font-weight: bold;
-    color:#b44715;
-    text-transform: capitalize;
-  }
+/* --- FIRST SECTION --- */
 
-  .FirstParagraph p::before{
-    content: "";
-    display: inline-block;
-    width: 2px;
-    height: 100%;
-    background-color: #333;
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+/* --- CARD SECTION --- */
 
-  .FirstParagraph p {
-    position: relative;
-    padding-left: 20px;
-    letter-spacing: 0.05em;
-    font-size: 1.6rem;
-    font-family: 'Poiret One', cursive;
-    color:#b44715;
-    width: 90%;
-    font-weight: 400;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra leggera */
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  
-  .FirstImage {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    height: fit-content;
-    object-fit: cover; /* Evita distorsioni nelle immagini */
-  }
-
-  /* --- CARD SECTION --- */
-
-  .CardSection{
-    height: 750px;
-    background-color: #111;
-  }
-
-  .SectionTitle h2{
-    font-size: 2.5rem;
-    letter-spacing: 0.05em;
-    font-family: 'Poiret One', cursive;
-    font-weight: bold;
-    color:#fff9ed;
-    text-transform: capitalize;
-    text-align: center;
-    padding: 50px 0;
-  }
-
-  .UnderTitle{
-    width: 80%; 
-    margin: -15px auto; 
-    border: 1px solid #fff9ed;
-  }
-
-  .Cards {
-    display: flex;
-    flex-direction: row;
-    padding: 30px 150px;  /* Ridotto il padding per rendere spazio per i pulsanti */
-    height: 60%;
-    margin-top: 30px;
-    position: relative;  /* Necessario per posizionare i pulsanti sopra */
-    justify-content: center; /* Allinea le card al centro */
-}
-
-.LeftButton, .RightButton {
-    display: flex;
-    background-color: none;
-    width: 40px;  /* Dimensione del pulsante */
-    background: none;
-    border: none; 
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%; /* Posiziona i pulsanti al centro verticalmente */
-    transform: translateY(-50%); /* Centra verticalmente */
-}
-
-.LeftButton:hover, .RightButton:hover {
-    background: none;
-}
-
-.LeftButton {
-    left: 7%; /* Spostato dal bordo sinistro per tenere conto del padding laterale */
-}
-
-.RightButton {
-    right: 7%; /* Spostato dal bordo destro per tener conto del padding laterale */
-}
-
-.left-Img, .right-Img {
-  width: 50px; 
-  height: 55px; 
-  filter: invert(96%) sepia(2%) saturate(2499%) hue-rotate(9deg) brightness(105%) contrast(100%);
-}
-
-.Card-Container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;  /* Distribuisce le card in modo uniforme */
-    align-items: center;
-    position: relative;
-    gap: 6%;  /* Spazio tra le card */
-    padding-top: 30px;
-    width: 100%;
-    max-width: 100%; /* Assicura che non cresca oltre la larghezza disponibile */
-
-    overflow: hidden; /* Nasconde le card che scorrono fuori dal container */
-}
-
-.Card {
-  height: 400px;
-  width: 300px;  /* Ridotta la larghezza delle card */
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s ease; /* Transizione morbida */
-  flex: calc(100% / 3 - 20px); /* Mostra 3 card per volta */
-  max-width: calc(100% / 3 - 20px);
-}
-
-.Card:hover {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);  /* Ombra più intensa al passaggio del mouse */
-}
-
-.Card-Text {
-    font-family: 'Poiret One', cursive;
-    font-weight: bold;
-    color: #fff9ed;
-    padding: 1% 7%;
-    height: 200px;
- 
-    overflow: hidden;
-}
-
-.Card-Text h3 {
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-}
-
-.Card-Text p {
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: lighter;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.Card-Footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px 0;
-    margin-top: auto;  /* Spinge il footer verso il basso */
-    align-self: flex-end;  /* Allinea il footer a destra */
-}
-
-.Card-Footer a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: lighter;
-    font-family: 'Poiret One', cursive;
-    color: #fff9ed;
-
-    padding-right: 35px;
-    padding-bottom: 5px;
-    /* transition: color 0.7s ease; /* Transizione del colore al passaggio del mouse */ 
-    transition: text-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-.Card-Footer a:hover {
-    /* color: #b44715; */
-    color: #fdfaf3; /* Cambia colore leggermente più chiaro */
-    text-shadow: 0 0 4px #fdfaf3, 0 0 4px #fdfaf3; /* Effetto illuminante */
-}
-
-.GoTo{
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  transition: 0.5s;
-}
-
-.GoTo::after{
-  content: '\00bb';
-  position : absolute;
-  opacity: 0;
-  right: 0;
-  transition: 0.3s;
-}
-
-.GoTo:hover{
-  padding-right: 25px;
-}
-
-.GoTo:hover::after{
-  opacity: 1;
-  right: 20px;
-}
-
-/* ------- */
-
-
-
-.Card-Wrap {
-  display: flex;
-  gap: 75px; /* Distanza tra le card */
-  transition: transform 0.5s ease-in-out;
-}
-
-
-
-.Carousel-Indicators {
-  display: flex;
-  justify-content: center;
-  padding-top: 30px;
-  gap: 10px;
-}
-
-.Carousel-Indicators span {
-  width: 30px;
-  height: 5px;
-  background-color: #fff9ed;
-  border-radius: 0;
-  cursor: pointer;
-  /* transition: background-color 0.3s ease; */
-}
-
-.Carousel-Indicators span.active {
-  background-color: #b44715;
-  transition: background-color 1s ease;
-  transition: transform 0.5s ease;
-  transform: scale(0.9);
-}
+/* --- PARALLAX SECTION --- */
 
 /* --- FEEDBACK SECTION --- */
 
 .FeedBackSection {
-  height: 850px;
+  height: 550px;
   background-color: #ede9e7;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px 100px;
 }
 
 .FeedBackTitle{
   padding-bottom: 20px;
   top: 0;
+  height:15%;
 }
 
 .FeedBackTitle h2{
@@ -338,10 +79,13 @@ body{
 }
 
 .FeedBacks{
-  width: 80%;
+  height: 85%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  
 }
 
 .FeedBack{
@@ -352,13 +96,13 @@ body{
   height: 250px;
   margin: 20px;
   margin-top: 50px;
-  border: 1px solid #333;
 }
 
 .Feedback-Img{
   position: fixed;
   top: 0;
   left: 0;
+  height: 10%;
 }
 
 .FeedBack-Text, .FeedBack-Footer{
@@ -373,10 +117,19 @@ body{
 .FeedBack-Text h3{
   font-size: 1.5rem;
   margin: 0;
-  padding: 20px 0px;
+  height: 20%;
 }
 
 .FeedBack-Text p{
   font-size: 1rem;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 60%;
+  padding-top: 4%;
 } 
+
+.quotes{
+  width: 14%; height: 4vh;
+  filter: invert(17%) sepia(84%) saturate(1945%) hue-rotate(4deg) brightness(93%) contrast(84%);
+}

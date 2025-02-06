@@ -7,71 +7,26 @@
   </div>
   
   <!-- Contenuto della tua home -->
-  <div class="FirstSection">
-    <div class="FirstParagraph">
-      <h1>I vostri sorrisi,<br>la nostra ciliegina..</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Vestibulum varius eget turpis in hendrerit. 
-        Proin luctus, nulla at tempus ultrices, dui nisl blandit ipsum, nec commodo ex risus gravida felis. 
-        Donec hendrerit non urna vitae dapibus. 
-        Integer ipsum nulla, elementum vitae venenatis condimentum, 
-        imperdiet at nulla. Nullam a ultrices ligula, non porttitor dolor. 
-      </p>
-    </div>
-    <div class="FirstImage">
-      <img src="Locale3.png" alt="Pasticceria"/>
-    </div>
-  </div>
-  <div class="CardSection">
-    <div class="SectionTitle">
-      <h2 style="margin: 0;">Le nostre specialità</h2>
-    </div>
-    <hr class="UnderTitle">
-    <div class="Cards">
-      <div class="Card-Container">
-        <button (click)="scrollCardsLeft()" class="LeftButton">
-          <img src="left-arrow.png" alt="left-arrow" class="left-Img"/>
-        </button>
-    
-        <div class="Card-Wrap">
-          <div *ngFor="let card of visibleCards" class="Card">
-            <img [src]="card.img" [alt]="card.title" style="width: 100%; height: 200px;" />
-            <div class="Card-Text">
-              <h3>{{ card.title }}</h3>
-              <p>{{ card.description }}</p>
-            </div>
-            <div class="Card-Footer">
-              <a href="#" class="GoTo">Scopri di più </a>
-            </div>
-          </div>
-        </div>
-    
-        <button (click)="scrollCardsRight()" class="RightButton">
-          <img src="right-arrow.png" alt="right-arrow" class="right-Img"/>
-        </button>
-      </div>
-    </div>
-      <!-- Indicators -->
-    <div class="Carousel-Indicators">
-        <span *ngFor="let page of totalPages; let i = index" 
-              [class.active]="i === currentPage" 
-              (click)="goToPage(i)">
-        </span>
-    </div>
-  </div>
-  <div class="FeedBackSection">
+  
+  <!-- prima sezione con testo e immagine -->
+  <app-prima-sezione></app-prima-sezione>
+
+  <!-- sezione centrale con cards a scorrimento -->
+  <app-cards-sezione></app-cards-sezione>
+  
+  <!-- sezione finale con immagine in parallax -->
+  <app-parallax-sezione></app-parallax-sezione>
+  
+  <!-- <div class="FeedBackSection">
     <div class="FeedBackTitle">
       <h2>Le vostre recensioni</h2>
       <hr class="UnderTitle2">
     </div>
     
     <div class="FeedBacks">
-
-      
         <div class="FeedBack">
           <div class="FeedBack-Img">
-            <img src="quote.png" alt="cardImg" style="width: 14%; height: 35px;"/>
+            <img src="close.png" alt="cardImg" class="quotes"/>
           </div>
             <div class="FeedBack-Text">
             <h3>Atmosfera affascinante</h3>
@@ -87,7 +42,41 @@
             <p>- Mario Rossi</p>
           </div>
         </div>
-      
-
+        <div class="FeedBack">
+          <div class="FeedBack-Img">
+            <img src="close.png" alt="cardImg" class="quotes"/>
+          </div>
+            <div class="FeedBack-Text">
+            <h3>Atmosfera affascinante</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed vel tortor non magna pharetra bibendum. 
+              Mauris a elit gravida, vulputate urna eu, bibendum augue. 
+              Maecenas bibendum at tellus ut tempus. 
+              Cras egestas dui in bibendum porttitor.
+            </p>
+          </div>
+          <div class="FeedBack-Footer">
+            <p>- Mario Rossi</p>
+          </div>
+        </div>
+        <div class="FeedBack">
+          <div class="FeedBack-Img">
+            <img src="close.png" alt="cardImg" class="quotes"/>
+          </div>
+            <div class="FeedBack-Text">
+            <h3>Atmosfera affascinante</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed vel tortor non magna pharetra bibendum. 
+              Mauris a elit gravida, vulputate urna eu, bibendum augue. 
+              Maecenas bibendum at tellus ut tempus. 
+              Cras egestas dui in bibendum porttitor.
+            </p>
+          </div>
+          <div class="FeedBack-Footer">
+            <p>- Mario Rossi</p>
+          </div>
+        </div>
     </div>
-  </div>
+  </div> -->

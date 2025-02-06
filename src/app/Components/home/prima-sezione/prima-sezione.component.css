@@ -1,0 +1,59 @@
+.FirstSection {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    width: auto;
+    background-color: #ede9e7;
+    overflow: hidden;
+  }
+  
+  .FirstParagraph {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: auto;
+    padding: 150px 50px;
+    align-items: center;
+  }
+
+  .FirstParagraph h1 {
+    letter-spacing: 0.1em;
+    font-size: 4.7rem;
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+    color:#b44715;
+    text-transform: capitalize;
+  }
+
+  .FirstParagraph p::before{
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 100%;
+    background-color: #333;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .FirstParagraph p {
+    position: relative;
+    padding-left: 20px;
+    letter-spacing: 0.05em;
+    font-size: 1.6rem;
+    font-family: 'Poiret One', cursive;
+    color:#b44715;
+    width: 90%;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra leggera */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .FirstImage {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: fit-content;
+    object-fit: cover; /* Evita distorsioni nelle immagini */
+  }
