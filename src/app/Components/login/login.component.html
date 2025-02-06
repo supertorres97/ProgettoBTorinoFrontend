@@ -1,14 +1,23 @@
 <div class="login-container">
-    <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-      <h2>Login</h2>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input id="username" type="text" placeholder="Inserisci il tuo username" formControlName="username" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input id="password" type="password" placeholder="Inserisci la tua password" formControlName="password" required>
-      </div>
-      <button type="submit" class="login-button">LOGIN</button>
-    </form>
-  </div>
+  <form class="login-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+    <h2>Login</h2>
+
+    <!-- Campo Username -->
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Inserisci il tuo username" formControlName="username" required />
+      <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Campo Password -->
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Inserisci la tua password" formControlName="password" required />
+      <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button class="login-button" type="submit">LOGIN</button>
+  </form>
+</div>

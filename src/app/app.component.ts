@@ -13,7 +13,7 @@ export class AppComponent {
   // Metodo per determinare se la navbar deve essere mostrata
   showNavbar(): boolean {
     const currentRoute = this.router.url;
-    return currentRoute !== '/404';  // Non mostrare la navbar sulla pagina 404
+    return currentRoute !== '/404' && currentRoute !== '/login';  // Non mostrare la navbar sulla pagina 404
   }
 
   // Metodo per determinare se il footer deve essere mostrato
