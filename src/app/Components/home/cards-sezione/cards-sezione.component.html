@@ -4,17 +4,18 @@
     </div>
     <hr class="UnderTitle">
     <div class="Cards">
+      <button (click)="scrollCardsLeft()" class="LeftButton">
+        <img src="left-arrow.png" alt="left-arrow" class="left-Img"/>
+      </button>
       <div class="Card-Container">
-        <button (click)="scrollCardsLeft()" class="LeftButton">
-          <img src="left-arrow.png" alt="left-arrow" class="left-Img"/>
-        </button>
+        
     
         <div class="Card-Wrap">
           <div *ngFor="let card of visibleCards" class="Card">
             <img [src]="card.img" [alt]="card.title" style="width: 100%; height: 200px;" />
             <div class="Card-Text">
               <h3>{{ card.title }}</h3>
-              <p>{{ card.description }}</p>
+              <p id="single-line-ellipsis">{{ card.description }}</p>
             </div>
             <div class="Card-Footer">
               <a href="#" class="GoTo">Scopri di più </a>
@@ -22,10 +23,11 @@
           </div>
         </div>
     
-        <button (click)="scrollCardsRight()" class="RightButton">
-          <img src="right-arrow.png" alt="right-arrow" class="right-Img"/>
-        </button>
+        
       </div>
+      <button (click)="scrollCardsRight()" class="RightButton">
+        <img src="right-arrow.png" alt="right-arrow" class="right-Img"/>
+      </button>
     </div>
       <!-- Indicators -->
     <div class="Carousel-Indicators">

@@ -6,7 +6,7 @@
     <div  class="nav-links-container">
       <ul class="nav-links">
           <li><a routerLink="/home" class="link"><h3>Home</h3></a></li>
-          <img src="slash.png" alt="slash" style="height: 25px; rotate: -25deg;"/>
+          <!-- <img src="slash.png" alt="slash" style="height: 25px; rotate: -25deg;"/> -->
           <li class="dropdown">
             <a href="#" class="link"><h3>Prodotti<img class="down-arrow" src="down-arrow.png" alt="down-arrow"/></h3></a>
             <ul class="dropdown-menu">
@@ -14,11 +14,12 @@
               <li><a routerLink="/product/subitem2">Subitem 2</a></li>
             </ul>
           </li>
+          <li><a class="link" routerLink="/carrello"><h3>Carrello</h3></a></li>
       </ul>
     </div>
     <div class="left">
-      <a class="link" routerLink="/carrello"><h3>Carrello</h3></a>
-      <img src="slash.png" alt="slash" style="height: 25px; rotate: -25deg;"/>
+      
+      
       <a class="link" *ngIf="!isLoggedIn" routerLink="/login"><h3>Login</h3></a>
       <a class="link" *ngIf="isLoggedIn" routerLink="/profile"><h3>Il mio Profilo</h3></a>
     </div>

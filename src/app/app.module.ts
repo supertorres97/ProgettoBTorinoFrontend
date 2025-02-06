@@ -9,6 +9,9 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { CarrelloComponent } from './Components/carrello/carrello.component';
 import { LoginComponent } from './Components/login/login.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { PrimaSezioneComponent } from './Components/home/prima-sezione/prima-sezione.component';
+import { CardsSezioneComponent } from './Components/home/cards-sezione/cards-sezione.component';
+import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/parallax-sezione.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { FooterComponent } from './Components/footer/footer.component';
     NavbarComponent,
     CarrelloComponent,
     LoginComponent,
-    FooterComponent
+    FooterComponent,
+    PrimaSezioneComponent,
+    CardsSezioneComponent,
+    ParallaxSezioneComponent
   ],
   imports: [
     BrowserModule,

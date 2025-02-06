@@ -1,6 +1,9 @@
 .CardSection{
     height: 750px;
     background-color: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .SectionTitle h2{
@@ -49,11 +52,11 @@
 }
 
 .LeftButton {
-    left: 7%; /* Spostato dal bordo sinistro per tenere conto del padding laterale */
+    left: 6%; /* Spostato dal bordo sinistro per tenere conto del padding laterale */
 }
 
 .RightButton {
-    right: 7%; /* Spostato dal bordo destro per tener conto del padding laterale */
+    right: 6%; /* Spostato dal bordo destro per tener conto del padding laterale */
 }
 
 .left-Img, .right-Img {
@@ -194,4 +197,11 @@
   transition: background-color 1s ease;
   transition: transform 0.5s ease;
   transform: scale(0.9);
+}
+
+#single-line-ellipsis{
+  display: -webkit-box;              /* Necessario per il flexbox specifico di WebKit */
+  -webkit-line-clamp: 3;             /* Limita a 3 righe */
+  -webkit-box-orient: vertical;      /* Imposta l'orientamento verticale */
+  overflow: hidden; 
 }

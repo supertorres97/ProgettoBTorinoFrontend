@@ -10,9 +10,10 @@
   .FirstParagraph {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     width: 50%;
     height: auto;
-    padding: 150px 50px;
+    padding: 15.75vh 50px 50px 50px;
     align-items: center;
   }
 
@@ -48,6 +49,7 @@
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra leggera */
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-top: 3rem;
   }
   
   .FirstImage {
@@ -56,4 +58,5 @@
     width: 50%;
     height: fit-content;
     object-fit: cover; /* Evita distorsioni nelle immagini */
+    padding: 2.5rem;
   }

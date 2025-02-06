@@ -133,10 +133,3 @@ body{
   width: 14%; height: 4vh;
   filter: invert(17%) sepia(84%) saturate(1945%) hue-rotate(4deg) brightness(93%) contrast(84%);
 } 
-
-#single-line-ellipsis{
-  display: -webkit-box;              /* Necessario per il flexbox specifico di WebKit */
-  -webkit-line-clamp: 3;             /* Limita a 3 righe */
-  -webkit-box-orient: vertical;      /* Imposta l'orientamento verticale */
-  overflow: hidden; 
-}

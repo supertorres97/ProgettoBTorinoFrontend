@@ -29,13 +29,12 @@
     align-items: center;  /* Centra verticalmente gli elementi */
     justify-content: center; /* Opzionale: centra anche orizzontalmente */
     height: 100px; /* Imposta un'altezza per il contenitore */
-    padding-left: 190px;
   }
   
   .nav-links {
     display: flex;
     align-items: center;  /* Centra verticalmente gli elementi della lista */
-    gap: 15px; /* Aggiunge spazio tra gli elementi */
+    gap: 3vw; /* Aggiunge spazio tra gli elementi */
     list-style: none;
     padding: 0;
     margin: 0;
@@ -51,6 +50,7 @@
   .nav-links li {
     display: flex;
     align-items: center; /* Centra anche il contenuto dei `<li>` */
+    gap: 5px; /* Aggiunge spazio tra gli elementi */
   }
   
   .nav-links a {
