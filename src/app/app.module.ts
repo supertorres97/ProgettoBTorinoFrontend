@@ -17,6 +17,10 @@ import { PrimaSezioneComponent } from './Components/home/prima-sezione/prima-sez
 import { CardsSezioneComponent } from './Components/home/cards-sezione/cards-sezione.component';
 import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/parallax-sezione.component';
 import { UserProfileComponent } from './Components/profile/profile.component';
+import { ProdottiComponent } from './Components/prodotti/prodotti.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+
+
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import { UserProfileComponent } from './Components/profile/profile.component';
     PrimaSezioneComponent,
     CardsSezioneComponent,
     ParallaxSezioneComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    ProdottiComponent
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,9 @@ import { UserProfileComponent } from './Components/profile/profile.component';
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch())
+    provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule
+    provideClientHydration(withEventReplay()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

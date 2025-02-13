@@ -1,0 +1,18 @@
+<h1>PRODOTTI</h1>
+<div>
+    <ul>
+        <li *ngFor="let prodotto of data">
+            <div>
+                <h2>{{prodotto.nome}}</h2>
+                <p>Descrizione: {{prodotto.descrizione}}</p>
+                <p>Peso: {{prodotto.peso}} g</p>
+                <p>Prezzo: {{prodotto.prezzo}} €</p>
+                <p *ngIf="prodotto.disponibile">Disponibilità: si</p>
+                <p *ngIf="!prodotto.disponibile">Disponibilità: no</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>
