@@ -1,0 +1,113 @@
+<div class="container mt-5">
+    <!-- Messaggio di errore -->
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+  
+    <!-- Messaggio di successo o errore dopo l'aggiornamento -->
+    <div *ngIf="msg" class="alert" [ngClass]="{'alert-success': msg.includes('successo'), 'alert-danger': !msg.includes('successo')}">
+      {{ msg }}
+    </div>
+  
+    <!-- Modalità visualizzazione -->
+    <div class="card" *ngIf="!editMode">
+      <div class="card-header bg-primary text-white">
+        <h3>Profilo Utente</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <h4>Informazioni Personali</h4>
+            <p><strong>Nome:</strong> {{ utente?.nome }}</p>
+            <p><strong>Cognome:</strong> {{ utente?.cognome }}</p>
+            <p><strong>Email:</strong> {{ utente?.email }}</p>
+            <p><strong>Codice Fiscale:</strong> {{ utente?.cFiscale }}</p>
+          </div>
+          
+          <div class="col-md-6">
+            <h4>Indirizzo</h4>
+            <p><strong>Via:</strong> {{ utente?.via }}</p>
+            <p><strong>CAP:</strong> {{ utente?.CAP }}</p>
+            <p><strong>Città:</strong> {{ utente?.citta }}</p>
+          </div>
+        </div>
+        
+        <button class="btn btn-primary mt-3" (click)="editMode = true">
+          <i class="fas fa-edit"></i> Modifica Profilo
+        </button>
+      </div>
+    </div>
+  
+    <!-- Modalità modifica -->
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="editMode">
+      <div class="card">
+        <div class="card-header bg-warning">
+          <h3>Modifica Profilo</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Nome *</label>
+                <input type="text" class="form-control" formControlName="nome" required>
+                <div *ngIf="profileForm.get('nome')?.errors?.['required']" class="text-danger">
+                  Campo obbligatorio
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label>Cognome *</label>
+                <input type="text" class="form-control" formControlName="cognome" required>
+                <div *ngIf="profileForm.get('cognome')?.errors?.['required']" class="text-danger">
+                  Campo obbligatorio
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="email" class="form-control" formControlName="email" required>
+                <div *ngIf="profileForm.get('email')?.errors?.['required']" class="text-danger">
+                  Campo obbligatorio
+                </div>
+                <div *ngIf="profileForm.get('email')?.errors?.['email']" class="text-danger">
+                  Inserisci un'email valida.
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <label>Codice Fiscale</label>
+                <input type="text" class="form-control" formControlName="cFiscale">
+              </div>
+            </div>
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Via</label>
+                <input type="text" class="form-control" formControlName="via">
+              </div>
+  
+              <div class="form-group">
+                <label>CAP</label>
+                <input type="text" class="form-control" formControlName="CAP" maxlength="5">
+                <small class="form-text text-muted">Esempio: 00100</small>
+              </div>
+  
+              <div class="form-group">
+                <label>Città</label>
+                <input type="text" class="form-control" formControlName="citta">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <button type="submit" class="btn btn-success" [disabled]="!profileForm.valid">
+            <i class="fas fa-save"></i> Salva modifiche
+          </button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">
+            Annulla
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>

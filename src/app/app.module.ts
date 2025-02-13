@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { PrimaSezioneComponent } from './Components/home/prima-sezione/prima-sezione.component';
 import { CardsSezioneComponent } from './Components/home/cards-sezione/cards-sezione.component';
 import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/parallax-sezione.component';
+import { UserProfileComponent } from './Components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/par
     FooterComponent,
     PrimaSezioneComponent,
     CardsSezioneComponent,
-    ParallaxSezioneComponent
+    ParallaxSezioneComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/par
     MatSelectModule
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })
