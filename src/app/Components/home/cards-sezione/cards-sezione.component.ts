@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 
 @Component({
@@ -8,14 +8,7 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
   templateUrl: './cards-sezione.component.html',
   styleUrl: './cards-sezione.component.css'
 })
-export class CardsSezioneComponent implements OnInit{
-
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
-  ngOnInit(): void {
-    this.updateVisibleCards();
-  }
-
+export class CardsSezioneComponent implements OnInit {
   cards = [
     { id: 1, img: 'Dolce7.jpeg', title: 'Torta al cioccolato', description: 'Dolce soffice e gustoso' },
     { id: 2, img: 'Dolce2.jpg', title: 'Waffle', description: 'Cialda croccante con miele' },
@@ -31,11 +24,39 @@ export class CardsSezioneComponent implements OnInit{
   visibleCards: any[] = [];
   currentPage: number = 0;
   totalPages: number[] = [];
+  cardsPerPage: number = 3;
+  
+  private touchStartX: number = 0;
+  private touchEndX: number = 0;
+
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.updateCardsPerPage();
+    this.updateVisibleCards();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.updateCardsPerPage();
+    this.updateVisibleCards();
+  }
+
+  updateCardsPerPage() {
+    const width = window.innerWidth;
+    if (width >= 1024) {
+      this.cardsPerPage = 3;
+    } else if (width >= 768) {
+      this.cardsPerPage = 2;
+    } else {
+      this.cardsPerPage = 1;
+    }
+    this.totalPages = Array.from({ length: Math.ceil(this.cards.length / this.cardsPerPage) });
+  }
 
   updateVisibleCards() {
-    this.totalPages = Array.from({ length: Math.ceil(this.cards.length / 3) });
-    const start = this.currentPage * 3;
-    this.visibleCards = this.cards.slice(start, start + 3);
+    const start = this.currentPage * this.cardsPerPage;
+    this.visibleCards = this.cards.slice(start, start + this.cardsPerPage);
   }
 
   scrollCardsLeft() {
@@ -55,5 +76,23 @@ export class CardsSezioneComponent implements OnInit{
   goToPage(index: number) {
     this.currentPage = index;
     this.updateVisibleCards();
+  }
+
+  // Gestione dello swipe
+  onTouchStart(event: TouchEvent) {
+    this.touchStartX = event.touches[0].clientX;
+  }
+
+  onTouchMove(event: TouchEvent) {
+    this.touchEndX = event.touches[0].clientX;
+  }
+
+  onTouchEnd() {
+    const swipeDistance = this.touchEndX - this.touchStartX;
+    if (swipeDistance > 50) {
+      this.scrollCardsLeft();  // Swipe verso destra
+    } else if (swipeDistance < -50) {
+      this.scrollCardsRight(); // Swipe verso sinistra
+    }
   }
 }

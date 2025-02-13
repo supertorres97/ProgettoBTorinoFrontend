@@ -1,221 +1,138 @@
-.CardSection{
-    height: 750px;
-    background-color: #111;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+.CardSection {
+  background-color: #111;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .SectionTitle h2{
-    font-size: 2.5rem;
-    letter-spacing: 0.05em;
-    font-family: 'Poiret One', cursive;
-    font-weight: bold;
-    color:#fff9ed;
-    text-transform: capitalize;
-    text-align: center;
-    padding: 50px 0;
-  }
+.SectionTitle h2 {
+  font-size: 2.2rem;
+  color: #fff9ed;
+  font-family: 'Poiret One', cursive;
+  text-align: center;
+  margin-bottom: 20px;
+}
 
-  .UnderTitle{
-    width: 80%; 
-    margin: -15px auto; 
-    border: 1px solid #fff9ed;
-  }
+.UnderTitle {
+  width: 80%;
+  border: 1px solid #fff9ed;
+  margin-bottom: 20px;
+}
 
-  .Cards {
-    display: flex;
-    flex-direction: row;
-    padding: 30px 150px;  /* Ridotto il padding per rendere spazio per i pulsanti */
-    height: 60%;
-    margin-top: 30px;
-    position: relative;  /* Necessario per posizionare i pulsanti sopra */
-    justify-content: center; /* Allinea le card al centro */
+.Cards {
+  display: flex;
+  position: relative;
+  width: 100%;
+  align-items: center;
+  overflow: hidden;
 }
 
 .LeftButton, .RightButton {
-    display: flex;
-    background-color: none;
-    width: 40px;  /* Dimensione del pulsante */
-    background: none;
-    border: none; 
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%; /* Posiziona i pulsanti al centro verticalmente */
-    transform: translateY(-50%); /* Centra verticalmente */
-}
-
-.LeftButton:hover, .RightButton:hover {
-    background: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .LeftButton {
-    left: 6%; /* Spostato dal bordo sinistro per tenere conto del padding laterale */
+  left: 10px;
 }
 
 .RightButton {
-    right: 6%; /* Spostato dal bordo destro per tener conto del padding laterale */
+  right: 10px;
 }
 
 .left-Img, .right-Img {
-  width: 50px; 
-  height: 55px; 
+  width: 30px;
+  height: 35px;
   filter: invert(96%) sepia(2%) saturate(2499%) hue-rotate(9deg) brightness(105%) contrast(100%);
 }
 
 .Card-Container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;  /* Distribuisce le card in modo uniforme */
-    align-items: center;
-    position: relative;
-    gap: 6%;  /* Spazio tra le card */
-    padding-top: 30px;
-    width: 100%;
-    max-width: 100%; /* Assicura che non cresca oltre la larghezza disponibile */
-
-    overflow: hidden; /* Nasconde le card che scorrono fuori dal container */
+  display: flex;
+  gap: 20px;
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  justify-content: center;
 }
 
-figure {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: auto;
-	min-width: 27.5%;
-	height: 80%;
+.Card-Container figure {
+  flex: 0 0 calc(33.33% - 20px); /* 3 card per riga su desktop */
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgb(0, 0, 0);
+  overflow: hidden;
+  max-width: 300px;
+}
+
+figure img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+figcaption {
+  padding: 10px;
+  color: #fff9ed;
+  background-color: rgba(0, 0, 0, 0.7); /* Colore nero trasparente */
   font-family: 'Poiret One', cursive;
-	border-radius: 10px;
-	box-shadow: 
-		0 1px 3px rgba(0,0,0,0.12), 
-		0 1px 2px rgba(0,0,0,0.24);
-	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-	overflow: hidden;
-	&:hover {
-		box-shadow: 
-			0 20px 20px rgba(90, 90, 90, 0.15), 
-			0 10px 10px rgba(90, 90, 90, 0.10);
-		img {
-			transform: scale(1.25);
-		}
-		figcaption {
-			bottom: 0;
-		}
-	}
-	img {
-		height: 100%;
-		transition: 0.37s;
-		width:125%;
-	}
-	figcaption {
-		position: absolute;
-		bottom: -40%;
-		left: 0;
-		width: 100%;
-		margin: 0;
-		padding: 5%;
-		background-color: rgba(0,0,0,0.65);
-		box-shadow: 0 0 20px rgba(0,0,0,0.4);
-		color: #fff9ed;
-		line-height: 1;
-		transition: 0.37s;
-		h3 {
-			margin: 0 0 7%;
-			padding: 0;
-		}
-		p {
-			font-size: 1rem;
-			line-height: 1.75;
-		}
-    .Card-Footer {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 10px 0;
-      margin-top: auto;  /* Spinge il footer verso il basso */
-    }
-    .Card-Footer a {
-      display: flex;
-      text-decoration: none;
-      font-size: 1.2rem;
-      letter-spacing: 0.05em;
-      font-weight: lighter;
-      font-family: 'Poiret One', cursive;
-      color: #fff9ed;
-      align-self: flex-end;  /* Allinea il footer a destra */
-      padding-right: 35px;
-      padding-bottom: 5px;
-      /* transition: color 0.7s ease; /* Transizione del colore al passaggio del mouse */ 
-      transition: text-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-    }
-    .Card-Footer a:hover {
-      /* color: #b44715; */
-      color: #fdfaf3; /* Cambia colore leggermente più chiaro */
-      text-shadow: 0 0 1px #fdfaf3, 0 0 1px #fdfaf3; /* Effetto illuminante */
-    }
-	}
+  text-align: center;  /* Centra il testo sotto l'immagine */
 }
 
-@media (min-width: 1367px){
-  figure{
-    width: 100%;
-    height: auto;
-  }
+.Card-Footer a {
+  color: #fff9ed;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s ease, font-weight 0.3s ease;
 }
 
-.GoTo{
-  cursor: pointer;
-  position: relative;
-  display: inline-block;
-  transition: 0.5s;
-}
-
-.GoTo::after{
-  content: '\00bb';
-  position : absolute;
-  opacity: 0;
-  right: 0;
-  transition: 0.3s;
-}
-
-.GoTo:hover{
-  padding-right: 25px;
-}
-
-.GoTo:hover::after{
-  opacity: 1;
-  right: 20px;
+.Card-Footer a:hover {
+  color: #fdfaf3; /* Cambia il colore */
+  font-weight: bold; /* Rende il testo più in evidenza */
+  text-decoration: underline; /* Aggiunge la sottolineatura */
 }
 
 .Carousel-Indicators {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
-  gap: 10px;
+  gap: 5px;
+  margin-top: 10px;
 }
 
 .Carousel-Indicators span {
-  width: 30px;
-  height: 5px;
+  width: 10px;
+  height: 10px;
   background-color: #fff9ed;
-  border-radius: 0;
+  border-radius: 50%;
   cursor: pointer;
-  /* transition: background-color 0.3s ease; */
 }
 
 .Carousel-Indicators span.active {
   background-color: #b44715;
-  transition: background-color 1s ease;
-  transition: transform 0.5s ease;
-  transform: scale(0.9);
+  transform: scale(1.2);
 }
 
-#single-line-ellipsis{
-  display: -webkit-box;              /* Necessario per il flexbox specifico di WebKit */
-  -webkit-line-clamp: 3;             /* Limita a 3 righe */
-  -webkit-box-orient: vertical;      /* Imposta l'orientamento verticale */
-  overflow: hidden; 
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .Card-Container figure {
+    flex: 0 0 calc(50% - 20px); /* 2 card per riga su tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .Card-Container figure {
+    flex: 0 0 100%; /* 1 card per riga su mobile */
+  }
+
+  figcaption {
+    font-size: 0.9rem;
+  }
+
+  .LeftButton, .RightButton {
+    display: block; /* Rendi visibili le frecce su mobile */
+  }
 }
