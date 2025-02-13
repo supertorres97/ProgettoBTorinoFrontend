@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { provideHttpClient, withFetch } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Importa Angular Material Modules
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './Components/home/home.component';
@@ -19,7 +23,7 @@ import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/par
 import { UserProfileComponent } from './Components/profile/profile.component';
 import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
+import { SignInComponent } from './Components/sign-in/sign-in.component'; 
 
 
 @NgModule({
@@ -34,13 +38,15 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     CardsSezioneComponent,
     ParallaxSezioneComponent,
     UserProfileComponent,
-    ProdottiComponent
-
+    ProdottiComponent,
+    SignInComponent 
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule
@@ -49,7 +55,9 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule
     provideClientHydration(withEventReplay()),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    MatStepperModule,
+    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })

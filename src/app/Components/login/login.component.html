@@ -7,7 +7,7 @@
       <mat-label>Username</mat-label>
       <input matInput placeholder="Inserisci il tuo username" formControlName="username" required />
       <mat-error *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
-      </mat-error>
+              </mat-error>
     </mat-form-field>
 
     <!-- Campo Password -->
@@ -15,9 +15,12 @@
       <mat-label>Password</mat-label>
       <input matInput type="password" placeholder="Inserisci la tua password" formControlName="password" required />
       <mat-error *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-      </mat-error>
+              </mat-error>
     </mat-form-field>
 
     <button mat-raised-button class="login-button" type="submit">LOGIN</button>
+    <div class="sign-in-link">
+      <p>Non hai un account? <a routerLink="/sign-in">Registrati</a></p>
+    </div>
   </form>
 </div>
