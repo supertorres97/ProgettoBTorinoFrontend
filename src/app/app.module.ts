@@ -15,6 +15,9 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { PrimaSezioneComponent } from './Components/home/prima-sezione/prima-sezione.component';
 import { CardsSezioneComponent } from './Components/home/cards-sezione/cards-sezione.component';
 import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/parallax-sezione.component';
+import { ProdottiComponent } from './Components/prodotti/prodotti.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/par
     FooterComponent,
     PrimaSezioneComponent,
     CardsSezioneComponent,
-    ParallaxSezioneComponent
+    ParallaxSezioneComponent,
+    ProdottiComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/par
     MatSelectModule
   ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule
+    provideClientHydration(withEventReplay()),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
