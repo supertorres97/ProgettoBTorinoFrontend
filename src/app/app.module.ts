@@ -49,15 +49,16 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatStepperModule,
+    MatButtonModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync(),
-    MatStepperModule,
-    MatButtonModule
+
   ],
   bootstrap: [AppComponent]
 })
