@@ -118,8 +118,7 @@
     transition: color 0.3s ease;
   }
 
-  .link:hover{
-    color: #000;
-    transition: color 0.3s ease;
+  #blackHover:hover h3, #blackHover:hover img{
+    filter: invert(17%) sepia(23%) saturate(0%) hue-rotate(208deg) brightness(99%) contrast(94%);
+    transition: color 0.8s ease;
   }
-  

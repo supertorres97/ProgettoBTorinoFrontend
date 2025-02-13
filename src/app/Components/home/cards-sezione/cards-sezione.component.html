@@ -8,22 +8,20 @@
         <img src="left-arrow.png" alt="left-arrow" class="left-Img"/>
       </button>
       <div class="Card-Container">
-        
     
-        <div class="Card-Wrap">
-          <div *ngFor="let card of visibleCards" class="Card">
-            <img [src]="card.img" [alt]="card.title" style="width: 100%; height: 200px;" />
-            <div class="Card-Text">
-              <h3>{{ card.title }}</h3>
-              <p id="single-line-ellipsis">{{ card.description }}</p>
-            </div>
+        <figure class="image-block" *ngFor="let card of visibleCards">
+          <img [src]="card.img" [alt]="card.title" />
+          <figcaption>
+            <h3>
+              {{ card.title }}
+            </h3>
+            <p>{{ card.description }}</p>
             <div class="Card-Footer">
               <a href="#" class="GoTo">Scopri di più </a>
             </div>
-          </div>
-        </div>
-    
-        
+          </figcaption>
+        </figure>
+
       </div>
       <button (click)="scrollCardsRight()" class="RightButton">
         <img src="right-arrow.png" alt="right-arrow" class="right-Img"/>

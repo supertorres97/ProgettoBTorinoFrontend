@@ -1,25 +1,56 @@
 <nav class="navbar">
   <div class = "nav-container">
     <div class="logo col-2">
-      <img src="LogoTorta.png" alt="Torta" style="height: 35px; padding-top: 5px;"/>
+      <img src="LogoTorta.png" alt="Torta" style="height: 40px;"/>
     </div>
-    <div  class="nav-links-container col-8">
+
+     <!-- Bottone Offcanvas (mostrato sotto 1366px) -->
+    <button class="btn  d-block d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Offcanvas Menu -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+        <div class="dropdown mt-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            Dropdown button
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu normale (mostrato sopra 1365px) -->
+    <div class="d-none d-xl-flex col-10 justify-content-between align-items-center">
+      <div class="nav-links-container col-10 d-flex justify-content-center">
       <ul class="nav-links">
-          <li><a routerLink="/home" class="link"><h3>Home</h3></a></li>
-          <li class="dropdown">
-            <a href="#" class="link"><h3>Prodotti<img class="down-arrow" src="down-arrow.png" alt="down-arrow"/></h3></a>
-            <ul class="dropdown-menu">
-              <li><a routerLink="/product/subitem1">Subitem 1</a></li>
-              <li><a routerLink="/product/subitem2">Subitem 2</a></li>
-            </ul>
-          </li>
+        <li><a routerLink="/home" class="link" id="blackHover"><h3>Home</h3></a></li>
+        <li class="dropdown">
+          <a href="#" class="link" id="blackHover"><h3>Prodotti<img class="down-arrow" src="down-arrow.png" alt="down-arrow"/></h3></a>
+          <ul class="dropdown-menu"> <!-- ngFor="let type of TipoDolce"> -->
+          <!-- <li><a routerLink="/product/"  QUI METTERE L'ITEM CHE SARà IL TIPO DI DOLCE >Subitem 1</a></li> -->
+          </ul>
+        </li>
       </ul>
-    </div>
-    <div class="icons col-2">
+      </div>
+      <div class="icons col-2 d-flex justify-content-end">
       <a class="cart" routerLink="/carrello"><img src="shopping-cart4.png"/></a>
       <span>|</span>
-      <a class="link" *ngIf="!isLoggedIn" routerLink="/login"><h3>Login</h3></a>
+      <a class="link" id="blackHover" *ngIf="!isLoggedIn" routerLink="/login"><h3>Login</h3></a>
       <a *ngIf="isLoggedIn" routerLink="/profile"><img src="avatar.png"/></a>
+      </div>
     </div>
   </div>
 </nav>

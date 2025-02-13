@@ -79,71 +79,91 @@
     overflow: hidden; /* Nasconde le card che scorrono fuori dal container */
 }
 
-.Card {
-  height: 400px;
-  width: 300px;  /* Ridotta la larghezza delle card */
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s ease; /* Transizione morbida */
-  flex: calc(100% / 3 - 20px); /* Mostra 3 card per volta */
-  max-width: calc(100% / 3 - 20px);
+figure {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: auto;
+	min-width: 27.5%;
+	height: 80%;
+  font-family: 'Poiret One', cursive;
+	border-radius: 10px;
+	box-shadow: 
+		0 1px 3px rgba(0,0,0,0.12), 
+		0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	overflow: hidden;
+	&:hover {
+		box-shadow: 
+			0 20px 20px rgba(90, 90, 90, 0.15), 
+			0 10px 10px rgba(90, 90, 90, 0.10);
+		img {
+			transform: scale(1.25);
+		}
+		figcaption {
+			bottom: 0;
+		}
+	}
+	img {
+		height: 100%;
+		transition: 0.37s;
+		width:125%;
+	}
+	figcaption {
+		position: absolute;
+		bottom: -40%;
+		left: 0;
+		width: 100%;
+		margin: 0;
+		padding: 5%;
+		background-color: rgba(0,0,0,0.65);
+		box-shadow: 0 0 20px rgba(0,0,0,0.4);
+		color: #fff9ed;
+		line-height: 1;
+		transition: 0.37s;
+		h3 {
+			margin: 0 0 7%;
+			padding: 0;
+		}
+		p {
+			font-size: 1rem;
+			line-height: 1.75;
+		}
+    .Card-Footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px 0;
+      margin-top: auto;  /* Spinge il footer verso il basso */
+    }
+    .Card-Footer a {
+      display: flex;
+      text-decoration: none;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      font-weight: lighter;
+      font-family: 'Poiret One', cursive;
+      color: #fff9ed;
+      align-self: flex-end;  /* Allinea il footer a destra */
+      padding-right: 35px;
+      padding-bottom: 5px;
+      /* transition: color 0.7s ease; /* Transizione del colore al passaggio del mouse */ 
+      transition: text-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    }
+    .Card-Footer a:hover {
+      /* color: #b44715; */
+      color: #fdfaf3; /* Cambia colore leggermente più chiaro */
+      text-shadow: 0 0 1px #fdfaf3, 0 0 1px #fdfaf3; /* Effetto illuminante */
+    }
+	}
 }
 
-.Card:hover {
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);  /* Ombra più intensa al passaggio del mouse */
-}
-
-.Card-Text {
-    font-family: 'Poiret One', cursive;
-    font-weight: bold;
-    color: #fff9ed;
-    padding: 1% 7%;
-    height: 200px;
- 
-    overflow: hidden;
-}
-
-.Card-Text h3 {
-    font-size: 1.5rem;
-    letter-spacing: 0.05em;
-    text-transform: capitalize;
-}
-
-.Card-Text p {
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: lighter;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.Card-Footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 10px 0;
-    margin-top: auto;  /* Spinge il footer verso il basso */
-    align-self: flex-end;  /* Allinea il footer a destra */
-}
-
-.Card-Footer a {
-    text-decoration: none;
-    font-size: 1.2rem;
-    letter-spacing: 0.05em;
-    font-weight: lighter;
-    font-family: 'Poiret One', cursive;
-    color: #fff9ed;
-
-    padding-right: 35px;
-    padding-bottom: 5px;
-    /* transition: color 0.7s ease; /* Transizione del colore al passaggio del mouse */ 
-    transition: text-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
-}
-
-.Card-Footer a:hover {
-    /* color: #b44715; */
-    color: #fdfaf3; /* Cambia colore leggermente più chiaro */
-    text-shadow: 0 0 1px #fdfaf3, 0 0 1px #fdfaf3; /* Effetto illuminante */
+@media (min-width: 1367px){
+  figure{
+    width: 100%;
+    height: auto;
+  }
 }
 
 .GoTo{
@@ -168,12 +188,6 @@
 .GoTo:hover::after{
   opacity: 1;
   right: 20px;
-}
-
-.Card-Wrap {
-  display: flex;
-  gap: 75px; /* Distanza tra le card */
-  transition: transform 0.5s ease-in-out;
 }
 
 .Carousel-Indicators {
