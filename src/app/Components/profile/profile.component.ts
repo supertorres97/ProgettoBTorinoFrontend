@@ -28,16 +28,18 @@ export class UserProfileComponent implements OnInit {
     CAP: new FormControl(),
     citta: new FormControl()
   });
-  constructor(
+  constructor(    private route: ActivatedRoute,
     private userService: UserService,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
     private routing:Router
   ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
-      this.userService.getUserById(this.id)
+      const idParam = params.get("id");
+      if (idParam !== null) {
+        this.id = +idParam; // equivalent di ParseInt
+      }
+      this.userService.getUtente(this.id)
         .subscribe((resp: any) => {
           this.utente = resp.dati;
           console.log(this.utente);
