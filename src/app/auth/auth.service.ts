@@ -23,6 +23,7 @@ export class AuthService {
         this.isAdmin = false;
         this.isLoggedIn = false;
       }
+
     }
   }
 

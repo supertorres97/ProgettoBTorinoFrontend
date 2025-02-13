@@ -3,9 +3,9 @@ import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
-  standalone: false,
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  standalone: false
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
@@ -13,9 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    // Sottoscriviti all'Observable per ricevere aggiornamenti sullo stato di login
-    this.authService.isLoggedIn$.subscribe((status: boolean) => {
-      this.isLoggedIn = status;
-    });
+    // Directly access the isLoggedIn property from AuthService
+    this.isLoggedIn = this.authService.isAutentificated();
   }
 }
