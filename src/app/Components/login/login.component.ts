@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, Route } from '@angular/router';
-import { of, delay } from 'rxjs';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
-  standalone: false,
-  
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'],
+  standalone: false
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup= new FormGroup({
+  loginForm: FormGroup = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required)
   });
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
+  logged: boolean = false;
+
+  constructor(private usr: UserService, private fb: FormBuilder, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
-    // Inizializza il form con due controlli: username e password
+    // Initialize the form with two controls: username and password
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -28,26 +29,24 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Verifica che il form sia valido
     if (this.loginForm.valid) {
-      console.log('Dati del form:', this.loginForm.value);
-
-      // Simula una chiamata al backend con un ritardo di 2 secondi
-      of(this.loginForm.value)
-        .pipe(delay(2000))
-        .subscribe(response => {
-          console.log('Risposta mock:', response);
-          // Qui puoi gestire la risposta del "backend"
-          alert('Login effettuato (mock): ' + JSON.stringify(response));
-
-          // Imposta il login a true
-          this.authService.login();
-
-          // Reindirizza l'utente alla home
-          this.router.navigate(['/home']);
-        });
+      this.usr.signin({
+        username: this.loginForm.value.username,
+        pwd: this.loginForm.value.password
+      }).subscribe((resp: any) => {
+        this.logged = resp.logged;
+        if (resp.logged) {
+          this.auth.setAutentificated();
+          if (resp.role === "ADMIN") {
+            this.auth.setAdmin();
+          } else {
+            this.auth.setUser();
+          }
+          this.router.navigate(["/home"]);
+        }
+      });
     } else {
-      alert('Per favore, compila tutti i campi richiesti.');
+      alert('Perfavore, compila tutti.');
     }
   }
-}  
+}

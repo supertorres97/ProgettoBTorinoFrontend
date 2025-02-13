@@ -28,7 +28,9 @@ export class UserService {
   }
   getUtente(id:number){  
     let params = new HttpParams().set('id', toString());
-    return this.http.get(this.url + "/getById?id=" + id);
+    return this.http.get(this.url + "/listByID?id=" + id);
   }
-
+  signin(body:{}){
+    return this.http.post("http://localhost:9090/rest/credenziali/signin", body);
+  }
 }
