@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },                   // Home Page
   { path: 'carrello', component: CarrelloComponent },           // Carrello
   { path: 'login', component: LoginComponent },
-  {path: 'profile', component: UserProfileComponent},                 // Login
+  {path: 'profile/:id', component: UserProfileComponent},                 // Login
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
 ];
 

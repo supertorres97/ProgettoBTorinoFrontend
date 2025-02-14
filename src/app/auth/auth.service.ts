@@ -8,7 +8,7 @@ export class AuthService {
   
   isAdmin = false;
   isLoggedIn = false;
-
+  idUtente = 0;
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { 
     if(isPlatformBrowser(this.platformId)){
       const isLoggedInValue = localStorage.getItem("isLoggedIn");
@@ -23,8 +23,15 @@ export class AuthService {
         this.isAdmin = false;
         this.isLoggedIn = false;
       }
-
     }
+  }
+
+  setIdUtente(idUtente: number){
+    localStorage.setItem("idUtente", idUtente.toString()); // Salva l'ID nel localStorage
+  }
+  getIdUtente(){
+    const id = localStorage.getItem("idUtente");
+    return id ? Number(id) : null;  
   }
 
   isAutentificated(){
@@ -34,7 +41,6 @@ export class AuthService {
   isRoleAdmin(){
     return this.isAdmin;
   }
-
 
   setAutentificated(){
     this.isLoggedIn = true;

@@ -17,11 +17,16 @@ export class LoginComponent implements OnInit {
   });
 
   logged: boolean = false;
+  errorMessage: string = ''; // ✅ Variabile per il messaggio di errore
 
-  constructor(private usr: UserService, private fb: FormBuilder, private router: Router, private auth: AuthService) { }
+  constructor(
+    private usr: UserService,
+    private fb: FormBuilder,
+    private router: Router,
+    private auth: AuthService
+  ) { }
 
   ngOnInit(): void {
-    // Initialize the form with two controls: username and password
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -29,24 +34,43 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.errorMessage = ''; // ✅ Reset del messaggio di errore prima di ogni login
+
     if (this.loginForm.valid) {
       this.usr.signin({
         username: this.loginForm.value.username,
         pwd: this.loginForm.value.password
-      }).subscribe((resp: any) => {
-        this.logged = resp.logged;
-        if (resp.logged) {
-          this.auth.setAutentificated();
-          if (resp.role === "ADMIN") {
-            this.auth.setAdmin();
+      }).subscribe(
+        (resp: any) => {
+          console.log('Risposta dal backend:', resp);
+
+          if (resp.logged) {
+            this.auth.setAutentificated();
+            if (resp.idUtente !== null && resp.idUtente !== undefined) {
+              this.auth.setIdUtente(resp.idUtente);
+              localStorage.setItem("idUtente", resp.idUtente.toString());
+
+              if (resp.role === "ADMIN") {
+                this.auth.setAdmin();
+              } else {
+                this.auth.setUser();
+              }
+
+              this.router.navigate(["/profile", resp.idUtente]);
+            } else {
+              this.errorMessage = "Errore: impossibile ottenere l'ID utente.";
+            }
           } else {
-            this.auth.setUser();
+            this.errorMessage = "Credenziali non valide.";
           }
-          this.router.navigate(["/home"]);
+        },
+        (error: any) => {
+          console.error('Errore durante il login:', error);
+          this.errorMessage = "Si è verificato un errore durante il login. Riprova.";
         }
-      });
+      );
     } else {
-      alert('Perfavore, compila tutti.');
+      this.errorMessage = "Per favore, compila tutti i campi.";
     }
   }
 }

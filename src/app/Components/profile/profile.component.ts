@@ -49,7 +49,7 @@ export class UserProfileComponent implements OnInit {
             email: new FormControl(this.utente.email, [Validators.required, Validators.email]),
             cFiscale: new FormControl(this.utente.cFiscale),
             via:new FormControl(this.utente.via),
-            CAP:new FormControl(this.utente.CAP),
+            CAP:new FormControl(this.utente.cap),
             citta:new FormControl(this.utente.citta)
     })})
         })

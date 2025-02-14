@@ -19,5 +19,9 @@
     </mat-form-field>
 
     <button mat-raised-button class="login-button" type="submit">LOGIN</button>
+    <div *ngIf="errorMessage" class="error-box">
+      {{ errorMessage }}
+    </div>
+  
   </form>
 </div>
