@@ -80,6 +80,7 @@
   
   .dropdown:hover .dropdown-menu {
     display: block;
+    cursor: default;
   }
   
   .icons {
@@ -122,3 +123,41 @@
     filter: invert(17%) sepia(23%) saturate(0%) hue-rotate(208deg) brightness(99%) contrast(94%);
     transition: color 0.8s ease;
   }
+  /* Stile per l'icona del profilo */
+.profile-icon img {
+  width: 35px;
+  height: auto;
+  cursor: pointer;
+}
+
+/* Evita che la dropdown esca fuori dallo schermo */
+.dropdown-menu {
+  min-width: 180px; /* Aumenta leggermente la larghezza per maggiore leggibilità */
+  text-align: left;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  right: 0; /* Allinea la dropdown a destra */
+  left: auto; /* Evita che si allarghi troppo */
+  position: absolute; /* Evita che venga spostata in modo anomalo */
+  transform: translateX(-10px); /* Mantiene una piccola distanza dal bordo */
+  overflow: hidden; /* Assicura che rimanga visibile senza espandersi */
+}
+
+/* Stile degli elementi della dropdown */
+.dropdown-menu .dropdown-item {
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #333;
+  transition: background 0.3s ease;
+  white-space: nowrap; /* Impedisce che le opzioni vadano a capo */
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+/* Colore rosso per il logout */
+.dropdown-menu .dropdown-item.text-danger:hover {
+  background-color: #f8d7da;
+}

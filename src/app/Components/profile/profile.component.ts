@@ -46,11 +46,11 @@ export class UserProfileComponent implements OnInit {
           this.profileForm = new FormGroup({
             nome: new FormControl(this.utente.nome, Validators.required),
             cognome: new FormControl(this.utente.cognome, Validators.required),
-            email: new FormControl(this.utente.email, [Validators.required, Validators.email]),
+            email: new FormControl(this.utente.email, [Validators.email]),
             cFiscale: new FormControl(this.utente.cFiscale),
-            via:new FormControl(this.utente.via),
-            CAP:new FormControl(this.utente.cap),
-            citta:new FormControl(this.utente.citta)
+            via:new FormControl(this.utente.via, Validators.required),
+            cap:new FormControl(this.utente.cap, Validators.required),
+            citta:new FormControl(this.utente.citta, Validators.required)
     })})
         })
   }
@@ -70,16 +70,16 @@ export class UserProfileComponent implements OnInit {
       updateBody.email = this.profileForm.value.email;
     }
     if (this.profileForm.get('cFiscale')?.touched){
-      updateBody.colore = this.profileForm.value.cFiscale;
+      updateBody.cFiscale = this.profileForm.value.cFiscale;
     }
     if (this.profileForm.get('via')?.touched){
-      updateBody.isOnline = this.profileForm.value.via;
+      updateBody.via = this.profileForm.value.via;
     }
-    if (this.profileForm.get('CAP')?.touched){
-      updateBody.isOnline = this.profileForm.value.CAP;
+    if (this.profileForm.get('cap')?.touched){
+      updateBody.cap = this.profileForm.value.cap;
     }
     if (this.profileForm.get('citta')?.touched){
-      updateBody.isOnline = this.profileForm.value.citta;
+      updateBody.citta = this.profileForm.value.citta;
     }
 
     console.log(updateBody);
@@ -88,7 +88,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe((resp: any) => {
         console.log(resp);
         if (resp.rc){
-          this.routing.navigate(["/profile"])
+          this.routing.navigate(["/profile/"+ this.id])
           .then(() => {
             window.location.reload();
           })
@@ -100,7 +100,7 @@ export class UserProfileComponent implements OnInit {
 
   }
   onCancel(){
-    this.routing.navigate(["/contact"])
+    this.routing.navigate(["/profile/"+ this.id])
     .then(() => {
       window.location.reload();
     })

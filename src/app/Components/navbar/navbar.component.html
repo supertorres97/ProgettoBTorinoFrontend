@@ -1,11 +1,12 @@
 <nav class="navbar">
-  <div class = "nav-container">
+  <div class="nav-container">
     <div class="logo col-2">
-      <img src="LogoTorta.png" alt="Torta" style="height: 40px;"/>
+      <img src="LogoTorta.png" alt="Torta" style="height: 40px;" />
     </div>
 
-     <!-- Bottone Offcanvas (mostrato sotto 1366px) -->
-    <button class="btn  d-block d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <!-- Bottone Offcanvas (mostrato sotto 1366px) -->
+    <button class="btn d-block d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -17,7 +18,8 @@
       </div>
       <div class="offcanvas-body">
         <div>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
+          etc.
         </div>
         <div class="dropdown mt-3">
           <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -35,23 +37,40 @@
     <!-- Menu normale (mostrato sopra 1365px) -->
     <div class="d-none d-xl-flex col-10 justify-content-between align-items-center">
       <div class="nav-links-container col-10 d-flex justify-content-center">
-      <ul class="nav-links">
-        <li><a routerLink="/home" class="link" id="blackHover"><h3>Home</h3></a></li>
-        <li class="dropdown">
-          <a href="#" class="link" id="blackHover"><h3>Prodotti<img class="down-arrow" src="down-arrow.png" alt="down-arrow"/></h3></a>
-          <ul class="dropdown-menu"> <!-- ngFor="let type of TipoDolce"> -->
-          <!-- <li><a routerLink="/product/"  QUI METTERE L'ITEM CHE SARà IL TIPO DI DOLCE >Subitem 1</a></li> -->
-          </ul>
-        </li>
-      </ul>
+        <ul class="nav-links">
+          <li><a routerLink="/home" class="link" id="blackHover"><h3>Home</h3></a></li>
+          <li class="dropdown">
+            <a href="#" class="link" id="blackHover"><h3>Prodotti<img class="down-arrow" src="down-arrow.png"
+                  alt="down-arrow" /></h3></a>
+            <ul class="dropdown-menu"> <!-- ngFor="let type of TipoDolce"> -->
+              <!-- <li><a routerLink="/product/"  QUI METTERE L'ITEM CHE SARà IL TIPO DI DOLCE >Subitem 1</a></li> -->
+            </ul>
+          </li>
+        </ul>
       </div>
+      
+      <!-- Icone del carrello e profilo -->
       <div class="icons col-2 d-flex justify-content-end">
-      <a class="cart" routerLink="/carrello"><img src="shopping-cart4.png"/></a>
-      <span>|</span>
-      <a class="link" id="blackHover" *ngIf="!isLoggedIn" routerLink="/login"><h3>Login</h3></a>
-      <a *ngIf="isLoggedIn" routerLink="/profile"><img src="avatar.png"/></a>
+        <a class="cart" routerLink="/carrello"><img src="shopping-cart4.png" /></a>
+        <span>|</span>
+
+        <!-- Se l'utente NON è loggato, mostra "Login" -->
+        <a class="link" id="blackHover" *ngIf="!isLoggedIn" routerLink="/login">
+          <h3>Login</h3>
+        </a>
+
+        <!-- Se l'utente È loggato, mostra la dropdown -->
+        <div class="dropdown" *ngIf="isLoggedIn">
+          <a class="dropdown-toggle profile-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="avatar.png" alt="Profilo" />
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" routerLink="/profile/{{this.idUtente}}">Il mio profilo</a></li>
+            <li><a class="dropdown-item" routerLink="/orders">I miei ordini</a></li>
+            <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 </nav>
-  
