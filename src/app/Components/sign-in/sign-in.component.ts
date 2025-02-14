@@ -32,21 +32,5 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.personalFormGroup.valid && this.credentialsFormGroup.valid) {
-      const formData = { ...this.personalFormGroup.value, ...this.credentialsFormGroup.value };
-      console.log('Dati del form:', formData);
-
-      of(formData)
-        .pipe(delay(2000))
-        .subscribe(response => {
-          console.log('Risposta mock:', response);
-          alert('Registrazione effettuata (mock): ' + JSON.stringify(response));
-
-          this.authService.login();
-          this.router.navigate(['/home']);
-        });
-    } else {
-      alert('Per favore, compila tutti i campi richiesti.');
-    }
   }
 }
