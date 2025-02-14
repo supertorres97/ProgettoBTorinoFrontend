@@ -1,0 +1,84 @@
+<div class="sign-in-container">
+  
+    <mat-horizontal-stepper #stepper>
+      <!-- Step 1: Dati personali -->
+      <mat-step [stepControl]="personalFormGroup">
+        <form [formGroup]="personalFormGroup">
+          <ng-template matStepLabel>Dati personali</ng-template>
+          
+          <!-- Campo Nome -->
+          <mat-form-field appearance="fill" hideRequiredMarker>
+            <mat-label>Nome</mat-label>
+            <input matInput placeholder="Inserisci il tuo nome" formControlName="firstName" required />
+            <mat-error *ngIf="personalFormGroup.get('firstName')?.invalid && personalFormGroup.get('firstName')?.touched">
+              
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Campo Cognome -->
+          <mat-form-field appearance="fill" hideRequiredMarker>
+            <mat-label>Cognome</mat-label>
+            <input matInput placeholder="Inserisci il tuo cognome" formControlName="lastName" required />
+            <mat-error *ngIf="personalFormGroup.get('lastName')?.invalid && personalFormGroup.get('lastName')?.touched">
+              
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Campo Indirizzo -->
+          <mat-form-field appearance="fill" hideRequiredMarker>
+            <mat-label>Indirizzo</mat-label>
+            <input matInput placeholder="Inserisci il tuo indirizzo" formControlName="address" required />
+            <mat-error *ngIf="personalFormGroup.get('address')?.invalid && personalFormGroup.get('address')?.touched">
+              
+            </mat-error>
+          </mat-form-field>
+  
+          <div>
+            <button mat-button matStepperNext>Avanti</button>
+          </div>
+        </form>
+      </mat-step>
+  
+      <!-- Step 2: Credenziali -->
+      <mat-step [stepControl]="credentialsFormGroup">
+        <form [formGroup]="credentialsFormGroup">
+          <ng-template matStepLabel>Credenziali</ng-template>
+          
+          <!-- Campo Username -->
+          <mat-form-field appearance="fill" hideRequiredMarker>
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Inserisci il tuo username" formControlName="username" required />
+            <mat-error *ngIf="credentialsFormGroup.get('username')?.invalid && credentialsFormGroup.get('username')?.touched">
+              
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Campo Password -->
+          <mat-form-field appearance="fill" hideRequiredMarker>
+            <mat-label>Password</mat-label>
+            <input matInput type="password" placeholder="Inserisci la tua password" formControlName="password" required />
+            <mat-error *ngIf="credentialsFormGroup.get('password')?.invalid && credentialsFormGroup.get('password')?.touched">
+              
+            </mat-error>
+          </mat-form-field>
+  
+          <!-- Campo Conferma Password -->
+          <mat-form-field appearance="fill" hideRequiredMarker>
+            <mat-label>Conferma Password</mat-label>
+            <input matInput type="password" placeholder="Conferma la tua password" formControlName="confirmPassword" required />
+            <mat-error *ngIf="credentialsFormGroup.get('confirmPassword')?.invalid && credentialsFormGroup.get('confirmPassword')?.touched">
+              
+            </mat-error>
+          </mat-form-field>
+  
+          <div>
+            <button mat-button matStepperPrevious>Indietro</button>
+            <button mat-raised-button class="sign-in-button" (click)="onSubmit()">Registrati</button>
+          </div>
+        </form>
+      </mat-step>
+  
+      
+    </mat-horizontal-stepper>
+  </div>
+  
