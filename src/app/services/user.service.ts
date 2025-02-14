@@ -19,7 +19,7 @@ export class UserService {
     // Metodo per ottenere i dettagli di un utente tramite ID
     getUtente(id: number): Observable<any> {
       // Qui correggi l'uso di HttpParams, puoi evitare di usarlo se preferisci
-      return this.http.get(`${this.url}/listByID?id=${id}`);
+      return this.http.get(this.url +"/listByID?id=" + id);
     }
   
     // Metodo per il login/signin
@@ -28,7 +28,7 @@ export class UserService {
     }
 
     
-  signup(formData: any): Observable<any> {
-    return this.http.post("http://localhost:9090/rest/credenziali/signup", formData);
+  signup(body: {}): Observable<any> {
+    return this.http.post("http://localhost:9090/rest/credenziali/signup", body);
   }
 }

@@ -65,7 +65,7 @@
             <img src="avatar.png" alt="Profilo" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" routerLink="/profile/:id">Il mio profilo</a></li>
+            <li><a class="dropdown-item" routerLink="/profile/{{this.idUtente}}">Il mio profilo</a></li>
             <li><a class="dropdown-item" routerLink="/orders">I miei ordini</a></li>
             <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
           </ul>

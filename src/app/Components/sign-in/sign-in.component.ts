@@ -20,7 +20,7 @@ export class SignInComponent implements OnInit {
     this.personalFormGroup = this.fb.group({
       nome: ['', Validators.required], // Aggiungi questo controllo
       cognome: ['', Validators.required],  // Aggiungi questo controllo
-      cFiscale: ['', Validators.required],
+      cFiscale: [''],
       via: ['', Validators.required],
       cap: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
       citta: ['', Validators.required],
@@ -31,7 +31,7 @@ export class SignInComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
-    }, { validator: this.passwordMatchValidator });
+    }, { validators: this.passwordMatchValidator });
   }
 
   passwordMatchValidator(formGroup: FormGroup) {
@@ -48,9 +48,9 @@ export class SignInComponent implements OnInit {
 
   onSubmit(): void {
     if (this.personalFormGroup.valid && this.credentialsFormGroup.valid) {
-      const utente = {
-        nome: this.personalFormGroup.value.firstName,
-        cognome: this.personalFormGroup.value.lastName,
+      const utenteReq = {
+        nome: this.personalFormGroup.value.nome,
+        cognome: this.personalFormGroup.value.cognome,
         cFiscale: this.personalFormGroup.value.cFiscale,
         email: this.personalFormGroup.value.email,
         via: this.personalFormGroup.value.via,
@@ -58,22 +58,27 @@ export class SignInComponent implements OnInit {
         citta: this.personalFormGroup.value.citta
       };
 
-      const credenziali = {
+      const credenzialiReq = {
         username: this.credentialsFormGroup.value.username,
         password: this.credentialsFormGroup.value.password,
         attivo: true
       };
 
-      this.userService.signup({ utente, credenziali }).subscribe(
-        (resp: any) => {
+      const signupObject = {utenteReq, credenzialiReq};
+      this.userService.signup(signupObject).subscribe({
+        next: (resp: any) => {
+          console.log('Inserimento riuscito:', resp);
           alert('Registrazione avvenuta con successo!');
           this.router.navigate(['/login']);
         },
-        error => {
+        error: (error) => {
           console.error('Errore durante la registrazione:', error);
           alert('Errore durante la registrazione. Per favore riprova.');
+        },
+        complete: () => {
+          console.log('Richiesta completata con successo!');
         }
-      );
+      });
     } else {
       alert('Per favore, compila tutti i campi richiesti.');
     }
