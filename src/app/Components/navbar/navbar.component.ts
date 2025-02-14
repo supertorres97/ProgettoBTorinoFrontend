@@ -14,12 +14,16 @@ export class NavbarComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  private isBrowser(): boolean {
+    return typeof localStorage !== 'undefined';
+  }
+
   ngOnInit() {
-    // Controlla se l'utente è loggato
-    this.isLoggedIn = this.auth.isAutentificated();
-    
-    // Recupera idUtente (ad esempio da localStorage o da AuthService)
-    this.idUtente = Number(localStorage.getItem("idUtente"));
+    if (this.isBrowser()) {  // Controlla se siamo lato client
+      this.isLoggedIn = this.auth.isAutentificated();
+      const id = localStorage.getItem('idUtente');
+      this.idUtente = id ? Number(id) : null;
+    }
   }
 
   logout() {
