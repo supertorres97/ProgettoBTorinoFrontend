@@ -18,13 +18,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit(): void {
     this.personalFormGroup = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      nome: ['', Validators.required], // Aggiungi questo controllo
+      cognome: ['', Validators.required],  // Aggiungi questo controllo
       cFiscale: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
       via: ['', Validators.required],
-      cap: ['', Validators.required],
-      citta: ['', Validators.required]
+      cap: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
+      citta: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
     });
 
     this.credentialsFormGroup = this.fb.group({
@@ -37,13 +37,14 @@ export class SignInComponent implements OnInit {
   passwordMatchValidator(formGroup: FormGroup) {
     const password = formGroup.get('password')?.value;
     const confirmPassword = formGroup.get('confirmPassword')?.value;
-  
+
     if (password !== confirmPassword) {
       formGroup.get('confirmPassword')?.setErrors({ mismatch: true });
     } else {
       formGroup.get('confirmPassword')?.setErrors(null);
     }
   }
+
 
   onSubmit(): void {
     if (this.personalFormGroup.valid && this.credentialsFormGroup.valid) {

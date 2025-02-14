@@ -1,30 +1,36 @@
-import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  
   isAdmin = false;
   isLoggedIn = false;
-  idUtente = 0;
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { 
-    if(isPlatformBrowser(this.platformId)){
+  idUtente: number | null = null;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
+      // Solo nel browser, accedi a localStorage
       const isLoggedInValue = localStorage.getItem("isLoggedIn");
       const isAdminValue = localStorage.getItem("isAdmin");
-      
-      if(isLoggedInValue!== null && isAdminValue !== null){
-          console.log("token exists");
-          this.isLoggedIn = isLoggedInValue === '1';
+      const idUtenteValue = localStorage.getItem("idUtente");
+
+      if (isLoggedInValue !== null && isAdminValue !== null && idUtenteValue !== null) {
+        this.isLoggedIn = isLoggedInValue === '1';
+        this.isAdmin = isAdminValue === '1';
+        this.idUtente = parseInt(idUtenteValue, 10);
       } else {
         localStorage.setItem("isLoggedIn", "0");
         localStorage.setItem("isAdmin", "0");
+        localStorage.setItem("idUtente", "0");
         this.isAdmin = false;
         this.isLoggedIn = false;
+        this.idUtente = null;
       }
     }
   }
+
 
   setIdUtente(idUtente: number){
     localStorage.setItem("idUtente", idUtente.toString()); // Salva l'ID nel localStorage

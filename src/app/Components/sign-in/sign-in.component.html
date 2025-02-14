@@ -1,49 +1,68 @@
 <div class="sign-in-container">
   <mat-horizontal-stepper #stepper>
-    
     <!-- Step 1: Dati personali -->
     <mat-step [stepControl]="personalFormGroup">
       <form [formGroup]="personalFormGroup">
         <ng-template matStepLabel>Dati personali</ng-template>
 
-        <mat-form-field appearance="fill">
+        <!-- Campo Nome -->
+        <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Nome</mat-label>
-          <input matInput formControlName="firstName" required />
+          <input matInput placeholder="Inserisci il tuo nome" formControlName="nome" required />
+          <mat-error *ngIf="personalFormGroup.get('nome')?.invalid && personalFormGroup.get('nome')?.touched">
+            Il nome è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <!-- Campo Cognome -->
+        <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Cognome</mat-label>
-          <input matInput formControlName="lastName" required />
+          <input matInput placeholder="Inserisci il tuo cognome" formControlName="cognome" required />
+          <mat-error *ngIf="personalFormGroup.get('cognome')?.invalid && personalFormGroup.get('cognome')?.touched">
+            Il cognome è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Codice Fiscale</mat-label>
-          <input matInput formControlName="cFiscale" required />
+        <mat-form-field appearance="fill" hideRequiredMarker>
+          <mat-label>Cognome</mat-label>
+          <input matInput placeholder="Inserisci la tua email" formControlName="email" required />
+          <mat-error *ngIf="personalFormGroup.get('email')?.invalid && personalFormGroup.get('email')?.touched">
+            Il cognome è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" required />
+        <mat-form-field appearance="fill" hideRequiredMarker>
+          <mat-label>Cognome</mat-label>
+          <input matInput placeholder="Inserisci il tuo codice fiscale" formControlName="cFiscale"  />
+          <mat-error *ngIf="personalFormGroup.get('cFiscale')?.invalid && personalFormGroup.get('cFiscale')?.touched">
+            Il cognome è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Indirizzo</mat-label>
-          <input matInput formControlName="via" required />
+        <mat-form-field appearance="fill" hideRequiredMarker>
+          <mat-label>Cognome</mat-label>
+          <input matInput placeholder="Inserisci la tua via" formControlName="via" required />
+          <mat-error *ngIf="personalFormGroup.get('via')?.invalid && personalFormGroup.get('via')?.touched">
+            Il cognome è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>CAP</mat-label>
-          <input matInput formControlName="cap" required />
+        <mat-form-field appearance="fill" hideRequiredMarker>
+          <mat-label>Cognome</mat-label>
+          <input matInput placeholder="Inserisci il tuo CAP" formControlName="cap" required />
+          <mat-error *ngIf="personalFormGroup.get('cap')?.invalid && personalFormGroup.get('cap')?.touched">
+            Il cognome è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Città</mat-label>
-          <input matInput formControlName="citta" required />
+        <mat-form-field appearance="fill" hideRequiredMarker>
+          <mat-label>Cognome</mat-label>
+          <input matInput placeholder="Inserisci la tua città" formControlName="citta" required />
+          <mat-error *ngIf="personalFormGroup.get('citta')?.invalid && personalFormGroup.get('citta')?.touched">
+            Il cognome è obbligatorio.
+          </mat-error>
         </mat-form-field>
-
-        <div>
-          <button mat-button matStepperNext>Avanti</button>
-        </div>
+       
       </form>
     </mat-step>
 
@@ -52,27 +71,39 @@
       <form [formGroup]="credentialsFormGroup">
         <ng-template matStepLabel>Credenziali</ng-template>
 
-        <mat-form-field appearance="fill">
+        <!-- Campo Username -->
+        <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Username</mat-label>
-          <input matInput formControlName="username" required />
+          <input matInput placeholder="Inserisci il tuo username" formControlName="username" required />
+          <mat-error *ngIf="credentialsFormGroup.get('username')?.invalid && credentialsFormGroup.get('username')?.touched">
+            Lo username è obbligatorio.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <!-- Campo Password -->
+        <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" required />
+          <input matInput type="password" placeholder="Inserisci la tua password" formControlName="password" required />
+          <mat-error *ngIf="credentialsFormGroup.get('password')?.invalid && credentialsFormGroup.get('password')?.touched">
+            La password è obbligatoria.
+          </mat-error>
         </mat-form-field>
 
-        <mat-form-field appearance="fill">
+        <!-- Campo Conferma Password -->
+        <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Conferma Password</mat-label>
-          <input matInput type="password" formControlName="confirmPassword" required />
+          <input matInput type="password" placeholder="Conferma la tua password" formControlName="confirmPassword" required />
+          <mat-error *ngIf="credentialsFormGroup.get('confirmPassword')?.invalid && credentialsFormGroup.get('confirmPassword')?.touched">
+            Le password non coincidono.
+          </mat-error>
         </mat-form-field>
 
-        <div>
+        <!-- Pulsanti Indietro e Registrati -->
+        <div class="button-container">
           <button mat-button matStepperPrevious>Indietro</button>
-          <button mat-raised-button class="sign-in-button" (click)="onSubmit()">Registrati</button>
+          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="credentialsFormGroup.invalid">Registrati</button>
         </div>
       </form>
     </mat-step>
-
   </mat-horizontal-stepper>
 </div>
