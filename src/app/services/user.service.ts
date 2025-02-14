@@ -26,4 +26,9 @@ export class UserService {
     signin(body: { username: string, pwd: string }): Observable<any> {
       return this.http.post("http://localhost:9090/rest/credenziali/signin", body);
     }
+
+    
+  signup(formData: any): Observable<any> {
+    return this.http.post("http://localhost:9090/rest/credenziali/signup", formData);
+  }
 }
