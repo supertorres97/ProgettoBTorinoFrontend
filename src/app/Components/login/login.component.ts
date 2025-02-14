@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
                 this.auth.setUser();
               }
 
-              this.router.navigate(["/profile", resp.idUtente]);
+              this.router.navigate(["/home"]);
             } else {
               this.errorMessage = "Errore: impossibile ottenere l'ID utente.";
             }
