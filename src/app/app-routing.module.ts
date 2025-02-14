@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },                 // Login
   { path: 'prodotti', component: ProdottiComponent},            //prodotti
   { path: 'sign-in', component: SignInComponent },              // Registrazione
+  {path: 'profile/:id', component: UserProfileComponent},                 // Login
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
 ];
 

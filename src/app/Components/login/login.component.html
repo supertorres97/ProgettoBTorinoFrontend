@@ -19,8 +19,15 @@
     </mat-form-field>
 
     <button mat-raised-button class="login-button" type="submit">LOGIN</button>
+
     <div class="sign-in-link">
       <p>Non hai un account? <a routerLink="/sign-in">Registrati</a></p>
     </div>
+
+    <div *ngIf="errorMessage" class="error-box">
+      {{ errorMessage }}
+    </div>
+  
+
   </form>
 </div>

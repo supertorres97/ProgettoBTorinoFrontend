@@ -5,56 +5,69 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  
   isAdmin = false;
   isLoggedIn = false;
+  idUtente: number | null = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) { 
-    if(isPlatformBrowser(this.platformId)){
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId)) {
       const isLoggedInValue = localStorage.getItem("isLoggedIn");
       const isAdminValue = localStorage.getItem("isAdmin");
-      
-      if(isLoggedInValue!== null && isAdminValue !== null){
-          console.log("token exists");
-          this.isLoggedIn = isLoggedInValue === '1';
+      const idUtenteValue = localStorage.getItem("idUtente");
+
+      if (isLoggedInValue !== null && isAdminValue !== null && idUtenteValue !== null) {
+        this.isLoggedIn = isLoggedInValue === '1';
+        this.isAdmin = isAdminValue === '1';
+        this.idUtente = parseInt(idUtenteValue, 10);
       } else {
         localStorage.setItem("isLoggedIn", "0");
         localStorage.setItem("isAdmin", "0");
+        localStorage.setItem("idUtente", "0");
         this.isAdmin = false;
         this.isLoggedIn = false;
+        this.idUtente = null;
       }
     }
   }
 
-  isAutentificated(){
+  setIdUtente(id: number): void {
+    this.idUtente = id;
+    localStorage.setItem("idUtente", id.toString());
+  }
+
+  getIdUtente(): number | null {
+    return this.idUtente;
+  }
+
+  isAutentificated(): boolean {
     return this.isLoggedIn;
   }
 
-  isRoleAdmin(){
+  isRoleAdmin(): boolean {
     return this.isAdmin;
   }
 
-
-  setAutentificated(){
+  setAutentificated(): void {
     this.isLoggedIn = true;
     localStorage.setItem("isLoggedIn", "1");
   }
 
-  setLogout(){
+  setLogout(): void {
     localStorage.setItem("isLoggedIn", "0");
     localStorage.setItem("isAdmin", "0");
+    localStorage.setItem("idUtente", "0");
     this.isAdmin = false;
     this.isLoggedIn = false;
+    this.idUtente = null;
   }
 
-  setAdmin(){
+  setAdmin(): void {
     localStorage.setItem("isAdmin", "1");
     this.isAdmin = true;
   }
 
-  setUser(){
+  setUser(): void {
     localStorage.setItem("isAdmin", "0");
     this.isAdmin = false;
   }
-
 }

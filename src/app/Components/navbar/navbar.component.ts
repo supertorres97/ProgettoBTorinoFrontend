@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,11 +10,21 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
+  idUtente: number | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private auth: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
-    // Directly access the isLoggedIn property from AuthService
-    this.isLoggedIn = this.authService.isAutentificated();
+  ngOnInit() {
+    // Controlla se l'utente è loggato
+    this.isLoggedIn = this.auth.isAutentificated();
+    
+    // Recupera idUtente (ad esempio da localStorage o da AuthService)
+    this.idUtente = Number(localStorage.getItem("idUtente"));
+  }
+
+  logout() {
+    this.auth.setLogout();
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 }
