@@ -43,15 +43,17 @@ export class CardsSezioneComponent implements OnInit {
   }
 
   updateCardsPerPage() {
-    const width = window.innerWidth;
-    if (width >= 1024) {
-      this.cardsPerPage = 3;
-    } else if (width >= 768) {
-      this.cardsPerPage = 2;
-    } else {
-      this.cardsPerPage = 1;
+    if (typeof window !== 'undefined') { // Verifica se 'window' esiste
+      const width = window.innerWidth;
+      if (width >= 1024) {
+        this.cardsPerPage = 3;
+      } else if (width >= 768) {
+        this.cardsPerPage = 2;
+      } else {
+        this.cardsPerPage = 1;
+      }
+      this.totalPages = Array.from({ length: Math.ceil(this.cards.length / this.cardsPerPage) });
     }
-    this.totalPages = Array.from({ length: Math.ceil(this.cards.length / this.cardsPerPage) });
   }
 
   updateVisibleCards() {
