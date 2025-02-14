@@ -17,6 +17,9 @@ export class SignInComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private userService: UserService) {}
 
   ngOnInit(): void {
+    if(this.authService.isAutentificated())
+      this.authService.isLoggedIn = true;
+    else this.authService.isLoggedIn = false;
     this.personalFormGroup = this.fb.group({
       nome: ['', Validators.required], // Aggiungi questo controllo
       cognome: ['', Validators.required],  // Aggiungi questo controllo

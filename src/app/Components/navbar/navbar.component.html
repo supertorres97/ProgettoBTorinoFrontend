@@ -60,16 +60,17 @@
         </a>
 
         <!-- Se l'utente È loggato, mostra la dropdown -->
-        <div class="dropdown" *ngIf="isLoggedIn">
+        <div class="dropdown" *ngIf="isLoggedIn && idUtente">
           <a class="dropdown-toggle profile-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="avatar.png" alt="Profilo" />
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" routerLink="/profile/{{this.idUtente}}">Il mio profilo</a></li>
+            <li><a class="dropdown-item" routerLink="/profile/{{ idUtente }}">Il mio profilo</a></li>
             <li><a class="dropdown-item" routerLink="/orders">I miei ordini</a></li>
             <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
           </ul>
         </div>
+        
       </div>
     </div>
   </div>
