@@ -2,7 +2,7 @@
   <mat-horizontal-stepper #stepper>
     <!-- Step 1: Dati personali -->
     <mat-step [stepControl]="personalFormGroup">
-      <form [formGroup]="personalFormGroup">
+      <form [formGroup]="personalFormGroup" class="sign-in-form">
         <ng-template matStepLabel>Dati personali</ng-template>
 
         <!-- Campo Nome -->
@@ -33,7 +33,7 @@
 
         <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Codice Fiscale</mat-label>
-          <input matInput placeholder="Inserisci il tuo codice fiscale" formControlName="cFiscale"  />
+          <input matInput placeholder="Inserisci il tuo codice fiscale" formControlName="cFiscale" />
           <mat-error *ngIf="personalFormGroup.get('cFiscale')?.invalid && personalFormGroup.get('cFiscale')?.touched">
             Inserisci il tuo codice fiscale
           </mat-error>
@@ -62,13 +62,17 @@
             Inserisci la tua città
           </mat-error>
         </mat-form-field>
-       
+
+        <!-- Pulsante Avanti -->
+        <div class="button-container-right">
+          <button mat-button matStepperNext>Avanti</button>
+        </div>
       </form>
     </mat-step>
 
     <!-- Step 2: Credenziali -->
     <mat-step [stepControl]="credentialsFormGroup">
-      <form [formGroup]="credentialsFormGroup">
+      <form [formGroup]="credentialsFormGroup" class="sign-in-form">
         <ng-template matStepLabel>Credenziali</ng-template>
 
         <!-- Campo Username -->

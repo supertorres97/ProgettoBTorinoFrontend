@@ -6,15 +6,16 @@
   align-items: center;
   padding: 20px;
   background-color: #ede9e7;
+  margin-bottom: 10%;
 }
 
 .sign-in-form {
-  width: 100%;
-  max-width: 400px;
+  width: 70%;
   padding: 2rem;
   border-radius: 8px;
   background-color: #ede9e7;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin: 0 auto; /* Center the form horizontally */
 }
 
 .sign-in-form h2 {
@@ -25,12 +26,12 @@
 }
 
 mat-form-field {
-  width: 100%;
-  margin-bottom: 1.5rem;
+  width: 70%;
+  margin-left: 15%;
 }
 
 mat-form-field + mat-form-field {
-  margin-top: 8px;
+  margin-top: 0px;
 }
 
 input.mat-input-element {
@@ -52,6 +53,16 @@ input.mat-input-element {
 .sign-in-button:hover {
   background-color: #2ecc71;
   transform: scale(1.05);
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Align the buttons to the left and right */
+}
+
+.button-container-right{
+  display: flex;
+  justify-content: flex-end;
 }
 
 @media (max-width: 768px) {
@@ -80,9 +91,15 @@ input.mat-input-element {
 }
 
 .mat-stepper-horizontal {
-  margin-top: 8px;
+  margin-top: 10%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .mat-mdc-form-field {
   margin-top: 16px;
+}
+
+.mat-horizontal-stepper-wrapper{
+  height: 100%;
 }
