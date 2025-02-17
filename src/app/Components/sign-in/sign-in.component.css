@@ -7,6 +7,7 @@
   padding: 20px;
   background-color: #ede9e7;
   margin-bottom: 10%;
+  font-family: 'Poiret One', cursive;
 }
 
 .sign-in-form {
@@ -22,12 +23,14 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: 2rem;
-  color: #333;
+  color: #b44715;
 }
 
 mat-form-field {
   width: 70%;
   margin-left: 15%;
+  font-family: 'Poiret One', cursive;
+  background-color: #ede9e7;
 }
 
 mat-form-field + mat-form-field {
@@ -41,28 +44,45 @@ input.mat-input-element {
 }
 
 .sign-in-button {
-  width: 100%;
+  font-family: 'Poiret One', cursive;
+  width: 15%;
   padding: 1rem;
-  background-color: #004d20;
-  color: #fff;
-  font-size: 1rem;
+  background-color: #333;
+  color: #fff9ed;
+  font-size: 1.2rem;
   border-radius: 5px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .sign-in-button:hover {
-  background-color: #2ecc71;
+  background-color: #b44715;
   transform: scale(1.05);
+  color: #fff9ed;
 }
 
 .button-container {
+  font-family: 'Poiret One', cursive;
   display: flex;
-  justify-content: space-between; /* Align the buttons to the left and right */
+  justify-content: space-between;
+}
+
+.left-button{
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  font-size: 1.2rem;
 }
 
 .button-container-right{
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
   display: flex;
   justify-content: flex-end;
+}
+
+.button-container-right button{
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 768px) {
@@ -94,6 +114,7 @@ input.mat-input-element {
   margin-top: 10%;
   margin-left: 15%;
   margin-right: 15%;
+  background-color: #ede9e7;
 }
 
 .mat-mdc-form-field {
@@ -102,4 +123,10 @@ input.mat-input-element {
 
 .mat-horizontal-stepper-wrapper{
   height: 100%;
+}
+
+mat-label {
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  font-size: 1.2rem;
 }
