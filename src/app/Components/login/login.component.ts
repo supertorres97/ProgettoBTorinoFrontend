@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
+import { CredenzialiService } from '../../services/credenziali.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string = ''; // ✅ Variabile per il messaggio di errore
 
   constructor(
-    private usr: UserService,
+    private cred: CredenzialiService,
     private fb: FormBuilder,
     private router: Router,
     private auth: AuthService
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.errorMessage = ''; // ✅ Reset del messaggio di errore prima di ogni login
 
     if (this.loginForm.valid) {
-      this.usr.signin({
+      this.cred.signin({
         username: this.loginForm.value.username,
         pwd: this.loginForm.value.password
       }).subscribe(
