@@ -25,7 +25,8 @@ import { ParallaxSezioneComponent } from './Components/home/parallax-sezione/par
 import { UserProfileComponent } from './Components/profile/profile.component';
 import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { SignInComponent } from './Components/sign-in/sign-in.component'; 
+import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component'; 
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
     ParallaxSezioneComponent,
     UserProfileComponent,
     ProdottiComponent,
-    SignInComponent 
+    SignInComponent,
+    CreazioneProdottoComponent 
   ],
   imports: [
     BrowserModule,
