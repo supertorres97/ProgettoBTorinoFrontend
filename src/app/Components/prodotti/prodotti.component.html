@@ -13,7 +13,7 @@
                 <p class="card-title">{{prodotto.nome}}</p>
                 <p class="card-prezzo">€{{prodotto.prezzo}}</p>
                 <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Dettagli</button>
-                <p class="card-text" style="color: red;" *!ngIf="prodotto.disponibile">ESAURITO</p>
+                <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
             </div>
         </div>
     </div>
