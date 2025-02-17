@@ -84,7 +84,7 @@
   
               <div class="form-group">
                 <label>CAP</label>
-                <input type="text" class="form-control" formControlName="CAP" maxlength="5">
+                <input type="text" class="form-control" maxlength="5" formControlName="cap">
                 <small class="form-text text-muted">Esempio: 00100</small>
               </div>
   
@@ -100,8 +100,8 @@
           <button type="submit" class="btn" [disabled]="!profileForm.valid">
             <i class="fas fa-save"></i> Salva modifiche
           </button>
-          <button type="button" class="btn ml-2" (click)="onCancel()">
-            Annulla
+          <button type="button" class="btn ml-2 annulla"  (click)="onCancel()">
+            Annulla modifiche
           </button>
         </div>
       </div>

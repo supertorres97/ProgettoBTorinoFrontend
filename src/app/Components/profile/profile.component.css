@@ -22,3 +22,7 @@ body {
     outline: none;
     transition: color 0.3s ease; 
 }
+
+.card-footer .btn + .btn {
+    margin-left: 1rem; /* Adjust this value to control the spacing */
+}

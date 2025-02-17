@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -14,21 +14,34 @@ export class NavbarComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-  private isBrowser(): boolean {
-    return typeof localStorage !== 'undefined';
+  ngOnInit() {
+    this.updateUserStatus(); // Controlla lo stato iniziale
+
+    // Ascolta i cambiamenti di rotta per aggiornare la navbar
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.updateUserStatus();
+      }
+    });
   }
 
-  ngOnInit() {
-    if (this.isBrowser()) {  // Controlla se siamo lato client
-      this.isLoggedIn = this.auth.isAutentificated();
-      const id = localStorage.getItem('idUtente');
-      this.idUtente = id ? Number(id) : null;
+  updateUserStatus() {
+    const id = localStorage.getItem('idUtente');
+    
+    if (id && !isNaN(Number(id)) && Number(id) > 0) {
+      this.isLoggedIn = true;
+      this.idUtente = Number(id);
+    } else {
+      this.isLoggedIn = false;
+      this.idUtente = null;
     }
   }
 
   logout() {
     this.auth.setLogout();
+    localStorage.removeItem('idUtente'); // Rimuove idUtente per evitare problemi
     this.isLoggedIn = false;
-    this.router.navigate(['/login']);
+    this.idUtente = null;
+    this.router.navigate(['/home']);
   }
 }

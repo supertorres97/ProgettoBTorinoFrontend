@@ -79,3 +79,14 @@ input.mat-input-element {
     padding: 0.8rem;
   }
 }
+.error-box {
+  background-color: #f8d7da; /* Rosso chiaro */
+  color: #721c24; /* Rosso scuro per il testo */
+  border: 1px solid #f5c6cb; /* Bordo rosso */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
