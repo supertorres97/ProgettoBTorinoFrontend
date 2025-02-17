@@ -27,7 +27,8 @@ export class ProdottiComponent implements OnInit{
   }
 
   dettagliProdotto(id:number){
-    this.router.navigate(['prodotto', id]);
+    console.log(id);
+    this.router.navigate(['/pgProdotto', id]);
   }
 
 }
