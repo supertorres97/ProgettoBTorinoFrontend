@@ -14,7 +14,7 @@ export class ProdottiComponent implements OnInit{
   response:any;
   data:any;
 
-  constructor(private serv:ProdottiService, private route:Router) { }
+  constructor(private serv:ProdottiService, private router:Router) { }
 
   ngOnInit(): void {
     console.log("onInit prodotti");
@@ -24,6 +24,10 @@ export class ProdottiComponent implements OnInit{
         this.response = resp;
         this.data = this.response.dati;
       })
+  }
+
+  dettagliProdotto(id:number){
+    this.router.navigate(['prodotto', id]);
   }
 
 }
