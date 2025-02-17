@@ -1,18 +1,21 @@
-<h1>PRODOTTI</h1>
-<div>
-    <ul>
-        <li *ngFor="let prodotto of data">
-            <div>
-                <h2>{{prodotto.nome}}</h2>
-                <p>Descrizione: {{prodotto.descrizione}}</p>
-                <p>Peso: {{prodotto.peso}} g</p>
-                <p>Prezzo: {{prodotto.prezzo}} €</p>
-                <p *ngIf="prodotto.disponibile">Disponibilità: si</p>
-                <p *ngIf="!prodotto.disponibile">Disponibilità: no</p>
+
+<div class="main-div">
+    <aside class="col-1"></aside>
+    <div class="titolo">
+        <h1 class="titolo">PRODOTTI</h1>
+    </div>
+    <div class="card-container">
+        <div class="card" *ngFor="let prodotto of data">
+            <div class="img-div">
+            <img class="img" src={{prodotto.img}} alt="immagine">
             </div>
-        </li>
-    </ul>
-</div>
-<div>
-    <router-outlet></router-outlet>
+            <div class="card-body">
+                <p class="card-title">{{prodotto.nome}}</p>
+                <p class="card-prezzo">€{{prodotto.prezzo}}</p>
+                <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Dettagli</button>
+                <p class="card-text" style="color: red;" *!ngIf="prodotto.disponibile">ESAURITO</p>
+            </div>
+        </div>
+    </div>
+    <aside class="col-1"></aside>
 </div>
