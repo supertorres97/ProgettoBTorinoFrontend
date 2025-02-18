@@ -30,7 +30,8 @@ import { CreazioneProdottoComponent } from './Components/creazione-prodotto/crea
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
-import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
+import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component';
+import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component'; 
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gest
     CreazioneProdottoComponent, 
     StoricoOrdiniComponent,
     DettaglioOrdineComponent,
-    GestioneOrdiniComponent 
+    GestioneOrdiniComponent,
+    DettagliOrdineComponent 
   ],
   imports: [
     BrowserModule,
