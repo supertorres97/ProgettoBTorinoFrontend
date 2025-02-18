@@ -28,8 +28,16 @@ export class OrdineService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getOrdiniByUtente(id :number) {
+  getOrdiniByUtente(id: number) {
       return this.http.get(this.url + "/listByUtente?idUtente=" + id);
+  }
+
+  getAllOrdini() {
+    return this.http.get(this.url + "/listAll");
+  }
+
+  updateOrdine(ordine: { id: number; status?: string; totale?: number}){
+    return this.http.post(this.url + "/update", ordine);
   }
 
   dettagliOrdine(id: number) {

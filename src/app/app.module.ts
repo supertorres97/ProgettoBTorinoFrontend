@@ -31,6 +31,7 @@ import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordi
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
 import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
+import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component'; 
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodot
     StoricoOrdiniComponent,
     DettaglioOrdineComponent,
     GestioneOrdiniComponent,
-    GestioneTipoProdottoComponent 
+    GestioneTipoProdottoComponent,
+    DettagliOrdineComponent 
   ],
   imports: [
     BrowserModule,
