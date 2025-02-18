@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
+import { CredenzialiService } from '../../services/credenziali.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +14,7 @@ export class SignInComponent implements OnInit {
   personalFormGroup!: FormGroup;
   credentialsFormGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private userService: UserService) {}
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private credService: CredenzialiService) {}
 
   ngOnInit(): void {
     if(this.authService.isAutentificated())
@@ -68,7 +68,7 @@ export class SignInComponent implements OnInit {
       };
 
       const signupObject = {utenteReq, credenzialiReq};
-      this.userService.signup(signupObject).subscribe({
+      this.credService.signup(signupObject).subscribe({
         next: (resp: any) => {
           console.log('Inserimento riuscito:', resp);
           alert('Registrazione avvenuta con successo!');

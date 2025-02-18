@@ -104,8 +104,8 @@
 
         <!-- Pulsanti Indietro e Registrati -->
         <div class="button-container">
-          <button mat-button matStepperPrevious>Indietro</button>
-          <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="credentialsFormGroup.invalid">Registrati</button>
+          <button class="left-button" mat-button matStepperPrevious>Indietro</button>
+          <button mat-raised-button class="sign-in-button" (click)="onSubmit()" [disabled]="credentialsFormGroup.invalid">Registrati</button>
         </div>
       </form>
     </mat-step>

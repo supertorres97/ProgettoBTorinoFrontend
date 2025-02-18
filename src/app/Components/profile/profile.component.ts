@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { CredenzialiService } from '../../services/credenziali.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,15 +10,17 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   styleUrls: ['./profile.component.css'],
   standalone: false,
 })
-
 export class UserProfileComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage: string = '';
-  editMode: boolean = false; // Modalità di modifica
-  
+  editMode: boolean = false; // Modalità di modifica profilo
+  passwordEditMode: boolean = false; // Modalità di modifica password
+
   id: number = 0;
   utente: any;
-  msg:string ="";
+  msg: string = "";
+  passwordMismatch: boolean = false;
+  currentPasswordMismatch:boolean = false;
 
   profileForm: FormGroup = new FormGroup({
     nome: new FormControl(),
@@ -25,12 +28,22 @@ export class UserProfileComponent implements OnInit {
     email: new FormControl(),
     cFiscale: new FormControl(),
     via: new FormControl(),
-    CAP: new FormControl(),
+    cap: new FormControl(),
     citta: new FormControl()
   });
-  constructor(    private route: ActivatedRoute,
+
+  passwordForm: FormGroup = new FormGroup({
+    currentPassword: new FormControl('', Validators.required),
+    newPassword: new FormControl('', Validators.required),
+    confirmNewPassword: new FormControl('', Validators.required)
+  });
+
+  constructor(
+    private route: ActivatedRoute,
     private userService: UserService,
-    private routing:Router
+    private credService: CredenzialiService,
+    private router: Router,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit() {
@@ -42,43 +55,43 @@ export class UserProfileComponent implements OnInit {
       this.userService.getUtente(this.id)
         .subscribe((resp: any) => {
           this.utente = resp.dati;
-          console.log(this.utente);
-          this.profileForm = new FormGroup({
-            nome: new FormControl(this.utente.nome, Validators.required),
-            cognome: new FormControl(this.utente.cognome, Validators.required),
-            email: new FormControl(this.utente.email, [Validators.email]),
-            cFiscale: new FormControl(this.utente.cFiscale),
-            via:new FormControl(this.utente.via, Validators.required),
-            cap:new FormControl(this.utente.cap, Validators.required),
-            citta:new FormControl(this.utente.citta, Validators.required)
-    })})
-        })
+          this.profileForm = this.fb.group({
+            nome: [this.utente.nome, Validators.required],
+            cognome: [this.utente.cognome, Validators.required],
+            email: [this.utente.email, [Validators.required, Validators.email]],
+            cFiscale: [this.utente.cFiscale],
+            via: [this.utente.via, Validators.required],
+            cap: [this.utente.cap, Validators.required],
+            citta: [this.utente.citta, Validators.required]
+          });
+        });
+    });
   }
-
+  
   onSubmit() {
     console.log(this.profileForm.controls['cognome'].touched);
     console.log(this.profileForm.controls['nome'].touched);
-    const updateBody:any = {id: this.id}
+    const updateBody: any = { id: this.id };
 
-    if (this.profileForm.get('nome')?.touched){
+    if (this.profileForm.get('nome')?.touched) {
       updateBody.nome = this.profileForm.value.nome;
     }
-    if (this.profileForm.get('cognome')?.touched){
+    if (this.profileForm.get('cognome')?.touched) {
       updateBody.cognome = this.profileForm.value.cognome;
     }
-    if (this.profileForm.get('email')?.touched){
+    if (this.profileForm.get('email')?.touched) {
       updateBody.email = this.profileForm.value.email;
     }
-    if (this.profileForm.get('cFiscale')?.touched){
+    if (this.profileForm.get('cFiscale')?.touched) {
       updateBody.cFiscale = this.profileForm.value.cFiscale;
     }
-    if (this.profileForm.get('via')?.touched){
+    if (this.profileForm.get('via')?.touched) {
       updateBody.via = this.profileForm.value.via;
     }
-    if (this.profileForm.get('cap')?.touched){
+    if (this.profileForm.get('cap')?.touched) {
       updateBody.cap = this.profileForm.value.cap;
     }
-    if (this.profileForm.get('citta')?.touched){
+    if (this.profileForm.get('citta')?.touched) {
       updateBody.citta = this.profileForm.value.citta;
     }
 
@@ -87,23 +100,72 @@ export class UserProfileComponent implements OnInit {
     this.userService.updateUserProfile(updateBody)
       .subscribe((resp: any) => {
         console.log(resp);
-        if (resp.rc){
-          this.routing.navigate(["/profile/"+ this.id])
-          .then(() => {
-            window.location.reload();
-          })
+        if (resp.rc) {
+          this.router.navigate(["/profile/" + this.id])
+            .then(() => {
+              window.location.reload();
+            });
         } else {
           this.msg = resp.msg;
         }
-
-      })
-
+      });
   }
-  onCancel(){
-    this.routing.navigate(["/profile/"+ this.id])
-    .then(() => {
-      window.location.reload();
-    })
+
+  onCancel() {
+    this.router.navigate(["/profile/" + this.id])
+      .then(() => {
+        window.location.reload();
+      });
   }
-  
+
+  onPasswordChange() {
+    console.log("sono in onPasswordChange");
+    this.credService.getCredenzialiByUtente(this.id)
+    .subscribe({
+      next: (credenziali: any) => {
+        // Se trovi le credenziali, usa il loro ID per aggiornare la password
+        console.log(credenziali);
+        console.log(credenziali.dati);
+        if (this.passwordForm.value.currentPassword !== credenziali.dati.password) {
+          console.log("controllo password vecchia con db");
+          console.log("old password " + this.passwordForm.value.currentPassword);
+          console.log("old password in DB " + credenziali.dati.password);
+          this.currentPasswordMismatch = true;
+          return;
+        }
+        if (this.passwordForm.value.newPassword !== this.passwordForm.value.confirmNewPassword) {
+          console.log("controllo password vecchia con db");
+          this.passwordMismatch = true;
+          return;
+        }
+        
+        if (!credenziali.dati || !credenziali.dati.id) {
+          console.error("Errore: credenziali.id è nullo!", credenziali);
+          return;
+        }
+        console.log("prima di crede")
+        const crede = {
+          id: credenziali.dati.id, // Usa l'ID delle credenziali recuperato
+          idUtente: this.id,
+          password: this.passwordForm.value.newPassword
+        };
+
+        console.log("sto per passare le credenziali al metodo")
+        // Invia la richiesta per aggiornare la password
+        this.credService.changePassword(crede)
+          .subscribe((resp: any) => {
+            if (resp.rc) {
+              this.msg = "Password aggiornata con successo!";
+              this.passwordEditMode = false;
+            } else {
+              this.msg = resp.msg;
+            }
+          });
+      },
+      error: (error: any) => {
+        console.error('Errore nel recupero delle credenziali', error);
+      }
+    });
+  }
+
 }
