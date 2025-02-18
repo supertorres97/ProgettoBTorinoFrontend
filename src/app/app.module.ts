@@ -29,7 +29,8 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
-import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component'; 
+import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
+import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-
     SignInComponent,
     CreazioneProdottoComponent, 
     StoricoOrdiniComponent,
-    DettaglioOrdineComponent 
+    DettaglioOrdineComponent,
+    GestioneOrdiniComponent 
   ],
   imports: [
     BrowserModule,

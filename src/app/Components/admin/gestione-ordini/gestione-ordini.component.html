@@ -1,0 +1,34 @@
+<div class="custom-font">
+    <h2>I miei ordini</h2>
+  
+    <div *ngIf="ordini.length === 0">
+      <p>Nessun ordine trovato.</p>
+    </div>
+  
+    <table *ngIf="ordini.length > 0" class="order-table">
+      <thead>
+        <tr>
+          <th>Numero dell'Ordine</th>
+          <th>Data</th>
+          <th>Totale</th>
+          <th>Indirizzo</th>
+          <th>Status</th>
+          <th>Azioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ordine of ordini">
+          <td>{{ ordine.id }}</td>
+          <td>{{ ordine.dataOrdine | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ ordine.totale | currency:'EUR' }}</td>
+          <td>{{ ordine.indirizzo }}</td>
+          <td>{{ ordine.status }}</td>
+          <td>
+            <button class="btn btn-det" (click)="dettagliOrdine(ordine.id)">Dettagli ordine</button>
+            <button class="btn btn-danger" (click)="annullaOrdine(ordine.id)">Annulla ordine</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

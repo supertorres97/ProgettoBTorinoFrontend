@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdineService, Ordine } from '../../services/ordine.service';
-import { AuthService } from '../../services/auth.service';
+import { OrdineService, Ordine } from '../../../services/ordine.service';
+import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-storico-ordini',
+  selector: 'app-gestione-ordini',
   standalone: false,
   
-  templateUrl: './storico-ordini.component.html',
-  styleUrl: './storico-ordini.component.css'
+  templateUrl: './gestione-ordini.component.html',
+  styleUrl: './gestione-ordini.component.css'
 })
-export class StoricoOrdiniComponent {
+export class GestioneOrdiniComponent {
   ordini: Ordine[] = [];
   idUtente: number | null = null; // ⚠️ Questo valore dovrebbe venire dall'autenticazione
 
@@ -63,8 +63,4 @@ export class StoricoOrdiniComponent {
       });
     }
   }
-
-
-
-
 }

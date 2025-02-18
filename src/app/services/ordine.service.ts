@@ -28,13 +28,12 @@ export class OrdineService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getOrdiniByUtente(id : number) {
+  getOrdiniByUtente(id :number) {
       return this.http.get(this.url + "/listByUtente?idUtente=" + id);
   }
 
   dettagliOrdine(id: number) {
     this.router.navigate(['/dettagli-ordine', id]);
-
   }
 
   cancelOrder(id: number){
