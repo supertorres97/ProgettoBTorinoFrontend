@@ -28,6 +28,8 @@ export class AuthService {
         this.isLoggedIn = false;
         this.idUtente = null;
       }
+      console.log("logged: " + localStorage.getItem("isLoggedIn"));
+      console.log("Admin: " + localStorage.getItem("isAdmin"));
     }
   }
 
@@ -42,7 +44,12 @@ export class AuthService {
 
   isAutentificated(){
     return this.isLoggedIn;
-    //return !!localStorage.getItem('idUtente');
+  }
+
+  setLoggedOut(){
+    this.isLoggedIn = false;
+    localStorage.setItem("isLoggedIn", "0");
+    localStorage.setItem("isAdmin", "0");
   }
 
   isRoleAdmin(){
@@ -62,13 +69,18 @@ export class AuthService {
     this.isLoggedIn = false;
   }
 
-  setAdmin(){
-    localStorage.setItem("isAdmin", "1");
+  setRoleAdmin(){
     this.isAdmin = true;
+    localStorage.setItem("isAdmin", "1");
   }
 
-  setUser(){
+  setRoleUser(){
+    this.isAdmin = false;
     localStorage.setItem("isAdmin", "0");
+  }
+
+  resetAll() : void {
+    this.isLoggedIn = false;
     this.isAdmin = false;
   }
 
