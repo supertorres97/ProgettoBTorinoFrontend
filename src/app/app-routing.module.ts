@@ -13,6 +13,7 @@ import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-
 import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component';
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component';
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component';
+import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },         // Reindirizza alla Home
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine
   { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent },
   { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent },             
+  { path: 'prodotto', component: PgProdottoComponent},          // Prodotto singolo
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
   
 ];

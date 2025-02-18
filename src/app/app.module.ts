@@ -32,6 +32,9 @@ import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
 import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component'; 
+import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
+import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
+import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-feedback.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,10 @@ import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dett
     DettaglioOrdineComponent,
     GestioneOrdiniComponent,
     GestioneTipoProdottoComponent,
-    DettagliOrdineComponent 
+    DettagliOrdineComponent,
+    PgProdottoComponent,
+    SezProdottoComponent,
+    SezFeedbackComponent
   ],
   imports: [
     BrowserModule,
