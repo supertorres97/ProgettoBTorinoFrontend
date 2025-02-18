@@ -1,1 +1,22 @@
-<p>sez-feedback works!</p>
+<div>
+    <h2>La vostra fetta di opinione</h2>
+    <hr class="UnderTitle">
+    <div class="feedback" *ngFor="let feed of feedbacks">
+        <div class="card">
+            <div class="card-header">
+                <img src="close.png" alt="Quotes">
+                <p>{{feed?.dataFeedback}}</p>
+            </div>
+            <div class="card-body">
+                <p> <!-- {{feed?.descrizione}} -->
+                    Phasellus et maximus est. 
+                    Morbi nec ultricies justo. 
+                    Nam metus urna, efficitur sit amet scelerisque sed, vehicula id arcu. 
+                    Duis ipsum velit, maximus quis purus et, luctus dignissim turpis. 
+                    Praesent cursus quam ut nulla porttitor, non volutpat tortor scelerisque.
+                </p>
+            </div>
+            <div class="card-footer">{{feed?.utente}}</div>
+        </div>
+    </div>
+</div>

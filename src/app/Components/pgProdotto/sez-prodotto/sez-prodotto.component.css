@@ -1,4 +1,152 @@
-.fas{
+aside{
+    padding: 0;
+}
+
+.col-10{
+    box-sizing: border-box;
+}
+
+.back{
     text-decoration: none;
     font-family: 'Poiret one', cursive;
+    color: #333;
+    text-transform: lowercase;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.back:hover{
+    cursor: pointer;
+    box-shadow: #333;
+}
+
+.container-fluid{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding:0;
+    height: 100%;
+}
+
+@media (max-width: 1080px){
+    .container-fluid{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+.product-img{
+    width: 45%;
+}
+
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.paragraph{
+    font-family: 'Poiret one', cursive;
+
+    h1{
+        font-size: 500%;
+        letter-spacing: 0.05em;
+        color: #b44715;
+    }
+
+    p{
+    font-size: 1.6rem;
+    font-weight: 400;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra leggera */
+    direction: rtl; /* Sposta la scrollbar a sinistra */
+    text-align: left;
+    overflow-y: scroll;
+    max-height: 12em;
+    margin-top: 7%;
+    padding-left: 10px;
+    }
+
+    p::-webkit-scrollbar{
+        background: #ede9e7;
+        width: 2.5px;
+    }
+
+    p::-webkit-scrollbar-thumb{
+        background: #333;
+        
+    }
+}
+
+.purchase{
+    display: flex;
+    flex-direction: row;
+    font-family: 'Poiret one', cursive;
+    bottom: 0;
+    justify-content: space-evenly;
+    align-items: center;
+    width:100%;
+}
+
+.quantity{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10%;
+    width: 33%;
+    
+}
+
+.quantity button{
+    display: inline-block;
+    outline: 0;
+    cursor: pointer;
+    border: none;
+    padding: 0 22px;
+    border-radius: 50%;
+    font-size: 40px;
+    background: #ede9e7;
+    color: #333;
+    transition: transform 0.01s ease, box-shadow 0.1s ease-out;
+}
+
+.quantity button:hover{
+    color: #b44715;
+}
+
+.quantity button:active {
+    box-shadow: inset 0 4px 6px rgb(93 93 93 / 23%);
+    transform: translateY(2px);
+    color: #b44715;
+}
+
+.qty{
+    text-align: center;
+    justify-content: center;
+    font-size: x-large;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    width: 1vw;
+}
+
+.price{
+    font-size: x-large;
+    width: 5vw;
+}
+
+.button button{
+    border: 0;
+    background: #b44715;
+    color: #fff9ed;
+    padding: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.button button:hover{
+    box-shadow: 0 4px 6px rgb(93 93 93 / 23%);
+    transform: translateY(-2px);
+}
+
+.button button:active{
+    background: #333;
+    transform: translateY(2px);
 }
