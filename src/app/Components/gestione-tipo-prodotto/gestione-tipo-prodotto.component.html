@@ -1,0 +1,12 @@
+<div class="tipo-prodotto-container">
+  <h2>Gestione Tipo Prodotto</h2>
+  <div *ngIf="isLoading">Caricamento...</div>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+  <ul *ngIf="!isLoading && !errorMessage">
+    <ul *ngFor="let tipoProdotto of tipoProdotti">
+      <button>Modifica</button>
+      <button>Cancella</button>
+      <strong>ID:</strong> {{ tipoProdotto.id }} - <strong>Descrizione:</strong> {{ tipoProdotto.descrizione }}
+    </ul>
+  </ul>
+</div>

@@ -10,6 +10,7 @@ import { CreazioneProdottoComponent } from './Components/creazione-prodotto/crea
 import { guardGuard } from './auth/guard.guard';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
+import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },         // Reindirizza alla Home
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },              // Registrazione
   {path: 'createProduct', component: CreazioneProdottoComponent},   //creazione prodotto
   { path: 'ordini/:id', component: StoricoOrdiniComponent },          //storico ordini dell'utente
-  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine             
+  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine     
+  { path: 'tipo-prodotto', component: GestioneTipoProdottoComponent },        
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
 ];
 

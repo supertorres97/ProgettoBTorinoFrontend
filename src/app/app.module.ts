@@ -6,8 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 // Importa Angular Material Modules
 import { MatStepperModule } from '@angular/material/stepper';
@@ -27,10 +26,11 @@ import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component'; 
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
+import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
 
 @NgModule({
   declarations: [
@@ -49,7 +49,8 @@ import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gest
     CreazioneProdottoComponent, 
     StoricoOrdiniComponent,
     DettaglioOrdineComponent,
-    GestioneOrdiniComponent 
+    GestioneOrdiniComponent,
+    GestioneTipoProdottoComponent 
   ],
   imports: [
     BrowserModule,
@@ -62,14 +63,14 @@ import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gest
     MatSelectModule,
     MatStepperModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule
     provideClientHydration(withEventReplay()),
-    provideAnimationsAsync(),
-
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
