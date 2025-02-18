@@ -1,0 +1,50 @@
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.order-table th, .order-table td {
+    border: 1px solid #b44715;
+    padding: 10px;
+    text-align: center;
+}
+
+.order-table th {
+    background-color: #b44715;
+    color: #fff9ed;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #f8f4f2;
+}
+
+.order-table tr:hover {
+    background-color: #f3e6e2;
+}
+
+.btn-danger {
+    font-family: 'Poiret One', cursive;
+    background-color: red;
+    color: #fff9ed;
+    font-size: 1.2rem;
+    border-radius: 2px;
+}
+
+.btn-danger:hover {
+    background-color: darkred;
+    
+}
+.btn-det {
+    font-family: 'Poiret One', cursive;
+    background-color: #333;
+    color: #fff9ed;
+    font-size: 1.2rem;
+    border-radius: 2px;
+    /* transition: background-color 0.3s ease, transform 0.2s ease; */
+  }
+  .btn-det:hover {
+    background-color: #b44715;
+    transform: scale(1.05);
+    color: #fff9ed;
+  }

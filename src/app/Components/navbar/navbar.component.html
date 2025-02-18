@@ -66,7 +66,7 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
             <li><a class="dropdown-item" routerLink="/profile/{{ idUtente }}">Il mio profilo</a></li>
-            <li><a class="dropdown-item" routerLink="/orders">I miei ordini</a></li>
+            <li><a class="dropdown-item" routerLink="/ordini/{{idUtente}}">I miei ordini</a></li>
             <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
           </ul>
         </div>

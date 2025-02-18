@@ -1,0 +1,33 @@
+<div class="custom-font">
+    <h2>Dettaglio Ordine Numero: #{{idOrdine}}
+    <button class="btn btn-det" (click)="listOrder()">Torna alla lista ordini</button>
+
+    </h2> 
+    <!-- Controlla se i dettagli dell'ordine sono disponibili -->
+    <div *ngIf="dettagliOrdine && dettagliOrdine.length > 0; else noOrderDetails">
+      <table class="order-details-table">
+        <thead>
+          <tr>
+            <th>Prodotto</th>
+            <th>Quantità</th>
+            <th>Prezzo Totale</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dettaglio of dettagliOrdine">
+            <td>{{ dettaglio.prodotto.nome }}</td>
+            <td>{{ dettaglio.quantitaFinale }}</td>
+            <td>{{ dettaglio.prezzoTotale | currency: 'EUR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Template di fallback per quando non ci sono dettagli dell'ordine -->
+    <ng-template #noOrderDetails>
+      <p>Non ci sono dettagli disponibili per questo ordine.</p>
+    </ng-template>
+  </div>
+  
+  <!---- form da modificare -->
+  

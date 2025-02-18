@@ -28,7 +28,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component'; 
 import {MatCheckboxModule} from '@angular/material/checkbox';
-
+import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
+import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component'; 
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     UserProfileComponent,
     ProdottiComponent,
     SignInComponent,
-    CreazioneProdottoComponent 
+    CreazioneProdottoComponent, 
+    StoricoOrdiniComponent,
+    DettaglioOrdineComponent 
   ],
   imports: [
     BrowserModule,
