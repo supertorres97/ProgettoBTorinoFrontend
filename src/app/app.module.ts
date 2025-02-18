@@ -27,6 +27,7 @@ import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component'; 
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { CreazioneProdottoComponent } from './Components/creazione-prodotto/crea
     MatInputModule,
     MatSelectModule,
     MatStepperModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCheckboxModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

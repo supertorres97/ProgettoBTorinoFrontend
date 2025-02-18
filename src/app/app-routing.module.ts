@@ -6,6 +6,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { UserProfileComponent } from './Components/profile/profile.component';
 import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },         // Reindirizza alla Home
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'prodotti', component: ProdottiComponent},            //prodotti
   { path: 'sign-in', component: SignInComponent },              // Registrazione
   {path: 'profile/:id', component: UserProfileComponent},                 // Login
+  {path: 'createProduct', component: CreazioneProdottoComponent},   //creazione prodotto
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
 ];
 
