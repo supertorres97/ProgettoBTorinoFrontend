@@ -16,4 +16,6 @@ export class UserService {
     getUtente(id: number) {
       return this.http.get(this.url +"/listByID?id=" + id);
     }
+
+    
 }
