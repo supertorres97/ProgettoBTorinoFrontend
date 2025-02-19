@@ -11,6 +11,9 @@ import { Router, NavigationEnd } from '@angular/router';
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   idUtente: number | null = null;
+  showSearch: boolean = false;
+  searchQuery: string = '';
+
 
   constructor(private auth: AuthService, private router: Router) {}
 
@@ -23,6 +26,11 @@ export class NavbarComponent implements OnInit {
         this.updateUserStatus();
       }
     });
+    const id = localStorage.getItem('idUtente');
+    if (id && !isNaN(Number(id)) && Number(id) > 0) {
+      this.isLoggedIn = true;
+      this.idUtente = Number(id);
+    }
   }
 
   updateUserStatus() {
@@ -44,4 +52,25 @@ export class NavbarComponent implements OnInit {
     this.idUtente = null;
     this.router.navigate(['/home']);
   }
+
+  hideSearch() {
+    if (this.searchQuery === '') {
+      this.showSearch = false;
+    }
+  }
+
+  searchProduct() {
+    const query = this.searchQuery.trim();
+
+    if (query !== '') {
+      console.log("🔍 Ricerca avviata per:", query);
+      this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
+    } else {
+      console.log("⚠️ Nessun termine di ricerca inserito. Mostro tutti i prodotti.");
+      this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
+    }
+  }
+  
+
+
 }

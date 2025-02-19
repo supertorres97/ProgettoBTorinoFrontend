@@ -33,7 +33,17 @@
         </div>
       </div>
     </div>
-
+             <!-- Barra di ricerca -->
+             <div class="search-container" (mouseenter)="showSearch = true" (mouseleave)="hideSearch()">
+              <span class="search-icon" (click)="showSearch = true">🔍</span>
+              <input *ngIf="showSearch" 
+                     type="text" 
+                     [(ngModel)]="searchQuery" 
+                     (keyup.enter)="searchProduct()" 
+                     placeholder="Cerca prodotto..." 
+                     class="search-input">
+            </div>
+            
     <!-- Menu normale (mostrato sopra 1365px) -->
     <div class="d-none d-xl-flex col-10 justify-content-between align-items-center">
       <div class="nav-links-container col-10 d-flex justify-content-center">
@@ -48,7 +58,7 @@
           </li>
         </ul>
       </div>
-      
+
       <!-- Icone del carrello e profilo -->
       <div class="icons col-2 d-flex justify-content-end">
         <a class="cart" routerLink="/carrello"><img src="shopping-cart4.png" /></a>

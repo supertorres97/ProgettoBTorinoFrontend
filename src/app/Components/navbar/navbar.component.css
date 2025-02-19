@@ -161,3 +161,25 @@
 .dropdown-menu .dropdown-item.text-danger:hover {
   background-color: #f8d7da;
 }
+
+/* barra di ricerca*/
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  cursor: pointer;
+  font-size: 20px;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.search-input {
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
