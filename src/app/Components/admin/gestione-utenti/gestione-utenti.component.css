@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
+/* Stile generale della pagina */
+.gestione-utenti {
+  background-color: #ede9e7;
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  padding: 20px;
+}
+
+/* Titolo della pagina */
+.gestione-utenti h2 {
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #b44715;
+}
+
+/* Tabella delle credenziali */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background-color: #fff9ed;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+}
+
+th {
+  background-color: #333;
+  color: #fff9ed;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+tr:hover {
+  background-color: rgba(180, 71, 21, 0.1);
+  cursor: pointer;
+}
+
+/* Dialog per modificare le credenziali */
+dialog {
+  background-color: #fff9ed;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+}
+
+dialog h3 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+dialog label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+dialog input, dialog select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #ede9e7;
+  color: #b44715;
+  font-family: 'Poiret One', cursive;
+}
+
+dialog button {
+  padding: 10px 20px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #b44715;
+  color: #fff9ed;
+  font-family: 'Poiret One', cursive;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+dialog button:hover {
+  background-color: #8a3510;
+}
+
+dialog button[type="button"] {
+  background-color: #333;
+}
+
+dialog button[type="button"]:hover {
+  background-color: #1a1a1a;
+}

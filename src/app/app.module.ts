@@ -35,6 +35,9 @@ import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dett
 import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
 import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-feedback.component';
+import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
+import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-f
     DettagliOrdineComponent,
     PgProdottoComponent,
     SezProdottoComponent,
-    SezFeedbackComponent
+    SezFeedbackComponent,
+    GestioneUtentiComponent,
+    DettagliUserComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +77,7 @@ import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-f
     MatStepperModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatTableModule,
     HttpClientModule
   ],
   providers: [
