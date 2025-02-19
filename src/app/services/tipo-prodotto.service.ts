@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TipoProdottoService {
-  private url = 'http://localhost:9090/rest/tipoprodotto/'; // Sostituisci con l'URL della tua API
+  private url = 'http://localhost:9090/rest/tipoProdotto/'; // Sostituisci con l'URL della tua API
 
   constructor(private http: HttpClient) {}
 
