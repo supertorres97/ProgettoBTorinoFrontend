@@ -30,7 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
-import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
+import { GestioneTipoProdottoComponent } from './Components/admin/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component'; 
 import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
