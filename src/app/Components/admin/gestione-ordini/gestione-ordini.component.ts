@@ -16,7 +16,6 @@ export class GestioneOrdiniComponent {
   statiDisponibili = ["Confermato", "Spedito", "Consegnato", "Annullato", "InElaborazione"];
 
   constructor(private ordineService: OrdineService, 
-              private authService: AuthService, 
               private router: Router) {}
 
     
