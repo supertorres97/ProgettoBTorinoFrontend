@@ -11,6 +11,10 @@ import { guardGuard } from './auth/guard.guard';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { CreazioneComponent } from './Components/admin/creazione/creazione.component';
+import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component';
+import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component';
+import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component';
+import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },         // Reindirizza alla Home
@@ -23,8 +27,15 @@ const routes: Routes = [
   {path: 'createProduct', component: CreazioneProdottoComponent},   //creazione prodotto
   { path: 'ordini/:id', component: StoricoOrdiniComponent },          //storico ordini dell'utente
   { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine    
-  { path: 'admin/creazione', component: CreazioneComponent},         
+  { path: 'admin/creazione', component: CreazioneComponent},
+  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine     
+  { path: 'tipo-prodotto', component: GestioneTipoProdottoComponent },        
+  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine
+  { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent },
+  { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent },             
+  { path: 'prodotto', component: PgProdottoComponent},          // Prodotto singolo
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
+  
 ];
 
 @NgModule({

@@ -11,56 +11,63 @@ import { Router } from '@angular/router';
   styleUrl: './gestione-ordini.component.css'
 })
 export class GestioneOrdiniComponent {
-  ordini: Ordine[] = [];
-  idUtente: number | null = null; // ⚠️ Questo valore dovrebbe venire dall'autenticazione
+  ordini: any[] = [];
+  ordineInModifica: number | null = null;
+  statiDisponibili = ["Confermato", "Spedito", "Consegnato", "Annullato", "InElaborazione"];
 
-  constructor(private orderService: OrdineService, 
-              private authService: AuthService, 
+  constructor(private ordineService: OrdineService, 
               private router: Router) {}
 
     
   ngOnInit(): void {
-    this.idUtente = this.authService.getIdUtente(); // Recupera l'ID utente dal login
-    if (this.idUtente) {
-      this.caricaOrdini();
-    } else {
-      console.warn('Nessun utente autenticato');
-    }
+    this.caricaOrdini();
   }
-
+            
   caricaOrdini(): void {
-    if (this.idUtente !== null) {
-      this.orderService.getOrdiniByUtente(this.idUtente).subscribe({
-        next: (data:any) => {
-          console.log("Dati ricevuti:", data);
-          this.ordini = Array.isArray(data.dati) ? data.dati : []; // Estrai correttamente l'array
-        },
-        error: (err) => console.error('Errore nel recupero degli ordini', err)
-      });
-    }
+    this.ordineService.getAllOrdini().subscribe({
+      next: (data:any) => {
+        console.log("Dati ricevuti:", data);
+        this.ordini = Array.isArray(data.dati) ? data.dati : []; 
+      },
+      error: (err) => console.error('Errore nel recupero degli ordini', err)
+    });
   }
-
+        
   dettagliOrdine(id: number){
-    this.router.navigate(['/dettagli-ordine/', id]);
+    this.router.navigate(['/admin/dettagli-ordine/', id]);
   }
-
-  annullaOrdine(id: number): void{
-    if (confirm("Sei sicuro di voler annullare questo ordine?")) {
-      console.log(id);
-       let idOrdine = id;
-      this.orderService.cancelOrder(idOrdine).subscribe({
-        next: (response) => {
-          console.log("Ordine annullato con successo:", response);
-          
-          this.ordini = this.ordini.map(ordine => 
-            ordine.id === id ? { ...ordine, status: "Annullato" } : ordine
-          );
-        },
-        error: (err) => {
-          console.error("Errore durante l'annullamento dell'ordine:", err);
-          alert("Si è verificato un errore durante l'annullamento dell'ordine.");
-        }
-      });
-    }
+              // Attiva la modalità di modifica per un ordine specifico
+  modificaOrdine(ordine: any): void {
+    this.ordineInModifica = ordine.id;
   }
+            
+              // Salva la modifica dello stato
+  salvaModifica(ordine: any): void {
+    const ordineAggiornato = {
+      id: ordine.id,  
+      status: ordine.status 
+        ? ordine.status.charAt(0).toUpperCase() + ordine.status.slice(1).toLowerCase() 
+        : null,
+      totale: ordine.totale || null
+    };
+  
+    console.log("Dati inviati al backend:", ordineAggiornato);
+  
+    this.ordineService.updateOrdine(ordineAggiornato).subscribe({
+      next: (response) => {
+        console.log("Ordine aggiornato con successo:", response);
+        this.ordineInModifica = null;
+      },
+      error: (err) => {
+        console.error("Errore nell'aggiornamento dell'ordine", err);
+      }
+    });
+  }
+            
+              // Annulla la modifica e resetta l'ID in modifica
+  annullaModifica(): void {
+    this.ordineInModifica = null;
+  }
+            
+            
 }

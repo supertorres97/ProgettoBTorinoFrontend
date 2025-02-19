@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { log } from 'console';
 
 @Component({
   selector: 'app-pgProdotto',
@@ -10,10 +9,12 @@ import { log } from 'console';
 })
 export class PgProdottoComponent implements OnInit {
 
+  selectedProductId = 1;
+
   constructor() {}
 
   ngOnInit(): void {
-    log('pgProdottoComponent');
+    console.log('pgProdottoComponent');
   }
     
 }

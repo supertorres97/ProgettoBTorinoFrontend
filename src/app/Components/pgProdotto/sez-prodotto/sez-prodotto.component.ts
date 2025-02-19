@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ProdottoService } from '../../../services/prodotto.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,14 +13,27 @@ export class SezProdottoComponent implements OnInit{
 
   prodotto:any;
 
-  constructor(private serv:ProdottoService, private route:ActivatedRoute){}
+  constructor(private serv:ProdottoService, private route:ActivatedRoute, private cdr: ChangeDetectorRef){}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id'); 
-    if (id) {
-      this.serv.getProdotto(+id).subscribe((data: any) => {
-        this.prodotto = data;
+    const id = this.route.snapshot.paramMap.get('id');
+    if (1) {
+      this.serv.getProdotto(+1).subscribe((response: any) => {
+        /* console.log("Dati ricevuti:", response); // Debug in console */
+        this.prodotto = response.dati; // Estrai il vero oggetto prodotto
+        this.cdr.detectChanges();
       });
+    }
+  }
+
+  quantity: number = 1; // Valore iniziale
+
+  changeQuantity(amount: number): void {
+    const newQuantity = this.quantity + amount;
+    if (newQuantity >= 1) { // Impedisce di scendere sotto 1
+      this.quantity = newQuantity;
+      console.log('Nuova quantità:', this.quantity);
+      this.cdr.detectChanges();
     }
   }
 
