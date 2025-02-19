@@ -1,0 +1,51 @@
+<!-- gestione-utenti.component.html -->
+<div>
+    <h2>Gestione Utenti</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Ruoli</th>
+                <th>Account Attivo?</th>
+                <th>Azione</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let credenziale of credenzialiList" (click)="openCredenzialiDialog(credenziale)">
+                <td>{{credenziale.username}}</td>
+                <td>{{credenziale.password}}</td>
+                <td>{{credenziale.ruoli}}</td>
+                <td>{{credenziale.attivo ? 'Sì' : 'No'}}</td>
+                <td>
+                    <button (click)="viewDettagliUtente(credenziale.idUtente)">Dettagli Utente</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Dialog per modificare le credenziali -->
+<dialog #credenzialiDialog>
+    <h3>Modifica Credenziali</h3>
+    <form (ngSubmit)="saveCredenziali()">
+        <label for="username">Username:</label>
+        <input id="username" [(ngModel)]="selectedCredenziali.username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input id="password" [(ngModel)]="selectedCredenziali.password" name="password" required>
+
+        <label for="ruoli">Ruoli:</label>
+        <input id="ruoli" [(ngModel)]="selectedCredenziali.ruoli" name="ruoli" required>
+
+        <label for="attivo">Attivo:</label>
+        <select id="attivo" [(ngModel)]="selectedCredenziali.attivo" name="attivo">
+            <option [value]="true">Sì</option>
+            <option [value]="false">No</option>
+        </select>
+
+        <button type="submit">Salva</button>
+        <button type="button" (click)="closeCredenzialiDialog()">Annulla</button>
+    </form>
+</dialog>
+
