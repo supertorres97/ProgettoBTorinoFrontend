@@ -63,10 +63,8 @@ export class NavbarComponent implements OnInit {
     const query = this.searchQuery.trim();
 
     if (query !== '') {
-      console.log("🔍 Ricerca avviata per:", query);
       this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
     } else {
-      console.log("⚠️ Nessun termine di ricerca inserito. Mostro tutti i prodotti.");
       this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
     }
   }
