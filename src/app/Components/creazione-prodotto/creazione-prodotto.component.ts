@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProdottiService } from '../../services/prodotti.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TipoProdottoService } from '../../services/tipo-prodotto.service';
 
 @Component({
   selector: 'app-creazione-prodotto',
@@ -15,8 +16,10 @@ export class CreazioneProdottoComponent implements OnInit{
   msg:string = "";
   createProductForm:any;
   selectImage:File | null = null;
+  responseTP:any;
+  tipiProdotto:any;
 
-  constructor(private prodS:ProdottiService, private router:Router){}
+  constructor(private prodS:ProdottiService, private router:Router, private tprodS:TipoProdottoService){}
  
   ngOnInit(): void {
     console.log("creteProduct");
@@ -27,10 +30,20 @@ export class CreazioneProdottoComponent implements OnInit{
       prezzo: new FormControl(null, Validators.required),
       stock: new FormControl(null, Validators.required),
       disponibile: new FormControl(null),
-      immagine: new FormControl(null, Validators.required)
+      immagine: new FormControl(null, Validators.required),
+      tipoProdotto: new FormControl(null, Validators.required)
     });
+
+    this.tprodS.listTipoProdotti()
+      .subscribe((resp:any) => {
+        console.log("subscribe prodotti ");
+        this.responseTP = resp;
+        this.tipiProdotto = this.responseTP.dati;
+      });
   }
 
+
+  //serve a prendere il nome del file immagine
   onFileSelected(event:Event):void{
     const input = event.target as HTMLInputElement;
     if (input?.files?.[0]) {
@@ -43,6 +56,7 @@ export class CreazioneProdottoComponent implements OnInit{
     console.log("submit");
 
     console.log(this.createProductForm.value.immagine);
+    console.log(this.createProductForm.value.tipoProdotto);
     this.prodS.createProdotto({
       nome:this.createProductForm.value.nomeProdotto,
       descrizione:this.createProductForm.value.descrizione,
@@ -51,7 +65,7 @@ export class CreazioneProdottoComponent implements OnInit{
       stock:this.createProductForm.value.stock,
       disponibile:this.createProductForm.value.disponibile,
       img:this.createProductForm.value.immagine,
-      tipo:1
+      tipo:this.createProductForm.value.tipoProdotto
     }).subscribe((resp:any) => {
       if(resp.rc){
         this.router.navigate(['prodotti']);
