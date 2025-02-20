@@ -1,6 +1,6 @@
 <!-- gestione-utenti.component.html -->
 <div>
-    <h2>Gestione Utenti</h2>
+    <h2>Gestione Credenziali Utenti</h2>
     <table>
         <thead>
             <tr>
@@ -15,10 +15,10 @@
             <tr *ngFor="let credenziale of credenzialiList" (click)="openCredenzialiDialog(credenziale)">
                 <td>{{credenziale.username}}</td>
                 <td>{{credenziale.password}}</td>
-                <td>{{credenziale.ruoli}}</td>
+                <td>{{credenziale.ruolo?.descrizione}}</td>
                 <td>{{credenziale.attivo ? 'Sì' : 'No'}}</td>
                 <td>
-                    <button (click)="viewDettagliUtente(credenziale.idUtente)">Dettagli Utente</button>
+                    <button (click)="viewDettagliUtente(credenziale.idUtente?.id)">Dettagli Utente</button>
                 </td>
             </tr>
         </tbody>
@@ -35,7 +35,7 @@
         <label for="password">Password:</label>
         <input id="password" [(ngModel)]="selectedCredenziali.password" name="password" required>
 
-        <label for="ruoli">Ruoli:</label>
+        <label for="ruoli">Ruoli: 1- ADMIN, 2-USER </label>
         <input id="ruoli" [(ngModel)]="selectedCredenziali.ruoli" name="ruoli" required>
 
         <label for="attivo">Attivo:</label>

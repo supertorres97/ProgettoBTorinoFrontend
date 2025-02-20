@@ -2,9 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface CredenzialiReq {
+  id: number;
+  username: string;
+  password: string;
+  attivo: boolean;
+  idUtente: number;
+  idRuolo: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class CredenzialiService {
   private url = 'http://localhost:9090/rest/credenziali'; // Sostituisci con l'URL del tuo backend
   
@@ -27,6 +37,9 @@ export class CredenzialiService {
 
   getCredenzialiByUtente(id:number): any{
     return this.http.get(this.url + "/listByIdUtente?id=" + id);
+  }
+  getRuoliByCredenziali(id:number): any{
+    return this.http.get(this.url + "/listRuoli?id=" + id);
   }
   
   getAllCredenziali(): any{
