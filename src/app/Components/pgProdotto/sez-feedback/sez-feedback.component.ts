@@ -1,34 +1,63 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FeedbackService } from '../../../services/feedback.service';
+import { ActivatedRoute } from '@angular/router';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {FormsModule} from '@angular/forms';
+
+interface Rate {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-sez-feedback',
   standalone: false,
   
   templateUrl: './sez-feedback.component.html',
-  styleUrl: './sez-feedback.component.css'
+  styleUrl: './sez-feedback.component.css',
+  host: { 'ngSkipHydration': '' } // <--- Salta la Hydration
 })
 export class SezFeedbackComponent implements OnInit {
 
-  @Input() productId!: number; // ID del prodotto passato dal componente genitore
-  feedbacks: any[] = [];
+  selectedValue!: string;
+  response:any;
+  data:any;
 
-  constructor(private feedbackService: FeedbackService) {}
-
+  constructor(private serv: FeedbackService, private route:ActivatedRoute) {}
+  
   ngOnInit(): void {
-    if (this.productId) {
-      this.loadFeedbacks();
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    console.log("onInit feedback");
+
+    this.serv.listFeedback(3)
+      .subscribe((resp:any) => {
+        console.log("subscribe feedback");
+        this.response = resp;
+        this.data = this.response.dati;
+      })
+  }
+
+  getStarImage(value: string | undefined): string {
+      
+    switch (value) {
+      case 'UNO': return 'one-star.png';
+      case 'DUE': return 'two-stars1.png';
+      case 'TRE': return 'three-stars1.png';
+      case 'QUATTRO': return 'four-stars1.png';
+      case 'CINQUE': return 'five-stars1.png';
+      default: return "Errore"; // Se il valore non è valido
     }
   }
 
-  loadFeedbacks() {
-    this.feedbackService.getFeedbackByProductId(this.productId).subscribe(
-      data => {
-        this.feedbacks = data;
-      },
-      error => {
-        console.error('Errore nel recupero dei feedback:', error);
-      }
-    );
-  }
+  rating: Rate[] = [
+    {value: 'UNO', viewValue: 'Una Stella'},
+    {value: 'DUE', viewValue: 'Due Stelle'},
+    {value: 'TRE', viewValue: 'Tre Stelle'},
+    {value: 'QUATTRO', viewValue: 'Quattro Stelle'},
+    {value: 'CINQUE', viewValue: 'Cinque Stelle'},
+  ];
 }

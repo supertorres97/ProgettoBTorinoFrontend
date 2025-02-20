@@ -26,6 +26,9 @@ import { UserProfileComponent } from './Components/profile/profile.component';
 import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignInComponent } from './Components/sign-in/sign-in.component'; 
+import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
+import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
+import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-feedback.component';
 
 
 @NgModule({
@@ -41,7 +44,10 @@ import { SignInComponent } from './Components/sign-in/sign-in.component';
     ParallaxSezioneComponent,
     UserProfileComponent,
     ProdottiComponent,
-    SignInComponent 
+    SignInComponent,
+    PgProdottoComponent,
+    SezProdottoComponent,
+    SezFeedbackComponent
   ],
   imports: [
     BrowserModule,
