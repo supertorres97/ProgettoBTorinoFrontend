@@ -11,8 +11,8 @@ export class FeedbackService {
 
   constructor(private http: HttpClient) { }
 
-  listFeedback(id : number) {
-    let params = new HttpParams().set('id', id.toString());
+  listFeedback(id : string) {
+    let params = new HttpParams().set('id', id);
     return this.http.get(this.url + "listByProdottoID", {params});
   }
 

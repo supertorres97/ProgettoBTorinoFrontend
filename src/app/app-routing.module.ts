@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'admin/dettagli-utente/:id', component: DettagliUserComponent },
   { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent },             
   {path: 'profile/:id', component: UserProfileComponent},                 // Login
-  { path: 'prodotto', component: PgProdottoComponent},          // Prodotto singolo
+  { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
   
 ];

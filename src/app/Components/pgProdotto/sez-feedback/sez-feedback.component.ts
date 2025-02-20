@@ -33,12 +33,14 @@ export class SezFeedbackComponent implements OnInit {
 
     console.log("onInit feedback");
 
-    this.serv.listFeedback(3)
+    if(id){
+    this.serv.listFeedback(id)
       .subscribe((resp:any) => {
         console.log("subscribe feedback");
         this.response = resp;
         this.data = this.response.dati;
       })
+    }
   }
 
   getStarImage(value: string | undefined): string {
