@@ -1,0 +1,41 @@
+<p>gestione-feedback works!</p>
+<!--
+<div *ngFor="let feed of data">
+    <p>Utente: {{feed.utente.id}}</p>
+    <p>Prodotto: {{feed.prodotto.id}}</p>
+    <p>Ordine: {{feed.ordine.id}}</p>
+    <p>Descrizione: {{feed.descrizione}}</p>
+    <p>valutazione: {{feed.voto}}</p>
+    <p>data: {{feed.dataFeedback}}</p>
+    <p>ID: {{feed.id}}</p>
+</div>
+-->
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Prodotto</th>
+        <th scope="col">Ordine</th>
+        <th scope="col">Utente</th>
+        <th scope="col">Recensione</th>
+        <th scope="col">Valutazione</th>
+        <th scope="col">Data</th>
+        <th scope="col">Azione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let feed of data">
+        <th scope="row">{{feed.id}}</th>
+        <td>{{feed.prodotto.nome}}</td>
+        <td>{{feed.ordine.id}}</td>
+        <td>{{feed.utente.nome}} {{feed.utente.cognome}}</td>
+        <td>{{feed.descrizione}}</td>
+        <td>{{feed.voto}}</td>
+        <td>{{feed.dataFeedback}}</td>
+        <td>
+            <button (click)="onDelete(feed.id)">Elimina</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

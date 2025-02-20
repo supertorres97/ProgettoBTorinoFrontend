@@ -18,4 +18,12 @@ export class FeedbackService {
         map(response => Array.isArray(response) ? response : []) // Assicura che sia sempre un array
     );
   }
+
+  listAllFeedback() {
+    return this.http.get(this.url + 'listAll');
+  }
+
+  deleteFeedback(body : {}) {
+    return this.http.post(this.url + 'delete', body);
+  }
 }

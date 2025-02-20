@@ -36,6 +36,9 @@ import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dett
 import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
 import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-feedback.component';
+import { GestioneFeedbackComponent } from './Components/admin/gestione-feedback/gestione-feedback.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDeleteComponent } from './Dialog/confirm-delete/confirm-delete.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,9 @@ import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-f
     DettagliOrdineComponent,
     PgProdottoComponent,
     SezProdottoComponent,
-    SezFeedbackComponent
+    SezFeedbackComponent,
+    GestioneFeedbackComponent,
+    ConfirmDeleteComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +79,8 @@ import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-f
     MatStepperModule,
     MatButtonModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),
