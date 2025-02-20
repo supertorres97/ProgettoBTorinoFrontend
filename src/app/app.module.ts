@@ -39,6 +39,7 @@ import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gest
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
 import { MatTableModule } from '@angular/material/table';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +64,7 @@ import { MatTableModule } from '@angular/material/table';
     SezProdottoComponent,
     SezFeedbackComponent,
     GestioneUtentiComponent,
-    DettagliUserComponent
+    DettagliUserComponent    
   ],
   imports: [
     BrowserModule,
