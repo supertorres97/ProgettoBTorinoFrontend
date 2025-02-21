@@ -16,25 +16,28 @@ import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gest
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component';
 import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
+import { AuthGuard } from './auth/auth.guard';
+import { OrderGuard } from './auth/order.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },         // Reindirizza alla Home
   { path: 'home', component: HomeComponent },                   // Home Page
   { path: 'carrello', component: CarrelloComponent },           // Carrello
   { path: 'login', component: LoginComponent },
-  { path: 'profile/:id', component: UserProfileComponent, canActivate:[guardGuard] },       // Profilo utente
+  { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo
+  { path: 'profile/:id', component: UserProfileComponent, canActivate:[AuthGuard] },       // Profilo utente
   { path: 'prodotti', component: ProdottiComponent},            //prodotti
   { path: 'sign-in', component: SignInComponent },              // Registrazione
-  { path: 'createProduct', component: CreazioneProdottoComponent },   //creazione prodotto
-  { path: 'ordini/:id', component: StoricoOrdiniComponent },          //storico ordini dell'utente  
-  { path: 'admin/tipo-prodotto', component: GestioneTipoProdottoComponent },        
-  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent },     //dettalio dell'ordine
-  { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent },
-  { path: 'admin/gestione-utenti', component: GestioneUtentiComponent },
-  { path: 'admin/dettagli-utente/:id', component: DettagliUserComponent },
-  { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent },             
-  {path: 'profile/:id', component: UserProfileComponent},                 // Login
-  { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo
+  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent, canActivate: [OrderGuard] },     //devttalio dell'ordine
+  { path: 'ordini/:id', component: StoricoOrdiniComponent, canActivate: [AuthGuard] },          //storico ordini dell'utente  
+
+  /*-------------------------- Opzioni Admin ----------------------*/
+  { path: 'admin/gestione-prodotto', component: CreazioneProdottoComponent },   //creazione prodotto
+  { path: 'admin/gestone-tipo-prodotto', component: GestioneTipoProdottoComponent },        
+  { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent, canActivate:[AuthGuard]},
+  { path: 'admin/gestione-utenti', component: GestioneUtentiComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dettagli-utente/:id', component: DettagliUserComponent, canActivate:[AuthGuard] },
+  { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent, canActivate:[AuthGuard] },             
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
   
 ];
