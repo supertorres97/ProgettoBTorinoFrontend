@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { CreazioneProdottoComponent } from '../../creazione-prodotto/creazione-prodotto.component';
+import { CreateProdottoComponent } from '../../../Dialog/create-prodotto/create-prodotto.component';
 
 @Component({
   selector: 'app-gestione-prodotti',
@@ -17,7 +20,7 @@ export class GestioneProdottiComponent {
     searchQuery: string = '';
   
   
-    constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
+    constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute, private dialog:MatDialog) { }
   
     ngOnInit(): void {
       console.log("onInit prodotti");
@@ -39,6 +42,22 @@ export class GestioneProdottiComponent {
         });
     }
   
+    createProd(){
+      const enterAnimationDuration:string = '200ms';
+      const exitAnimationDuration:string = '150ms';
+
+      const dialogRef = this.dialog.open(CreateProdottoComponent, {
+        width: '700px',
+        enterAnimationDuration,
+        exitAnimationDuration
+      });
+
+      dialogRef.afterClosed()
+      .subscribe((res:any) => {
+      window.location.reload();
+    });
+    }
+
     cercaProdotti(nome: string): void {
       if (!nome.trim()) { // Se il nome è vuoto o solo spazi, carica tutti i prodotti
       this.getAllProdotti();

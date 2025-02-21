@@ -44,6 +44,7 @@ import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli
 import { MatTableModule } from '@angular/material/table';
 import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
 import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
+import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/
     GestioneUtentiComponent,
     DettagliUserComponent,
     ProdottiPerTipoComponent,
-    GestioneProdottiComponent
+    GestioneProdottiComponent,
+    CreateProdottoComponent
   ],
   imports: [
     BrowserModule,
