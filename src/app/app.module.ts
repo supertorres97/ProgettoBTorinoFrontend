@@ -31,7 +31,7 @@ import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordi
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component';
 import { CreazioneComponent } from './Components/admin/creazione/creazione.component'; 
-import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
+import { GestioneTipoProdottoComponent } from './Components/admin/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component'; 
 import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
@@ -39,6 +39,9 @@ import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-f
 import { GestioneFeedbackComponent } from './Components/admin/gestione-feedback/gestione-feedback.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmDeleteComponent } from './Dialog/confirm-delete/confirm-delete.component';
+import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
+import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,9 @@ import { ConfirmDeleteComponent } from './Dialog/confirm-delete/confirm-delete.c
     SezProdottoComponent,
     SezFeedbackComponent,
     GestioneFeedbackComponent,
-    ConfirmDeleteComponent
+    ConfirmDeleteComponent,
+    GestioneUtentiComponent,
+    DettagliUserComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +85,8 @@ import { ConfirmDeleteComponent } from './Dialog/confirm-delete/confirm-delete.c
     MatButtonModule,
     MatCheckboxModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

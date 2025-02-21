@@ -2,28 +2,15 @@
     <div class="row" style="width: 100%;">
         <aside class="col-1"></aside>
         <div class="col-10" style="padding: 3%;">
-            <a routerLink="/" class="back"><img src="chevron-double-left.svg"/>Indietro</a>
+            <a (click)="goBack()" class="back"><img src="chevron-double-left.svg"/>Indietro</a>
             <div class="container-fluid" *ngIf="prodotto">
                 <!-- <pre>{{ prodotto | json }}</pre> -->
                 <img class="product-img" src={{prodotto?.img}} alt="product image">
-                <div class="description" style="width: 55%; padding-left: 3%;">
+                <div class="description">
                     <div class="paragraph">
                         <h1>{{prodotto?.nome}}</h1>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Phasellus et maximus est. Morbi nec ultricies justo. 
-                            Nam metus urna, efficitur sit amet scelerisque sed, vehicula id arcu. 
-                            Duis ipsum velit, maximus quis purus et, luctus dignissim turpis. 
-                            Praesent cursus quam ut nulla porttitor, non volutpat tortor scelerisque. 
-                            Proin consequat mollis luctus. 
-                            Suspendisse pulvinar urna dolor, non fermentum libero auctor a. 
-                            In vitae elit consectetur, consequat risus et, vehicula tortor.
-                            Suspendisse pulvinar urna dolor, non fermentum libero auctor a. 
-                            In vitae elit consectetur, consequat risus et, vehicula tortor.
-                            Suspendisse pulvinar urna dolor, non fermentum libero auctor a. 
-                            In vitae elit consectetur, consequat risus et, vehicula tortor.
-                            Suspendisse pulvinar urna dolor, non fermentum libero auctor a. 
-                            In vitae elit consectetur, consequat risus et, vehicula tortor. 
+                            {{prodotto?.descrizione}} 
                         </p>
                     </div>
                     <div class="purchase">

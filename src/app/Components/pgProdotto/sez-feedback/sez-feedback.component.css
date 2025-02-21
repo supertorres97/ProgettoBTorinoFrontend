@@ -1,0 +1,137 @@
+.col-10{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5% 0;
+}
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.hr {
+    display: flex;
+    justify-content: center;
+
+}
+
+.hr hr{
+    width: 100%;
+    border: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.feedback{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 3%;
+    letter-spacing: 0.05em;
+    
+    gap:12%;
+}
+
+.card{
+    background: none;
+    border: none;
+    margin-bottom: 5%;
+    width: 25%;
+}
+
+.card-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: none;
+    border: none;
+}
+
+.card-header p{ display: flex; }
+
+.card-header img{ width: 40px; }
+
+.card-body{
+    font-size: x-large;
+    max-height: max-content;
+    
+}
+
+.card-footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+    background: none;
+    font-size: large;
+}
+
+.card-footer img{
+    width: 27%;
+    height: 3vh;
+}
+
+.box{
+    padding: 0 10%;
+}
+
+.box mat-form-field{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin-top: 5%;
+}
+
+.comment h2{
+    font-size: 3rem;
+}
+
+.voto{
+    width: 20%;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    background: transparent !important;
+}
+
+.button{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2vw;
+}
+
+.button button{
+    border: 0;
+    background: #b44715;
+    color: #fff9ed;
+    padding: 0.5rem 2rem;
+    letter-spacing: 1px;
+}
+
+.button button:hover{
+    box-shadow: 0 4px 6px rgb(93 93 93 / 23%);
+    transform: translateY(-2px);
+}
+
+.button button:active{
+    background: #333;
+    transform: translateY(2px);
+}
+
+.button p{ 
+    letter-spacing: 1px; 
+    margin:0;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: red;
+}
+
+.rate-send{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}

@@ -25,5 +25,10 @@ export class TipoProdottoService {
   getTipoProdotto(id : number){
     let params = new HttpParams().set('id', id.toString());
     return this.http.get(this.url + "listByID", {params});
+
+  }
+
+  deleteTipoProdotto(tipoProdotto: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/delete`, tipoProdotto);
   }
 }

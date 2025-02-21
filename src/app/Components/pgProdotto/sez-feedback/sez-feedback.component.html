@@ -1,22 +1,59 @@
-<div>
-    <h2>La vostra fetta di opinione</h2>
-    <hr class="UnderTitle">
-    <div class="feedback" *ngFor="let feed of feedbacks">
-        <div class="card">
-            <div class="card-header">
-                <img src="close.png" alt="Quotes">
-                <p>{{feed?.dataFeedback}}</p>
+<div class="container-fluid">
+    <div class="row">
+        <aside class="col-1"></aside>
+        <div class="col-10">
+            <h1>La vostra fetta di opinione</h1>
+            <div class="hr">
+                <hr>
             </div>
-            <div class="card-body">
-                <p> <!-- {{feed?.descrizione}} -->
-                    Phasellus et maximus est. 
-                    Morbi nec ultricies justo. 
-                    Nam metus urna, efficitur sit amet scelerisque sed, vehicula id arcu. 
-                    Duis ipsum velit, maximus quis purus et, luctus dignissim turpis. 
-                    Praesent cursus quam ut nulla porttitor, non volutpat tortor scelerisque.
-                </p>
+            <div class="feedback">
+
+                <div class="card" *ngFor="let feed of data">
+                    <div class="card-header">
+                        <img src="close.png" alt="Quotes">
+                        <p>{{ feed?.dataFeedback | date:'dd/MM/yyyy' }}</p>
+                    </div>
+                    <div class="card-body">
+                        <p>{{feed?.descrizione}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <div style="display:flex; gap:10px;"><img *ngFor="let star of getCakeArray(feed?.voto)" src="cake-slice2.png" alt="Torta" style="width:22.5px; height: 22.5px;"></div>
+                        - {{feed?.utente?.nome}} {{feed?.utente?.cognome}}
+                    </div>
+                </div>
             </div>
-            <div class="card-footer">{{feed?.utente}}</div>
+            <div class="comment">
+                <h2>Dicci la tua</h2>
+                <div class="hr">
+                    <hr>
+                </div>
+                <div class="box">
+                    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+                        <mat-form-field>
+                            <mat-label>Feedback</mat-label>
+                            <textarea matInput #message maxlength="255" placeholder="Il nostro dolce ti ha conquistato? Lascia un commento!" formControlName="descrizione"></textarea>
+                            <mat-hint align="end">{{message.value.length}} / 255</mat-hint>
+                        </mat-form-field>
+                        <div class="rate-send">
+                            <mat-form-field class="voto" hideRequiredMarker="true">
+                                <mat-label>Voto</mat-label>
+                                <mat-select [(ngModel)]="selectedValue" name="rating" required formControlName="valutazione">
+                                    <mat-option>--</mat-option>
+                                @for (r of rating; track r) {
+                                    <mat-option [value]="r.value">{{r.viewValue}}</mat-option>
+                                }
+                                </mat-select>
+                                <mat-error *ngIf="selectedValue === ''">Inserire una valutazione</mat-error>
+                            </mat-form-field>
+                            <div class="button">
+                                <p>{{msg}}</p>
+                                <button [disabled]="!feedbackForm.valid"> Invia </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+        <aside class="col-1"></aside>
     </div>
 </div>

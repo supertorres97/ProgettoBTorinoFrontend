@@ -1,0 +1,38 @@
+<!-- dettagli-user.component.html -->
+<div>
+    <h2>Dettagli Utente</h2>
+    <p>Nome: {{utente.nome}}</p>
+    <p>Cognome: {{utente.cognome}}</p>
+    <p>Email: {{utente.email}}</p>
+    <p>Indirizzo: {{utente.via}}, {{utente.cap}} {{utente.citta}}</p>
+    <button (click)="openModificaUtenteDialog()">Modifica Utente</button>
+    <button (click)="listAllUser()">Torna alla lista utenti</button>
+</div>
+
+
+<!-- Dialog per modificare i dati dell'utente -->
+<dialog #modificaUtenteDialog>
+    <h3>Modifica Utente</h3>
+    <form (ngSubmit)="saveUtente()">
+        <label for="nome">Nome:</label>
+        <input id="nome" [(ngModel)]="this.utente.nome" name="nome" required>
+
+        <label for="cognome">Cognome:</label>
+        <input id="cognome" [(ngModel)]="this.utente.cognome" name="cognome" required>
+
+        <label for="email">Email:</label>
+        <input id="email" [(ngModel)]="this.utente.email" name="email" required>
+
+        <label for="via">Via:</label>
+        <input id="via" [(ngModel)]="this.utente.via" name="via" required>
+
+        <label for="cap">CAP:</label>
+        <input id="cap" [(ngModel)]="this.utente.cap" name="cap" required>
+
+        <label for="citta">Città:</label>
+        <input id="citta" [(ngModel)]="this.utente.citta" name="citta" required>
+
+        <button type="submit">Salva</button>
+        <button type="button" (click)="closeModificaUtenteDialog()">Annulla</button>
+    </form>
+</dialog>

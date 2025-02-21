@@ -1,0 +1,43 @@
+<div class="tipo-prodotto-container">
+  <h2>Gestione Tipo Prodotto</h2>
+  <button class="btn btn-primary" (click)="onCreate()">Crea Tipo Prodotto</button>
+  <div *ngIf="isLoading">Caricamento...</div>
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <ul *ngIf="!isLoading && !errorMessage">
+    <li *ngFor="let tipoProdotto of tipoProdotti">
+      <strong>ID:</strong> {{ tipoProdotto?.id }} - <strong>Descrizione:</strong> {{ tipoProdotto?.descrizione }}
+      <button class="btn btn-warning ml-2" (click)="onEdit(tipoProdotto)">Modifica</button>
+      <button class="btn btn-danger ml-2" (click)="onDelete(tipoProdotto.id)">Cancella</button>
+    </li>
+  </ul>
+
+  <!-- Modulo di creazione -->
+  <div *ngIf="createMode" class="mt-4">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmitCreate()">
+      <div class="form-group">
+        <label>Descrizione *</label>
+        <input type="text" class="form-control" formControlName="descrizione" required>
+        <div *ngIf="createForm.get('descrizione')?.invalid && createForm.get('descrizione')?.touched" class="text-danger">
+          Campo obbligatorio.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!createForm.valid">Conferma</button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Annulla</button>
+    </form>
+  </div>
+
+  <!-- Modulo di modifica -->
+  <div *ngIf="editMode" class="mt-4">
+    <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+      <div class="form-group">
+        <label>Descrizione *</label>
+        <input type="text" class="form-control" formControlName="descrizione" required>
+        <div *ngIf="editForm.get('descrizione')?.invalid && editForm.get('descrizione')?.touched" class="text-danger">
+          Campo obbligatorio.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Conferma</button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Annulla</button>
+    </form>
+  </div>
+</div>
