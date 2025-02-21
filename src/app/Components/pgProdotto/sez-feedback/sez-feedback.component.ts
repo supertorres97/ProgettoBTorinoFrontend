@@ -1,10 +1,12 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FeedbackService } from '../../../services/feedback.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
+import { OrdineService } from '../../../services/ordine.service';
+import { AuthService } from '../../../services/auth.service';
 
 interface Rate {
   value: string;
@@ -21,45 +23,90 @@ interface Rate {
 })
 export class SezFeedbackComponent implements OnInit {
 
+  logged: boolean = false;
   selectedValue!: string;
   response:any;
   data:any;
+  msg!: string;
+  id: any;
+  utId: any;
 
-  constructor(private serv: FeedbackService, private route:ActivatedRoute) {}
+  feedbackForm: any;
+
+  constructor(
+    private serv: FeedbackService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private authS: AuthService
+  ) {}
   
   ngOnInit(): void {
 
-    const id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.utId = this.authS.getIdUtente();
 
     console.log("onInit feedback");
 
-    if(id){
-    this.serv.listFeedback(id)
+    if(this.id){
+    this.serv.listFeedback(this.id)
       .subscribe((resp:any) => {
         console.log("subscribe feedback");
         this.response = resp;
         this.data = this.response.dati;
       })
     }
+
+    if(this.utId !== null){
+      this.logged = true;
+    }
+
+    this.feedbackForm = new FormGroup({
+      descrizione: new FormControl(null, Validators.required),
+      valutazione: new FormControl(null, Validators.required)
+    })
   }
 
-  getStarImage(value: string | undefined): string {
-      
-    switch (value) {
-      case 'UNO': return 'one-star.png';
-      case 'DUE': return 'two-stars1.png';
-      case 'TRE': return 'three-stars1.png';
-      case 'QUATTRO': return 'four-stars1.png';
-      case 'CINQUE': return 'five-stars1.png';
-      default: return "Errore"; // Se il valore non è valido
+  onSubmit(){
+
+    if(!this.logged){
+      this.router.navigate(['/login']);
     }
+
+    const feedReq = {
+      utente: this.utId,
+      prodotto: this.id,
+      descrizione: this.feedbackForm.value.descrizione,
+      voto: this.feedbackForm.value.valutazione
+    };
+    
+    this.serv.create(feedReq)
+    .subscribe((resp: any) => {
+      if(resp.rc){
+        window.location.reload();
+      } else {
+        this.msg = resp.msg;
+      }
+    })
+  }
+
+  
+
+  getCakeArray(voto: string | undefined): any[] {
+    const ratings: { [key: string]: number } = {
+        'UNO': 1,
+        'DUE': 2,
+        'TRE': 3,
+        'QUATTRO': 4,
+        'CINQUE': 5
+    };
+    return new Array(ratings[voto ?? 'UNO'] || 0); // Restituisce un array con il numero corretto di fette
   }
 
   rating: Rate[] = [
-    {value: 'UNO', viewValue: 'Una Stella'},
-    {value: 'DUE', viewValue: 'Due Stelle'},
-    {value: 'TRE', viewValue: 'Tre Stelle'},
-    {value: 'QUATTRO', viewValue: 'Quattro Stelle'},
-    {value: 'CINQUE', viewValue: 'Cinque Stelle'},
+    {value: 'UNO', viewValue: 'Una Fetta'},
+    {value: 'DUE', viewValue: 'Due Fette'},
+    {value: 'TRE', viewValue: 'Tre Fette'},
+    {value: 'QUATTRO', viewValue: 'Quattro Fette'},
+    {value: 'CINQUE', viewValue: 'Cinque Fette'},
   ];
 }

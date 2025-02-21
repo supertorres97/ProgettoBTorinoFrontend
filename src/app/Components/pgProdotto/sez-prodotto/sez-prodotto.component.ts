@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { ProdottoService } from '../../../services/prodotto.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-sez-prodotto',
@@ -13,7 +14,7 @@ export class SezProdottoComponent implements OnInit{
 
   prodotto:any;
 
-  constructor(private serv:ProdottoService, private route:ActivatedRoute, private cdr: ChangeDetectorRef){}
+  constructor(private serv:ProdottoService, private location: Location, private route:ActivatedRoute, private cdr: ChangeDetectorRef){}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -24,6 +25,10 @@ export class SezProdottoComponent implements OnInit{
         this.cdr.detectChanges();
       });
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   quantity: number = 1; // Valore iniziale

@@ -16,4 +16,8 @@ export class FeedbackService {
     return this.http.get(this.url + "listByProdottoID", {params});
   }
 
+  create(body : {}){
+    return this.http.post(this.url + "create", body);
+  }
+
 }

@@ -96,9 +96,12 @@ h1{
     background: transparent !important;
 }
 
-/* .button{
-    margin-right: 10%;
-} */
+.button{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 2vw;
+}
 
 .button button{
     border: 0;
@@ -116,6 +119,14 @@ h1{
 .button button:active{
     background: #333;
     transform: translateY(2px);
+}
+
+.button p{ 
+    letter-spacing: 1px; 
+    margin:0;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: red;
 }
 
 .rate-send{

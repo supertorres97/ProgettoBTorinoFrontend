@@ -2,7 +2,7 @@
     <div class="row" style="width: 100%;">
         <aside class="col-1"></aside>
         <div class="col-10" style="padding: 3%;">
-            <a routerLink="/" class="back"><img src="chevron-double-left.svg"/>Indietro</a>
+            <a (click)="goBack()" class="back"><img src="chevron-double-left.svg"/>Indietro</a>
             <div class="container-fluid" *ngIf="prodotto">
                 <!-- <pre>{{ prodotto | json }}</pre> -->
                 <img class="product-img" src={{prodotto?.img}} alt="product image">
