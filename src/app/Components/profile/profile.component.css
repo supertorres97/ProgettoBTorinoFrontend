@@ -26,3 +26,7 @@ body {
 .card-footer .btn + .btn {
     margin-left: 1rem; /* Adjust this value to control the spacing */
 }
+
+.modifica-profilo{
+    margin-right: 1rem;
+}
