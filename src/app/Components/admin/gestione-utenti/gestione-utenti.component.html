@@ -1,14 +1,14 @@
 <!-- gestione-utenti.component.html -->
-<div>
-    <h2>Gestione Credenziali Utenti</h2>
-    <table>
+<div class="custom-font">
+    <h2><b>Gestione Credenziali Utenti</b></h2>
+    <table class="order-table">
         <thead>
             <tr>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Ruoli</th>
-                <th>Account Attivo?</th>
-                <th>Azione</th>
+                <th class="col-3">Username</th>
+                <th class="col-3">Password</th>
+                <th class="col-2">Ruoli</th>
+                <th class="col-1">Account Attivo?</th>
+                <th class="col-3">Azione</th>
             </tr>
         </thead>
         <tbody>
@@ -18,7 +18,7 @@
                 <td>{{credenziale.ruolo?.descrizione}}</td>
                 <td>{{credenziale.attivo ? 'Sì' : 'No'}}</td>
                 <td>
-                    <button (click)="viewDettagliUtente(credenziale.idUtente?.id)">Dettagli Utente</button>
+                    <button class="dettagli-utente" (click)="viewDettagliUtente(credenziale.idUtente?.id)">Dettagli Utente</button>
                 </td>
             </tr>
         </tbody>

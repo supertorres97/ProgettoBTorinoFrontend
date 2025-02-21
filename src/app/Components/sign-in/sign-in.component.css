@@ -130,3 +130,7 @@ mat-label {
   color: #b44715;
   font-size: 1.2rem;
 }
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background: transparent !important;
+}

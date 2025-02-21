@@ -1,5 +1,5 @@
 <div class="custom-font">
-    <h2>I miei ordini</h2>
+    <h2><b>I miei ordini</b></h2>
   
     <div *ngIf="ordini.length === 0">
       <p>Nessun ordine trovato.</p>
@@ -8,12 +8,12 @@
     <table *ngIf="ordini.length > 0" class="order-table">
       <thead>
         <tr>
-          <th>Numero dell'Ordine</th>
-          <th>Data</th>
-          <th>Totale</th>
-          <th>Indirizzo</th>
-          <th>Status</th>
-          <th>Azioni</th>
+          <th class="col-2">Numero dell'Ordine</th>
+          <th class="col-2">Data</th>
+          <th class="col-2">Totale</th>
+          <th class="col-2">Indirizzo</th>
+          <th class="col-1">Status</th>
+          <th class="col-3">Azioni</th>
         </tr>
       </thead>
       <tbody>

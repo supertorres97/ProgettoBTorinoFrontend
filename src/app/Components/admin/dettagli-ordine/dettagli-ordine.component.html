@@ -1,11 +1,11 @@
 <div class="custom-font">
-    <h2>Dettaglio Ordine Numero: #{{idOrdine}}
-    <button class="btn btn-det" (click)="listAllOrder()">Torna alla lista ordini</button>
+    <img class="immagine col-2" src="backward.png" alt="Torna alla lista ordini" (click)="listAllOrder()">
+    <h2><b>Dettaglio Ordine Numero: #{{idOrdine}}</b>
 
     </h2> 
     <!-- Controlla se i dettagli dell'ordine sono disponibili -->
     <div *ngIf="dettagliOrdine && dettagliOrdine.length > 0; else noOrderDetails">
-      <table class="order-details-table">
+      <table class="order-table">
         <thead>
           <tr>
             <th>Prodotto</th>

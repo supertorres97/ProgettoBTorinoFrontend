@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -46,5 +46,13 @@ export class OrdineService {
 
   cancelOrder(id: number){
     return this.http.post(this.url + "/delete", id);
+  }
+
+  verificaOrdine(orderId: number, userId: number): Observable<boolean> {
+    const params = new HttpParams()
+    .set("idOrdine", orderId.toString())
+    .set("idUtente", userId.toString());
+
+  return this.http.get<boolean>(this.url + "/verificaOrdine", { params });
   }
 }

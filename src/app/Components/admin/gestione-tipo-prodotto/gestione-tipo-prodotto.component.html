@@ -1,43 +1,68 @@
-<div class="tipo-prodotto-container">
-  <h2>Gestione Tipo Prodotto</h2>
-  <button class="btn btn-primary" (click)="onCreate()">Crea Tipo Prodotto</button>
+<div class="custom-font">
+  <div class="header-container">
+    <h2><b>Gestione Tipo Prodotto</b></h2>
+    <div class="image-container">
+      <img class="immagine" src="plus.png" alt="Torna alla lista ordini" (click)="onCreate()">
+    </div>
+    </div>
   <div *ngIf="isLoading">Caricamento...</div>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-  <ul *ngIf="!isLoading && !errorMessage">
-    <li *ngFor="let tipoProdotto of tipoProdotti">
-      <strong>ID:</strong> {{ tipoProdotto?.id }} - <strong>Descrizione:</strong> {{ tipoProdotto?.descrizione }}
-      <button class="btn btn-warning ml-2" (click)="onEdit(tipoProdotto)">Modifica</button>
-      <button class="btn btn-danger ml-2" (click)="onDelete(tipoProdotto.id)">Cancella</button>
-    </li>
-  </ul>
+
+  <table class="order-table">
+    <thead>
+      <tr>
+        <th class="col-3">ID Prodotto</th>
+        <th class="col-5">Descrizione</th>
+        <th class="col-4">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tipoProdotto of tipoProdotti">
+        <td>{{ tipoProdotto?.id }}</td>
+        <td>{{ tipoProdotto?.descrizione}}</td>
+        <td>
+          <button class="btn btn-det" (click)="onEdit(tipoProdotto)">Modifica</button>
+          <button class="btn btn-danger" (click)="onDelete(tipoProdotto.id)">Cancella</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- Modulo di creazione -->
-  <div *ngIf="createMode" class="mt-4">
-    <form [formGroup]="createForm" (ngSubmit)="onSubmitCreate()">
-      <div class="form-group">
-        <label>Descrizione *</label>
-        <input type="text" class="form-control" formControlName="descrizione" required>
-        <div *ngIf="createForm.get('descrizione')?.invalid && createForm.get('descrizione')?.touched" class="text-danger">
-          Campo obbligatorio.
+  <dialog class="dialog-window" *ngIf="createMode" open>
+    <div class="dialog-content">
+      <form [formGroup]="createForm" (ngSubmit)="onSubmitCreate()">
+        <div class="form-group">
+          <label>Inserisci tipo da creare</label>
+          <input type="text" class="form-control" formControlName="descrizione" required>
+          <div *ngIf="createForm.get('descrizione')?.invalid && createForm.get('descrizione')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
         </div>
-      </div>
-      <button type="submit" class="btn btn-success" [disabled]="!createForm.valid">Conferma</button>
-      <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Annulla</button>
-    </form>
-  </div>
+        <div class="dialog-buttons">
+          <button type="submit" class="btn btn-success" [disabled]="!createForm.valid">Conferma</button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Annulla</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
 
   <!-- Modulo di modifica -->
-  <div *ngIf="editMode" class="mt-4">
-    <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
-      <div class="form-group">
-        <label>Descrizione *</label>
-        <input type="text" class="form-control" formControlName="descrizione" required>
-        <div *ngIf="editForm.get('descrizione')?.invalid && editForm.get('descrizione')?.touched" class="text-danger">
-          Campo obbligatorio.
+  <dialog class="dialog-window" *ngIf="editMode" open>
+    <div class="dialog-content">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmitEdit()">
+        <div class="form-group">
+          <label>Inserisci tipo da modificare</label>
+          <input type="text" class="form-control" formControlName="descrizione" required>
+          <div *ngIf="editForm.get('descrizione')?.invalid && editForm.get('descrizione')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
         </div>
-      </div>
-      <button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Conferma</button>
-      <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Annulla</button>
-    </form>
-  </div>
+        <div class="dialog-buttons">
+          <button type="submit" class="btn btn-success" [disabled]="!editForm.valid">Conferma</button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="onCancel()">Annulla</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
 </div>
