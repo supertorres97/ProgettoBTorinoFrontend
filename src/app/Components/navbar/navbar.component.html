@@ -1,40 +1,38 @@
 <nav class="navbar">
   <div class="nav-container">
-    <div class="logo col-2">
-      <img src="LogoTorta.png" alt="Torta" style="height: 40px;" />
+    <div class="logo col-1">
+      <a routerLink="/home">
+        <img src="LogoTorta.png" alt="Torta" style="height: 40px;" />
+      </a>
     </div>
 
-    <!-- Bottone Offcanvas (mostrato sotto 1366px) -->
-    <button class="btn d-block d-xl-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
-      aria-controls="offcanvasExample">
-      <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <!-- Offcanvas Menu -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <div>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
-          etc.
-        </div>
-        <div class="dropdown mt-3">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-            Dropdown button
+    <nav class="burger navbar">
+      <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">link 1</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">link 2</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">link 3</a>
+                  </li>
+              </ul>
+          </div>
       </div>
-    </div>
+  </nav>
+
+   
+
+    
              <!-- Barra di ricerca -->
-             <div class="search-container" (mouseenter)="showSearch = true" (mouseleave)="hideSearch()">
+             <div class="search-container col-1" (mouseenter)="showSearch = true" (mouseleave)="hideSearch()">
               <span class="search-icon" (click)="showSearch = true">🔍</span>
               <input *ngIf="showSearch" 
                      type="text" 
@@ -50,7 +48,7 @@
         <ul class="nav-links">
           <li><a routerLink="/home" class="link" id="blackHover"><h3>Home</h3></a></li>
           <li class="dropdown">
-            <a href="#" class="link" id="blackHover"><h3>Prodotti<img class="down-arrow" src="down-arrow.png"
+            <a href="/prodotti" class="link" id="blackHover"><h3>Prodotti<img class="down-arrow" src="down-arrow.png"
                   alt="down-arrow" /></h3></a>
             <ul class="dropdown-menu"> <!-- ngFor="let type of TipoDolce"> -->
               <li><a routerLink="/prodotti/">Tutti i prodotti</a></li>
@@ -79,8 +77,8 @@
             <li><a class="dropdown-item" routerLink="/ordini/{{idUtente}}">I miei ordini</a></li>
             <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-utenti">Gestione Utenti</a></li>
             <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-ordini">Gestione Ordini</a></li>
-            <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestone-tipo-prodotto">Gestione Tipo Prodotti</a></li>
             <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/creazione-prodotto">Creazione Prodotti</a></li>
+            <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestone-tipo-prodotto">Gestione Tipo Prodotti</a></li>
             <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
           </ul>
         </div>
