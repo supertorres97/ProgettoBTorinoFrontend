@@ -17,8 +17,8 @@ export class SezProdottoComponent implements OnInit{
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if (1) {
-      this.serv.getProdotto(+1).subscribe((response: any) => {
+    if (id) {
+      this.serv.getProdotto(+id).subscribe((response: any) => {
         /* console.log("Dati ricevuti:", response); // Debug in console */
         this.prodotto = response.dati; // Estrai il vero oggetto prodotto
         this.cdr.detectChanges();
