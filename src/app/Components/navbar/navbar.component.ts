@@ -13,13 +13,13 @@ export class NavbarComponent implements OnInit {
   idUtente: number | null = null;
   showSearch: boolean = false;
   searchQuery: string = '';
-
+  isAdmin = false;
 
   constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.updateUserStatus(); // Controlla lo stato iniziale
-
+    this.isAdmin =this.auth.isRoleAdmin();
     // Ascolta i cambiamenti di rotta per aggiornare la navbar
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -35,7 +35,7 @@ export class NavbarComponent implements OnInit {
 
   updateUserStatus() {
     const id = localStorage.getItem('idUtente');
-    
+    this.isAdmin =this.auth.isRoleAdmin();
     if (id && !isNaN(Number(id)) && Number(id) > 0) {
       this.isLoggedIn = true;
       this.idUtente = Number(id);

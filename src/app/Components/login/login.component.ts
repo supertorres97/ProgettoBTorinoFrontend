@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.cred.signin({
         username: this.loginForm.value.username,
-        pwd: this.loginForm.value.password
+        pwd: this.loginForm.value.password  
       }).subscribe(
         (resp: any) => {
           console.log('Risposta dal backend:', resp);
@@ -52,10 +52,12 @@ export class LoginComponent implements OnInit {
               this.auth.setIdUtente(resp.idUtente);
               localStorage.setItem("idUtente", resp.idUtente.toString());
 
-              if (resp.role === "ADMIN") {
+              if (resp.ruolo.descrizione === "ADMIN") {
+                console.log("sono un admin", resp.role?.descrizione);
                 this.auth.setAdmin();
               } else {
                 this.auth.setUser();
+                console.log("sono uno user", resp.role?.descrizione);
               }
 
               this.router.navigate(["/home"]);
