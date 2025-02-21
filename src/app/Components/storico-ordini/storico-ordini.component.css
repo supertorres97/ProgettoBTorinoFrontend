@@ -14,6 +14,7 @@ font-size: 1.2rem;
 
 tbody tr td {
     height: 3.5rem;
+    font-size: 1.2rem;
 }
 
 .order-table th, .order-table td {
@@ -29,7 +30,7 @@ color: #b44715;
 .btn-danger {
 font-family: 'Poiret One', cursive;
 background-color: #333;
-color: #fff9ed;
+color: #ede9e7;
 font-size: 1.2rem;
 border-radius: 10px;
 }
@@ -42,7 +43,7 @@ transform: scale(1.05);
 .btn-det {
 font-family: 'Poiret One', cursive;
 background-color: #333;
-color: #fff9ed;
+color: #ede9e7;
 font-size: 1.2rem;
 border-radius: 10px;
 margin-right: 20px;
@@ -59,6 +60,7 @@ font-family: 'Poiret One', cursive;
 color: #b44715;
 text-align: center;
 margin-top: 20px;
+font-size: 1.2rem;
 }
 
 h2{
