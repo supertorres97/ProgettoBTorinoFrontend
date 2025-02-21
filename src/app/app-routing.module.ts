@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'ordini/:id', component: StoricoOrdiniComponent, canActivate: [AuthGuard] },          //storico ordini dell'utente  
 
   /*-------------------------- Opzioni Admin ----------------------*/
-  { path: 'admin/gestione-prodotto', component: CreazioneProdottoComponent },   //creazione prodotto
+  { path: 'admin/creazione-prodotto', component: CreazioneProdottoComponent },   //creazione prodotto
   { path: 'admin/gestone-tipo-prodotto', component: GestioneTipoProdottoComponent },        
   { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent, canActivate:[AuthGuard]},
   { path: 'admin/gestione-utenti', component: GestioneUtentiComponent, canActivate:[AuthGuard] },
