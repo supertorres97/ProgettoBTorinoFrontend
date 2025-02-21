@@ -1,0 +1,21 @@
+
+<div class="main-div">
+    <aside class="col-1"></aside>
+    <div class="titolo">
+        <h1 class="titolo">{{tpNome.descrizione}}</h1>
+    </div>
+    <div class="card-container">
+        <div class="card" *ngFor="let prodotto of data">
+            <div class="img-div">
+            <img class="img" src={{prodotto.img}} alt="immagine">
+            </div>
+            <div class="card-body">
+                <p class="card-title">{{prodotto.nome}}</p>
+                <p class="card-prezzo">€{{prodotto.prezzo}}</p>
+                <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Dettagli</button>
+                <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
+            </div>
+        </div>
+    </div>
+    <aside class="col-1"></aside>
+</div>

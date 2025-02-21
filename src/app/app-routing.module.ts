@@ -18,6 +18,8 @@ import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dett
 import { GestioneFeedbackComponent } from './Components/admin/gestione-feedback/gestione-feedback.component';
 import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
+import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
+import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },         // Reindirizza alla Home
@@ -45,9 +47,11 @@ const routes: Routes = [
   { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent },
   { path: 'admin/gestione-utenti', component: GestioneUtentiComponent },
   { path: 'admin/dettagli-utente/:id', component: DettagliUserComponent },
-  { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent },             
-  {path: 'profile/:id', component: UserProfileComponent},                 // Login
+  { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent },
+  { path: 'admin/gestioneProdotti', component: GestioneProdottiComponent },       //admin gesione prodotti           
+  { path: 'profile/:id', component: UserProfileComponent},                 // Login
   { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo
+  { path: 'prodottiPerTipo/:id', component: ProdottiPerTipoComponent},          //prodotti per tipo
   { path: '**', redirectTo: '/home?error=true' }                // Redirige tutte le rotte sconosciute a /home con parametro error
   
 ];
