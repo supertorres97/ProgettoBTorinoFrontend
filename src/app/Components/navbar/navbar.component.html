@@ -6,17 +6,6 @@
       </a>
     </div>
 
-    <!-- Barra di ricerca -->
-    <div class="search-container col-1" (mouseenter)="showSearch = true" (mouseleave)="hideSearch()">
-      <span class="search-icon" (click)="showSearch = true">🔍</span>
-      <input *ngIf="showSearch" 
-             type="text" 
-             [(ngModel)]="searchQuery" 
-             (keyup.enter)="searchProduct()" 
-             placeholder="Cerca prodotto..." 
-             class="search-input">
-    </div>
-
     <!-- Menu normale (mostrato sopra 1365px) -->
     <div class="d-none d-xl-flex col-10 justify-content-between align-items-center">
       <div class="nav-links-container col-10 d-flex justify-content-center">
