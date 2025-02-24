@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
-import { ProdottoService } from '../../../services/prodotto.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { ProdottiService } from '../../../services/prodotti.service';
 
 @Component({
   selector: 'app-sez-prodotto',
@@ -14,7 +14,7 @@ export class SezProdottoComponent implements OnInit{
 
   prodotto:any;
 
-  constructor(private serv:ProdottoService, private location: Location, private route:ActivatedRoute, private cdr: ChangeDetectorRef){}
+  constructor(private serv:ProdottiService, private location: Location, private route:ActivatedRoute, private cdr: ChangeDetectorRef){}
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

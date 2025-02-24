@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,10 @@ export class ProdottiService {
     return this.http.get(this.url + "listAll");
   }
 
-  getProdotto(id : number) {
-    let params = new HttpParams().set('id', id.toString());
-    return this.http.get(this.url + "get", {params});
-  }
+  getProdotto(id: number): Observable<any>{
+      let params = new HttpParams().set('id', id.toString());
+      return this.http.get(this.url + "listByID", {params});
+    }
 
   getProdottiByNome(nome : string) {
     //let params = new HttpParams().set('nome', nome.toString());
