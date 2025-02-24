@@ -5,7 +5,9 @@
             <a (click)="goBack()" class="back"><img src="chevron-double-left.svg"/>Indietro</a>
             <div class="container-fluid" *ngIf="prodotto">
                 <!-- <pre>{{ prodotto | json }}</pre> -->
-                <img class="product-img" src={{prodotto?.img}} alt="product image">
+                <div class="image-container">
+                    <img class="product-img" src={{prodotto?.img}} alt="product image">
+                </div>
                 <div class="description">
                     <div class="paragraph">
                         <h1>{{prodotto?.nome}}</h1>

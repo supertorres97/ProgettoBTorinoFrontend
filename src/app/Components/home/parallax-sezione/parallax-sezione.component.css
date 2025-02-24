@@ -11,16 +11,33 @@
     width: 100%;
     height: 100%;
     min-height: 100%;
-    background-image: url('/Torta_e_Logo2.jpg');
+    background-image: url('/Parallax_One.png');
     background-size: cover;
     background-position: center;
     z-index: -1;
     background-attachment: fixed;
+  }
+
+  .parallax-text {
+    position: absolute; /* Cambia da absolute a fixed per fissarlo nella viewport */
+    top: 50%; /* Posizione centrale verticale */
+    left: 50%; /* Posizione centrale orizzontale */
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: #fff9ed;
+    background-color: #333;
+    font-family: 'Poiret One', cursive;
+    padding: 0px 20px;
   }
   
   @media (max-width: 768px) {
     .parallax {
       background-attachment: scroll; /* Disable fixed background */
       transform: none; /* Disable transform-based parallax */
+    }
+  }
+  @media (max-width: 1100px){
+    .parallax-text{
+      font-size: 2rem;
     }
   }
