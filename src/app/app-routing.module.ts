@@ -11,7 +11,6 @@ import { CreazioneProdottoComponent } from './Components/creazione-prodotto/crea
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { CreazioneComponent } from './Components/admin/creazione/creazione.component';
-import { GestioneTipoProdottoComponent } from './Components/gestione-tipo-prodotto/gestione-tipo-prodotto.component';
 import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component';
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component';
 import { GestioneFeedbackComponent } from './Components/admin/gestione-feedback/gestione-feedback.component';
@@ -19,6 +18,7 @@ import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gest
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
 import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
 import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
+import { GestioneTipoProdottoComponent } from './Components/admin/gestione-tipo-prodotto/gestione-tipo-prodotto.component';
 import { AuthGuard } from './auth/auth.guard';
 import { OrderGuard } from './auth/order.guard';
 
@@ -33,8 +33,7 @@ const routes: Routes = [
   { path: 'ordini/:id', component: StoricoOrdiniComponent, canActivate: [AuthGuard]},             //storico ordini dell'utente  
   { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent, canActivate: [OrderGuard]},     //dettalio dell'ordine
   { path: 'prodotti', component: ProdottiComponent},            //prodotti
-  { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo
-  { path: 'tipo-prodotto', component: GestioneTipoProdottoComponent},        
+  { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo       
   { path: 'prodottiPerTipo/:id', component: ProdottiPerTipoComponent},          //prodotti per tipo
 
   /*-------------------------- Opzioni Admin ----------------------*/
