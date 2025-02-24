@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 
@@ -22,6 +22,17 @@ export class NavbarComponent implements OnInit {
     this.isSidebarOpen = !this.isSidebarOpen;
   }
 
+  closeSidebar() {
+    this.isSidebarOpen = false;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    if (window.innerWidth >= 992) {
+      this.closeSidebar();
+    }
+  }
+
   ngOnInit() {
     this.updateUserStatus(); // Controlla lo stato iniziale
     this.isAdmin = this.auth.isRoleAdmin();
@@ -29,6 +40,7 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateUserStatus();
+        this.closeSidebar(); // Chiude la sidebar quando si cambia pagina
       }
     });
     const id = localStorage.getItem('idUtente');
