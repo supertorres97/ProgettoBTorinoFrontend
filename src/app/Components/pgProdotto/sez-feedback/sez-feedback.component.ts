@@ -24,6 +24,9 @@ interface Rate {
 export class SezFeedbackComponent implements OnInit {
 
   logged: boolean = false;
+  update: boolean = false;
+  show: boolean = false;
+
   selectedValue!: string;
   response:any;
   data:any;
@@ -58,12 +61,24 @@ export class SezFeedbackComponent implements OnInit {
 
     if(this.utId !== null){
       this.logged = true;
+      this.serv.getByUtenteProdotto(this.utId, this.id)
+      .subscribe((resp:any) => {
+        if(!resp.rc){
+          this.update = false;
+          console.log("Update a: " + this.update);
+        }else{
+          this.update = true;
+          console.log("Update a: " + this.update);
+        }
+      })
     }
 
     this.feedbackForm = new FormGroup({
       descrizione: new FormControl(null, Validators.required),
       valutazione: new FormControl(null, Validators.required)
     })
+
+    this.show = false;
   }
 
   onSubmit(){
@@ -82,7 +97,7 @@ export class SezFeedbackComponent implements OnInit {
     this.serv.create(feedReq)
     .subscribe((resp: any) => {
       if(resp.rc){
-        window.location.reload();
+        setTimeout(() => {window.location.reload();}, 500);
       } else {
         this.msg = resp.msg;
       }

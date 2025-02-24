@@ -47,10 +47,13 @@
                             </mat-form-field>
                             <div class="button">
                                 <p>{{msg}}</p>
-                                <button [disabled]="!feedbackForm.valid"> Invia </button>
+                                <button [disabled]="!feedbackForm.valid" (click)="show = !show"> Invia </button>
                             </div>
                         </div>
                     </form>
+                </div>
+                <div *ngIf="show && update" class="alert alert-success">
+                    Feedback Aggiornato!
                 </div>
             </div>
         </div>
