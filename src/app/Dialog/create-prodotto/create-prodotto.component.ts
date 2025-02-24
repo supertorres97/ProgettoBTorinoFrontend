@@ -69,6 +69,7 @@ export class CreateProdottoComponent {
       }).subscribe((resp:any) => {
         if(!resp.rc){
           this.msg = resp.msg;
+          window.location.reload();
         } else {
           this.chiudi();
         } 
