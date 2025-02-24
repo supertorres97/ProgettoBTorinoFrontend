@@ -1,15 +1,17 @@
 .CardSection {
-  background-color: #111;
+  background-color: #333;
   padding: 20px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Poiret One', cursive;
+  height: 60vh;
 }
 
-.SectionTitle h2 {
+/* .SectionTitle h2 {
   font-size: 2.2rem;
   color: #fff9ed;
-  font-family: 'Poiret One', cursive;
+  
   text-align: center;
   margin-bottom: 20px;
 }
@@ -18,7 +20,7 @@
   width: 80%;
   border: 1px solid #fff9ed;
   margin-bottom: 20px;
-}
+} */
 
 .Cards {
   display: flex;
@@ -26,6 +28,7 @@
   width: 100%;
   align-items: center;
   overflow: hidden;
+  padding-top: 2%;
 }
 
 .LeftButton, .RightButton {
@@ -54,14 +57,112 @@
 
 .Card-Container {
   display: flex;
-  gap: 20px;
+  gap: 60px;
   transition: transform 0.3s ease-in-out;
   width: 100%;
   justify-content: center;
 }
 
-.Card-Container figure {
-  flex: 0 0 calc(33.33% - 20px); /* 3 card per riga su desktop */
+figure {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 325px;
+	min-width: 325px;
+	height: 45vh;
+	border-radius:5px;
+    margin-bottom: 50px;
+	box-shadow: 
+		0 1px 3px rgba(0,0,0,0.12), 
+		0 1px 2px rgba(0,0,0,0.24);
+	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+	overflow: hidden;
+	&:hover {
+		box-shadow: 
+			0 14px 28px rgba(0,0,0,0.25), 
+			0 10px 10px rgba(0,0,0,0.22);
+		h1 {
+			opacity: 0;
+			transform: scale(0.7);
+		}
+		img {
+			transform: scale(1.1);
+		}
+		figcaption {
+			bottom: 0;
+		}
+	}
+	img {
+		height: 45vh;
+		
+		transition: 0.25s;
+	}
+	figcaption {
+		position: absolute;
+		bottom: -200px;
+		left: 0;
+		width: 100%;
+		margin: 0;
+		padding: 30px;
+		background-color: rgba(0, 0, 0, 0.9);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+		color: #fff9ed;
+		line-height: 1;
+        letter-spacing: 1px;
+		transition: 0.5s;
+		h3 {
+			display:flex;
+			justify-content: center;
+			margin: 0 0 20px;
+			padding: 0;
+		}
+        div{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: large;
+        }
+		p {
+			line-height: 1.75;
+            margin: 0;
+		}
+		.button-dettagli {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            transition:  0.5s;
+            text-decoration: none;
+            border: 0;
+            background: none;
+            color: #fff9ed;
+            letter-spacing: 1px;
+        }
+
+.button-dettagli:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button-dettagli:hover {
+    padding-right: 12px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Ombra leggera */
+}
+
+.button-dettagli:hover::after{
+    opacity: 1;
+    right: 0;
+}
+	}
+}
+
+/* .Card-Container figure {
+  flex: 0 0 calc(33.33% - 20px); 
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgb(0, 0, 0);
@@ -78,9 +179,9 @@ figure img {
 figcaption {
   padding: 10px;
   color: #fff9ed;
-  background-color: rgba(0, 0, 0, 0.7); /* Colore nero trasparente */
+  background-color: rgba(0, 0, 0, 0.7); 
   font-family: 'Poiret One', cursive;
-  text-align: center;  /* Centra il testo sotto l'immagine */
+  text-align: center;  
 }
 
 .Card-Footer a {
@@ -91,10 +192,10 @@ figcaption {
 }
 
 .Card-Footer a:hover {
-  color: #fdfaf3; /* Cambia il colore */
-  font-weight: bold; /* Rende il testo più in evidenza */
-  text-decoration: underline; /* Aggiunge la sottolineatura */
-}
+  color: #fdfaf3; 
+  font-weight: bold; 
+  text-decoration: underline; 
+} */
 
 .Carousel-Indicators {
   display: flex;
@@ -104,10 +205,10 @@ figcaption {
 }
 
 .Carousel-Indicators span {
-  width: 10px;
-  height: 10px;
+  width: 20px;
+  height: 2px;
   background-color: #fff9ed;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   cursor: pointer;
 }
 

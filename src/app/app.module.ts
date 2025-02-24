@@ -42,6 +42,7 @@ import { ConfirmDeleteComponent } from './Dialog/confirm-delete/confirm-delete.c
 import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
 import { MatTableModule } from '@angular/material/table';
+import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezione/parallax-two-sezione.component';
 import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
 import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
 
@@ -73,6 +74,7 @@ import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/
     ConfirmDeleteComponent,
     GestioneUtentiComponent,
     DettagliUserComponent,
+    ParallaxTwoSezioneComponent,
     ProdottiPerTipoComponent,
     GestioneProdottiComponent
   ],

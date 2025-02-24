@@ -1,21 +1,43 @@
-
-<div class="main-div">
-    <aside class="col-1"></aside>
-    <div class="titolo">
-        <h1 class="titolo">PRODOTTI</h1>
-    </div>
-    <div class="card-container">
-        <div class="card" *ngFor="let prodotto of prodotti">
-            <div class="img-div">
-            <img class="img" src={{prodotto.img}} alt="immagine">
+<div class="container">
+    <div class="row">
+        <aside class="col-2"></aside>
+        <div class="main-row col-8">
+            <div class="titolo">
+                <h1 class="titolo">PRODOTTI</h1>
+                <hr>
             </div>
-            <div class="card-body">
-                <p class="card-title">{{prodotto.nome}}</p>
-                <p class="card-prezzo">€{{prodotto.prezzo}}</p>
-                <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Dettagli</button>
-                <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
+            <div class="card-container">
+                <!-- <div class="card" *ngFor="let prodotto of prodotti">
+                    <div class="img-div">
+                    <img class="img" src={{prodotto.img}} alt="immagine">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-title">{{prodotto.nome}}</p>
+                        <p class="card-prezzo">€{{prodotto.prezzo}}</p>
+                        <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Dettagli</button>
+                        <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
+                    </div>
+                </div> -->
+
+                <figure class="image-block" *ngFor="let prodotto of prodotti">
+                    <img src={{prodotto.img}} alt="immagine" />
+                    <figcaption>
+                        <h3>
+                            {{prodotto.nome}}
+                        </h3>
+                        <hr>
+                        <div>
+                            <p>
+                                Prezzo:
+                                {{prodotto.prezzo}}€
+                            </p>
+                            <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
+                        </div>
+                        <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
+                    </figcaption>
+                </figure>
             </div>
         </div>
+        <aside class="col-2"></aside>
     </div>
-    <aside class="col-1"></aside>
 </div>
