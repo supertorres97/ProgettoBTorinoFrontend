@@ -16,6 +16,12 @@ export class AuthGuard implements CanActivate {
 
     if (url.startsWith('/profile/')) {
       const idFromUrl = Number(route.paramMap.get('id'));
+      
+      if (this.authService.isAutentificated() == false) {
+        alert("Devi loggarti prima di poter accedere al tuo profilo.");
+        this.router.navigate(['/home']);
+        return false;
+      }
 
       if (idUtenteStorage !== idFromUrl) {
         alert("Non sei autorizzato a vedere la pagina di un altro account.");
