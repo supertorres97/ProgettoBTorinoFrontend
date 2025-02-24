@@ -66,6 +66,7 @@ h1{
     align-items: end;
     background: none;
     font-size: large;
+    font-style: italic;
 }
 
 .card-footer img{
@@ -75,6 +76,11 @@ h1{
 
 .box{
     padding: 0 10%;
+}
+
+mat-form-field{
+    font-family: 'Poiret One', cursive;
+    font-size: large;
 }
 
 .box mat-form-field{

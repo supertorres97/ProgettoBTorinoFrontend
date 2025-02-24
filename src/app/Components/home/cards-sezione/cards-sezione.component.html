@@ -1,24 +1,25 @@
 <div class="CardSection">
-    <div class="SectionTitle">
-      <h2 style="margin: 0;">Le nostre specialità</h2>
-    </div>
-    <hr class="UnderTitle">
     <div class="Cards">
       <button (click)="scrollCardsLeft()" class="LeftButton">
         <img src="left-arrow.png" alt="left-arrow" class="left-Img"/>
       </button>
       <div class="Card-Container">
-    
-        <figure class="image-block" *ngFor="let card of visibleCards">
-          <img [src]="card.img" [alt]="card.title" />
+
+        <figure class="image-block" *ngFor="let prodotto of visibleCards">
+          <img src={{prodotto.img}} alt="immagine" />
           <figcaption>
-            <h3>
-              {{ card.title }}
-            </h3>
-            <p>{{ card.description }}</p>
-            <div class="Card-Footer">
-              <a href="#" class="GoTo">Scopri di più </a>
-            </div>
+              <h3>
+                  {{prodotto.nome}}
+              </h3>
+              <hr>
+              <div>
+                  <p>
+                      Prezzo:
+                      {{prodotto.prezzo}}€
+                  </p>
+                  <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
+              </div>
+              <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
           </figcaption>
         </figure>
 
@@ -27,11 +28,11 @@
         <img src="right-arrow.png" alt="right-arrow" class="right-Img"/>
       </button>
     </div>
-      <!-- Indicators -->
+      
     <div class="Carousel-Indicators">
         <span *ngFor="let page of totalPages; let i = index" 
               [class.active]="i === currentPage" 
               (click)="goToPage(i)">
         </span>
     </div>
-  </div>
+</div> 

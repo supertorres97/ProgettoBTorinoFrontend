@@ -23,7 +23,7 @@ aside{
 .container-fluid{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    
     padding:0;
     height: 100%;
 }
@@ -36,9 +36,22 @@ aside{
     }
 }
 
-.product-img{
-    width: 45%;
-}
+.image-container {
+    width: 100%; /* Occupa tutto lo spazio disponibile */
+    max-width: 45%; /* Adatta la larghezza massima a piacere */
+    height: fit-content;
+    max-height: 100%; /* Altezza fissa o variabile in base alle esigenze */
+    overflow: hidden; /* Nasconde la parte dell'immagine che esce */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .product-img {
+    width: 100%; /* L'immagine si adatta alla larghezza del contenitore */
+    height: auto; /* Mantiene il rapporto d'aspetto */
+    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore */
+  }
 
 .description{
     display: flex;

@@ -29,7 +29,7 @@
                 </div>
                 <div class="box">
                     <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
-                        <mat-form-field>
+                        <mat-form-field hideRequiredMarker="true">
                             <mat-label>Feedback</mat-label>
                             <textarea matInput #message maxlength="255" placeholder="Il nostro dolce ti ha conquistato? Lascia un commento!" formControlName="descrizione"></textarea>
                             <mat-hint align="end">{{message.value.length}} / 255</mat-hint>

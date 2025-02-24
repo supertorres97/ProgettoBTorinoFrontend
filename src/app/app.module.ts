@@ -38,6 +38,7 @@ import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-f
 import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
 import { MatTableModule } from '@angular/material/table';
+import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezione/parallax-two-sezione.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { MatTableModule } from '@angular/material/table';
     SezProdottoComponent,
     SezFeedbackComponent,
     GestioneUtentiComponent,
-    DettagliUserComponent    
+    DettagliUserComponent,
+    ParallaxTwoSezioneComponent    
   ],
   imports: [
     BrowserModule,
