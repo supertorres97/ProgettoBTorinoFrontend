@@ -36,4 +36,9 @@ export class ProdottiService {
     return this.http.post(this.url + "update", body);
   }
   
+  getProdottiByTipoProdotto(id : number) {
+    let params = new HttpParams().set('tipoProdotto', id.toString());
+    return this.http.get(this.url + "listByTipoProdotto", {params});
+  }
+
 }

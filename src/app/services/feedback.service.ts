@@ -16,8 +16,15 @@ export class FeedbackService {
     return this.http.get(this.url + "listByProdottoID", {params});
   }
 
+  listAllFeedback() {
+    return this.http.get(this.url + 'listAll');
+  }
+
+  deleteFeedback(body : {}) {
+    return this.http.post(this.url + 'delete', body);
+  }
+
   create(body : {}){
     return this.http.post(this.url + "create", body);
   }
-
 }

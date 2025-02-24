@@ -16,4 +16,8 @@ export class UserService {
     getUtente(id: number) {
       return this.http.get(this.url +"/listByID?id=" + id);
     }
+
+    createAdmin(body:{}){
+      return this.http.post(this.url + "/createAdmin", body);
+    }    
 }

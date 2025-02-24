@@ -14,12 +14,17 @@ export class NavbarComponent implements OnInit {
   showSearch: boolean = false;
   searchQuery: string = '';
   isAdmin = false;
+  isSidebarOpen = false;
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  toggleSidebar() {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
   ngOnInit() {
     this.updateUserStatus(); // Controlla lo stato iniziale
-    this.isAdmin =this.auth.isRoleAdmin();
+    this.isAdmin = this.auth.isRoleAdmin();
     // Ascolta i cambiamenti di rotta per aggiornare la navbar
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -35,7 +40,7 @@ export class NavbarComponent implements OnInit {
 
   updateUserStatus() {
     const id = localStorage.getItem('idUtente');
-    this.isAdmin =this.auth.isRoleAdmin();
+    this.isAdmin = this.auth.isRoleAdmin();
     if (id && !isNaN(Number(id)) && Number(id) > 0) {
       this.isLoggedIn = true;
       this.idUtente = Number(id);
@@ -68,7 +73,4 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
     }
   }
-  
-
-
 }

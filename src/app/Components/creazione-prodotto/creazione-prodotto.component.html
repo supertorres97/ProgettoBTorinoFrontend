@@ -26,6 +26,15 @@
         <input matInput type="number" name="stock" formControlName="stock">
     </mat-form-field>
 
+    <div>
+        <mat-form-field>
+            <mat-label>Tipo prodotto</mat-label>
+             <mat-select name="tipoProdotto" formControlName="tipoProdotto">
+              <mat-option *ngFor="let tprod of tipiProdotto" value="{{tprod.id}}">{{tprod.descrizione}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
     <div class="mb-3">
         <label for="formFile" class="form-label">Immagine:</label>
         <input class="form-control" type="file" id="formFile" formControlName="immagine" (change)="onFileSelected($event)">

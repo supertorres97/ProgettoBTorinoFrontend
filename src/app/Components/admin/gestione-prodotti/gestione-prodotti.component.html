@@ -1,0 +1,30 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Descrizione</th>
+        <th scope="col">Peso</th>
+        <th scope="col">Prezzo</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Disponibile</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prodotto of prodotti" (click)="click()">
+        <th scope="row">{{prodotto.id}}</th>
+        <td>{{prodotto.nome}}</td>
+        <td>{{prodotto.tipo.descrizione}}</td>
+        <td>{{prodotto.descrizione}}</td>
+        <td>{{prodotto.peso}}</td>
+        <td>{{prodotto.prezzo}}</td>
+        <td>{{prodotto.stock}}</td>
+        <td *ngIf="prodotto.disponibile">Disponibile</td>
+        <td *ngIf="!prodotto.disponibile">Esaurito</td>
+        <td>
+<!--            <button (click)="onDelete(feed.id)">Elimina</button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>

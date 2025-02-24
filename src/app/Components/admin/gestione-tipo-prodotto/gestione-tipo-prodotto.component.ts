@@ -33,7 +33,7 @@ export class GestioneTipoProdottoComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.tipoProdottoService.getTipoProdotti()
+    this.tipoProdottoService.listTipoProdotti()
       .subscribe({
         next: (resp: any) => {
           this.tipoProdotti = resp.dati;

@@ -29,17 +29,22 @@ import { CreazioneProdottoComponent } from './Components/creazione-prodotto/crea
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
-import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component'; 
+import { GestioneOrdiniComponent } from './Components/admin/gestione-ordini/gestione-ordini.component';
+import { CreazioneComponent } from './Components/admin/creazione/creazione.component'; 
 import { GestioneTipoProdottoComponent } from './Components/admin/gestione-tipo-prodotto/gestione-tipo-prodotto.component'; 
 import { DettagliOrdineComponent } from './Components/admin/dettagli-ordine/dettagli-ordine.component'; 
 import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 import { SezProdottoComponent } from './Components/pgProdotto/sez-prodotto/sez-prodotto.component';
 import { SezFeedbackComponent } from './Components/pgProdotto/sez-feedback/sez-feedback.component';
+import { GestioneFeedbackComponent } from './Components/admin/gestione-feedback/gestione-feedback.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDeleteComponent } from './Dialog/confirm-delete/confirm-delete.component';
 import { GestioneUtentiComponent } from './Components/admin/gestione-utenti/gestione-utenti.component';
 import { DettagliUserComponent } from './Components/admin/dettagli-user/dettagli-user.component';
 import { MatTableModule } from '@angular/material/table';
 import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezione/parallax-two-sezione.component';
-
+import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
+import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
 
 @NgModule({
   declarations: [
@@ -59,14 +64,19 @@ import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezi
     StoricoOrdiniComponent,
     DettaglioOrdineComponent,
     GestioneOrdiniComponent,
+    CreazioneComponent,
     GestioneTipoProdottoComponent,
     DettagliOrdineComponent,
     PgProdottoComponent,
     SezProdottoComponent,
     SezFeedbackComponent,
+    GestioneFeedbackComponent,
+    ConfirmDeleteComponent,
     GestioneUtentiComponent,
     DettagliUserComponent,
-    ParallaxTwoSezioneComponent    
+    ParallaxTwoSezioneComponent,
+    ProdottiPerTipoComponent,
+    GestioneProdottiComponent
   ],
   imports: [
     BrowserModule,
@@ -80,8 +90,9 @@ import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezi
     MatStepperModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatTableModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule,
+    MatTableModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

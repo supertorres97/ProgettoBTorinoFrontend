@@ -1,5 +1,5 @@
 <div class="custom-font">
-    <h2>Lista Ordini</h2>
+    <h2><b>Lista Ordini</b></h2>
   
     <div *ngIf="ordini.length === 0">
       <p>Nessun ordine trovato.</p>
@@ -8,12 +8,12 @@
     <table *ngIf="ordini.length > 0" class="order-table">
       <thead>
         <tr>
-          <th>Numero dell'Ordine</th>
-          <th>Data</th>
-          <th>Totale</th>
-          <th>Indirizzo</th>
-          <th>Status</th>
-          <th>Azioni</th>
+          <th class="col-1">Numero dell'Ordine</th>
+          <th class="col-1">Data</th>
+          <th class="col-2">Totale</th>
+          <th class="col-3">Indirizzo</th>
+          <th class="col-1">Status</th>
+          <th class="col-3">Azioni</th>
         </tr>
       </thead>
       <tbody>
@@ -25,13 +25,19 @@
           <td>
             <!-- Se l'ordine è in modifica, mostra il menu a tendina -->
             <ng-container *ngIf="ordineInModifica === ordine.id; else showStatus">
-              <select [(ngModel)]="ordine.status">
-                <option *ngFor="let stato of statiDisponibili" [value]="stato">
-                  {{ stato }}
-                </option>
-              </select>
-              <button class="btn btn-success" (click)="salvaModifica(ordine)">Salva</button>
-              <button class="btn btn-secondary" (click)="annullaModifica()">Annulla</button>
+            <dialog class="dialog-window" open>
+              <div class="dialog-content">
+                <select [(ngModel)]="ordine.status">
+                  <option *ngFor="let stato of statiDisponibili" [value]="stato">
+                    {{ stato }}
+                  </option>
+                </select>
+              </div>
+              <div class="dialog-buttons">
+                <button class="btn btn-success" (click)="salvaModifica(ordine)">Salva</button>
+                <button class="btn btn-secondary" (click)="annullaModifica()">Annulla</button>
+              </div>
+            </dialog>
             </ng-container>
   
             <!-- Se non è in modifica, mostra lo stato normalmente -->
@@ -39,7 +45,7 @@
               {{ ordine.status }}
             </ng-template>
           </td>
-          <td>
+          <td class="azioni">
             <button class="btn btn-det" (click)="dettagliOrdine(ordine.id)">Dettagli ordine</button>
             <button class="btn btn-danger" (click)="modificaOrdine(ordine)">Modifica ordine</button>
           </td>
