@@ -14,7 +14,7 @@ body {
     align-items: center;
     background-color: #ede9e7;
     padding: 13px 35px;
-    text-transform: uppercase;
+    text-transform: capitalize;;
     position: sticky;
     position: relative;
     z-index: 10;
@@ -68,6 +68,15 @@ body {
     align-items: center;
 }
 
+.dropdown{
+    position: relative;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    cursor: pointer;
+}
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -78,6 +87,7 @@ body {
     border: 1px solid #ccc;
     min-width: 120px; /* Imposta una larghezza minima */
     white-space: nowrap; /* Impedisce che il testo vada a capo */
+    z-index: 9999;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -301,3 +311,15 @@ body {
     color: #333; /* Cambia il colore degli anchor al passaggio del mouse */
 }
 
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.navbar-nav{
+    font-family: 'Poiret One', cursive;
+    font-size: 1.5rem;
+}
+
+.nav-link:hover{
+    color:#b44715;
+}

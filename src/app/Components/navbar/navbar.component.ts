@@ -1,21 +1,46 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { TipoProdottoService } from '../../services/tipo-prodotto.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'],
-  standalone: false
+  standalone: false,
+  animations: [
+    trigger('slideDown', [
+      state('closed', style({
+        height: '0px',
+        overflow: 'hidden',
+        opacity: 0
+      })),
+      state('open', style({
+        height: '*',
+        opacity: 1
+      })),
+      transition('closed => open', [
+        animate('300ms ease-in-out')
+      ]),
+      transition('open => closed', [
+        animate('200ms ease-in-out')
+      ])
+    ])
+  ]
 })
+
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   idUtente: number | null = null;
   
   isAdmin = false;
   isSidebarOpen = false;
+  tipi: any;
+  response: any;
+  data: any;
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router, private serv: TipoProdottoService) {}
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -47,7 +72,26 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = true;
       this.idUtente = Number(id);
     }
+    this.serv.listTipoProdotti() //NUOVO VVV
+      .subscribe((resp:any) => {
+        console.log("subscribe prodotti ");
+        this.response = resp;
+        this.data = this.response.dati;
+      })
   }
+
+  goTo(id: number) {
+    console.log("Navigo a:", id);
+    this.router.navigateByUrl(`/prodottiPerTipo/${id}`, { skipLocationChange: false }).then(() => {
+      console.log("Navigazione completata");
+    });
+  }
+
+  isNavbarOpen = false;
+
+toggleNavbar() {
+  this.isNavbarOpen = !this.isNavbarOpen;
+}
 
   updateUserStatus() {
     const id = localStorage.getItem('idUtente');
