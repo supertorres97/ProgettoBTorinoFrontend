@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CreazioneProdottoComponent } from '../../creazione-prodotto/creazione-prodotto.component';
 import { CreateProdottoComponent } from '../../../Dialog/create-prodotto/create-prodotto.component';
 import { TipoProdottoService } from '../../../services/tipo-prodotto.service';
 import { UpdateProdottoComponent } from '../../../Dialog/update-prodotto/update-prodotto.component';
