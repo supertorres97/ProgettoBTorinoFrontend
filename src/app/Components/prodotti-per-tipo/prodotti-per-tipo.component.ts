@@ -27,24 +27,27 @@ export class ProdottiPerTipoComponent {
     constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute, private tProdS:TipoProdottoService) { }
   
     ngOnInit(): void {
-      this.id = this.route.snapshot.paramMap.get('id');
-
-      this.tProdS.getTipoProdotto(this.id).
-      subscribe((resp:any) => {
-        this.tpNome = resp.dati;
-      });
-
-      console.log("onInit prodotti");
-      console.log("id tipo prodotto: " + this.id);
-      this.serv.getProdottiByTipoProdotto(this.id)
-        .subscribe((resp:any) => {
-          if(!resp.rc){
+      // Ascolta i cambiamenti della rotta e aggiorna i dati
+      this.route.paramMap.subscribe(params => {
+        this.id = params.get('id');
+    
+        console.log("onInit prodotti");
+        console.log("id tipo prodotto: " + this.id);
+    
+        this.tProdS.getTipoProdotto(this.id).subscribe((resp: any) => {
+          this.tpNome = resp.dati;
+        });
+    
+        this.serv.getProdottiByTipoProdotto(this.id).subscribe((resp: any) => {
+          if (!resp.rc) {
             alert("Errore nella pagina");
           }
           console.log("subscribe prodotti ");
           this.response = resp;
           this.data = this.response.dati;
         });
+      });
+    }
 /*  
         this.route.queryParams.subscribe(params => {
           const nome = params['nome'];
@@ -55,7 +58,6 @@ export class ProdottiPerTipoComponent {
             this.getAllProdotti(); // Se non c'è parametro, carica tutto
           }
         });*/
-    }
   /*
     cercaProdotti(nome: string): void {
       if (!nome.trim()) { // Se il nome è vuoto o solo spazi, carica tutti i prodotti

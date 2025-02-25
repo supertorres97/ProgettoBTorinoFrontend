@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar fixed-top">
   <div class="nav-container">
     <div class="logo col-1">
       <a routerLink="/home">
@@ -11,14 +11,12 @@
       <div class="nav-links-container col-10 d-flex justify-content-center">
         <ul class="nav-links">
           <li><a routerLink="/home" class="link" id="blackHover"><h3>Home</h3></a></li>
-          <li class="dropdown">
-            <a routerLink="/prodotti" class="link" id="prodottiDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-              <h3>Prodotti<img class="down-arrow" src="down-arrow.png" alt="down-arrow" /></h3>
+
+          <li class="nav-item dropdown">
+            <a class="link navbar-toggler" (click)="toggleNavbar()" style="border:none; cursor: pointer;">
+              <h3>Prodotti <img class="down-arrow" src="down-arrow.png" alt="down-arrow" /></h3>
             </a>
-            <ul class="dropdown-menu" aria-labelledby="prodottiDropdown">
-              <li><a class="dropdown-item" routerLink="/prodotti/">Tutti i prodotti</a></li>
-              <!-- Aggiungi altri elementi del menu qui -->
-            </ul>
+            
           </li>
         </ul>
       </div>
@@ -99,3 +97,18 @@
     </div>
   </div>
 </nav>
+
+<!-- COLLAPSE NAVBAR -->
+<div [@slideDown]="isNavbarOpen ? 'open' : 'closed'" id="collapsibleNavbar">
+  <ul class="navbar-nav d-flex flex-row justify-content-center mt-2">
+    <li class="nav-item" style="display: flex; align-items: center;">
+      <a class="dropdown-item nav-link mx-2" routerLink="/prodotti/">Tutti i prodotti</a>
+    </li>
+    <li *ngFor="let tipo of data" class="nav-item" style="display: flex; align-items: center;">
+      
+      <p style="font-size: 2.5rem; font-weight: 500;">|</p>
+      <a class="dropdown-item nav-link mx-2" (click)="goTo(tipo.id)">{{tipo.descrizione}}</a>
+
+    </li>
+  </ul>
+</div>
