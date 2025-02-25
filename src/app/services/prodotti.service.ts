@@ -41,5 +41,5 @@ export class ProdottiService {
     let params = new HttpParams().set('tipoProdotto', id.toString());
     return this.http.get(this.url + "listByTipoProdotto", {params});
   }
-
+ 
 }
