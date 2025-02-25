@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { CreazioneProdottoComponent } from '../../creazione-prodotto/creazione-prodotto.component';
 import { CreateProdottoComponent } from '../../../Dialog/create-prodotto/create-prodotto.component';
+import { TipoProdottoService } from '../../../services/tipo-prodotto.service';
+import { UpdateProdottoComponent } from '../../../Dialog/update-prodotto/update-prodotto.component';
 
 @Component({
   selector: 'app-gestione-prodotti',
@@ -13,35 +14,41 @@ import { CreateProdottoComponent } from '../../../Dialog/create-prodotto/create-
   styleUrl: './gestione-prodotti.component.css'
 })
 export class GestioneProdottiComponent {
-   response:any;
+
+    response:any;
     data:any;
+    responseTP:any;
+    tipiProdotto:any;
+    msg:string = '';
   
-    prodotti: any[] = [];
-    searchQuery: string = '';
-  
-  
-    constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute, private dialog:MatDialog) { }
+    constructor(
+      private serv:ProdottiService, 
+      private tprodS:TipoProdottoService,
+      private router:Router, 
+      private route: ActivatedRoute, 
+      private dialog:MatDialog) { }
   
     ngOnInit(): void {
       console.log("onInit prodotti");
-      this.serv.listProdotti()
-        .subscribe((resp:any) => {
-          console.log("subscribe prodotti ");
-          this.response = resp;
-          this.data = this.response.dati;
-        })
-  
-        this.route.queryParams.subscribe(params => {
-          const nome = params['nome'];
-          if (nome) {
-            this.searchQuery = nome;
-            this.cercaProdotti(nome);
-          } else {
-            this.getAllProdotti(); // Se non c'è parametro, carica tutto
-          }
-        });
+      this.loadProdotti();
+
+      this.tprodS.listTipoProdotti()
+      .subscribe((resp:any) => {
+        console.log("subscribe prodotti ");
+        this.responseTP = resp;
+        this.tipiProdotto = this.responseTP.dati;
+      });
     }
   
+    loadProdotti(): void {
+      this.serv.listProdotti()
+      .subscribe((resp:any) => {
+        console.log("subscribe prodotti ");
+        this.response = resp;
+        this.data = this.response.dati;
+      })
+    }
+
     createProd(){
       const enterAnimationDuration:string = '200ms';
       const exitAnimationDuration:string = '150ms';
@@ -54,47 +61,29 @@ export class GestioneProdottiComponent {
 
       dialogRef.afterClosed()
       .subscribe((res:any) => {
-      window.location.reload();
+        if(res)
+          window.location.reload();
     });
     }
 
-    cercaProdotti(nome: string): void {
-      if (!nome.trim()) { // Se il nome è vuoto o solo spazi, carica tutti i prodotti
-      this.getAllProdotti();
-      return;
-    }
-  
-    this.serv.getProdottiByNome(nome).subscribe({
-      next: (data: any) => {
-        this.prodotti = data.dati;
-      },
-      error: (err) => {
-        console.error('Errore nella ricerca dei prodotti', err);
-      }
-    });
-  
-    // Aggiorna la URL con il nuovo parametro di ricerca
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: nome ? { nome } : {}, // Se nome è vuoto, rimuove il parametro dalla URL
-      queryParamsHandling: 'merge'
-    });
-    }
-  
-  
-    getAllProdotti(): void {
-      this.serv.listProdotti().subscribe({
-        next: (response: any) => {
-          this.prodotti = response.dati;
-        },
-        error: (err) => {
-          console.error('Errore nel recupero dei prodotti', err);
-          this.prodotti = [];
+    updateProd(prodottoUp:{}){
+      const enterAnimationDuration:string = '200ms';
+      const exitAnimationDuration:string = '150ms';
+
+      const dialogRef = this.dialog.open(UpdateProdottoComponent, {
+        width: '700px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: {
+          prodotto: prodottoUp
         }
       });
+
+      dialogRef.afterClosed()
+      .subscribe((res:any) => {
+        if(res)
+          window.location.reload();
+    });
     }
 
-    click(){
-      alert("CIAO");
-    }
 }

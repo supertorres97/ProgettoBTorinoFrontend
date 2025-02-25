@@ -8,4 +8,17 @@
   /* Il contenuto principale cresce per occupare lo spazio libero */
   .content {
     flex: 1;
+    margin-top: 4rem;
   }
+
+  /* Navbar fissa in cima alla pagina */
+app-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff; /* Imposta un colore di sfondo per la navbar (opzionale) */
+  height: 4rem; /* Imposta l'altezza della navbar usando 'rem' */
+  line-height: 4rem; /* Allinea verticalmente il contenuto nella navbar */
+}

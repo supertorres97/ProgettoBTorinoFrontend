@@ -16,7 +16,6 @@
       <tr>
         <th scope="col">N°</th>
         <th scope="col">Prodotto</th>
-        <th scope="col">Ordine</th>
         <th scope="col">Utente</th>
         <th scope="col">Recensione</th>
         <th scope="col">Valutazione</th>
@@ -28,7 +27,6 @@
       <tr *ngFor="let feed of data">
         <th scope="row">{{feed.id}}</th>
         <td>{{feed.prodotto.nome}}</td>
-        <td>{{feed.ordine.id}}</td>
         <td>{{feed.utente.nome}} {{feed.utente.cognome}}</td>
         <td>{{feed.descrizione}}</td>
         <td>{{feed.voto}}</td>

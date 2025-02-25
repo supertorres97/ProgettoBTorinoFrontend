@@ -7,7 +7,6 @@ import { UserProfileComponent } from './Components/profile/profile.component';
 import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { PgProdottoComponent } from './Components/pgProdotto/pgProdotto.component';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
-import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
 import { CreazioneComponent } from './Components/admin/creazione/creazione.component';
@@ -37,13 +36,12 @@ const routes: Routes = [
   { path: 'prodottiPerTipo/:id', component: ProdottiPerTipoComponent},          //prodotti per tipo
 
   /*-------------------------- Opzioni Admin ----------------------*/
-  { path: 'admin/creazione-prodotto', component: CreazioneProdottoComponent, canActivate: [AuthGuard]},   //creazione prodotto
   { path: 'admin/gestione-tipo-prodotto', component: GestioneTipoProdottoComponent, canActivate:[AuthGuard]},        
   { path: 'admin/gestione-ordini', component: GestioneOrdiniComponent, canActivate:[AuthGuard]},
   { path: 'admin/gestione-utenti', component: GestioneUtentiComponent, canActivate:[AuthGuard]},
   { path: 'admin/dettagli-utente/:id', component: DettagliUserComponent, canActivate:[AuthGuard]},
   { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent, canActivate:[AuthGuard]},  
-  { path: 'admin/gestioneProdotti', component: GestioneProdottiComponent, canActivate:[AuthGuard]},           //admin gesione prodotti  
+  { path: 'admin/gestione-prodotti', component: GestioneProdottiComponent, canActivate:[AuthGuard]},           //admin gesione prodotti  
   { path: 'admin/creazione-admin', component: CreazioneComponent, canActivate:[AuthGuard]},
   { path: 'admin/gestione-feedback', component:GestioneFeedbackComponent, canActivate:[AuthGuard]},                    
   

@@ -1,63 +1,172 @@
+/* Generale */
 body {
-    background-color: #ede9e7;
-    margin: 0;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .carrello-container {
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-    color: #333;
-  }
-  
-  .alert {
-    border-radius: 8px;
-    padding: 30px;
-    max-width: 100%;
-    background-color: #ede9e7;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .alert-heading {
-    font-size: 1.8rem;
-  }
-  
-  img {
-    opacity: 0.8;
-    max-width: 150px;
-    height: auto;
-  }
-  
-  @media (max-width: 768px) {
-    h2 {
-      font-size: 2rem;
-    }
-  
-    .alert {
-      padding: 20px;
-    }
-  
-    .alert-heading {
-      font-size: 1.5rem;
-    }
+  background-color: #f8f5f3;
+  margin: 0;
+  font-family: 'Poiret One', cursive;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Titolo e pulsanti */
+.titolo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titolo h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+/* Stile base per tutti i pulsanti */
+.btn-custom {
+  font-family: 'Poiret One', cursive;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  color: #ede9e7; /* Testo chiaro */
+}
+
+/* Colori specifici per ogni pulsante */
+.btn-svuota {
+  background-color: #5a5a5a; /* Nero */
+}
+
+.btn-elimina {
+  background-color: #6b0101; /* Rosso scuro */
+}
+
+.btn-acquista {
+  background-color: #043104; /* Verde scuro */
+}
+
+/* Effetto hover per tutti i pulsanti */
+.btn-custom:hover {
+  opacity: 0.8;
+}
+
+/* Carrello Vuoto */
+.alert {
+  background: #f8f5f3;
+  border: none;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Icona più piccola */
+.alert img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Tabella Carrello */
+.cart-table {
+  width: 100%;
+  background: #f8f5f3;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header tabella */
+.cart-header {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
+  font-weight: bold;
+  padding: 12px 0;
+  border-bottom: 2px solid #ddd;
+  text-align: center;
+}
+
+/* Righe prodotti */
+.cart-item {
+  display: grid;
+  grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
+  align-items: center;
+  text-align: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Nome Prodotto */
+.cart-item a {
+  color: black;
+  text-decoration: none;
+}
+
+.cart-item a:hover {
+  text-decoration: underline;
+}
+
+/* Quantità */
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.quantity-controls button {
+  background-color: #cfcfcf;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.quantity-controls button:hover {
+  background-color: #888;
+}
+
+/* Footer (Totale e Acquista) */
+.cart-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 15px;
+}
+
+.totale-label {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.totale-importo {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-right: 5.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-header, .cart-item, .cart-footer {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
   }
 
-  .custom-link {
-    text-decoration: none;
-    color: #255d99; /* Colore link visibile */
-    font-weight: 500;
-    align-items: center;
-    transition: color 0.3s, text-decoration 0.3s;
+  .cart-item {
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  .custom-link:hover {
-    text-decoration: underline;
-    color: #0056b3; /* Colore più scuro in hover */
+
+  .cart-footer {
+    justify-content: center;
   }
-  
-  
+
+  .svuota-carrello {
+    width: 100%;
+  }
+}
