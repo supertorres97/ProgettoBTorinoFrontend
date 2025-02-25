@@ -3,7 +3,7 @@
   <ng-container *ngIf="prodottiCarrello.length > 0">
     <div class="titolo">
       <h1>IL TUO CARRELLO</h1>
-      <button class="btn btn-secondary svuota-carrello" (click)="svuotaCarrello()">Svuota Carrello</button>
+      <button class="btn-custom btn-svuota" (click)="svuotaCarrello()">Svuota Carrello</button>
     </div>
     <hr>
   </ng-container>
@@ -43,13 +43,13 @@
       </div>
       <span>{{ prodotto?.prodotto?.prezzo }} €</span>
       <span>{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
-      <button class="btn btn-danger btn-sm" (click)="rimuoviProdotto(prodotto?.id)">Rimuovi</button>
+      <button class="btn-custom btn-elimina" (click)="rimuoviProdotto(prodotto?.id)">Elimina</button>
     </div>
 
     <div class="cart-footer">
       <span class="totale-label">Totale:</span>
       <span class="totale-importo">{{ calcolaTotale() }} €</span>
-      <button class="btn btn-success acquista-btn" (click)="acquista()">Acquista</button>
+      <button class="btn-custom btn-acquista" (click)="acquista()">Acquista</button>
     </div>
   </div>
 </div>

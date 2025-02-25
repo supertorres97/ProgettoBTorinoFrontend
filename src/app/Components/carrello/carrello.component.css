@@ -12,7 +12,7 @@ body {
   padding: 20px;
 }
 
-/* Titolo e Svuota Carrello */
+/* Titolo e pulsanti */
 .titolo {
   display: flex;
   justify-content: space-between;
@@ -24,14 +24,38 @@ body {
   color: #333;
 }
 
-.svuota-carrello {
-  font-size: 1rem;
+/* Stile base per tutti i pulsanti */
+.btn-custom {
+  font-family: 'Poiret One', cursive;
+  font-size: 1.2rem;
+  border-radius: 10px;
   padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  color: #ede9e7; /* Testo chiaro */
+}
+
+/* Colori specifici per ogni pulsante */
+.btn-svuota {
+  background-color: #5a5a5a; /* Nero */
+}
+
+.btn-elimina {
+  background-color: #6b0101; /* Rosso scuro */
+}
+
+.btn-acquista {
+  background-color: #043104; /* Verde scuro */
+}
+
+/* Effetto hover per tutti i pulsanti */
+.btn-custom:hover {
+  opacity: 0.8;
 }
 
 /* Carrello Vuoto */
 .alert {
-  background: #f8f5f3; /* Sfondo uniforme con il carrello */
+  background: #f8f5f3;
   border: none;
   padding: 20px;
   text-align: center;
@@ -71,23 +95,18 @@ body {
   grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
   align-items: center;
   text-align: center;
-  padding: 20px 0; /* 🔹 Righe più larghe */
+  padding: 20px 0;
   border-bottom: 1px solid #ddd;
-}
-
-/* 🔹 Tolgo la riga dopo l'ultimo prodotto */
-.cart-item:last-child {
-  border-bottom: none;
 }
 
 /* Nome Prodotto */
 .cart-item a {
-  color: black; /* Normale */
+  color: black;
   text-decoration: none;
 }
 
 .cart-item a:hover {
-  text-decoration: underline; /* 🔹 Sottolineato solo al passaggio del mouse */
+  text-decoration: underline;
 }
 
 /* Quantità */
@@ -110,12 +129,6 @@ body {
   background-color: #888;
 }
 
-/* Bottone "Rimuovi" più piccolo */
-.btn-danger {
-  font-size: 0.85rem;
-  padding: 5px 8px;
-}
-
 /* Footer (Totale e Acquista) */
 .cart-footer {
   display: flex;
@@ -134,12 +147,6 @@ body {
   font-size: 1.3rem;
   font-weight: bold;
   margin-right: 5.5rem;
-}
-
-.acquista-btn {
-  margin-left: 20px;
-  font-size: 1rem;
-  padding: 8px 16px;
 }
 
 /* Responsive */
