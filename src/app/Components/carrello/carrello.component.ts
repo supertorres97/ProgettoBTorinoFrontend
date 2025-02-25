@@ -45,13 +45,13 @@ export class CarrelloComponent implements OnInit {
   changeQuantity(amount: number, prodotto: any): void {
     const newQuantity = prodotto.quantita + amount; // Incrementa/diminuisce la quantità
   
-    if (newQuantity >= 1) { // Evita quantità negative o zero
+    if (newQuantity >= 0) { // Evita quantità negative o zero
       prodotto.quantita = newQuantity;
   
       // Prepara il body per l'aggiornamento nel database
       const body = {
         id: prodotto.id,
-        quantita: amount,
+        quantita: newQuantity,
         carrello: this.idCarrello,
         prodotto: prodotto.prodotto.id
       };
@@ -61,6 +61,7 @@ export class CarrelloComponent implements OnInit {
         next: () => {
           console.log("Quantità aggiornata con successo:", newQuantity);
           this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
+          window.location.reload();
         },
         error: (error) => {
           console.error("Errore nell'aggiornamento della quantità:", error);
