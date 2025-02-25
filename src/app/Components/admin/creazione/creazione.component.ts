@@ -73,7 +73,7 @@ export class CreazioneComponent {
         next: (resp: any) => {
           console.log('Inserimento riuscito:', resp);
           alert('Registrazione avvenuta con successo!');
-          this.router.navigate(['/login']);
+          window.location.reload();
         },
         error: (error) => {
           console.error('Errore durante la registrazione:', error);

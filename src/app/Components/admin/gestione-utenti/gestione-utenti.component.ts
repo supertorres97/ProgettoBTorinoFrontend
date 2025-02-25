@@ -2,6 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CredenzialiReq, CredenzialiService } from '../../../services/credenziali.service';
 import { RuoliService } from '../../../services/ruoli.service';
+import { CreazioneComponent } from '../creazione/creazione.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -23,7 +25,8 @@ export class GestioneUtentiComponent {
   constructor(
     private credService: CredenzialiService,
     private router: Router,
-    private ruoloService: RuoliService
+    private ruoloService: RuoliService,
+    private dialog:MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -79,5 +82,25 @@ export class GestioneUtentiComponent {
   viewDettagliUtente(idUtente: number): void {
     this.router.navigate(['/admin/dettagli-utente//', idUtente]);
   }
+
+  createUser() {
+        const enterAnimationDuration: string = '200ms';
+        const exitAnimationDuration: string = '150ms';
+  
+        const dialogRef = this.dialog.open(CreazioneComponent, {
+          width: '60%',
+          maxWidth: '100vw',
+          height: '100%',
+          enterAnimationDuration,
+          exitAnimationDuration
+        });
+  
+        dialogRef.afterClosed()
+        .subscribe((res: any) => {
+          if (res) {
+            window.location.reload();
+          }
+      });
+      }
   
 }

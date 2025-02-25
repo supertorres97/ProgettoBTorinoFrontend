@@ -141,3 +141,17 @@ h2{
     background-color: #b44715;
     transform: scale(1.05);
     }
+
+
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+    }
+
+    .immagine {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+    }
