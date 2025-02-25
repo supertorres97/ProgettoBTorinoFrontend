@@ -1,3 +1,4 @@
+
 <p>creazione-prodotto</p>
 <mat-dialog-content class="test">
 <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()" class="test">
@@ -47,20 +48,23 @@
           Disponibile
         </label>
       </div>
-
+    
 <!--
     <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="disponibile">
         <label class="form-check-label" for="flexSwitchCheckDefault">Disponibile</label>
     </div>
 -->
+
     <p>{{msg}}</p>
     <button mat-raised-button type="submit" [disabled]="!createProductForm.valid">Crea</button> 
     <button mat-raised-button (click)="chiudi()">chiudi</button> 
 </form>
 
 </mat-dialog-content>
+
 <!--
+<mat-dialog-content>
 <dialog class="dialog-window" open>
   <div class="dialog-content">
     <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
@@ -123,10 +127,11 @@
         </div>
       </div>
       <div class="dialog-buttons">
-        <button type="submit" class="btn btn-success" [disabled]="!createProductForm.valid" (click)="onSubmit()">Crea</button>
+        <button type="submit" class="btn btn-success" [disabled]="!createProductForm.valid">Crea</button>
         <button type="button" class="btn btn-secondary ml-2" (click)="chiudi()">Annulla</button>
       </div>
     </form>
   </div>
 </dialog>
+</mat-dialog-content>
 -->
