@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    if (window.innerWidth >= 992) {
+    if (window.innerWidth >= 1200) {
       this.closeSidebar();
     }
   }
