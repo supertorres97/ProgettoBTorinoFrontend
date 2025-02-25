@@ -11,8 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false;
   idUtente: number | null = null;
-  showSearch: boolean = false;
-  searchQuery: string = '';
+  
   isAdmin = false;
   isSidebarOpen = false;
 
@@ -28,7 +27,7 @@ export class NavbarComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
-    if (window.innerWidth >= 992) {
+    if (window.innerWidth >= 1200) {
       this.closeSidebar();
     }
   }
@@ -70,19 +69,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  hideSearch() {
-    if (this.searchQuery === '') {
-      this.showSearch = false;
-    }
-  }
-
-  searchProduct() {
-    const query = this.searchQuery.trim();
-
-    if (query !== '') {
-      this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
-    } else {
-      this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
-    }
-  }
 }

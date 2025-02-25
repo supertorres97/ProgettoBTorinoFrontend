@@ -25,7 +25,6 @@ import { UserProfileComponent } from './Components/profile/profile.component';
 import { ProdottiComponent } from './Components/prodotti/prodotti.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { SignInComponent } from './Components/sign-in/sign-in.component';
-import { CreazioneProdottoComponent } from './Components/creazione-prodotto/creazione-prodotto.component'; 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { StoricoOrdiniComponent } from './Components/storico-ordini/storico-ordini.component';
 import { DettaglioOrdineComponent } from './Components/storico-ordini/dettaglio-ordine/dettaglio-ordine.component';
@@ -46,6 +45,7 @@ import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezi
 import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
 import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
 import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodotto.component';
+import { UpdateProdottoComponent } from './Dialog/update-prodotto/update-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -60,8 +60,7 @@ import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodott
     ParallaxSezioneComponent,
     UserProfileComponent,
     ProdottiComponent,
-    SignInComponent,
-    CreazioneProdottoComponent, 
+    SignInComponent, 
     StoricoOrdiniComponent,
     DettaglioOrdineComponent,
     GestioneOrdiniComponent,
@@ -78,7 +77,8 @@ import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodott
     ParallaxTwoSezioneComponent,
     ProdottiPerTipoComponent,
     GestioneProdottiComponent,
-    CreateProdottoComponent
+    CreateProdottoComponent,
+    UpdateProdottoComponent
   ],
   imports: [
     BrowserModule,

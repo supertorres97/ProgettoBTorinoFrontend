@@ -13,7 +13,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrl: './create-prodotto.component.css'
 })
 export class CreateProdottoComponent {
-  msg:string = "";
+    msg:string = "";
     createProductForm:any;
     selectImage:File | null = null;
     responseTP:any;

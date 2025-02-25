@@ -15,6 +15,9 @@ body {
     background-color: #ede9e7;
     padding: 13px 35px;
     text-transform: uppercase;
+    position: sticky;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -171,7 +174,7 @@ body {
     outline: none;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .burger {
         display: none !important;
     }
@@ -200,7 +203,7 @@ body {
 
 .burger .navbar-toggler {
   position: relative;
-  z-index: 1;
+  z-index: 5;
 }
 
 .burger .navbar-collapse {
@@ -209,7 +212,7 @@ body {
   left: 0;
   height: 100%;
   background-color: #ede9e7; /* Colore di sfondo del menu */
-  z-index: 0;
+  z-index: 5;
   transition: width 0.3s ease;
   padding-left: 5rem; /* Aggiunge spazio tra l'icona del menu e le scritte del dropdown */
   padding-bottom: 5rem;
