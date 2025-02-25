@@ -32,4 +32,13 @@ export class CarrelloProdottoService {
   updateCarrelloProdotto(body: {}){
     return this.http.post(this.url + "update", body);
   }
+
+  svuotaCarrello(idCart: number){
+    return this.http.post(this.url + "svuotaCarrello?idCart=" + idCart, {});
+  }
+
+  acquistaCarrelloProdotto(body: any) {
+    return this.http.post(this.url + "acquista", body);
+  }
 }
+
