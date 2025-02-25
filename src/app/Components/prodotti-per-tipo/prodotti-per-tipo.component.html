@@ -1,5 +1,49 @@
+<div class="container">
+    <div class="row">
+        <aside class="col-2"></aside>
+        <div class="main-row col-8">
+            <div class="titolo">
+                <div class="titolo-search">
+                    <h1>{{tpNome.descrizione}}</h1>
+                    <!-- Barra di ricerca -->
+                    <div class="search-box">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <input class="input-search"  
+                        type="text" 
+                        [(ngModel)]="searchQuery" 
+                        (keyup.enter)="searchProduct()" 
+                        placeholder="Cerca prodotto...">
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="card-container">
 
-<div class="main-div">
+                <figure class="image-block" *ngFor="let prodotto of data">
+                    <img src={{prodotto.img}} alt="immagine" />
+                    <figcaption>
+                        <h3>
+                            {{prodotto.nome}}
+                        </h3>
+                        <hr>
+                        <div>
+                            <p>
+                                Prezzo:
+                                {{prodotto.prezzo}}€
+                            </p>
+                            <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
+                        </div>
+                        <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <aside class="col-2"></aside>
+    </div>
+</div>
+
+
+<!-- <div class="main-div">
     <aside class="col-1"></aside>
     <div class="titolo">
         <h1 class="titolo">{{tpNome.descrizione}}</h1>
@@ -18,4 +62,4 @@
         </div>
     </div>
     <aside class="col-1"></aside>
-</div>
+</div> -->

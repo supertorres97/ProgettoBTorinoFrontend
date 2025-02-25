@@ -15,6 +15,9 @@ body {
     background-color: #ede9e7;
     padding: 13px 35px;
     text-transform: uppercase;
+    position: sticky;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -73,12 +76,13 @@ body {
     background: #ede9e7;
     list-style: none;
     border: 1px solid #ccc;
-    width: 120px;
+    min-width: 120px; /* Imposta una larghezza minima */
+    white-space: nowrap; /* Impedisce che il testo vada a capo */
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
-    cursor: default;
+    cursor: pointer;
 }
 
 .icons {
@@ -129,25 +133,13 @@ body {
     cursor: pointer;
 }
 
-/* Evita che la dropdown esca fuori dallo schermo */
-.dropdown-menu {
-    min-width: 180px; /* Aumenta leggermente la larghezza per maggiore leggibilità */
-    text-align: left;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    right: 0; /* Allinea la dropdown a destra */
-    left: auto; /* Evita che si allarghi troppo */
-    position: absolute; /* Evita che venga spostata in modo anomalo */
-    transform: translateX(-10px); /* Mantiene una piccola distanza dal bordo */
-    overflow: hidden; /* Assicura che rimanga visibile senza espandersi */
-}
+
 
 /* Stile degli elementi della dropdown */
 .dropdown-menu .dropdown-item {
     padding: 10px 15px;
-    font-size: 1rem;
-    color: #333;
+    font-size: 1.2rem;
+    color: #b44715;
     transition: background 0.3s ease;
     white-space: nowrap; /* Impedisce che le opzioni vadano a capo */
 }
@@ -182,18 +174,22 @@ body {
     outline: none;
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .burger {
         display: none !important;
+    }
+    .sidebar {
+        display: none; /* Nasconde la sidebar quando la pagina è allargata oltre 992px */
     }
 }
 
 .burger {
     position: absolute;
-    right: 0;
+    left: 50%;
     top: 0;
+    transform: translateX(-50%);
     padding: 13px 35px;
-  }
+}
 
 .burger .collapse {
     transition: width 0.3s ease;
@@ -207,8 +203,7 @@ body {
 
 .burger .navbar-toggler {
   position: relative;
-  z-index: 1;
-  margin-right: 100px; /* Aggiunge spazio tra l'icona del menu e le scritte del dropdown */
+  z-index: 5;
 }
 
 .burger .navbar-collapse {
@@ -217,7 +212,7 @@ body {
   left: 0;
   height: 100%;
   background-color: #ede9e7; /* Colore di sfondo del menu */
-  z-index: 0;
+  z-index: 5;
   transition: width 0.3s ease;
   padding-left: 5rem; /* Aggiunge spazio tra l'icona del menu e le scritte del dropdown */
   padding-bottom: 5rem;
@@ -233,7 +228,18 @@ body {
   background-color: #ede9e7;
   transition: left 0.3s ease;
   z-index: 1000;
-  padding-top: 60px;
+  padding-top: 1.5rem;
+}
+
+.sidebar a {
+  color: #b44715;
+  text-decoration: none;
+  font-family: 'Poiret One', cursive;
+  font-size: 1.2rem;
+}
+
+.sidebar a:hover {
+  color: #333;
 }
 
 .sidebar.open {
@@ -251,15 +257,47 @@ body {
 
 .sidebar-nav .nav-link {
   text-decoration: none;
-  color: #333;
+  color: #b44715;
   display: block;
   transition: background 0.3s ease;
+}
+
+.nav-link{
+    cursor: pointer;
 }
 
 .sidebar-nav .nav-link:hover {
   background-color: #ede9e7;
 }
 
+.dropdown-menu {
+    background-color: #ede9e7;
+    font-family: 'Poiret One', cursive;
+    color: #b44715;
+    font-size: 1.2rem;
+    min-width: 120px; /* Imposta una larghezza minima */
+    white-space: nowrap; /* Impedisce che il testo vada a capo */
+}
 
+/* Evita che la dropdown esca fuori dallo schermo */
+.dropdown-menu {
+    text-align: left;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    right: 0; /* Allinea la dropdown a destra */
+    left: auto; /* Evita che si allarghi troppo */
+    position: absolute; /* Evita che venga spostata in modo anomalo */
+    transform: translateX(-10px); /* Mantiene una piccola distanza dal bordo */
+    overflow: hidden; /* Assicura che rimanga visibile senza espandersi */
+}
 
+.dropdown-menu a {
+    color: #b44715; /* Imposta il colore degli anchor all'interno della dropdown-menu */
+    text-decoration: none; /* Rimuove la sottolineatura dagli anchor */
+}
+
+.dropdown-menu a:hover {
+    color: #333; /* Cambia il colore degli anchor al passaggio del mouse */
+}
 

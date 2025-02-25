@@ -27,4 +27,12 @@ export class FeedbackService {
   create(body : {}){
     return this.http.post(this.url + "create", body);
   }
+
+  getByUtenteProdotto(utente: number, prodotto: number) {
+    let params = new HttpParams()
+      .set('utente', utente.toString()) // Converti il numero in stringa
+      .set('prodotto', prodotto.toString());
+  
+    return this.http.get(this.url + "getByUtenteProdotto", { params });
+  }
 }

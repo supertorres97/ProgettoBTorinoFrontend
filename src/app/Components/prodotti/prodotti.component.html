@@ -3,21 +3,21 @@
         <aside class="col-2"></aside>
         <div class="main-row col-8">
             <div class="titolo">
-                <h1 class="titolo">PRODOTTI</h1>
+                <div class="titolo-search">
+                    <h1>PRODOTTI</h1>
+                    <!-- Barra di ricerca -->
+                    <div class="search-box">
+                        <button class="btn-search"><i class="fas fa-search"></i></button>
+                        <input class="input-search"  
+                        type="text" 
+                        [(ngModel)]="searchQuery" 
+                        (keyup.enter)="searchProduct()" 
+                        placeholder="Cerca prodotto...">
+                    </div>
+                </div>
                 <hr>
             </div>
             <div class="card-container">
-                <!-- <div class="card" *ngFor="let prodotto of prodotti">
-                    <div class="img-div">
-                    <img class="img" src={{prodotto.img}} alt="immagine">
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">{{prodotto.nome}}</p>
-                        <p class="card-prezzo">€{{prodotto.prezzo}}</p>
-                        <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Dettagli</button>
-                        <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
-                    </div>
-                </div> -->
 
                 <figure class="image-block" *ngFor="let prodotto of prodotti">
                     <img src={{prodotto.img}} alt="immagine" />

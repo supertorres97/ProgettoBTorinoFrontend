@@ -1,4 +1,5 @@
-<div class="container py-5 text-center">  
+<div class="container py-5 text-center">
+  <ng-container *ngIf="prodottiCarrello.length === 0; else carrelloPieno">
     <div class="alert alert-secondary d-flex flex-column align-items-center" role="alert">
       <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="Carrello Vuoto" class="mb-1" style="width: 100px; height: 100px;" />
       <h4 class="alert-heading">Carrello vuoto</h4>
@@ -7,5 +8,33 @@
         Visita la nostra <a routerLink="/prodotti" class="custom-link"><i class="bi bi-box-arrow-up-right"></i> pagina dei prodotti</a> per iniziare a fare shopping!
       </p>
     </div>
-  </div>
-  
+  </ng-container>
+
+  <ng-template #carrelloPieno>
+    <h2 class="mb-4">Il tuo carrello</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="list-group">
+          <div class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let prodotto of prodottiCarrello">
+            <div class="d-flex align-items-center">
+              <img [src]="prodotto?.prodotto?.img" alt="Immagine prodotto" style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px;">
+              <div>
+                <h5>{{ prodotto?.prodotto?.nome }}</h5>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-outline-secondary btn-sm" (click)="changeQuantity(-1, prodotto)">-</button>
+              <span class="mx-2">{{ prodotto.quantita }}</span>
+              <button class="btn btn-outline-secondary btn-sm" (click)="changeQuantity(1, prodotto)">+</button>
+            </div>
+            
+            <div>
+              <span class="fw-bold">{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
+              <button class="btn btn-danger btn-sm ms-3" (click)="rimuoviProdotto(prodotto?.id)">Rimuovi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

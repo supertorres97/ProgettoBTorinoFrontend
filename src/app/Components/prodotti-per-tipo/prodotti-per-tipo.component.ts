@@ -15,6 +15,9 @@ export class ProdottiPerTipoComponent {
     data:any;
 
     tpNome:any;
+
+    showSearch: boolean = false;
+    searchQuery: string = '';
   
  //   prodotti: any[] = [];
  //   searchQuery: string = '';
@@ -93,5 +96,21 @@ export class ProdottiPerTipoComponent {
     dettagliProdotto(id:number){
       console.log(id);
       this.router.navigate(['/prodotto/', id]);
+    }
+
+    hideSearch() {
+      if (this.searchQuery === '') {
+        this.showSearch = false;
+      }
+    }
+  
+    searchProduct() {
+      const query = this.searchQuery.trim();
+  
+      if (query !== '') {
+        this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
+      } else {
+        this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
+      }
     }
 }

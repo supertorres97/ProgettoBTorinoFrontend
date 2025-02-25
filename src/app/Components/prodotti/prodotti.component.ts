@@ -14,8 +14,10 @@ export class ProdottiComponent implements OnInit{
   response:any;
   data:any;
 
-  prodotti: any[] = [];
+  showSearch: boolean = false;
   searchQuery: string = '';
+
+  prodotti: any[] = [];
 
 
   constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
@@ -81,4 +83,19 @@ export class ProdottiComponent implements OnInit{
     this.router.navigate(['/prodotto/', id]);
   }
 
+  hideSearch() {
+    if (this.searchQuery === '') {
+      this.showSearch = false;
+    }
+  }
+
+  searchProduct() {
+    const query = this.searchQuery.trim();
+
+    if (query !== '') {
+      this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
+    } else {
+      this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
+    }
+  }
 }

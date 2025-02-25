@@ -1,19 +1,25 @@
-<h1>GESTIONE PRODOTTI</h1>
-<button (click)="createProd()">nuovo Prodotto</button>
-<table class="table">
+<div class="custom-font">
+<div class="header-container">
+  <h2><b>Gestione Tipo Prodotto</b></h2>
+  <div class="image-container">
+    <img class="immagine" src="plus.png" alt="Torna alla lista ordini" (click)="createProd()">
+  </div>
+  </div>
+<table class="order-table">
     <thead>
       <tr>
-        <th scope="col">N°</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Tipo</th>
-        <th scope="col">Descrizione</th>
-        <th scope="col">Peso</th>
-        <th scope="col">Prezzo</th>
-        <th scope="col">Stock</th>
-        <th scope="col">Disponibile</th>
+        <th class="col-1">N°</th>
+        <th class="col-2">Nome</th>
+        <th class="col-1">Tipo</th>
+        <th class="col-4">Descrizione</th>
+        <th class="col-1">Peso</th>
+        <th class="col-1">Prezzo</th>
+        <th class="col-1">Stock</th>
+        <th class="col-1">Disponibile</th>
       </tr>
     </thead>
     <tbody>
+
       <tr *ngFor="let prodotto of data" (click)="updateProd(prodotto)">
         <th scope="row">{{prodotto.id}}</th>
         <td>{{prodotto.nome}}</td>
@@ -24,12 +30,13 @@
         <td>{{prodotto.stock}}</td>
         <td *ngIf="prodotto.disponibile">Disponibile</td>
         <td *ngIf="!prodotto.disponibile">Esaurito</td>
-        <td>
-<!--            <button (click)="onDelete(feed.id)">Elimina</button> -->
-        </td>
+        <!-- <td>
+           <button (click)="onDelete(feed.id)">Elimina</button>
+        </td> -->
       </tr>
     </tbody>
   </table>
+
 
 
   <!-- Dialog per modificare prodotti 
@@ -64,3 +71,5 @@
   </form>
 </dialog>
 -->
+</div>
+
