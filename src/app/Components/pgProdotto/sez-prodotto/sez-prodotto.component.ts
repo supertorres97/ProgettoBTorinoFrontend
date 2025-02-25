@@ -1,9 +1,10 @@
-import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { CarrelloProdottoService } from '../../../services/carrello.prodotto.service';
 import { AuthService } from '../../../services/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -19,7 +20,13 @@ export class SezProdottoComponent implements OnInit{
   idCarrello: number | null = null;
   
 
-  constructor(private serv:ProdottiService, private location: Location, private route:ActivatedRoute, private cdr: ChangeDetectorRef, private carrelloProdottoService: CarrelloProdottoService, private auth:AuthService){}
+  constructor(private serv:ProdottiService, 
+              private location: Location, 
+              private route:ActivatedRoute, 
+              private cdr: ChangeDetectorRef, 
+              private carrelloProdottoService: CarrelloProdottoService, 
+              private auth:AuthService,
+              private _snackBar: MatSnackBar){}
 
   getCarrelloId(){
     const userId = this.auth.getIdUtente();
@@ -66,24 +73,28 @@ export class SezProdottoComponent implements OnInit{
   }
 
   aggiungiAlCarrello(): void {
-    if (!this.prodotto) return; // Evita errori se il prodotto non è caricato
-
+    if (!this.prodotto) return;
+  
     const carrelloProdotto = {
       prodotto: this.prodotto.id,
       quantita: this.quantity,
       carrello: this.idCarrello
     };
-
-    console.log('CarrelloProdotto:', carrelloProdotto);
-
+  
     this.carrelloProdottoService.createCarrelloProdotto(carrelloProdotto).subscribe({
-      next: (response) => {
-        console.log('Prodotto aggiunto al carrello:', response);
-        alert('Prodotto aggiunto al carrello con successo!');
+      next: () => {
+        this._snackBar.open('Prodotto aggiunto al carrello!', 'Chiudi', {
+          duration: 3000, // Mostra per 3 secondi
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+        });
       },
-      error: (error) => {
-        console.error('Errore nell\'aggiunta al carrello:', error);
-        alert('Errore durante l\'aggiunta al carrello');
+      error: () => {
+        this._snackBar.open('Errore durante l\'aggiunta al carrello', 'Chiudi', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+        });
       }
     });
   }
