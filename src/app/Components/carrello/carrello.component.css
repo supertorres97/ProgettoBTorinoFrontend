@@ -29,7 +29,24 @@ body {
   padding: 8px 16px;
 }
 
-/* Tabella carrello */
+/* Carrello Vuoto */
+.alert {
+  background: #f8f5f3; /* Sfondo uniforme con il carrello */
+  border: none;
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Icona più piccola */
+.alert img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Tabella Carrello */
 .cart-table {
   width: 100%;
   background: #f8f5f3;
@@ -54,7 +71,7 @@ body {
   grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
   align-items: center;
   text-align: center;
-  padding: 15px 0; /* 🔹 Maggiore altezza delle righe */
+  padding: 20px 0; /* 🔹 Righe più larghe */
   border-bottom: 1px solid #ddd;
 }
 
@@ -95,8 +112,8 @@ body {
 
 /* Bottone "Rimuovi" più piccolo */
 .btn-danger {
-  font-size: 0.85rem; /* 🔹 Ridotto il testo */
-  padding: 5px 10px; /* 🔹 Più piccolo */
+  font-size: 0.85rem;
+  padding: 5px 8px;
 }
 
 /* Footer (Totale e Acquista) */
@@ -104,6 +121,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  padding-top: 15px;
 }
 
 .totale-label {

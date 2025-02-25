@@ -1,11 +1,15 @@
 <div class="container">
-  <div class="titolo">
-    <h1>IL TUO CARRELLO</h1>
-    <button class="btn btn-secondary svuota-carrello" (click)="svuotaCarrello()">Svuota Carrello</button>
-  </div>
-  <hr>
+  <!-- Mostra titolo e pulsante SOLO se ci sono prodotti nel carrello -->
+  <ng-container *ngIf="prodottiCarrello.length > 0">
+    <div class="titolo">
+      <h1>IL TUO CARRELLO</h1>
+      <button class="btn btn-secondary svuota-carrello" (click)="svuotaCarrello()">Svuota Carrello</button>
+    </div>
+    <hr>
+  </ng-container>
 
-  <ng-container *ngIf="prodottiCarrello.length === 0; else carrelloPieno">
+  <!-- Se il carrello è vuoto, mostra solo questa sezione -->
+  <ng-container *ngIf="prodottiCarrello.length === 0">
     <div class="alert alert-secondary d-flex flex-column align-items-center" role="alert">
       <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="Carrello Vuoto" />
       <h4 class="alert-heading">Carrello vuoto</h4>
@@ -16,39 +20,36 @@
     </div>
   </ng-container>
 
-  <ng-template #carrelloPieno>
-    <div class="cart-table">
-      <div class="cart-header">
-        <span>Prodotto</span>
-        <span>Quantità</span>
-        <span>Prezzo</span>
-        <span>Totale</span>
-        <span>Azioni</span>
-      </div>
-
-      <div class="cart-item" *ngFor="let prodotto of prodottiCarrello">
-        <span>
-          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]">
-            {{ prodotto?.prodotto?.nome }}
-          </a>
-        </span>
-        <div class="quantity-controls">
-          <button (click)="changeQuantity(-1, prodotto)">-</button>
-          <span>{{ prodotto.quantita }}</span>
-          <button (click)="changeQuantity(1, prodotto)">+</button>
-        </div>
-        <span>{{ prodotto?.prodotto?.prezzo }} €</span>
-        <span>{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
-        <button class="btn btn-danger" (click)="rimuoviProdotto(prodotto?.id)">Rimuovi</button>
-      </div>
-
-      <hr class="cart-divider">
-
-      <div class="cart-footer">
-        <span class="totale-label">Totale:</span>
-        <span class="totale-importo">{{ calcolaTotale() }} €</span>
-        <button class="btn btn-success acquista-btn" (click)="acquista()">Acquista</button>
-      </div>
+  <!-- Se il carrello ha prodotti, mostra la tabella -->
+  <div class="cart-table" *ngIf="prodottiCarrello.length > 0">
+    <div class="cart-header">
+      <span>Prodotto</span>
+      <span>Quantità</span>
+      <span>Prezzo</span>
+      <span>Totale</span>
+      <span>Azioni</span>
     </div>
-  </ng-template>
+
+    <div class="cart-item" *ngFor="let prodotto of prodottiCarrello">
+      <span>
+        <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]">
+          {{ prodotto?.prodotto?.nome }}
+        </a>
+      </span>
+      <div class="quantity-controls">
+        <button (click)="changeQuantity(-1, prodotto)">-</button>
+        <span>{{ prodotto.quantita }}</span>
+        <button (click)="changeQuantity(1, prodotto)">+</button>
+      </div>
+      <span>{{ prodotto?.prodotto?.prezzo }} €</span>
+      <span>{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
+      <button class="btn btn-danger btn-sm" (click)="rimuoviProdotto(prodotto?.id)">Rimuovi</button>
+    </div>
+
+    <div class="cart-footer">
+      <span class="totale-label">Totale:</span>
+      <span class="totale-importo">{{ calcolaTotale() }} €</span>
+      <button class="btn btn-success acquista-btn" (click)="acquista()">Acquista</button>
+    </div>
+  </div>
 </div>
