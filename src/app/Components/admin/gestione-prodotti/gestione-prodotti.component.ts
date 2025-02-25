@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreazioneProdottoComponent } from '../../creazione-prodotto/creazione-prodotto.component';
 import { CreateProdottoComponent } from '../../../Dialog/create-prodotto/create-prodotto.component';
 import { TipoProdottoService } from '../../../services/tipo-prodotto.service';
+import { UpdateProdottoComponent } from '../../../Dialog/update-prodotto/update-prodotto.component';
 
 @Component({
   selector: 'app-gestione-prodotti',
@@ -15,13 +16,11 @@ import { TipoProdottoService } from '../../../services/tipo-prodotto.service';
 })
 export class GestioneProdottiComponent {
 
-    @ViewChild('prodottiDialog') prodottiDialog: any;
-
     response:any;
     data:any;
     responseTP:any;
     tipiProdotto:any;
-    selectedProdotto: any = {};
+    msg:string = '';
   
     constructor(
       private serv:ProdottiService, 
@@ -68,41 +67,24 @@ export class GestioneProdottiComponent {
     });
     }
 
-    openProdottoDialog(prodotto: any): void {
-      this.selectedProdotto = { ...prodotto }; // Copia i dati per la modifica
-      this.prodottiDialog.nativeElement.showModal();
+    updateProd(prodottoUp:{}){
+      const enterAnimationDuration:string = '200ms';
+      const exitAnimationDuration:string = '150ms';
+
+      const dialogRef = this.dialog.open(UpdateProdottoComponent, {
+        width: '700px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+        data: {
+          prodotto: prodottoUp
+        }
+      });
+
+      dialogRef.afterClosed()
+      .subscribe((res:any) => {
+        if(res)
+          window.location.reload();
+    });
     }
-  
-    closeProdottiDialog(): void {
-      this.prodottiDialog.nativeElement.close();
-    }
-  
-    saveProdotto(): void {
-      if (!this.selectedProdotto) return;
-    
-          const body = {
-            id: this.selectedProdotto.id,
-            nome: this.selectedProdotto.nomeProdotto,
-            tipo: this.selectedProdotto.tipoProdotto,
-            descrizione: this.selectedProdotto.descrizioneProdotto,
-            peso: this.selectedProdotto.pesoProdotto,
-            prezzo: this.selectedProdotto.prezzoProdotto,
-            stock: this.selectedProdotto.stockProdotto,
-            disponibile: this.selectedProdotto.disponibile,
-            img: this.selectedProdotto.img
-          };
-          console.log(body);
-          this.serv.updateProdotto(body)
-          .subscribe(
-            () => {
-              console.log("Credenziali aggiornate con successo!");
-              this.loadProdotti();
-              this.closeProdottiDialog();
-            },
-            (error: any) => {
-              console.error("Errore durante l'aggiornamento delle credenziali:", error);
-            }
-          );
-  
-    }
+
 }

@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let prodotto of data" (click)="openProdottoDialog(prodotto)">
+      <tr *ngFor="let prodotto of data" (click)="updateProd(prodotto)">
         <th scope="row">{{prodotto.id}}</th>
         <td>{{prodotto.nome}}</td>
         <td>{{prodotto.tipo.descrizione}}</td>
@@ -32,7 +32,7 @@
   </table>
 
 
-  <!-- Dialog per modificare prodotti -->
+  <!-- Dialog per modificare prodotti 
 <dialog #prodottiDialog>
   <h3>Modifica Prodotti</h3>
   <form (ngSubmit)="saveProdotto()">
@@ -63,3 +63,4 @@
       <button type="button" (click)="closeProdottiDialog()">Annulla</button>
   </form>
 </dialog>
+-->

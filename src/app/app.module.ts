@@ -46,6 +46,7 @@ import { ParallaxTwoSezioneComponent } from './Components/home/parallax-two-sezi
 import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodotti-per-tipo.component';
 import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
 import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodotto.component';
+import { UpdateProdottoComponent } from './Dialog/update-prodotto/update-prodotto.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodott
     ParallaxTwoSezioneComponent,
     ProdottiPerTipoComponent,
     GestioneProdottiComponent,
-    CreateProdottoComponent
+    CreateProdottoComponent,
+    UpdateProdottoComponent
   ],
   imports: [
     BrowserModule,
