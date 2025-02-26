@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CredenzialiService } from '../../services/credenziali.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -18,14 +20,15 @@ export class LoginComponent implements OnInit {
   });
 
   logged: boolean = false;
-  errorMessage: string = ''; // ✅ Variabile per il messaggio di errore
+  errorMessage: string = ''; 
 
   constructor(
     private cred: CredenzialiService,
     private fb: FormBuilder,
     private router: Router,
     private auth: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    @Inject(PLATFORM_ID) private platformId: Object // Aggiungi questa iniezione
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.errorMessage = ''; // ✅ Reset del messaggio di errore prima di ogni login
+    this.errorMessage = '';
 
     if (this.loginForm.valid) {
       this.cred.signin({
@@ -51,7 +54,10 @@ export class LoginComponent implements OnInit {
             this.auth.setAutentificated();
             if (resp.idUtente !== null && resp.idUtente !== undefined) {
               this.auth.setIdUtente(resp.idUtente);
-              localStorage.setItem("idUtente", resp.idUtente.toString());
+              
+              if (isPlatformBrowser(this.platformId)) {
+                localStorage.setItem("idUtente", resp.idUtente.toString());
+              }
 
               if (resp.ruolo.descrizione === "ADMIN") {
                 console.log("sono un admin", resp.role?.descrizione);

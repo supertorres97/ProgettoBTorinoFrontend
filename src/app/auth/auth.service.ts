@@ -113,4 +113,15 @@ export class AuthService {
     }
     return null;
   }
+
+  setAutentificated(authenticated: boolean) {
+    if (isPlatformBrowser(this.platformId)) {
+      // Protezione contro SSR, assicuriamoci che solo nel browser venga modificato
+      if (authenticated) {
+        localStorage.setItem("isLoggedIn", "1");
+      } else {
+        localStorage.removeItem("isLoggedIn");
+      }
+    }
+  }
 }
