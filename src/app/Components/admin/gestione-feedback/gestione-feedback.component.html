@@ -1,4 +1,3 @@
-<p>gestione-feedback works!</p>
 <!--
 <div *ngFor="let feed of data">
     <p>Utente: {{feed.utente.id}}</p>
@@ -10,30 +9,31 @@
     <p>ID: {{feed.id}}</p>
 </div>
 -->
-
-<table class="table">
-    <thead>
-      <tr>
-        <th scope="col">N°</th>
-        <th scope="col">Prodotto</th>
-        <th scope="col">Utente</th>
-        <th scope="col">Recensione</th>
-        <th scope="col">Valutazione</th>
-        <th scope="col">Data</th>
-        <th scope="col">Azione</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let feed of data">
-        <th scope="row">{{feed.id}}</th>
-        <td>{{feed.prodotto.nome}}</td>
-        <td>{{feed.utente.nome}} {{feed.utente.cognome}}</td>
-        <td>{{feed.descrizione}}</td>
-        <td>{{feed.voto}}</td>
-        <td>{{feed.dataFeedback}}</td>
-        <td>
-            <button (click)="onDelete(feed.id)">Elimina</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="custom-font">
+  <table class="order-table">
+      <thead>
+        <tr>
+          <th class="col-1">N°</th>
+          <th class="col-2">Prodotto</th>
+          <th class="col-2">Utente</th>
+          <th class="col-4">Recensione</th>
+          <th class="col-1">Valutazione</th>
+          <th class="col-1">Data</th>
+          <th class="col-1">Azione</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feed of data">
+          <th scope="row">{{feed.id}}</th>
+          <td>{{feed.prodotto.nome}}</td>
+          <td>{{feed.utente.nome}} {{feed.utente.cognome}}</td>
+          <td>{{feed.descrizione}}</td>
+          <td>{{feed.voto}}</td>
+          <td>{{feed.dataFeedback | date:'dd/MM/yyyy'}}</td>
+          <td class="azioni">
+              <button (click)="onDelete(feed.id)">Elimina</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
