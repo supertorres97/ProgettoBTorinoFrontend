@@ -32,7 +32,7 @@ export class CarrelloComponent implements OnInit {
       if (idProdotto) {
         this.prodottiService.getProdotto(Number(idProdotto)).subscribe({
           next: (data) => (this.prodotto = data),
-          error: () => this.showError('Errore nel recupero del prodotto'),
+          error: () => this.showMessage('Errore nel recupero del prodotto'),
         });
       }
     });
@@ -50,14 +50,14 @@ export class CarrelloComponent implements OnInit {
             this.carrelloService.listByCarrello(this.idCarrello).subscribe({
               next: (res: any) => (this.prodottiCarrello = res.dati),
               error: () =>
-                this.showError('Errore nel recupero dei prodotti nel carrello'),
+                this.showMessage('Errore nel recupero dei prodotti nel carrello'),
             });
           }
         },
-        error: () => this.showError('Errore nel recupero ID carrello'),
+        error: () => this.showMessage('Errore nel recupero ID carrello'),
       });
     } else {
-      this.showInfo('Utente non trovato');
+      this.showMessage('Utente non trovato');
     }
   }
 
@@ -75,9 +75,9 @@ export class CarrelloComponent implements OnInit {
       this.carrelloService.updateCarrelloProdotto(body).subscribe({
         next: () => {
           this.getCarrello();
-          this.showSuccess('Quantità aggiornata con successo!');
+          this.showMessage('Quantità aggiornata con successo!');
         },
-        error: () => this.showError("Errore nell'aggiornamento della quantità"),
+        error: () => this.showMessage("Errore nell'aggiornamento della quantità"),
       });
     }
   }
@@ -88,15 +88,15 @@ export class CarrelloComponent implements OnInit {
         this.prodottiCarrello = this.prodottiCarrello.filter(
           (p) => p.id !== idProdottoCarrello
         );
-        this.showSuccess('Prodotto rimosso con successo!');
+        this.showMessage('Prodotto rimosso con successo!');
       },
-      error: () => this.showError('Errore durante la rimozione del prodotto'),
+      error: () => this.showMessage('Errore durante la rimozione del prodotto'),
     });
   }
 
   svuotaCarrello(): void {
     if (this.idCarrello === null) {
-      this.showError('Errore: ID carrello non trovato.');
+      this.showMessage('Errore: ID carrello non trovato.');
       return;
     }
 
@@ -104,9 +104,9 @@ export class CarrelloComponent implements OnInit {
       next: () => {
         this.prodottiCarrello = [];
         this.cdr.detectChanges();
-        this.showSuccess('Carrello svuotato con successo!');
+        this.showMessage('Carrello svuotato con successo!');
       },
-      error: () => this.showError('Errore durante lo svuotamento del carrello'),
+      error: () => this.showMessage('Errore durante lo svuotamento del carrello'),
     });
   }
 
@@ -119,12 +119,12 @@ export class CarrelloComponent implements OnInit {
 
   acquista(): void {
     if (!this.idCarrello) {
-      this.showError('Errore: ID carrello non trovato.');
+      this.showMessage('Errore: ID carrello non trovato.');
       return;
     }
 
     if (this.prodottiCarrello.length === 0) {
-      this.showInfo('Il carrello è vuoto!');
+      this.showMessage('Il carrello è vuoto!');
       return;
     }
 
@@ -135,40 +135,23 @@ export class CarrelloComponent implements OnInit {
         if (response.rc) {
           this.prodottiCarrello = [];
           this.cdr.detectChanges();
-          this.showSuccess('Acquisto completato con successo!');
+          this.showMessage('Acquisto completato con successo!');
         } else {
-          this.showError("Errore durante l'acquisto: " + response.msg);
+          this.showMessage("Errore durante l'acquisto: " + response.msg);
         }
       },
       error: () =>
-        this.showError(
+        this.showMessage(
           "Si è verificato un errore durante l'acquisto. Riprova."
         ),
     });
   }
 
-  private showSuccess(message: string): void {
+  private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
       verticalPosition: 'bottom', // Mantiene la posizione in basso
       horizontalPosition: 'end', // Sposta a destra
-    });
-  }
-
-  private showError(message: string): void {
-    this._snackBar.open(message, 'Chiudi', {
-      duration: 3000,
-      verticalPosition: 'bottom',
-      horizontalPosition: 'end',
-    });
-  }
-
-  private showInfo(message: string): void {
-    this._snackBar.open(message, 'Chiudi', {
-      duration: 3000,
-
-      verticalPosition: 'bottom',
-      horizontalPosition: 'end',
     });
   }
 }

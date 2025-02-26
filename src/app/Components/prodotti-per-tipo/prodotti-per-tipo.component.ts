@@ -13,15 +13,9 @@ import { TipoProdottoService } from '../../services/tipo-prodotto.service';
 export class ProdottiPerTipoComponent {
     response:any;
     data:any;
-
     tpNome:any;
-
     showSearch: boolean = false;
     searchQuery: string = '';
-  
- //   prodotti: any[] = [];
- //   searchQuery: string = '';
-  
     id:any;
 
     constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute, private tProdS:TipoProdottoService) { }

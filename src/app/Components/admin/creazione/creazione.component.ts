@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { UserService } from '../../../services/user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-creazione',
@@ -15,7 +15,10 @@ export class CreazioneComponent {
   personalFormGroup!: FormGroup;
   credentialsFormGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private utenteS:UserService) {}
+  constructor(private fb: FormBuilder, 
+    private authService: AuthService, 
+    private utenteS:UserService,
+    private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     if(this.authService.isAutentificated())
@@ -72,19 +75,27 @@ export class CreazioneComponent {
       this.utenteS.createAdmin(signupObject).subscribe({
         next: (resp: any) => {
           console.log('Inserimento riuscito:', resp);
-          alert('Registrazione avvenuta con successo!');
+          this.showMessage('Registrazione avvenuta con successo!');
           window.location.reload();
         },
         error: (error) => {
           console.error('Errore durante la registrazione:', error);
-          alert('Errore durante la registrazione. Per favore riprova.');
+          this.showMessage('Errore durante la registrazione. Per favore riprova.');
         },
         complete: () => {
           console.log('Richiesta completata con successo!');
         }
       });
     } else {
-      alert('Per favore, compila tutti i campi richiesti.');
+      this.showMessage('Per favore, compila tutti i campi richiesti.');
     }
+  }
+
+  private showMessage(message: string): void {
+    this._snackBar.open(message, 'Chiudi', {
+      duration: 3000,
+      verticalPosition: 'bottom', // Mantiene la posizione in basso
+      horizontalPosition: 'end', // Sposta a destra
+    });
   }
 }

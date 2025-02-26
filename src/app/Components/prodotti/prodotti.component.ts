@@ -27,10 +27,8 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
     this.forceUpdateToDetectChanges();
   }
   ngOnInit(): void {
-    console.log("onInit prodotti");
     this.serv.listProdotti()
       .subscribe((resp:any) => {
-        console.log("subscribe prodotti ");
         this.response = resp;
         this.data = this.response.dati;
       })

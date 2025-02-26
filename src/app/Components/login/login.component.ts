@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { CredenzialiService } from '../../services/credenziali.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private cred: CredenzialiService,
     private fb: FormBuilder,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -62,19 +64,27 @@ export class LoginComponent implements OnInit {
 
               this.router.navigate(["/home"]);
             } else {
-              this.errorMessage = "Errore: impossibile ottenere l'ID utente.";
+              this.showMessage("Errore: impossibile ottenere l'ID utente.");
             }
           } else {
-            this.errorMessage = "Credenziali non valide.";
+            this.showMessage("Credenziali non valide.");
           }
         },
         (error: any) => {
           console.error('Errore durante il login:', error);
-          this.errorMessage = "Si è verificato un errore durante il login. Riprova.";
+          this.showMessage("Si è verificato un errore durante il login. Riprova.");
         }
       );
     } else {
-      this.errorMessage = "Per favore, compila tutti i campi.";
+      this.showMessage("Per favore, compila tutti i campi.");
     }
+  }
+
+  private showMessage(message: string): void {
+    this._snackBar.open(message, 'Chiudi', {
+      duration: 3000,
+      verticalPosition: 'bottom', // Mantiene la posizione in basso
+      horizontalPosition: 'end', // Sposta a destra
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { CarrelloProdottoService } from '../../../services/carrello.prodotto.service';
@@ -18,15 +18,17 @@ export class SezProdottoComponent implements OnInit{
 
   prodotto:any;
   idCarrello: number | null = null;
-  
 
   constructor(private serv:ProdottiService, 
               private location: Location, 
               private route:ActivatedRoute, 
+              private router:Router,
               private cdr: ChangeDetectorRef, 
               private carrelloProdottoService: CarrelloProdottoService, 
               private auth:AuthService,
               private _snackBar: MatSnackBar){}
+
+              
 
   getCarrelloId(){
     const userId = this.auth.getIdUtente();
@@ -44,7 +46,6 @@ export class SezProdottoComponent implements OnInit{
     }
 
   }
-
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -53,6 +54,7 @@ export class SezProdottoComponent implements OnInit{
         this.prodotto = response.dati; // Estrai il vero oggetto prodotto
         this.cdr.detectChanges();
       });
+
     }
     this.getCarrelloId();
   }
@@ -73,30 +75,35 @@ export class SezProdottoComponent implements OnInit{
   }
 
   aggiungiAlCarrello(): void {
-    if (!this.prodotto) return;
+    if(this.auth.isAutentificated()){
+      if (!this.prodotto) return;
   
-    const carrelloProdotto = {
-      prodotto: this.prodotto.id,
-      quantita: this.quantity,
-      carrello: this.idCarrello
-    };
-  
-    this.carrelloProdottoService.createCarrelloProdotto(carrelloProdotto).subscribe({
-      next: () => {
-        this._snackBar.open('Prodotto aggiunto al carrello!', 'Chiudi', {
-          duration: 3000, // Mostra per 3 secondi
-          verticalPosition: 'bottom',
-          horizontalPosition: 'right',
-        });
-      },
-      error: () => {
-        this._snackBar.open('Errore durante l\'aggiunta al carrello', 'Chiudi', {
-          duration: 3000,
-          verticalPosition: 'bottom',
-          horizontalPosition: 'right',
-        });
-      }
-    });
+      const carrelloProdotto = {
+        prodotto: this.prodotto.id,
+        quantita: this.quantity,
+        carrello: this.idCarrello
+      };
+    
+      this.carrelloProdottoService.createCarrelloProdotto(carrelloProdotto).subscribe({
+        next: () => {
+          this._snackBar.open('Prodotto aggiunto al carrello!', 'Chiudi', {
+            duration: 3000, // Mostra per 3 secondi
+            verticalPosition: 'bottom',
+            horizontalPosition: 'right',
+          });
+        },
+        error: () => {
+          this._snackBar.open('Errore durante l\'aggiunta al carrello', 'Chiudi', {
+            duration: 3000,
+            verticalPosition: 'bottom',
+            horizontalPosition: 'right',
+          });
+        }
+      });
+    }else{
+      this.router.navigate(['/login']);
+    }
+    
   }
 
 
