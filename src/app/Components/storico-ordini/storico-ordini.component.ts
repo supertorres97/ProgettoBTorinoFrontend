@@ -47,23 +47,18 @@ export class StoricoOrdiniComponent {
   }
 
   annullaOrdine(id: number): void{
-    if (confirm("Sei sicuro di voler annullare questo ordine?")) {
-      console.log(id);
-       let idOrdine = id;
-      this.orderService.cancelOrder(idOrdine).subscribe({
-        next: (response) => {
-          console.log("Ordine annullato con successo:", response);
-          
-          this.ordini = this.ordini.map(ordine => 
-            ordine.id === id ? { ...ordine, status: "Annullato" } : ordine
-          );
-        },
-        error: (err) => {
-          console.error("Errore durante l'annullamento dell'ordine:", err);
-          this.showMessage("Si è verificato un errore durante l'annullamento dell'ordine.");
-        }
-      });
-    }
+    this.orderService.cancelOrder(id).subscribe({
+      next: (response) => {
+      console.log("Ordine annullato con successo:", response);
+      
+      this.ordini = this.ordini.filter(ordine => ordine.id !== id);
+      this.showMessage("Ordine annullato con successo.");
+      },
+      error: (err) => {
+      console.error("Errore durante l'annullamento dell'ordine:", err);
+      this.showMessage("Si è verificato un errore durante l'annullamento dell'ordine.");
+      }
+    });
   }
 
   private showMessage(message: string): void {
