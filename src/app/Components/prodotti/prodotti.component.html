@@ -17,11 +17,16 @@
                 </div>
                 <hr>
             </div>
+            <button (click)="forceUpdateToDetectChanges()">Aggiorna immagine</button>
+
             <div class="card-container">
 
                 <figure class="image-block" *ngFor="let prodotto of prodotti">
-                    <img src={{prodotto.img}} alt="immagine" />
-                    <figcaption>
+                    <!-- <img src={{prodotto.img}} alt="immagine" />
+                -->
+                <img [src]="'/' + prodotto.img + '?t=' + timestamp" alt="immagine" />
+
+                <figcaption>
                         <h3>
                             {{prodotto.nome}}
                         </h3>

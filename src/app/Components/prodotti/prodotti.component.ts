@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ProdottiService } from '../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './prodotti.component.html',
   styleUrl: './prodotti.component.css'
 })
-export class ProdottiComponent implements OnInit{
+export class ProdottiComponent implements OnInit, AfterViewInit{
 
   response:any;
   data:any;
@@ -18,10 +18,14 @@ export class ProdottiComponent implements OnInit{
   searchQuery: string = '';
 
   prodotti: any[] = [];
+  timestamp: number = new Date().getTime();
 
-
-  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
-
+  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute,
+    private cd: ChangeDetectorRef
+  ) { }
+  ngAfterViewInit(): void {
+    this.forceUpdateToDetectChanges();
+  }
   ngOnInit(): void {
     console.log("onInit prodotti");
     this.serv.listProdotti()
@@ -40,13 +44,14 @@ export class ProdottiComponent implements OnInit{
           this.getAllProdotti(); // Se non c'è parametro, carica tutto
         }
       });
+      this.forceUpdateToDetectChanges();
   }
 
   cercaProdotti(nome: string): void {
     if (!nome.trim()) { // Se il nome è vuoto o solo spazi, carica tutti i prodotti
-    this.getAllProdotti();
-    return;
-  }
+      this.getAllProdotti();
+      return;
+    }
 
   this.serv.getProdottiByNome(nome).subscribe({
     next: (data: any) => {
@@ -64,7 +69,6 @@ export class ProdottiComponent implements OnInit{
     queryParamsHandling: 'merge'
   });
   }
-
 
   getAllProdotti(): void {
     this.serv.listProdotti().subscribe({
@@ -97,5 +101,10 @@ export class ProdottiComponent implements OnInit{
     } else {
       this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
     }
+  }
+
+  forceUpdateToDetectChanges(): void {
+    this.timestamp = new Date().getTime();
+    this.cd.detectChanges();
   }
 }

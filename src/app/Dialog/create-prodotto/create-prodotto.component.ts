@@ -54,7 +54,7 @@ export class CreateProdottoComponent {
         }
       }
     }
-    
+   /* 
     onSubmit() {
       console.log("✅ Submit avviato");
     
@@ -76,9 +76,11 @@ export class CreateProdottoComponent {
             disponibile: this.createProductForm.value.disponibile,
             tipo: this.createProductForm.value.tipoProdotto,
             img: base64Image,                   // La stringa Base64
-            imgName: this.selectImage?.name        // Il nome originale del file
+            imgName: this.selectImage?.name  // Il nome originale del file
           };
-    
+          console.log("Nome immagine:", body.imgName);
+          console.log("Immagine:", body.img);
+
           this.prodS.createProdotto(body).subscribe({
             next: (resp: any) => {
               console.log("✅ Risposta dal server:", resp);
@@ -107,8 +109,47 @@ export class CreateProdottoComponent {
         console.error("❌ Nessun file immagine selezionato.");
       }
     }
+    */
     
+    onSubmit() {
+      if (!this.createProductForm || !this.createProductForm.valid) {
+        console.error("❌ Form non valido o non inizializzato.");
+        return;
+      }
     
+      if (this.selectImage) {
+        const productData = {
+          nome: this.createProductForm.value.nomeProdotto,
+          descrizione: this.createProductForm.value.descrizione,
+          peso: this.createProductForm.value.peso,
+          prezzo: this.createProductForm.value.prezzo,
+          stock: this.createProductForm.value.stock,
+          disponibile: this.createProductForm.value.disponibile,
+          tipo: this.createProductForm.value.tipoProdotto
+        };
+    
+        // Crea un FormData e aggiungi le due parti
+        const formData = new FormData();
+        formData.append("product", new Blob([JSON.stringify(productData)], { type: "application/json" }));
+        formData.append("img", this.selectImage, this.selectImage.name);
+    
+        this.prodS.createProdotto(formData).subscribe({
+          next: (resp: any) => {
+            console.log("✅ Risposta dal server:", resp);
+            if (resp && typeof resp === 'object' && resp.rc) {
+              this.chiudi();
+            } else {
+              this.msg = resp.msg;
+            }
+          },
+          error: (err: any) => {
+            console.error("❌ Errore durante l'invio del prodotto:", err);
+          }
+        });
+      } else {
+        console.error("❌ Nessun file immagine selezionato.");
+      }
+    }
     
 
     chiudi(){

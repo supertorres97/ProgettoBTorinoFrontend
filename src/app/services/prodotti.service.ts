@@ -24,10 +24,15 @@ export class ProdottiService {
     //let params = new HttpParams().set('nome', nome.toString());
     return this.http.get(this.url + "listByNome?nome=" + nome);
   }
-
+  
+  /*
   createProdotto(body : {}) {
     return this.http.post(this.url + "create", body);
-  }
+  }*/
+
+  createProdotto(formData: FormData): Observable<any> {
+    return this.http.post(this.url + "create", formData);
+   }
 
   deleteProdotto(body : {}) {
     return this.http.post(this.url + "delete", body);
