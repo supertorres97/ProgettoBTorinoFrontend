@@ -3,6 +3,8 @@ import { AuthService } from '../../services/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { TipoProdottoService } from '../../services/tipo-prodotto.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -40,7 +42,12 @@ export class NavbarComponent implements OnInit {
   response: any;
   data: any;
 
-  constructor(private auth: AuthService, private router: Router, private serv: TipoProdottoService) {}
+  constructor(
+    private auth: AuthService, 
+    private router: Router, 
+    private serv: TipoProdottoService,
+    @Inject(PLATFORM_ID) private platformId: any
+  ) {}
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;
@@ -58,26 +65,24 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.updateUserStatus(); // Controlla lo stato iniziale
+    if (isPlatformBrowser(this.platformId)) {
+      this.updateUserStatus();
+    }
     this.isAdmin = this.auth.isRoleAdmin();
-    // Ascolta i cambiamenti di rotta per aggiornare la navbar
+  
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.updateUserStatus();
-        this.closeSidebar(); // Chiude la sidebar quando si cambia pagina
+        this.closeSidebar();
       }
     });
-    const id = localStorage.getItem('idUtente');
-    if (id && !isNaN(Number(id)) && Number(id) > 0) {
-      this.isLoggedIn = true;
-      this.idUtente = Number(id);
-    }
-    this.serv.listTipoProdotti() //NUOVO VVV
-      .subscribe((resp:any) => {
+  
+    this.serv.listTipoProdotti()
+      .subscribe((resp: any) => {
         console.log("subscribe prodotti ");
         this.response = resp;
         this.data = this.response.dati;
-      })
+      });
   }
 
   goTo(id: number) {
@@ -93,7 +98,8 @@ toggleNavbar() {
   this.isNavbarOpen = !this.isNavbarOpen;
 }
 
-  updateUserStatus() {
+updateUserStatus() {
+  if (isPlatformBrowser(this.platformId)) { // Controlla se siamo nel browser
     const id = localStorage.getItem('idUtente');
     this.isAdmin = this.auth.isRoleAdmin();
     if (id && !isNaN(Number(id)) && Number(id) > 0) {
@@ -104,6 +110,7 @@ toggleNavbar() {
       this.idUtente = null;
     }
   }
+}
 
   logout() {
     this.auth.setLogout();
