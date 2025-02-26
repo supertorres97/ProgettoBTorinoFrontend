@@ -21,18 +21,20 @@ export class AuthService {
   }
 
   private loadAuthState() {
-    const isLoggedInValue = localStorage.getItem("isLoggedIn");
-    const isAdminValue = localStorage.getItem("isAdmin");
-    const idUtenteValue = localStorage.getItem("idUtente");
+    if (isPlatformBrowser(this.platformId)) {
+      const isLoggedInValue = localStorage.getItem("isLoggedIn");
+      const isAdminValue = localStorage.getItem("isAdmin");
+      const idUtenteValue = localStorage.getItem("idUtente");
 
-    this.isLoggedIn = isLoggedInValue === "1";
-    this.isAdmin = isAdminValue === "1";
-    this.idUtente = idUtenteValue ? parseInt(idUtenteValue, 10) : null;
+      this.isLoggedIn = isLoggedInValue === "1";
+      this.isAdmin = isAdminValue === "1";
+      this.idUtente = idUtenteValue ? parseInt(idUtenteValue, 10) : null;
 
-    if (this.isLoggedIn && this.idUtente !== null) {
-      this.serv.listByUtente(this.idUtente).subscribe((res: any) => {
-        this.idCarrello = res.idCarrello;
-      });
+      if (this.isLoggedIn && this.idUtente !== null) {
+        this.serv.listByUtente(this.idUtente).subscribe((res: any) => {
+          this.idCarrello = res.idCarrello;
+        });
+      }
     }
   }
 
@@ -41,9 +43,11 @@ export class AuthService {
     this.isAdmin = isAdmin;
     this.idUtente = idUtente;
     
-    localStorage.setItem("isLoggedIn", "1");
-    localStorage.setItem("isAdmin", isAdmin ? "1" : "0");
-    localStorage.setItem("idUtente", idUtente.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("isLoggedIn", "1");
+      localStorage.setItem("isAdmin", isAdmin ? "1" : "0");
+      localStorage.setItem("idUtente", idUtente.toString());
+    }
   }
 
   logout() {
@@ -52,10 +56,12 @@ export class AuthService {
     this.idUtente = null;
     this.idCarrello = null;
 
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("isAdmin");
-    localStorage.removeItem("idUtente");
-    localStorage.removeItem("idCarrello");
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("idUtente");
+      localStorage.removeItem("idCarrello");
+    }
   }
 
   isAuthenticated(): boolean {
@@ -68,29 +74,43 @@ export class AuthService {
 
   setRoleAdmin() {
     this.isAdmin = true;
-    localStorage.setItem("isAdmin", "1");
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("isAdmin", "1");
+    }
   }
 
   setRoleUser() {
     this.isAdmin = false;
-    localStorage.setItem("isAdmin", "0");
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("isAdmin", "0");
+    }
   }
 
   setIdCarrello(idCarrello: number) {
     this.idCarrello = idCarrello;
-    localStorage.setItem("idCarrello", idCarrello.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("idCarrello", idCarrello.toString());
+    }
   }
 
   getIdCarrello(): number | null {
-    return this.idCarrello || Number(localStorage.getItem("idCarrello")) || null;
+    if (isPlatformBrowser(this.platformId)) {
+      return this.idCarrello || Number(localStorage.getItem("idCarrello")) || null;
+    }
+    return null;
   }
 
   setIdUtente(idUtente: number) {
     this.idUtente = idUtente;
-    localStorage.setItem("idUtente", idUtente.toString());
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("idUtente", idUtente.toString());
+    }
   }
 
   getIdUtente(): number | null {
-    return this.idUtente || Number(localStorage.getItem("idUtente")) || null;
+    if (isPlatformBrowser(this.platformId)) {
+      return this.idUtente || Number(localStorage.getItem("idUtente")) || null;
+    }
+    return null;
   }
 }

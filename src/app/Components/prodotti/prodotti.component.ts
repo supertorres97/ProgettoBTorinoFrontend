@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProdottiService } from '../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './prodotti.component.html',
   styleUrl: './prodotti.component.css'
 })
-export class ProdottiComponent implements OnInit, AfterViewInit{
+export class ProdottiComponent implements OnInit{
 
   response:any;
   data:any;
@@ -20,12 +20,8 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
   prodotti: any[] = [];
   timestamp: number = new Date().getTime();
 
-  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) { }
-  ngAfterViewInit(): void {
-    this.forceUpdateToDetectChanges();
-  }
+  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
     this.serv.listProdotti()
       .subscribe((resp:any) => {
@@ -42,7 +38,6 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
           this.getAllProdotti(); // Se non c'è parametro, carica tutto
         }
       });
-      this.forceUpdateToDetectChanges();
   }
 
   cercaProdotti(nome: string): void {
@@ -101,8 +96,4 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
     }
   }
 
-  forceUpdateToDetectChanges(): void {
-    this.timestamp = new Date().getTime();
-    this.cd.detectChanges();
-  }
 }

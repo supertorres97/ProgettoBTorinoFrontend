@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
 import { CredenzialiService } from '../../services/credenziali.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -67,16 +66,16 @@ export class LoginComponent implements OnInit {
               this.showMessage("Errore: impossibile ottenere l'ID utente.");
             }
           } else {
-            this.showMessage("Credenziali non valide.");
+            this.showMessage("Si è verificato un errore durante il login. Riprova.");
           }
         },
         (error: any) => {
           console.error('Errore durante il login:', error);
-          this.showMessage("Si è verificato un errore durante il login. Riprova.");
+          this.errorMessage = "Credenziali non valide.";
         }
       );
     } else {
-      this.showMessage("Per favore, compila tutti i campi.");
+      this.errorMessage = "Per favore, compila tutti i campi.";
     }
   }
 
