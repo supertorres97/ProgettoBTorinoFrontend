@@ -9,15 +9,13 @@ body {
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Assicura che rimanga sopra gli altri elementi */
     background-color: #ede9e7;
     padding: 13px 35px;
-    text-transform: capitalize;;
-    position: sticky;
-    position: relative;
-    z-index: 10;
+    text-transform: capitalize;
+    width: 100%;
 }
 
 .logo {
@@ -93,6 +91,21 @@ body {
 .dropdown:hover .dropdown-menu {
     display: block;
     cursor: pointer;
+}
+
+/* #collapsibleNavbar {
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ede9e7;
+} */
+
+#collapsibleNavbar {
+    position: static; /* Evita che venga nascosto dalla navbar */
+    z-index: 999; /* Un valore inferiore alla navbar */
+    background: #ede9e7; /* Mantiene il colore di sfondo */
+    
 }
 
 .icons {
