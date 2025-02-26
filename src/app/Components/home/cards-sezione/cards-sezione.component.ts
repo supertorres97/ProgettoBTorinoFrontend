@@ -72,7 +72,7 @@ export class CardsSezioneComponent implements OnInit {
   }
 
   updateTotalPages() {
-    this.totalPages = Array.from({ length: Math.ceil(this.prodotti.length / this.cardsPerPage) });
+    this.totalPages = Array.from({ length: Math.ceil( 9 / this.cardsPerPage) });
   }
 
   updateVisibleCards() {
