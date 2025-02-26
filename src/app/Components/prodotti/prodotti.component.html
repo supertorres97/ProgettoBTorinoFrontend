@@ -17,30 +17,22 @@
                 </div>
                 <hr>
             </div>
-            <div class="card-container">
 
-                <figure class="image-block" *ngFor="let prodotto of prodotti">
-                    <!-- <img src={{prodotto.img}} alt="immagine" />
-                -->
-                <img [src]="'/' + prodotto.img + '?t=' + timestamp" alt="immagine" />
-
-                <figcaption>
-                        <h3>
-                            {{prodotto.nome}}
-                        </h3>
-                        <hr>
-                        <div>
-                            <p>
-                                Prezzo:
-                                {{prodotto.prezzo}}€
-                            </p>
-                            <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
-                        </div>
-                        <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
-                    </figcaption>
-                </figure>
+           <div class="card-container">
+    <!-- Se ci sono prodotti, li mostra -->
+    <figure class="image-block" *ngFor="let prodotto of prodotti">
+        <img [src]="'/' + prodotto.img + '?t=' + timestamp" alt="immagine" />
+        <figcaption>
+            <h3>{{ prodotto.nome }}</h3>
+            <hr>
+            <div>
+                <p>Prezzo: {{ prodotto.prezzo }}€</p>
+                <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
             </div>
-        </div>
-        <aside class="col-2"></aside>
-    </div>
+            <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
+        </figcaption>
+    </figure>
+
+    <!-- Se l'array è vuoto, mostra il messaggio -->
+    <p *ngIf="prodotti === null" class="no-products">Nessun prodotto trovato con questo nome</p>
 </div>
