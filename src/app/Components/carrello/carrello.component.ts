@@ -3,38 +3,40 @@ import { CarrelloProdottoService } from '../../services/carrello.prodotto.servic
 import { ProdottiService } from '../../services/prodotti.service';
 import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-carrello',
   standalone: false,
 
   templateUrl: './carrello.component.html',
-  styleUrl: './carrello.component.css'
+  styleUrl: './carrello.component.css',
 })
 export class CarrelloComponent implements OnInit {
-  
   prodotto: any;
   prodottiCarrello: any[] = [];
   idCarrello: number | null = null;
 
-  constructor(private carrelloService: CarrelloProdottoService, private auth: AuthService, private cdr: ChangeDetectorRef, private route: ActivatedRoute, private prodottiService: ProdottiService) {}
+  constructor(
+    private carrelloService: CarrelloProdottoService,
+    private auth: AuthService,
+    private cdr: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private prodottiService: ProdottiService,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
-    // Controllo se la route contiene il parametro 'id'
-    this.route.paramMap?.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const idProdotto = params.get('id');
-      
-      if (idProdotto) { // Se c'è un parametro 'id'
+      if (idProdotto) {
         this.prodottiService.getProdotto(Number(idProdotto)).subscribe({
-          next: (data) => {
-            this.prodotto = data;
-            console.log("Prodotto trovato:", this.prodotto); // Log per debugging
-          },
-          error: (err) => console.error("Errore nel recupero del prodotto:", err)
+          next: (data) => (this.prodotto = data),
+          error: () => this.showError('Errore nel recupero del prodotto'),
         });
       }
     });
-  
+
     this.getCarrello();
   }
 
@@ -46,128 +48,127 @@ export class CarrelloComponent implements OnInit {
           this.idCarrello = response.dati?.id;
           if (this.idCarrello) {
             this.carrelloService.listByCarrello(this.idCarrello).subscribe({
-              next: (res: any) => {
-                this.prodottiCarrello = res.dati;
-              },
-              error: (err) => console.error('Errore nel recupero prodotti carrello:', err)
+              next: (res: any) => (this.prodottiCarrello = res.dati),
+              error: () =>
+                this.showError('Errore nel recupero dei prodotti nel carrello'),
             });
           }
         },
-        error: (error) => console.error('Errore nel recupero ID carrello:', error)
+        error: () => this.showError('Errore nel recupero ID carrello'),
       });
     } else {
-      console.log("Utente non trovato");
+      this.showInfo('Utente non trovato');
     }
   }
 
-  
   changeQuantity(amount: number, prodotto: any): void {
-    const newQuantity = prodotto.quantita + amount; // Incrementa/diminuisce la quantità
-  
-    if (newQuantity >= 0) { // Evita quantità negative o zero
+    const newQuantity = prodotto.quantita + amount;
+    if (newQuantity >= 0) {
       prodotto.quantita = newQuantity;
-  
-      // Prepara il body per l'aggiornamento nel database
       const body = {
         id: prodotto.id,
         quantita: newQuantity,
         carrello: this.idCarrello,
-        prodotto: prodotto.prodotto.id
+        prodotto: prodotto.prodotto.id,
       };
-  
-      // Chiamata al service per aggiornare il backend
+
       this.carrelloService.updateCarrelloProdotto(body).subscribe({
         next: () => {
-          console.log("Quantità aggiornata con successo:", newQuantity);
-          this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
-          window.location.reload();
+          this.getCarrello();
+          this.showSuccess('Quantità aggiornata con successo!');
         },
-        error: (error) => {
-          console.error("Errore nell'aggiornamento della quantità:", error);
-          alert("Si è verificato un errore nell'aggiornamento della quantità.");
-        }
+        error: () => this.showError("Errore nell'aggiornamento della quantità"),
       });
     }
   }
-  
 
   rimuoviProdotto(idProdottoCarrello: number): void {
-    if (confirm("Sei sicuro di voler rimuovere questo prodotto dal carrello?")) {
-        console.log("Rimozione prodotto con ID:", idProdottoCarrello);
-
-        this.carrelloService.removeCarrelloProdotto(idProdottoCarrello).subscribe({
-            next: (response) => {
-                console.log("Prodotto rimosso con successo:", response);
-
-                // Aggiorna la lista rimuovendo il prodotto eliminato
-                this.prodottiCarrello = this.prodottiCarrello.filter(p => p.id !== idProdottoCarrello);
-            },
-            error: (err) => {
-                console.error("Errore durante la rimozione del prodotto:", err);
-                alert("Si è verificato un errore durante la rimozione del prodotto.");
-            }
-        });
-    }
+    this.carrelloService.removeCarrelloProdotto(idProdottoCarrello).subscribe({
+      next: () => {
+        this.prodottiCarrello = this.prodottiCarrello.filter(
+          (p) => p.id !== idProdottoCarrello
+        );
+        this.showSuccess('Prodotto rimosso con successo!');
+      },
+      error: () => this.showError('Errore durante la rimozione del prodotto'),
+    });
   }
 
   svuotaCarrello(): void {
     if (this.idCarrello === null) {
-      alert("Errore: ID carrello non trovato.");
+      this.showError('Errore: ID carrello non trovato.');
       return;
     }
-  
-    if (confirm("Sei sicuro di voler svuotare il carrello?")) {
-      this.carrelloService.svuotaCarrello(this.idCarrello).subscribe({
-        next: () => {
-          this.prodottiCarrello = []; // Svuota il carrello nel frontend
-          this.cdr.detectChanges();  // Forza il rilevamento delle modifiche
-          console.log("Carrello svuotato con successo!");
-        },
-        error: (err) => {
-          console.error("Errore durante lo svuotamento del carrello:", err);
-          alert("Si è verificato un errore durante lo svuotamento del carrello.");
-        }
-      });
-    }
+
+    this.carrelloService.svuotaCarrello(this.idCarrello).subscribe({
+      next: () => {
+        this.prodottiCarrello = [];
+        this.cdr.detectChanges();
+        this.showSuccess('Carrello svuotato con successo!');
+      },
+      error: () => this.showError('Errore durante lo svuotamento del carrello'),
+    });
   }
 
   calcolaTotale(): number {
-    return this.prodottiCarrello.reduce((total, prodotto) => {
-      return total + (prodotto.prodotto.prezzo * prodotto.quantita);
-    }, 0);
+    return this.prodottiCarrello.reduce(
+      (total, prodotto) => total + prodotto.prodotto.prezzo * prodotto.quantita,
+      0
+    );
   }
 
   acquista(): void {
     if (!this.idCarrello) {
-      alert("Errore: ID carrello non trovato.");
+      this.showError('Errore: ID carrello non trovato.');
       return;
     }
-  
+
     if (this.prodottiCarrello.length === 0) {
-      alert("Il carrello è vuoto!");
+      this.showInfo('Il carrello è vuoto!');
       return;
     }
-  
+
     const requestBody = { id: this.idCarrello };
-  
+
     this.carrelloService.acquistaCarrelloProdotto(requestBody).subscribe({
       next: (response: any) => {
         if (response.rc) {
-          alert("Acquisto completato con successo!");
-          this.prodottiCarrello = []; // Svuota il carrello nel frontend
-          this.cdr.detectChanges(); // Forza il rilevamento delle modifiche
+          this.prodottiCarrello = [];
+          this.cdr.detectChanges();
+          this.showSuccess('Acquisto completato con successo!');
         } else {
-          alert("Errore durante l'acquisto: " + response.msg);
+          this.showError("Errore durante l'acquisto: " + response.msg);
         }
       },
-      error: (error) => {
-        console.error("Errore durante l'acquisto:", error);
-        alert("Si è verificato un errore durante l'acquisto. Riprova.");
-      }
+      error: () =>
+        this.showError(
+          "Si è verificato un errore durante l'acquisto. Riprova."
+        ),
     });
   }
-  
-  
 
+  private showSuccess(message: string): void {
+    this._snackBar.open(message, 'Chiudi', {
+      duration: 3000,
+      verticalPosition: 'bottom', // Mantiene la posizione in basso
+      horizontalPosition: 'end', // Sposta a destra
+    });
+  }
 
+  private showError(message: string): void {
+    this._snackBar.open(message, 'Chiudi', {
+      duration: 3000,
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
+    });
+  }
+
+  private showInfo(message: string): void {
+    this._snackBar.open(message, 'Chiudi', {
+      duration: 3000,
+
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
+    });
+  }
 }
