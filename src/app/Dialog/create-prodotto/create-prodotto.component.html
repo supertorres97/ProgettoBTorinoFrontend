@@ -1,3 +1,4 @@
+<!--
 <mat-dialog-content class="test">
 <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()" class="test">
     
@@ -47,12 +48,12 @@
         </label>
       </div>
     
-<!--
+
     <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" formControlName="disponibile">
         <label class="form-check-label" for="flexSwitchCheckDefault">Disponibile</label>
     </div>
--->
+
 
     <p>{{msg}}</p>
     <button mat-raised-button type="submit" [disabled]="!createProductForm.valid">Crea</button> 
@@ -61,7 +62,7 @@
 
 </mat-dialog-content>
 
-<!--z
+
 <mat-dialog-content>
 <dialog class="dialog-window" open>
   <div class="dialog-content">
@@ -133,3 +134,73 @@
 </dialog>
 </mat-dialog-content>
 -->
+
+
+  <dialog class="dialog-window" open>
+    <div class="dialog-content">
+      <form [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Nome Prodotto</label>
+          <input type="text" class="form-control" formControlName="nomeProdotto" required>
+          <div *ngIf="createProductForm.get('nomeProdotto')?.invalid && createProductForm.get('nomeProdotto')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+  
+        </div>
+        <div class="form-group">
+          <label>Descrizione</label>
+          <textarea class="form-control" formControlName="descrizione" required></textarea>
+          <div *ngIf="createProductForm.get('descrizione')?.invalid && createProductForm.get('descrizione')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Peso</label>
+          <input type="number" class="form-control" formControlName="peso" required>
+          <div *ngIf="createProductForm.get('peso')?.invalid && createProductForm.get('peso')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Prezzo</label>
+          <input type="number" class="form-control" formControlName="prezzo" required>
+          <div *ngIf="createProductForm.get('prezzo')?.invalid && createProductForm.get('prezzo')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Stock</label>
+          <input type="number" class="form-control" formControlName="stock" required>
+          <div *ngIf="createProductForm.get('stock')?.invalid && createProductForm.get('stock')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Tipo Prodotto</label>
+          <select class="form-control" formControlName="tipoProdotto" required>
+            <option *ngFor="let tipo of tipiProdotto" [value]="tipo.id">{{tipo.descrizione}}</option>
+          </select>
+          <div *ngIf="createProductForm.get('tipoProdotto')?.invalid && createProductForm.get('tipoProdotto')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Immagine</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" formControlName="immagine" required>
+          <div *ngIf="createProductForm.get('immagine')?.invalid && createProductForm.get('immagine')?.touched" class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Disponibile</label>
+          <div>
+            <input class="checkbox" type="checkbox" formControlName="disponibile">
+          </div>
+        </div>
+        <div class="dialog-buttons">
+          <button type="submit" class="btn btn-success" [disabled]="!createProductForm.valid">Crea</button>
+          <button type="button" class="btn btn-secondary ml-2" (click)="chiudi()">Annulla</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
