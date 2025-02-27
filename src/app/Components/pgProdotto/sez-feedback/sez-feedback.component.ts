@@ -83,9 +83,10 @@ export class SezFeedbackComponent implements OnInit {
 
   onSubmit(){
 
-    if(!this.logged){
+    if (!this.utId) {
       this.router.navigate(['/login']);
-    }
+      return; 
+  } 
 
     const feedReq = {
       utente: this.utId,
