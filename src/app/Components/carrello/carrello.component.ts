@@ -39,7 +39,7 @@ export class CarrelloComponent implements OnInit {
 
     this.getCarrello();
   }
-
+  //display del carrello
   getCarrello(): void {
     const userId = this.auth.getIdUtente();
     if (userId !== null) {
@@ -60,7 +60,7 @@ export class CarrelloComponent implements OnInit {
       this.showMessage('Utente non trovato');
     }
   }
-
+  //aggiunta prodotto al carrello
   changeQuantity(amount: number, prodotto: any): void {
     const newQuantity = prodotto.quantita + amount;
     if (newQuantity >= 0) {
@@ -81,7 +81,7 @@ export class CarrelloComponent implements OnInit {
       });
     }
   }
-
+  //rimozione prodotto dal carrello
   rimuoviProdotto(idProdottoCarrello: number): void {
     this.carrelloService.removeCarrelloProdotto(idProdottoCarrello).subscribe({
       next: () => {
@@ -93,7 +93,7 @@ export class CarrelloComponent implements OnInit {
       error: () => this.showMessage('Errore durante la rimozione del prodotto'),
     });
   }
-
+  //svuotamento carrello
   svuotaCarrello(): void {
     if (this.idCarrello === null) {
       this.showMessage('Errore: ID carrello non trovato.');
@@ -109,14 +109,14 @@ export class CarrelloComponent implements OnInit {
       error: () => this.showMessage('Errore durante lo svuotamento del carrello'),
     });
   }
-
+  //calcolo totale carrello
   calcolaTotale(): number {
     return this.prodottiCarrello.reduce(
       (total, prodotto) => total + prodotto.prodotto.prezzo * prodotto.quantita,
       0
     );
   }
-
+  //acquisto carrello
   acquista(): void {
     if (!this.idCarrello) {
       this.showMessage('Errore: ID carrello non trovato.');
