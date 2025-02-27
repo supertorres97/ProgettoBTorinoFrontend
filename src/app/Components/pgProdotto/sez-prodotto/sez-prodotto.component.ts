@@ -18,6 +18,7 @@ export class SezProdottoComponent implements OnInit{
 
   prodotto:any;
   idCarrello: number | null = null;
+  idUtente: number | null = null;
 
   constructor(private serv:ProdottiService, 
               private location: Location, 
@@ -75,36 +76,39 @@ export class SezProdottoComponent implements OnInit{
   }
 
   aggiungiAlCarrello(): void {
-    if(this.auth.isAutentificated()){
-      if (!this.prodotto) return;
+    this.idUtente = this.auth.getIdUtente();
+    console.log("Utente: " + this.auth.getIdUtente());
   
-      const carrelloProdotto = {
-        prodotto: this.prodotto.id,
-        quantita: this.quantity,
-        carrello: this.idCarrello
-      };
-    
-      this.carrelloProdottoService.createCarrelloProdotto(carrelloProdotto).subscribe({
-        next: () => {
-          this._snackBar.open('Prodotto aggiunto al carrello!', 'Chiudi', {
-            duration: 3000, // Mostra per 3 secondi
-            verticalPosition: 'bottom',
-            horizontalPosition: 'right',
-          });
-        },
-        error: () => {
-          this._snackBar.open('Errore durante l\'aggiunta al carrello', 'Chiudi', {
-            duration: 3000,
-            verticalPosition: 'bottom',
-            horizontalPosition: 'right',
-          });
-        }
-      });
-    }else{
+    if (this.idUtente == null || this.idUtente == 0) {
       this.router.navigate(['/login']);
+      return; // Aggiunto return per uscire dalla funzione
     }
-    
+  
+    if (!this.prodotto) return;
+  
+    const carrelloProdotto = {
+      prodotto: this.prodotto.id,
+      quantita: this.quantity,
+      carrello: this.idCarrello
+    };
+  
+    this.carrelloProdottoService.createCarrelloProdotto(carrelloProdotto).subscribe({
+      next: () => {
+        const snackBarRef = this._snackBar.open('Prodotto aggiunto al carrello!', 'Vai al carrello', {
+          duration: 3000,
+          verticalPosition: 'bottom',
+          horizontalPosition: 'right',
+        });
+  
+        snackBarRef.onAction().subscribe(() => {
+          this.router.navigate(['/carrello']);
+        });
+      },
+      error: () => {
+        // Nessun messaggio di errore qui
+        console.error("Errore durante l'aggiunta al carrello"); // Puoi comunque loggare l'errore in console
+      }
+    });
   }
-
 
 }
