@@ -95,5 +95,8 @@ export class ProdottiComponent implements OnInit{
       this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
     }
   }
+  onImageError(imageUrl: string) {
+    console.error("Errore nel caricamento dell'immagine:", imageUrl);
+  }
 
 }

@@ -130,9 +130,14 @@ export class CreateProdottoComponent {
     
         // Crea un FormData e aggiungi le due parti
         const formData = new FormData();
-        formData.append("product", new Blob([JSON.stringify(productData)], { type: "application/json" }));
+        formData.append("prodottoReq", new Blob([JSON.stringify(productData)], { type: "application/json" }));
         formData.append("img", this.selectImage, this.selectImage.name);
-    
+        console.log("product data:" + productData.nome);
+        console.log("product data:" + productData.descrizione);
+        console.log("product data:" + productData.peso);
+        console.log("product data:" + productData.prezzo);
+        
+
         this.prodS.createProdotto(formData).subscribe({
           next: (resp: any) => {
             console.log("Risposta dal server:", resp);
