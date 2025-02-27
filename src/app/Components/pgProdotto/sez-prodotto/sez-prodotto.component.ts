@@ -105,8 +105,7 @@ export class SezProdottoComponent implements OnInit{
         });
       },
       error: () => {
-        // Nessun messaggio di errore qui
-        console.error("Errore durante l'aggiunta al carrello"); // Puoi comunque loggare l'errore in console
+        console.error("Errore durante l'aggiunta al carrello"); 
       }
     });
   }
