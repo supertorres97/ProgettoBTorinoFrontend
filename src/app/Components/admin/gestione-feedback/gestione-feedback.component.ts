@@ -52,7 +52,7 @@ export class GestioneFeedbackComponent implements OnInit{
     })
     .subscribe((resp:any) => {
       if(resp.rc){
-        this.router.navigate(['/admin/gestioneFeedback'])
+        this.router.navigate(['/admin/gestione-feedback'])
         .then(() => {
           window.location.reload();
         })
