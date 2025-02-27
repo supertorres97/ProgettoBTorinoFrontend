@@ -36,13 +36,15 @@
           <a class="dropdown-toggle profile-icon" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="avatar.png" alt="Profilo" />
           </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
             <li><a class="dropdown-item" routerLink="/profile/{{ idUtente }}">Il mio profilo</a></li>
             <li><a class="dropdown-item" routerLink="/ordini/{{idUtente}}">I miei ordini</a></li>
             <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-utenti">Gestione Utenti</a></li>
             <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-ordini">Gestione Ordini</a></li>
-            <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/creazione-prodotto">Creazione Prodotti</a></li>
+            <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-prodotti">Gestione Prodotti</a></li>
             <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-tipo-prodotto">Gestione Tipo Prodotti</a></li>
+            <li><a class="dropdown-item" *ngIf="isAdmin" routerLink="/admin/gestione-feedback">Gestione Feedback</a></li>
+            <hr>
             <li><a class="dropdown-item text-danger" (click)="logout()">Logout</a></li>
           </ul>
         </div>
