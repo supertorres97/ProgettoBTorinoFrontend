@@ -1,18 +1,17 @@
 /* Il wrapper occuperà tutta l'altezza della viewport e utilizzerà il flexbox */
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /* Il contenuto principale cresce per occupare lo spazio libero */
-  .content {
-    flex: 1;
-    margin-top: 50px;
-    /* position: absolute; */
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  /* Navbar fissa in cima alla pagina */
+/* Il contenuto principale cresce per occupare lo spazio libero */
+.content {
+  flex: 1;
+  margin-top: 50px;
+}
+
+/* Navbar fissa in cima alla pagina */
 app-navbar {
   position: sticky;
   top: 0;
@@ -20,6 +19,7 @@ app-navbar {
   width: 100%;
   z-index: 1000;
   background-color: #fff;
-  height: 4rem; 
+  height: 4rem;
   line-height: 4rem;
 }
+

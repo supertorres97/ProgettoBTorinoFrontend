@@ -1,0 +1,80 @@
+.global-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #EDE9E7; /* Colore richiesto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Contenitore spinner */
+.spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Testo */
+.loading-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #5a5a5a;
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* Spinner innovativo - Doppio cerchio */
+.double-spinner {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+
+.double-spinner::before,
+.double-spinner::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    animation: spin 1.2s linear infinite;
+}
+
+.double-spinner::before {
+    border-top-color: #007bff; /* Colore primario */
+    border-left-color: #007bff;
+}
+
+.double-spinner::after {
+    border-bottom-color: #ff6347; /* Colore secondario */
+    border-right-color: #ff6347;
+    animation-direction: reverse; /* Rotazione opposta */
+}
+
+/* Leggera animazione di comparsa */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Rotazione fluida */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
