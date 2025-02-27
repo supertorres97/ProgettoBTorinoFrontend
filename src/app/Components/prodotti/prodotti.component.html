@@ -31,7 +31,7 @@
                     </figcaption>
                 </figure>
 
-                <p *ngIf="prodotti && prodotti.length === 0" class="no-products">Nessun prodotto trovato con questo nome</p>
+                <p *ngIf="prodotti === null" class="no-products">Nessun prodotto trovato con questo nome</p>
             </div>
         </div>
         <aside class="col-2"></aside>
