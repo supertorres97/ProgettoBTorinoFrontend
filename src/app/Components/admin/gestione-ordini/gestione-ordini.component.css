@@ -117,3 +117,6 @@
   color:#333;
   background-color: #ede9e7;
 }
+.lista:hover{
+  cursor: pointer;
+}

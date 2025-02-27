@@ -17,7 +17,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let ordine of ordini" (click)="modificaOrdine(ordine)">
+          <tr *ngFor="let ordine of ordini" (click)="modificaOrdine(ordine)" class="lista">
               <td>{{ ordine.id }}</td>
               <td>{{ ordine.dataOrdine | date: 'dd/MM/yyyy' }}</td>
               <td>{{ ordine.totale | currency:'EUR' }}</td>
