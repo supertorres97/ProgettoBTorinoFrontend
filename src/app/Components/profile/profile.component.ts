@@ -3,6 +3,9 @@ import { UserService } from '../../services/user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CredenzialiService } from '../../services/credenziali.service';
+import { ConfirmDeleteComponent } from '../../Dialog/confirm-delete/confirm-delete.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -43,7 +46,9 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private credService: CredenzialiService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private dialog:MatDialog,
+    private auth:AuthService
   ) {}
 
   ngOnInit() {
@@ -168,4 +173,68 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  onDeactivateCred(){
+     const enterAnimationDuration:string = '200ms';
+        const exitAnimationDuration:string = '150ms';
+    
+        const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+          width: '250px',
+          enterAnimationDuration,
+          exitAnimationDuration
+        });
+    
+        dialogRef.afterClosed()
+        .subscribe((res:any) => {
+          if(res){
+            this.deactivateCred();
+            window.location.reload();
+          }
+        });
+  }
+  
+  /*  
+  deleteCred(){
+    this.credService.getCredenzialiByUtente(this.id)
+    .subscribe({
+      next: (credenziali:any) => {
+        console.log("credenziali: " + credenziali);
+        console.log("credenziali: " + credenziali.dati);
+        console.log("credenziali: " + credenziali.dati.id);
+        if (!credenziali.dati || !credenziali.dati.id) {
+          console.error("Errore: credenziali.id è nullo!", credenziali);
+          return;
+        }
+        const credReq = {
+
+        }
+      }
+      
+        
+    });
+  }
+
+*/
+  deactivateCred(){
+    this.credService.getCredenzialiByUtente(this.id)
+    .subscribe((credenziali:any) => {
+      console.log("credenziali: " + credenziali);
+      console.log("credenziali: " + credenziali.dati);
+      console.log("credenziali: " + credenziali.dati.id);
+      if (!credenziali.dati || !credenziali.dati.id) {
+        console.error("Errore: credenziali.id è nullo!", credenziali);
+        return;
+      }
+      const credReq = {
+        id: credenziali.dati.id
+      }
+      this.credService.deleteCredenziali(credReq)
+      .subscribe((resp:any) => {
+        if(resp.rc){
+          console.log("Credenziali eliminate logicamente!");
+          this.auth.setLogout();
+        }
+      })
+    });
+      
+  }
 }

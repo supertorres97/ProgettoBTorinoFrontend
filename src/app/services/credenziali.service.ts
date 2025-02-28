@@ -45,4 +45,8 @@ export class CredenzialiService {
   getAllCredenziali(): any{
     return this.http.get(this.url + "/listAll");
   }
+
+  deleteCredenziali(body:{}): any{                          //logica
+    return this.http.post(this.url + "/delete", body);
+  }
 }

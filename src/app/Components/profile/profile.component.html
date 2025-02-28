@@ -31,14 +31,21 @@
             <p><strong>Città:</strong> {{ utente?.citta }}</p>
           </div>
         </div>
-        
-        <button class="modifica-profilo btn btn-primary mt-3" (click)="editMode = true">
-          <i class="fas fa-edit"></i> Modifica Profilo
-        </button>
 
-        <button class="modifica-password btn btn-warning mt-3 ml-2" (click)="passwordEditMode = true">
-          <i class="fas fa-key"></i> Modifica Password
-        </button>
+        <div class="d-flex">
+          <button class="modifica-profilo btn btn-primary mt-3" (click)="editMode = true">
+            <i class="fas fa-edit"></i> Modifica Profilo
+          </button>
+
+          <button class="modifica-password btn btn-warning mt-3 ml-2" (click)="passwordEditMode = true">
+            <i class="fas fa-key"></i> Modifica Password
+          </button>
+
+          <button class="btn btn-delete mt-3 ml-2 ml-auto" (click)="onDeactivateCred()"> 
+            <i class="fas fa-trash"></i> Elimina account
+          </button>
+      </div>
+      
       </div>
     </div>
   
@@ -160,3 +167,9 @@
       </div>
     </form>
   </div>
+
+
+<!--
+  <button class="btn btn-delete mt-3 ml-auto" (click)="onDeleteCred()">
+    <i></i> Elimina account
+  </button>-->

@@ -30,3 +30,18 @@ body {
 .modifica-profilo{
     margin-right: 1rem;
 }
+
+.btn-delete{
+    background-color: #ff0000;
+    color:#fff9ed;
+    outline: none;
+    border: 0;
+    margin-left: auto;
+}
+
+.btn-delete:hover{
+    background-color: #e71616;
+    color:#fff9ed;
+    outline: none;
+    transition: color 0.3s ease; 
+}
