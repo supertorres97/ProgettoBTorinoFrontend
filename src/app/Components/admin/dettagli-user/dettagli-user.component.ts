@@ -5,7 +5,7 @@ import { UserService } from '../../../services/user.service';
 @Component({
   selector: 'app-dettagli-user',
   standalone: false,
-  
+
   templateUrl: './dettagli-user.component.html',
   styleUrl: './dettagli-user.component.css'
 })
@@ -19,16 +19,16 @@ export class DettagliUserComponent {
     private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.idUtente = +params['id']; // Ottieni l'ID dall'URL
+      this.idUtente = +params['id'];
       this.loadUtente();
     });
   }
 
-  // Carica i dettagli dell'utente dal backend
+
   loadUtente(): void {
     this.userService.getUtente(this.idUtente).subscribe(
       (data: any) => {
@@ -52,16 +52,16 @@ export class DettagliUserComponent {
     this.userService.updateUserProfile(this.utente).subscribe(
       (resp: any) => {
         console.log('Utente aggiornato con successo', resp);
-        this.loadUtente(); // Ricarica i dettagli dopo l'aggiornamento
+        this.loadUtente();
         this.closeModificaUtenteDialog();
       },
-      (error:any) => {
+      (error: any) => {
         console.error('Errore durante l\'aggiornamento dell\'utente:', error);
       }
     );
   }
 
-  listAllUser(){
+  listAllUser() {
     this.router.navigate(['/admin/gestione-utenti/']);
   }
 }

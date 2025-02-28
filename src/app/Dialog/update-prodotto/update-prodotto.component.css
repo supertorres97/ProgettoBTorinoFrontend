@@ -11,97 +11,111 @@
   z-index: 1000;
   margin: 0;
 }
-  
-  .dialog-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .dialog-buttons {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-  }
-  
-  .dialog-buttons .btn-success, .dialog-buttons .btn-secondary {
-    font-family: 'Poiret One', cursive;
-    background-color: #333;
-    color: #ede9e7;
-    font-size: 1.2rem;
-    border-radius: 10px;
-  }
-  
-  .dialog-buttons .btn-success {
-    margin-right: 10px;
-  }
-  
-  .dialog-buttons .btn-success:hover {
-    background-color: #b44715;
-    transform: scale(1.05);
-  }
-  
-  .dialog-buttons .btn-secondary:hover {
-    background-color: red;
-    transform: scale(1.05);
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.dialog-buttons .btn-success,
+.dialog-buttons .btn-secondary {
+  font-family: 'Poiret One', cursive;
+  background-color: #333;
+  color: #ede9e7;
+  font-size: 1.2rem;
+  border-radius: 10px;
+}
+
+.dialog-buttons .btn-success {
+  margin-right: 10px;
+}
+
+.dialog-buttons .btn-success:hover {
+  background-color: #b44715;
+  transform: scale(1.05);
+}
+
+.dialog-buttons .btn-secondary:hover {
+  background-color: red;
+  transform: scale(1.05);
+}
+
+.checkbox {
+  margin-bottom: 20px;
+}
+
+
+.custom-font {
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+mat-form-field {
+  width: 100%;
+  font-family: 'Poiret One', cursive;
+  background-color: #ede9e7;
+}
+
+mat-form-field+mat-form-field {
+  margin-top: 8px;
+}
+
+input.mat-input-element {
+  padding: 1rem;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+mat-label {
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  font-size: 1.2rem;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background: transparent !important;
+}
+
+.form-check {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 16px;
+}
+
+.form-check-input {
+  margin-top: 10px;
+  margin-left: 32px;
+}
+
+mat-select {
+  width: 100%;
+  font-family: 'Poiret One', cursive;
+}
+
+mat-option {
+  font-family: 'Poiret One', cursive;
+}
+
+
+@media (max-width: 768px) {
+  .dialog-window {
+    width: 80%;
+    height: auto;
   }
 
-  .checkbox{
-    margin-bottom: 20px;
+  .checkbox {
+    margin-bottom: 10px;
   }
 
-
-  .custom-font {
-    font-family: 'Poiret One', cursive;
-    color: #b44715;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.2rem;
-  }
-
-  mat-form-field {
-    width: 100%;
-    font-family: 'Poiret One', cursive;
-    background-color: #ede9e7;
-  }
-  
-  mat-form-field + mat-form-field {
-    margin-top: 8px;
-  }
-  
-  input.mat-input-element {
-    padding: 1rem;
-    font-size: 1rem;
-    box-sizing: border-box;
-  }
-
-  mat-label{
-    font-family: 'Poiret One', cursive;
-    color: #b44715;
-    font-size: 1.2rem;
-  }
-  
-  ::ng-deep .mat-mdc-text-field-wrapper {
-    background: transparent !important;
-  }
-
-  .form-check {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 0 16px; /* Rimuove il padding */
-  }
-
-  .form-check-input {
-    margin-top: 10px;
-    margin-left: 32px;
-  }
-
-  mat-select{
-    width: 100%;
-    font-family: 'Poiret One', cursive;
-  }
-
-  mat-option{
-    font-family: 'Poiret One', cursive;
-  }
+}

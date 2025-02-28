@@ -7,27 +7,27 @@
                     <mat-label>Nome prodotto: </mat-label>
                     <input matInput type="text" name="nome prodotto" formControlName="nomeProdotto">
                 </mat-form-field>
-        
+
                 <mat-form-field>
                     <mat-label>Descrizione: </mat-label>
                     <input matInput type="text" name="descrizione" formControlName="descrizione">
                 </mat-form-field>
-        
+
                 <mat-form-field>
-                    <mat-label>Peso: </mat-label>
+                    <mat-label>Peso(g): </mat-label>
                     <input matInput type="number" name="peso" formControlName="peso">
                 </mat-form-field>
-        
+
                 <mat-form-field>
                     <mat-label>Prezzo: </mat-label>
                     <input matInput type="number" name="prezzo" formControlName="prezzo">
                 </mat-form-field>
-        
+
                 <mat-form-field>
                     <mat-label>Stock: </mat-label>
                     <input matInput type="number" name="stock" formControlName="stock">
                 </mat-form-field>
-        
+
                 <div>
                     <mat-form-field>
                         <mat-label>Tipo prodotto</mat-label>
@@ -44,13 +44,13 @@
                     <input class="form-check-input" type="checkbox" value="false" id="defaultCheck1"
                         formControlName="disponibile">
                 </div>
-        
+
                 <p>{{msg}}</p>
                 <div class="dialog-buttons">
                     <button class="btn-success" mat-raised-button type="submit">Aggiorna</button>
                     <button class="btn-secondary" type="button" (click)="chiudi()">Chiudi</button>
                 </div>
-        
+
             </form>
         </div>
     </div>

@@ -15,16 +15,16 @@ export class SignInComponent implements OnInit {
   personalFormGroup!: FormGroup;
   credentialsFormGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, 
-    private credService: CredenzialiService, private _snackBar: MatSnackBar) {}
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService,
+    private credService: CredenzialiService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if(this.authService.isAuthentificated())
+    if (this.authService.isAuthentificated())
       this.authService.isLoggedIn = true;
     else this.authService.isLoggedIn = false;
     this.personalFormGroup = this.fb.group({
-      nome: ['', Validators.required], // Aggiungi questo controllo
-      cognome: ['', Validators.required],  // Aggiungi questo controllo
+      nome: ['', Validators.required],
+      cognome: ['', Validators.required],
       cFiscale: [''],
       via: ['', Validators.required],
       cap: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
@@ -69,7 +69,7 @@ export class SignInComponent implements OnInit {
         attivo: true
       };
 
-      const signupObject = {utenteReq, credenzialiReq};
+      const signupObject = { utenteReq, credenzialiReq };
       this.credService.signup(signupObject).subscribe({
         next: (resp: any) => {
           console.log('Inserimento riuscito:', resp);
@@ -92,8 +92,8 @@ export class SignInComponent implements OnInit {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
     });
   }
 }

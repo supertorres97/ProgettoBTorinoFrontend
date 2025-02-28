@@ -5,7 +5,6 @@
       <form [formGroup]="personalFormGroup" class="sign-in-form">
         <ng-template matStepLabel>Dati personali</ng-template>
 
-        <!-- Campo Nome -->
         <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Nome</mat-label>
           <input matInput placeholder="Inserisci il tuo nome" formControlName="nome" required />
@@ -14,7 +13,6 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- Campo Cognome -->
         <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Cognome</mat-label>
           <input matInput placeholder="Inserisci il tuo cognome" formControlName="cognome" required />
@@ -63,7 +61,6 @@
           </mat-error>
         </mat-form-field>
 
-        <!-- Pulsante Avanti -->
         <div class="button-container-right">
           <button mat-button matStepperNext>Avanti</button>
         </div>
@@ -75,37 +72,38 @@
       <form [formGroup]="credentialsFormGroup" class="sign-in-form">
         <ng-template matStepLabel>Credenziali</ng-template>
 
-        <!-- Campo Username -->
         <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Username</mat-label>
           <input matInput placeholder="Inserisci il tuo username" formControlName="username" required />
-          <mat-error *ngIf="credentialsFormGroup.get('username')?.invalid && credentialsFormGroup.get('username')?.touched">
+          <mat-error
+            *ngIf="credentialsFormGroup.get('username')?.invalid && credentialsFormGroup.get('username')?.touched">
             Lo username è obbligatorio.
           </mat-error>
         </mat-form-field>
 
-        <!-- Campo Password -->
         <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Password</mat-label>
           <input matInput type="password" placeholder="Inserisci la tua password" formControlName="password" required />
-          <mat-error *ngIf="credentialsFormGroup.get('password')?.invalid && credentialsFormGroup.get('password')?.touched">
+          <mat-error
+            *ngIf="credentialsFormGroup.get('password')?.invalid && credentialsFormGroup.get('password')?.touched">
             La password è obbligatoria.
           </mat-error>
         </mat-form-field>
 
-        <!-- Campo Conferma Password -->
         <mat-form-field appearance="fill" hideRequiredMarker>
           <mat-label>Conferma Password</mat-label>
-          <input matInput type="password" placeholder="Conferma la tua password" formControlName="confirmPassword" required />
-          <mat-error *ngIf="credentialsFormGroup.get('confirmPassword')?.invalid && credentialsFormGroup.get('confirmPassword')?.touched">
+          <input matInput type="password" placeholder="Conferma la tua password" formControlName="confirmPassword"
+            required />
+          <mat-error
+            *ngIf="credentialsFormGroup.get('confirmPassword')?.invalid && credentialsFormGroup.get('confirmPassword')?.touched">
             Le password non coincidono.
           </mat-error>
         </mat-form-field>
 
-        <!-- Pulsanti Indietro e Registrati -->
         <div class="button-container">
           <button class="left-button" mat-button matStepperPrevious>Indietro</button>
-          <button mat-raised-button class="sign-in-button" (click)="onSubmit()" [disabled]="credentialsFormGroup.invalid">Registrati</button>
+          <button mat-raised-button class="sign-in-button" (click)="onSubmit()"
+            [disabled]="credentialsFormGroup.invalid">Registrati</button>
         </div>
       </form>
     </mat-step>

@@ -12,7 +12,7 @@
         <th class="col-2">Nome</th>
         <th class="col-1">Tipo</th>
         <th class="col-4">Descrizione</th>
-        <th class="col-1">Peso</th>
+        <th class="col-1">Peso(g)</th>
         <th class="col-1">Prezzo</th>
         <th class="col-1">Stock</th>
         <th class="col-1">Disponibile</th>
@@ -21,15 +21,15 @@
     <tbody>
 
       <tr *ngFor="let prodotto of data" (click)="updateProd(prodotto)">
-        <th scope="row">{{prodotto.id}}</th>
-        <td>{{prodotto.nome}}</td>
-        <td>{{prodotto.tipo.descrizione}}</td>
-        <td>{{prodotto.descrizione}}</td>
-        <td>{{prodotto.peso}}</td>
-        <td>{{prodotto.prezzo}}</td>
-        <td>{{prodotto.stock}}</td>
-        <td *ngIf="prodotto.disponibile">Disponibile</td>
-        <td *ngIf="!prodotto.disponibile">Esaurito</td>
+        <th data-label="N°" scope="row">{{prodotto.id}}</th>
+        <td data-label="Nome">{{prodotto.nome}}</td>
+        <td data-label="Tipo">{{prodotto.tipo.descrizione}}</td>
+        <td data-label="Descrizione">{{prodotto.descrizione}}</td>
+        <td data-label="Peso">{{prodotto.peso}}</td>
+        <td data-label="Prezzo">{{prodotto.prezzo}}</td>
+        <td data-label="Stock">{{prodotto.stock}}</td>
+        <td class="disponibile" data-label="Disponibile" *ngIf="prodotto.disponibile">Disponibile</td>
+        <td class="disponibile" data-label="Disponibile" *ngIf="!prodotto.disponibile">Esaurito</td>
       </tr>
     </tbody>
   </table>

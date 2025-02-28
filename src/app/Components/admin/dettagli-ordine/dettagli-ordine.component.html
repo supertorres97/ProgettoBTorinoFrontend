@@ -1,33 +1,27 @@
 <div class="custom-font">
-    <img class="immagine col-2" src="backward.png" alt="Torna alla lista ordini" (click)="listAllOrder()">
-    <h2><b>Dettaglio Ordine Numero: #{{idOrdine}}</b>
-
-    </h2> 
-    <!-- Controlla se i dettagli dell'ordine sono disponibili -->
-    <div *ngIf="dettagliOrdine && dettagliOrdine.length > 0; else noOrderDetails">
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>Prodotto</th>
-            <th>Quantità</th>
-            <th>Prezzo Totale</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let dettaglio of dettagliOrdine">
-            <td>{{ dettaglio.prodotto.nome }}</td>
-            <td>{{ dettaglio.quantitaFinale }}</td>
-            <td>{{ dettaglio.prezzoTotale | currency: 'EUR' }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  
-    <!-- Template di fallback per quando non ci sono dettagli dell'ordine -->
-    <ng-template #noOrderDetails>
-      <p>Non ci sono dettagli disponibili per questo ordine.</p>
-    </ng-template>
+  <img class="immagine col-2" src="backward.png" alt="Torna alla lista ordini" (click)="listAllOrder()">
+  <h2>
+    <b>Dettaglio Ordine Numero: #{{idOrdine}}</b>
+  </h2>
+  <div *ngIf="dettagliOrdine && dettagliOrdine.length > 0; else noOrderDetails">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Prodotto</th>
+          <th>Quantità</th>
+          <th>Prezzo Totale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dettaglio of dettagliOrdine">
+          <td data-label="Prodotto">{{ dettaglio.prodotto.nome }}</td>
+          <td data-label="Quantità">{{ dettaglio.quantitaFinale }}</td>
+          <td data-label="Prezzo Totale">{{ dettaglio.prezzoTotale | currency: 'EUR' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
-  <!---- form da modificare -->
-  
+  <ng-template #noOrderDetails>
+    <p>Non ci sono dettagli disponibili per questo ordine.</p>
+  </ng-template>
+</div>

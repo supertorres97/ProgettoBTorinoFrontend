@@ -1,46 +1,47 @@
 <div class="custom-font">
-  <h2><b>Lista Ordini</b></h2>
+    <h2><b>Lista Ordini</b></h2>
 
-  <div *ngIf="ordini.length === 0">
-      <p>Nessun ordine trovato.</p>
-  </div>
+    <div *ngIf="ordini.length === 0">
+        <p>Nessun ordine trovato.</p>
+    </div>
 
-  <table *ngIf="ordini.length > 0" class="order-table">
-      <thead>
-          <tr>
-              <th class="col-1">Numero dell'Ordine</th>
-              <th class="col-1">Data</th>
-              <th class="col-2">Totale</th>
-              <th class="col-3">Indirizzo</th>
-              <th class="col-1">Status</th>
-              <th class="col-3">Azioni</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let ordine of ordini" (click)="modificaOrdine(ordine)" class="lista">
-              <td>{{ ordine.id }}</td>
-              <td>{{ ordine.dataOrdine | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ ordine.totale | currency:'EUR' }}</td>
-              <td>{{ ordine.indirizzo }}</td>
-              <td>
-                  <!-- Se l'ordine è in modifica, mostra il menu a tendina -->
-                  <ng-container *ngIf="ordineInModifica === ordine.id; else showStatus">
-                      <select [(ngModel)]="ordine.status" (change)="salvaModifica(ordine)" class="select-modifica">
-                          <option *ngFor="let stato of statiDisponibili" [value]="stato">
-                              {{ stato }}
-                          </option>
-                      </select>
-                  </ng-container>
+    <table *ngIf="ordini.length > 0" class="order-table">
+        <thead>
+            <tr>
+                <th class="col-1">Numero dell'Ordine</th>
+                <th class="col-1">Data</th>
+                <th class="col-2">Totale</th>
+                <th class="col-3">Indirizzo</th>
+                <th class="col-1">Status</th>
+                <th class="col-3">Azioni</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let ordine of ordini" (click)="modificaOrdine(ordine)" class="lista">
+                <td data-label="Numero dell'Ordine">{{ ordine.id }}</td>
+                <td data-label="Data">{{ ordine.dataOrdine | date: 'dd/MM/yyyy' }}</td>
+                <td data-label="Totale">{{ ordine.totale | currency:'EUR' }}</td>
+                <td data-label="Indirizzo">{{ ordine.indirizzo }}</td>
+                <td data-label="Status">
+                    <!-- Se l'ordine è in modifica, mostra il menu a tendina -->
+                    <ng-container *ngIf="ordineInModifica === ordine.id; else showStatus">
+                        <select [(ngModel)]="ordine.status" (change)="salvaModifica(ordine)" class="select-modifica">
+                            <option *ngFor="let stato of statiDisponibili" [value]="stato">
+                                {{ stato }}
+                            </option>
+                        </select>
+                    </ng-container>
 
-                  <!-- Stato normale se non in modifica -->
-                  <ng-template #showStatus>
-                      {{ ordine.status }}
-                  </ng-template>
-              </td>
-              <td class="azioni">
-                  <button class="btn btn-det" (click)="dettagliOrdine(ordine.id); $event.stopPropagation()">Dettagli ordine</button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
+                    <!-- Stato normale se non in modifica -->
+                    <ng-template #showStatus>
+                        {{ ordine.status }}
+                    </ng-template>
+                </td>
+                <td data-label="Azioni" class="azioni">
+                    <button class="btn btn-det" (click)="dettagliOrdine(ordine.id); $event.stopPropagation()">Dettagli
+                        ordine</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

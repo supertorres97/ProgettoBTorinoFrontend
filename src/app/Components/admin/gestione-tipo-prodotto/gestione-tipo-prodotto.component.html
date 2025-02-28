@@ -18,9 +18,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let tipoProdotto of tipoProdotti" (click)="onEdit(tipoProdotto)">
-        <td>{{ tipoProdotto?.id }}</td>
-        <td>{{ tipoProdotto?.descrizione}}</td>
-        <td>
+        <td data-label="ID Prodotto">{{ tipoProdotto?.id }}</td>
+        <td data-label="Descrizione">{{ tipoProdotto?.descrizione}}</td>
+        <td data-label="Azioni">
           <button class="btn btn-danger" (click)="onDelete(tipoProdotto.id); $event.stopPropagation()">Cancella</button>
         </td>
       </tr>
@@ -34,7 +34,8 @@
         <div class="form-group">
           <label>Inserisci tipo da creare</label>
           <input type="text" class="form-control" formControlName="descrizione" required>
-          <div *ngIf="createForm.get('descrizione')?.invalid && createForm.get('descrizione')?.touched" class="text-danger">
+          <div *ngIf="createForm.get('descrizione')?.invalid && createForm.get('descrizione')?.touched"
+            class="text-danger">
             Campo obbligatorio.
           </div>
         </div>

@@ -12,8 +12,8 @@ export class GestioneTipoProdottoComponent implements OnInit {
   tipoProdotti: any[] = [];
   isLoading: boolean = false;
   errorMessage: string = '';
-  createMode: boolean = false; // Modalità di creazione
-  editMode: boolean = false; // Modalità di modifica
+  createMode: boolean = false;
+  editMode: boolean = false;
   createForm: FormGroup;
   editForm: FormGroup;
   currentTipoProdottoId: number | null = null;
@@ -63,7 +63,7 @@ export class GestioneTipoProdottoComponent implements OnInit {
   onDelete(id: number) {
     const body = { id: id };
     this.tipoProdottoService.deleteTipoProdotto(body)
-      
+
       .subscribe({
         next: () => {
           this.tipoProdotti = this.tipoProdotti.filter(tp => tp.id !== id);
@@ -81,7 +81,7 @@ export class GestioneTipoProdottoComponent implements OnInit {
           next: (resp: any) => {
             this.createMode = false;
             this.createForm.reset();
-            window.location.reload(); // Ricarica la pagina dopo la creazione
+            window.location.reload();
           },
           error: (error: any) => {
             this.errorMessage = 'Errore nella creazione del tipo di prodotto';
@@ -99,7 +99,7 @@ export class GestioneTipoProdottoComponent implements OnInit {
             this.editMode = false;
             this.editForm.reset();
             this.currentTipoProdottoId = null;
-            window.location.reload(); // Ricarica la pagina dopo la modifica
+            window.location.reload();
           },
           error: (error: any) => {
             this.errorMessage = 'Errore nella modifica del tipo di prodotto';

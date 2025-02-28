@@ -6,26 +6,10 @@
   text-align: center;
   margin-top: 20px;
   font-size: 1.2rem;
-  }
-
-/* Stile generale della pagina */
-.gestione-utenti {
-  background-color: #ede9e7;
-  font-family: 'Poiret One', cursive;
-  color: #b44715;
-  padding: 20px;
 }
 
-/* Titolo della pagina */
-.gestione-utenti h2 {
-  font-size: 2.5rem;
-  letter-spacing: 0.05em;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #b44715;
-}
 
-/* Tabella delle credenziali */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -35,7 +19,7 @@ table {
   overflow: hidden;
 }
 
-/* Dialog per modificare le credenziali */
+
 dialog {
   background-color: #ede9e7;
   border: 1px solid #333;
@@ -59,7 +43,8 @@ dialog label {
   font-weight: bold;
 }
 
-dialog input, dialog select {
+dialog input,
+dialog select {
   width: 100%;
   padding: 8px;
   margin-bottom: 16px;
@@ -94,7 +79,7 @@ dialog button[type="button"]:hover {
   background-color: #1a1a1a;
 }
 
-h2{
+h2 {
   color: #333;
   font-size: 3.5rem;
 }
@@ -106,52 +91,99 @@ h2{
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  }
-  
-  thead tr th{
+}
+
+thead tr th {
   padding-bottom: 2rem;
   font-size: 1.2rem;
-  }
-  
-  tbody tr td {
-      height: 3.5rem;
-  }
-  
-  .order-table th, .order-table td {
+}
+
+tbody tr td {
+  height: 3.5rem;
+}
+
+.order-table th,
+.order-table td {
   border-bottom: 1px solid #b44715;
   padding: 10px;
   text-align: center;
-  }
-  
-  .order-table th {
+}
+
+.order-table th {
   color: #b44715;
+}
+
+.dettagli-utente {
+  font-family: 'Poiret One', cursive;
+  background-color: #333;
+  color: #fff9ed;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.dettagli-utente:hover {
+  background-color: #b44715;
+  transform: scale(1.05);
+}
+
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.immagine {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .order-table thead {
+    display: none;
   }
+
+  .order-table,
+  .order-table tbody,
+  .order-table tr,
+  .order-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .order-table tr {
+    margin-bottom: 15px;
+  }
+
+  .order-table td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-bottom: none;
+  }
+
+  .order-table td[data-label="Azione"] {
+    border-bottom: 1px solid #b44715;
+  }
+
+  .order-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+
 
   .dettagli-utente {
-    font-family: 'Poiret One', cursive;
-    background-color: #333;
-    color: #fff9ed;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    margin-right: 20px;
-    /* transition: background-color 0.3s ease, transform 0.2s ease; */
-    }
-    
-    .dettagli-utente:hover {
-    background-color: #b44715;
-    transform: scale(1.05);
-    }
+    margin-right: 0;
+  }
 
-
-    .header-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 3rem;
-    }
-
-    .immagine {
-      width: 2rem;
-      height: 2rem;
-      cursor: pointer;
-    }
+}

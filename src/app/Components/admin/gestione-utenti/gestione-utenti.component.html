@@ -1,11 +1,10 @@
-<!-- gestione-utenti.component.html -->
 <div class="custom-font">
     <div class="header-container">
         <h2><b>Gestione Credenziali Utenti</b></h2>
         <div class="image-container">
-          <img class="immagine" src="plus.png" alt="Torna alla lista ordini" (click)="createUser()">
+            <img class="immagine" src="plus.png" alt="Torna alla lista ordini" (click)="createUser()">
         </div>
-        </div>
+    </div>
     <table class="order-table">
         <thead>
             <tr>
@@ -18,12 +17,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let credenziale of credenzialiList" (click)="openCredenzialiDialog(credenziale)">
-                <td>{{credenziale.username}}</td>
-                <td>{{credenziale.password}}</td>
-                <td>{{credenziale.ruolo?.descrizione}}</td>
-                <td>{{credenziale.attivo ? 'Sì' : 'No'}}</td>
-                <td>
-                    <button class="dettagli-utente" (click)="viewDettagliUtente(credenziale.idUtente?.id)">Dettagli Utente</button>
+                <td data-label="Username">{{ credenziale.username }}</td>
+                <td data-label="Password">{{ credenziale.password }}</td>
+                <td data-label="Ruoli">{{ credenziale.ruolo?.descrizione }}</td>
+                <td data-label="Account Attivo?">{{ credenziale.attivo ? 'Sì' : 'No' }}</td>
+                <td data-label="Azione">
+                    <button class="dettagli-utente" (click)="viewDettagliUtente(credenziale.idUtente?.id)">Dettagli
+                        Utente</button>
                 </td>
             </tr>
         </tbody>
@@ -53,4 +53,3 @@
         <button type="button" (click)="closeCredenzialiDialog()">Annulla</button>
     </form>
 </dialog>
-

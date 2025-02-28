@@ -4,13 +4,13 @@
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  table-layout: fixed; /* Aggiunto per migliorare la gestione spazi */
+  table-layout: fixed;
 }
 
 thead tr th {
   padding-bottom: 1rem;
   font-size: 1.2rem;
-  white-space: nowrap; /* Evita il wrapping */
+  white-space: nowrap;
 }
 
 tbody tr td {
@@ -18,10 +18,10 @@ tbody tr td {
   font-size: 1.1rem;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; /* Evita che la descrizione vada a capo */
+  white-space: nowrap;
 }
 
-.order-table th, 
+.order-table th,
 .order-table td {
   border-bottom: 1px solid #b44715;
   padding: 8px;
@@ -45,16 +45,15 @@ tbody tr td {
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  flex-wrap: wrap; /* Per far andare a capo quando lo spazio è poco */
+  flex-wrap: nowrap;
 }
 
 h2 {
   color: #333;
   font-size: 3rem;
-  margin: 0;
 }
 
-.btn-danger, 
+.btn-danger,
 .btn-det {
   font-family: 'Poiret One', cursive;
   background-color: #333;
@@ -81,82 +80,58 @@ h2 {
   cursor: pointer;
 }
 
-/* -------- Responsive Styles -------- */
-@media (max-width: 1024px) {
-  .order-table {
-      font-size: 1rem;
-  }
-
-  tbody tr td, thead tr th {
-      font-size: 1rem;
-      padding: 6px;
-  }
-
-  h2 {
-      font-size: 2.5rem;
-  }
-
-  .header-container {
-      flex-direction: column;
-      gap: 1rem;
-  }
-}
-
 @media (max-width: 768px) {
-  .order-table {
-      display: block;
-      overflow-x: auto; /* Scroll orizzontale se la tabella è larga */
-      white-space: nowrap;
+  .order-table thead {
+    display: none;
   }
 
-  .order-table th, .order-table td {
-      font-size: 0.9rem;
-      padding: 5px;
+  .order-table,
+  .order-table tbody,
+  .order-table tr,
+  .order-table td,
+  .order-table th {
+    display: block;
+    width: 100%;
   }
 
-  h2 {
-      font-size: 2rem;
+  .order-table tr {
+    margin-bottom: 15px;
   }
 
-  .custom-font {
-      font-size: 1rem;
+  .order-table td,
+  .order-table th {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+    border-bottom: none;
   }
 
-  .header-container {
-      flex-direction: column;
-      align-items: center;
-  }
-}
-
-@media (max-width: 480px) {
-  h2 {
-      font-size: 1.5rem;
+  .order-table td[data-label="Disponibile"] {
+    border-bottom: 1px solid #b44715;
   }
 
-  .order-table th, .order-table td {
-      font-size: 0.8rem;
-      padding: 4px;
+  .order-table td::before,
+  .order-table th::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 15px;
+    font-weight: bold;
+    text-align: left;
   }
 
-  .immagine {
-      width: 1.5rem;
-      height: 1.5rem;
-  }
-
-  .custom-font {
-      font-size: 0.9rem;
-  }
-
-  .btn-danger, 
-  .btn-det {
-      font-size: 0.9rem;
-      padding: 5px 8px;
+  .order-table td {
+    max-width: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
-/* Accorciamento descrizione con ellipsis */
-td:nth-child(4) { 
-  max-width: 200px; /* regola secondo necessità */
+
+td:nth-child(4) {
+  max-width: auto;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

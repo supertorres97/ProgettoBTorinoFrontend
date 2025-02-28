@@ -7,7 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-creazione',
   standalone: false,
-  
+
   templateUrl: './creazione.component.html',
   styleUrl: './creazione.component.css'
 })
@@ -15,18 +15,18 @@ export class CreazioneComponent {
   personalFormGroup!: FormGroup;
   credentialsFormGroup!: FormGroup;
 
-  constructor(private fb: FormBuilder, 
-    private authService: AuthService, 
-    private utenteS:UserService,
-    private _snackBar: MatSnackBar) {}
+  constructor(private fb: FormBuilder,
+    private authService: AuthService,
+    private utenteS: UserService,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    if(this.authService.isAuthentificated())
+    if (this.authService.isAuthentificated())
       this.authService.isLoggedIn = true;
     else this.authService.isLoggedIn = false;
     this.personalFormGroup = this.fb.group({
-      nome: ['', Validators.required], // Aggiungi questo controllo
-      cognome: ['', Validators.required],  // Aggiungi questo controllo
+      nome: ['', Validators.required],
+      cognome: ['', Validators.required],
       cFiscale: [''],
       via: ['', Validators.required],
       cap: ['', [Validators.required, Validators.pattern(/^\d{5}$/)]],
@@ -71,7 +71,7 @@ export class CreazioneComponent {
         attivo: true
       };
 
-      const signupObject = {utenteReq, credenzialiReq};
+      const signupObject = { utenteReq, credenzialiReq };
       this.utenteS.createAdmin(signupObject).subscribe({
         next: (resp: any) => {
           console.log('Inserimento riuscito:', resp);
@@ -94,8 +94,8 @@ export class CreazioneComponent {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
     });
   }
 }

@@ -1,12 +1,14 @@
-<!-- dettagli-user.component.html -->
 <div class="custom-font">
     <h2><b>Dettagli Utente</b></h2>
     <p>Nome: {{utente.nome}}</p>
     <p>Cognome: {{utente.cognome}}</p>
+    <p>Codice fiscale: {{utente.cFiscale}}</p>
     <p>Email: {{utente.email}}</p>
     <p>Indirizzo: {{utente.via}}, {{utente.cap}} {{utente.citta}}</p>
-    <button (click)="openModificaUtenteDialog()">Modifica Utente</button>
-    <button (click)="listAllUser()">Torna alla lista utenti</button>
+    <div class="button-container">
+        <button (click)="openModificaUtenteDialog()">Modifica Utente</button>
+        <button (click)="listAllUser()">Torna alla lista utenti</button>
+    </div>
 </div>
 
 
@@ -32,7 +34,12 @@
         <label for="citta">Città:</label>
         <input id="citta" [(ngModel)]="this.utente.citta" name="citta" required>
 
+        <label for="codice-fiscale">Codice fiscale:</label>
+        <input id="codice-fiscale" [(ngModel)]="this.utente.cFiscale" name="codice-fiscale" required>
+
+
         <button type="submit">Salva</button>
         <button type="button" (click)="closeModificaUtenteDialog()">Annulla</button>
+
     </form>
 </dialog>

@@ -16,7 +16,7 @@
   border-radius: 8px;
   background-color: #ede9e7;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Center the form horizontally */
+  margin: 0 auto; 
 }
 
 .sign-in-form h2 {
@@ -88,11 +88,19 @@ input.mat-input-element {
 @media (max-width: 768px) {
   .sign-in-form {
     padding: 1.5rem;
+    width: 100%;
   }
 
   .sign-in-button {
     font-size: 0.9rem;
   }
+
+  mat-label {
+    font-size: 1rem;
+    white-space: normal;
+    overflow: visible;
+  }
+
 }
 
 @media (max-width: 480px) {
