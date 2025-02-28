@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class StoricoOrdiniComponent {
   ordini: Ordine[] = [];
-  idUtente: number | null = null; // ⚠️ Questo valore dovrebbe venire dall'autenticazione
+  idUtente: number | null = null;
 
   constructor(private orderService: OrdineService, 
               private authService: AuthService, 
@@ -22,7 +22,7 @@ export class StoricoOrdiniComponent {
 
     
   ngOnInit(): void {
-    this.idUtente = this.authService.getIdUtente(); // Recupera l'ID utente dal login
+    this.idUtente = this.authService.getIdUtente();
     if (this.idUtente) {
       this.caricaOrdini();
     } else {
@@ -35,7 +35,7 @@ export class StoricoOrdiniComponent {
       this.orderService.getOrdiniByUtente(this.idUtente).subscribe({
         next: (data:any) => {
           console.log("Dati ricevuti:", data);
-          this.ordini = Array.isArray(data.dati) ? data.dati : []; // Estrai correttamente l'array
+          this.ordini = Array.isArray(data.dati) ? data.dati : [];
         },
         error: (err) => console.error('Errore nel recupero degli ordini', err)
       });
@@ -64,8 +64,8 @@ export class StoricoOrdiniComponent {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom', 
+      horizontalPosition: 'end', 
     });
   }
 

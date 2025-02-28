@@ -1,15 +1,15 @@
 .order-table {
-width: 90%;
-border-collapse: collapse;
-border-spacing: 0 20px;
-margin-top: 20px;
-margin-left: auto;
-margin-right: auto;
+    width: 90%;
+    border-collapse: collapse;
+    border-spacing: 0 20px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-thead tr th{
-padding-bottom: 2rem;
-font-size: 1.2rem;
+thead tr th {
+    padding-bottom: 2rem;
+    font-size: 1.2rem;
 }
 
 tbody tr td {
@@ -17,53 +17,137 @@ tbody tr td {
     font-size: 1.2rem;
 }
 
-.order-table th, .order-table td {
-border-bottom: 1px solid #b44715;
-padding: 10px;
-text-align: center;
+.order-table th,
+.order-table td {
+    border-bottom: 1px solid #b44715;
+    padding: 10px;
+    text-align: center;
 }
 
 .order-table th {
-color: #b44715;
+    color: #b44715;
 }
 
 .btn-danger {
-font-family: 'Poiret One', cursive;
-background-color: #333;
-color: #ede9e7;
-font-size: 1.2rem;
-border-radius: 10px;
+    font-family: 'Poiret One', cursive;
+    background-color: #333;
+    color: #ede9e7;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    position: relative;
+}
+
+.btn-danger::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
 }
 
 .btn-danger:hover {
-background-color: red;
-transform: scale(1.05);
+    background-color: red;
+    transform: scale(1.05);
 }
 
 .btn-det {
-font-family: 'Poiret One', cursive;
-background-color: #333;
-color: #ede9e7;
-font-size: 1.2rem;
-border-radius: 10px;
-margin-right: 20px;
-/* transition: background-color 0.3s ease, transform 0.2s ease; */
+    font-family: 'Poiret One', cursive;
+    background-color: #333;
+    color: #ede9e7;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    margin-right: 20px;
+    position: relative;
+}
+
+.btn-det::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
 }
 
 .btn-det:hover {
-background-color: #b44715;
-transform: scale(1.05);
+    background-color: #b44715;
+    transform: scale(1.05);
 }
 
 .custom-font {
-font-family: 'Poiret One', cursive;
-color: #b44715;
-text-align: center;
-margin-top: 20px;
-font-size: 1.2rem;
+    font-family: 'Poiret One', cursive;
+    color: #b44715;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
 }
 
-h2{
+h2 {
     color: #333;
     font-size: 3.5rem;
+}
+
+@media (max-width: 1481px) {
+
+    .button-wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .btn-danger,
+    .btn-det {
+        padding: 0;
+    }
+
+    .btn-det {
+        margin-right: 5px;
+    }
+
+    .btn-danger {
+        margin-right: 0;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .order-table thead {
+        display: none;
+    }
+
+    .order-table,
+    .order-table tbody,
+    .order-table tr,
+    .order-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .order-table tr {
+        margin-bottom: 15px;
+    }
+
+    .order-table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: none;
+    }
+
+    .order-table td[data-label="Azioni"] {
+        border-bottom: 1px solid #b44715;
+        padding: 20px;
+    }
+
+    .order-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+
 }

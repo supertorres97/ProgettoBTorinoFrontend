@@ -18,15 +18,17 @@
       </thead>
       <tbody>
         <tr *ngFor="let ordine of ordini">
-          <td>{{ ordine.id }}</td>
-          <td>{{ ordine.dataOrdine | date: 'dd/MM/yyyy' }}</td>
-          <td>{{ ordine.totale | currency:'EUR' }}</td>
-          <td>{{ ordine.indirizzo }}</td>
-          <td>{{ ordine.status }}</td>
-          <td>
-            <button class="btn btn-det" (click)="dettagliOrdine(ordine.id)">Dettagli ordine</button>
-            <button class="btn btn-danger" (click)="annullaOrdine(ordine.id)">Annulla ordine</button>
-          </td>
+          <td data-label="Numero dell'Ordine">{{ ordine.id }}</td>
+          <td data-label="Data">{{ ordine.dataOrdine | date: 'dd/MM/yyyy' }}</td>
+          <td data-label="Totale">{{ ordine.totale | currency:'EUR' }}</td>
+          <td data-label="Indirizzo">{{ ordine.indirizzo }}</td>
+          <td data-label="Status">{{ ordine.status }}</td>
+          <td data-label="Azioni">
+            <div class="button-wrapper">
+              <button class="btn btn-det" (click)="dettagliOrdine(ordine.id)">Dettagli ordine</button>
+              <button class="btn btn-danger" (click)="annullaOrdine(ordine.id)">Annulla ordine</button>
+            </div>
+           </td>
         </tr>
       </tbody>
     </table>
