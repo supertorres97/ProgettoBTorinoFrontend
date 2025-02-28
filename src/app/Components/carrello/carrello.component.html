@@ -49,7 +49,7 @@
       <div class="quantity-controls">
         <button (click)="changeQuantity(-1, prodotto)">-</button>
         <span>{{ prodotto.quantita }}</span>
-        <button (click)="changeQuantity(1, prodotto)">+</button>
+        <button (click)="changeQuantity(1, prodotto)" *ngIf="prodotto.quantita < prodotto.prodotto.stock">+</button>
       </div>
     </div>
       <div class="responsive-product">
