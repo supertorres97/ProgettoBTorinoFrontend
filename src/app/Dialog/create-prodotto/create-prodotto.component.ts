@@ -140,8 +140,7 @@ export class CreateProdottoComponent {
 
         this.prodS.createProdotto(formData).subscribe({
           next: (resp: any) => {
-            console.log("Risposta dal server:", resp);
-            if (resp && typeof resp === 'object' && resp.rc) {
+            if (resp && resp.rc) {
               this.chiudi();
             } else {
               this.msg = resp.msg;
@@ -149,6 +148,16 @@ export class CreateProdottoComponent {
           },
           error: (err: any) => {
             console.error("Errore durante l'invio del prodotto:", err);
+    
+            // Qui gestisci il caso specifico di errore 413
+            if (err.status === 413) {
+              this.msg = "Il file è troppo pesante. Carica un'immagine inferiore a 2MB.";
+            } else if (err.error && err.error.message) {
+              // Se è un errore generico con messaggio dal backend
+              this.msg = err.error.message;
+            } else {
+              this.msg = "Si è verificato un errore durante la creazione del prodotto.";
+            }
           }
         });
       } else {
