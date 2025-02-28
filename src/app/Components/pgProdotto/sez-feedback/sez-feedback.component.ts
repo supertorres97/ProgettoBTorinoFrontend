@@ -6,7 +6,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
 import { OrdineService } from '../../../services/ordine.service';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 
 interface Rate {
   value: string;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -14,11 +14,13 @@ export class AuthGuard implements CanActivate {
     const idUtenteStorage = this.authService.getIdUtente();
     const isAdmin = this.authService.isRoleAdmin();
     const url = state.url;
+    const isAuthenticated = this.authService.isAuthentificated();
 
     if (url.startsWith('/profile/')) {
       const idFromUrl = Number(route.paramMap.get('id'));
+      console.log('isAutenticated:', idFromUrl);
       
-      if (this.authService.isAutentificated() == false) {
+      if (!isAuthenticated) {
         this.showMessage("Devi loggarti prima di poter accedere al tuo profilo.");
         this.router.navigate(['/home']);
         return false;

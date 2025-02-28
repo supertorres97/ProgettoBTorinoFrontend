@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { CredenzialiService } from '../../services/credenziali.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -19,7 +19,7 @@ export class SignInComponent implements OnInit {
     private credService: CredenzialiService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    if(this.authService.isAutentificated())
+    if(this.authService.isAuthentificated())
       this.authService.isLoggedIn = true;
     else this.authService.isLoggedIn = false;
     this.personalFormGroup = this.fb.group({

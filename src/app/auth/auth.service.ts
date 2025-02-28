@@ -64,7 +64,7 @@ export class AuthService {
     }
   }
 
-  isAuthenticated(): boolean {
+  isAuthentificated(): boolean {
     return this.isLoggedIn;
   }
 
@@ -97,7 +97,7 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       return this.idCarrello || Number(localStorage.getItem("idCarrello")) || null;
     }
-    return null;
+    return this.idCarrello;
   }
 
   setIdUtente(idUtente: number) {
@@ -111,12 +111,14 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId)) {
       return this.idUtente || Number(localStorage.getItem("idUtente")) || null;
     }
-    return null;
+    return this.idUtente;
   }
 
-  setAutentificated(authenticated: boolean) {
+  setAuthentificated(authenticated: boolean) {
+    if(authenticated) {
+      this.isLoggedIn = true;
+    }
     if (isPlatformBrowser(this.platformId)) {
-      // Protezione contro SSR, assicuriamoci che solo nel browser venga modificato
       if (authenticated) {
         localStorage.setItem("isLoggedIn", "1");
       } else {

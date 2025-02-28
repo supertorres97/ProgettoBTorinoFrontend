@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from './auth.service';
 import { OrdineService } from '../services/ordine.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

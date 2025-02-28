@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { CarrelloProdottoService } from '../../../services/carrello.prodotto.service';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService  } from '../../../auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
