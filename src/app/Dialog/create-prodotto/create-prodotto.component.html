@@ -60,6 +60,10 @@
               <input class="checkbox" type="checkbox" formControlName="disponibile">
             </div>
           </div>
+          <!-- Area per messaggi di errore o successo -->
+          <div *ngIf="msg" class="alert alert-danger">
+            {{ msg }}
+          </div>
           <div class="dialog-buttons">
             <button type="submit" class="btn btn-success" [disabled]="!createProductForm.valid">Crea</button>
             <button type="button" class="btn btn-secondary ml-2" (click)="chiudi()">Annulla</button>
