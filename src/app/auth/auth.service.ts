@@ -1,5 +1,6 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+import { CarrelloProdottoService } from '../services/carrello.prodotto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,83 +9,119 @@ export class AuthService {
   isAdmin = false;
   isLoggedIn = false;
   idUtente: number | null = null;
+  idCarrello: number | null = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private serv: CarrelloProdottoService
+  ) {
     if (isPlatformBrowser(this.platformId)) {
-      // Solo nel browser, accedi a localStorage
+      this.loadAuthState();
+    }
+  }
+
+  private loadAuthState() {
+    if (isPlatformBrowser(this.platformId)) {
       const isLoggedInValue = localStorage.getItem("isLoggedIn");
       const isAdminValue = localStorage.getItem("isAdmin");
       const idUtenteValue = localStorage.getItem("idUtente");
 
-      if (isLoggedInValue !== null && isAdminValue !== null && idUtenteValue !== null) {
-        this.isLoggedIn = isLoggedInValue === '1';
-        this.isAdmin = isAdminValue === '1';
-        this.idUtente = parseInt(idUtenteValue, 10);
-      } else {
-        localStorage.setItem("isLoggedIn", "0");
-        localStorage.setItem("isAdmin", "0");
-        localStorage.setItem("idUtente", "null");
-        this.isAdmin = false;
-        this.isLoggedIn = false;
-        this.idUtente = null;
+      this.isLoggedIn = isLoggedInValue === "1";
+      this.isAdmin = isAdminValue === "1";
+      this.idUtente = idUtenteValue ? parseInt(idUtenteValue, 10) : null;
+
+      if (this.isLoggedIn && this.idUtente !== null) {
+        this.serv.listByUtente(this.idUtente).subscribe((res: any) => {
+          this.idCarrello = res.idCarrello;
+        });
       }
-      console.log("logged: " + localStorage.getItem("isLoggedIn"));
-      console.log("Admin: " + localStorage.getItem("isAdmin"));
     }
   }
 
-
-  setIdUtente(idUtente: number){
-    localStorage.setItem("idUtente", idUtente.toString()); // Salva l'ID nel localStorage
+  login(idUtente: number, isAdmin: boolean = false) {
+    this.isLoggedIn = true;
+    this.isAdmin = isAdmin;
+    this.idUtente = idUtente;
+    
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("isLoggedIn", "1");
+      localStorage.setItem("isAdmin", isAdmin ? "1" : "0");
+      localStorage.setItem("idUtente", idUtente.toString());
+    }
   }
-  getIdUtente(){
-    const id = localStorage.getItem("idUtente");
-    return id ? Number(id) : null;  
+
+  logout() {
+    this.isLoggedIn = false;
+    this.isAdmin = false;
+    this.idUtente = null;
+    this.idCarrello = null;
+
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("isAdmin");
+      localStorage.removeItem("idUtente");
+      localStorage.removeItem("idCarrello");
+    }
   }
 
-  isAutentificated(){
+  isAuthenticated(): boolean {
     return this.isLoggedIn;
   }
 
-  setLoggedOut(){
-    this.isLoggedIn = false;
-    localStorage.setItem("isLoggedIn", "0");
-    localStorage.setItem("isAdmin", "0");
-  }
-
-  isRoleAdmin(){
+  isRoleAdmin(): boolean {
     return this.isAdmin;
   }
 
-  setAutentificated(){
-    this.isLoggedIn = true;
-    localStorage.setItem("isLoggedIn", "1");
-  }
-
-  setLogout(){
-    localStorage.setItem("isLoggedIn", "0");
-    localStorage.setItem("isAdmin", "0");
-    localStorage.removeItem('idUtente');
-    this.isAdmin = false;
-    this.isLoggedIn = false;
-  }
-
-  setRoleAdmin(){
+  setRoleAdmin() {
     this.isAdmin = true;
-    localStorage.setItem("isAdmin", "1");
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("isAdmin", "1");
+    }
   }
 
-  setRoleUser(){
+  setRoleUser() {
     this.isAdmin = false;
-    localStorage.setItem("isAdmin", "0");
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("isAdmin", "0");
+    }
   }
 
-  resetAll() : void {
-    this.isLoggedIn = false;
-    this.isAdmin = false;
+  setIdCarrello(idCarrello: number) {
+    this.idCarrello = idCarrello;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("idCarrello", idCarrello.toString());
+    }
   }
 
-  setLogin(idUtente: number) {
-    localStorage.setItem('idUtente', idUtente.toString());
+  getIdCarrello(): number | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return this.idCarrello || Number(localStorage.getItem("idCarrello")) || null;
+    }
+    return null;
+  }
+
+  setIdUtente(idUtente: number) {
+    this.idUtente = idUtente;
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem("idUtente", idUtente.toString());
+    }
+  }
+
+  getIdUtente(): number | null {
+    if (isPlatformBrowser(this.platformId)) {
+      return this.idUtente || Number(localStorage.getItem("idUtente")) || null;
+    }
+    return null;
+  }
+
+  setAutentificated(authenticated: boolean) {
+    if (isPlatformBrowser(this.platformId)) {
+      // Protezione contro SSR, assicuriamoci che solo nel browser venga modificato
+      if (authenticated) {
+        localStorage.setItem("isLoggedIn", "1");
+      } else {
+        localStorage.removeItem("isLoggedIn");
+      }
+    }
   }
 }

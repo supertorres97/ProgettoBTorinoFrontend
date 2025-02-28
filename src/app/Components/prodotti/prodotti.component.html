@@ -5,40 +5,33 @@
             <div class="titolo">
                 <div class="titolo-search">
                     <h1>Prodotti</h1>
-                    <!-- Barra di ricerca -->
                     <div class="search-box">
                         <button class="btn-search"><i class="fas fa-search"></i></button>
-                        <input class="input-search"  
-                        type="text" 
-                        [(ngModel)]="searchQuery" 
-                        (keyup.enter)="searchProduct()" 
-                        placeholder="Cerca un prodotto...">
+                        <input class="input-search" 
+                               type="text" 
+                               [(ngModel)]="searchQuery" 
+                               (keyup.enter)="searchProduct()" 
+                               placeholder="Cerca un prodotto...">
                     </div>
                 </div>
                 <hr>
             </div>
+
             <div class="card-container">
-
                 <figure class="image-block" *ngFor="let prodotto of prodotti">
-                    <!-- <img src={{prodotto.img}} alt="immagine" />
-                -->
-                <img [src]="'/' + prodotto.img + '?t=' + timestamp" alt="immagine" />
-
-                <figcaption>
-                        <h3>
-                            {{prodotto.nome}}
-                        </h3>
+                    <img [src]="prodotto.img" alt="immagine" (error)="onImageError(prodotto.img)" />
+                    <figcaption>
+                        <h3>{{ prodotto.nome }}</h3>
                         <hr>
                         <div>
-                            <p>
-                                Prezzo:
-                                {{prodotto.prezzo}}€
-                            </p>
+                            <p>Prezzo: {{ prodotto.prezzo }}€</p>
                             <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
                         </div>
                         <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
                     </figcaption>
                 </figure>
+
+                <p *ngIf="prodotti === null" class="no-products">Nessun prodotto trovato con questo nome</p>
             </div>
         </div>
         <aside class="col-2"></aside>

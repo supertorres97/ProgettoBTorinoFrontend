@@ -1,30 +1,34 @@
-/* Generale */
-body {
-  background-color: #f8f5f3;
-  margin: 0;
-  font-family: 'Poiret One', cursive;
-}
-
 .container {
   width: 90%;
   max-width: 1200px;
   margin: auto;
   padding: 20px;
+  color: #b44715;
+  font-family: 'Poiret One', cursive;
+  font-size: 1.2rem;
 }
 
-/* Titolo e pulsanti */
+/* Titolo e pulsante svuota carrello */
 .titolo {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; 
   align-items: center;
+  position: relative; 
 }
 
 .titolo h1 {
   font-size: 2.5rem;
   color: #333;
+  flex-grow: 1; 
+  text-align: center; 
 }
 
-/* Stile base per tutti i pulsanti */
+.titolo-button {
+  position: absolute;
+  right: 0; 
+}
+
+/* Stile per tutti i pulsanti */
 .btn-custom {
   font-family: 'Poiret One', cursive;
   font-size: 1.2rem;
@@ -32,25 +36,21 @@ body {
   padding: 8px 16px;
   border: none;
   cursor: pointer;
-  color: #ede9e7; /* Testo chiaro */
+  color: #ede9e7;
+  background-color: #333;
 }
 
-/* Colori specifici per ogni pulsante */
-.btn-svuota {
-  background-color: #5a5a5a; /* Nero */
+/* Hover specifici per ogni pulsante */
+.btn-svuota:hover {
+  background-color: #b44715;
 }
 
-.btn-elimina {
-  background-color: #6b0101; /* Rosso scuro */
+.btn-elimina:hover {
+  background-color: red;
 }
 
-.btn-acquista {
-  background-color: #043104; /* Verde scuro */
-}
-
-/* Effetto hover per tutti i pulsanti */
-.btn-custom:hover {
-  opacity: 0.8;
+.btn-acquista:hover {
+  background-color: #124d12;
 }
 
 /* Carrello Vuoto */
@@ -63,7 +63,6 @@ body {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Icona più piccola */
 .alert img {
   width: 80px;
   height: auto;
@@ -73,10 +72,8 @@ body {
 /* Tabella Carrello */
 .cart-table {
   width: 100%;
-  background: #f8f5f3;
+  background: #ede9e7;
   padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Header tabella */
@@ -101,7 +98,7 @@ body {
 
 /* Nome Prodotto */
 .cart-item a {
-  color: black;
+  color: #b44715;
   text-decoration: none;
 }
 
@@ -129,7 +126,7 @@ body {
   background-color: #888;
 }
 
-/* Footer (Totale e Acquista) */
+/* Totale e Acquista */
 .cart-footer {
   display: flex;
   justify-content: flex-end;
@@ -149,24 +146,55 @@ body {
   margin-right: 5.5rem;
 }
 
+.responsive {
+  display: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  .cart-header, .cart-item, .cart-footer {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
+  .cart-header {
+    display: none;
+  }
+
+  .responsive {
+    display: block;
+    font-weight: bold;
   }
 
   .cart-item {
     flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left; /* Allinea il testo a sinistra */
     gap: 10px;
   }
 
-  .cart-footer {
-    justify-content: center;
+  .responsive-product {
+    display: flex;
+    justify-content: flex-start; /* Allinea il contenuto a sinistra */
+    align-items: center;
+    gap: 10px;
+    width: 100%; /* Assicura che l'elemento prenda tutta la larghezza disponibile */
   }
 
-  .svuota-carrello {
-    width: 100%;
+  .cart-footer {
+    flex-direction: column;
+    align-items: flex-end; /* Allinea il contenuto a sinistra */
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .titolo {
+    flex-direction: column;
+    align-items: center; /* Mantiene il contenuto centrato */
+  }
+
+  .titolo-button {
+    position: static; 
+    margin-top: 10px; 
+  }
+
+  .totale-label, .totale-importo, .btn-acquista {
+    margin-right: 0;
   }
 }

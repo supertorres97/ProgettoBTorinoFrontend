@@ -1,9 +1,11 @@
 <div class="container">
   <!-- Mostra titolo e pulsante SOLO se ci sono prodotti nel carrello -->
   <ng-container *ngIf="prodottiCarrello.length > 0">
-    <div class="titolo">
-      <h1>IL TUO CARRELLO</h1>
-      <button class="btn-custom btn-svuota" (click)="svuotaCarrello()">Svuota Carrello</button>
+    <div>
+      <div class="titolo">
+        <h1><b>IL TUO CARRELLO</b></h1>
+        <button class="btn-custom btn-svuota titolo-button" (click)="svuotaCarrello()">Svuota Carrello</button>
+      </div>
     </div>
     <hr>
   </ng-container>
@@ -31,24 +33,39 @@
     </div>
 
     <div class="cart-item" *ngFor="let prodotto of prodottiCarrello">
-      <span>
-        <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]">
-          {{ prodotto?.prodotto?.nome }}
-        </a>
-      </span>
+      <div class="responsive-product">
+        <span class="responsive">Prodotto:</span>
+        <span>
+          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]">
+            {{ prodotto?.prodotto?.nome }}
+          </a>
+        </span>
+      </div>
+      <div class="responsive-product">
+      <span class="responsive">Quantità:</span>
       <div class="quantity-controls">
         <button (click)="changeQuantity(-1, prodotto)">-</button>
         <span>{{ prodotto.quantita }}</span>
         <button (click)="changeQuantity(1, prodotto)">+</button>
       </div>
+    </div>
+      <div class="responsive-product">
+      <span class="responsive">Prezzo:</span>
       <span>{{ prodotto?.prodotto?.prezzo }} €</span>
+    </div>
+      <div class="responsive-product">
+      <span class="responsive">Totale:</span>
       <span>{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
+    </div>
+      <div class="responsive-product">
+      <span class="responsive">Azioni:</span>
       <button class="btn-custom btn-elimina" (click)="rimuoviProdotto(prodotto?.id)">Elimina</button>
+    </div>
     </div>
 
     <div class="cart-footer">
       <span class="totale-label">Totale:</span>
-      <span class="totale-importo">{{ calcolaTotale() }} €</span>
+      <span class="totale-importo">{{ calcolaTotale() }}€</span>
       <button class="btn-custom btn-acquista" (click)="acquista()">Acquista</button>
     </div>
   </div>

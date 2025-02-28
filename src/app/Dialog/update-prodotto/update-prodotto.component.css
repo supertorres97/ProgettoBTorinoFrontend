@@ -1,0 +1,56 @@
+
+.test {
+    background-color: blueviolet;
+}
+
+.dialog-window {
+    width: 35%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #ede9e7;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    margin: 0;
+  }
+  
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dialog-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .dialog-buttons .btn-success, .dialog-buttons .btn-secondary {
+    font-family: 'Poiret One', cursive;
+    background-color: #333;
+    color: #ede9e7;
+    font-size: 1.2rem;
+    border-radius: 10px;
+  }
+  
+  .dialog-buttons .btn-success {
+    margin-right: 10px;
+  }
+  
+  .dialog-buttons .btn-success:hover {
+    background-color: #b44715;
+    transform: scale(1.05);
+  }
+  
+  .dialog-buttons .btn-secondary:hover {
+    background-color: red;
+    transform: scale(1.05);
+  }
+
+  .checkbox{
+    margin-bottom: 20px;
+  }
+

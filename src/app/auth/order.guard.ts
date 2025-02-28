@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { OrdineService } from '../services/ordine.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class OrderGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private orderService: OrdineService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
@@ -19,7 +21,7 @@ export class OrderGuard implements CanActivate {
     const idOrdine = Number(route.paramMap.get('id'));
 
     if (!idUtente) {
-      alert("Devi essere loggato per accedere ai dettagli dell'ordine.");
+      this.showMessage("Devi essere loggato per accedere ai dettagli dell'ordine.");
       this.router.navigate(['/home']);
       return false;
     }
@@ -28,7 +30,7 @@ export class OrderGuard implements CanActivate {
       const isOrderOwner = await this.orderService.verificaOrdine(idOrdine, idUtente).toPromise();
 
       if (!isOrderOwner) {
-        alert("Non sei autorizzato a vedere questa pagina.");
+        this.showMessage("Non sei autorizzato a vedere questa pagina.");
         this.router.navigate(['/home']);
         return false;
       }
@@ -37,9 +39,17 @@ export class OrderGuard implements CanActivate {
 
     } catch (error) {
       console.error("Errore nella verifica dell'ordine:", error);
-      alert("Si è verificato un errore. Riprova più tardi.");
+      this.showMessage("Si è verificato un errore. Riprova più tardi.");
       this.router.navigate(['/home']);
       return false;
     }
+  }
+
+  private showMessage(message: string): void {
+    this._snackBar.open(message, 'Chiudi', {
+      duration: 3000,
+      verticalPosition: 'bottom', // Mantiene la posizione in basso
+      horizontalPosition: 'end', // Sposta a destra
+    });
   }
 }

@@ -98,3 +98,25 @@
   align-items: center;
   margin-bottom: 20px;
 }
+.select-modifica {
+  border: 2px solid #b44715;
+  background-color: #ede9e7;
+  color: #333;
+  font-size: 1.2rem;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.select-modifica:focus {
+  border-color: #333;
+  color:#333;
+  background-color: #ede9e7;
+}
+.lista:hover{
+  cursor: pointer;
+}

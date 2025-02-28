@@ -50,16 +50,16 @@ export class CreateProdottoComponent {
         if (this.createProductForm) {
           this.createProductForm.get('immagine')?.updateValueAndValidity();
         } else {
-          console.error("❌ createProductForm non è stato inizializzato");
+          console.error("createProductForm non è stato inizializzato");
         }
       }
     }
    /* 
     onSubmit() {
-      console.log("✅ Submit avviato");
+      console.log("Submit avviato");
     
       if (!this.createProductForm || !this.createProductForm.valid) {
-        console.error("❌ Form non valido o non inizializzato.");
+        console.error("Form non valido o non inizializzato.");
         return;
       }
     
@@ -83,7 +83,7 @@ export class CreateProdottoComponent {
 
           this.prodS.createProdotto(body).subscribe({
             next: (resp: any) => {
-              console.log("✅ Risposta dal server:", resp);
+              console.log("Risposta dal server:", resp);
               if (resp && typeof resp === 'object') {
                 if (!resp.rc) {
                   this.msg = resp.msg;
@@ -91,29 +91,29 @@ export class CreateProdottoComponent {
                   this.chiudi();
                 }
               } else {
-                console.error("❌ Il server ha restituito un formato inaspettato:", resp);
+                console.error("Il server ha restituito un formato inaspettato:", resp);
               }
             },
             error: (err: any) => {
-              console.error("❌ Errore durante l'invio del prodotto:", err);
+              console.error("Errore durante l'invio del prodotto:", err);
               if (err.error instanceof ProgressEvent) {
-                console.error("❌ Il server potrebbe aver restituito una pagina HTML invece di JSON.");
+                console.error("Il server potrebbe aver restituito una pagina HTML invece di JSON.");
               } else {
-                console.error("❌ Dettaglio errore:", err.message);
+                console.error("Dettaglio errore:", err.message);
               }
             }
           });
         };
         reader.readAsDataURL(this.selectImage);
       } else {
-        console.error("❌ Nessun file immagine selezionato.");
+        console.error("Nessun file immagine selezionato.");
       }
     }
     */
     
     onSubmit() {
       if (!this.createProductForm || !this.createProductForm.valid) {
-        console.error("❌ Form non valido o non inizializzato.");
+        console.error("Form non valido o non inizializzato.");
         return;
       }
     
@@ -130,12 +130,17 @@ export class CreateProdottoComponent {
     
         // Crea un FormData e aggiungi le due parti
         const formData = new FormData();
-        formData.append("product", new Blob([JSON.stringify(productData)], { type: "application/json" }));
+        formData.append("prodottoReq", new Blob([JSON.stringify(productData)], { type: "application/json" }));
         formData.append("img", this.selectImage, this.selectImage.name);
-    
+        console.log("product data:" + productData.nome);
+        console.log("product data:" + productData.descrizione);
+        console.log("product data:" + productData.peso);
+        console.log("product data:" + productData.prezzo);
+        
+
         this.prodS.createProdotto(formData).subscribe({
           next: (resp: any) => {
-            console.log("✅ Risposta dal server:", resp);
+            console.log("Risposta dal server:", resp);
             if (resp && typeof resp === 'object' && resp.rc) {
               this.chiudi();
             } else {
@@ -143,11 +148,11 @@ export class CreateProdottoComponent {
             }
           },
           error: (err: any) => {
-            console.error("❌ Errore durante l'invio del prodotto:", err);
+            console.error("Errore durante l'invio del prodotto:", err);
           }
         });
       } else {
-        console.error("❌ Nessun file immagine selezionato.");
+        console.error("Nessun file immagine selezionato.");
       }
     }
     

@@ -28,7 +28,7 @@ export class TipoProdottoService {
 
   }
 
-  deleteTipoProdotto(tipoProdotto: any): Observable<any> {
-    return this.http.post<any>(`${this.url}/delete`, tipoProdotto);
+  deleteTipoProdotto(body : {}) {
+    return this.http.post<any>(this.url+ "delete", body);
   }
 }

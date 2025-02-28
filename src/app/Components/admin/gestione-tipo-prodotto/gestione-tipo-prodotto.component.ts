@@ -61,8 +61,8 @@ export class GestioneTipoProdottoComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    const tipoProdotto = { id: id };
-    this.tipoProdottoService.deleteTipoProdotto(tipoProdotto)
+    const body = { id: id };
+    this.tipoProdottoService.deleteTipoProdotto(body)
       
       .subscribe({
         next: () => {

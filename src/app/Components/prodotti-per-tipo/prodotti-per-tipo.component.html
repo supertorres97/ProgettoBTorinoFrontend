@@ -31,7 +31,7 @@
                                 Prezzo:
                                 {{prodotto.prezzo}}€
                             </p>
-                            <button *ngIf="prodotto.disponibile" (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
+                            <button (click)="dettagliProdotto(prodotto.id)" class="button-dettagli">Scoprimi</button>
                         </div>
                         <p class="card-text" style="color: red;" *ngIf="!prodotto.disponibile">ESAURITO</p>
                     </figcaption>

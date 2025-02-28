@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProdottiService } from '../../services/prodotti.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './prodotti.component.html',
   styleUrl: './prodotti.component.css'
 })
-export class ProdottiComponent implements OnInit, AfterViewInit{
+export class ProdottiComponent implements OnInit{
 
   response:any;
   data:any;
@@ -20,17 +20,11 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
   prodotti: any[] = [];
   timestamp: number = new Date().getTime();
 
-  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute,
-    private cd: ChangeDetectorRef
-  ) { }
-  ngAfterViewInit(): void {
-    this.forceUpdateToDetectChanges();
-  }
+  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
-    console.log("onInit prodotti");
     this.serv.listProdotti()
       .subscribe((resp:any) => {
-        console.log("subscribe prodotti ");
         this.response = resp;
         this.data = this.response.dati;
       })
@@ -44,7 +38,6 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
           this.getAllProdotti(); // Se non c'è parametro, carica tutto
         }
       });
-      this.forceUpdateToDetectChanges();
   }
 
   cercaProdotti(nome: string): void {
@@ -102,9 +95,8 @@ export class ProdottiComponent implements OnInit, AfterViewInit{
       this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
     }
   }
-
-  forceUpdateToDetectChanges(): void {
-    this.timestamp = new Date().getTime();
-    this.cd.detectChanges();
+  onImageError(imageUrl: string) {
+    console.error("Errore nel caricamento dell'immagine:", imageUrl);
   }
+
 }

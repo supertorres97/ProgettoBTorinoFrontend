@@ -52,7 +52,7 @@ export class GestioneFeedbackComponent implements OnInit{
     })
     .subscribe((resp:any) => {
       if(resp.rc){
-        this.router.navigate(['/admin/gestioneFeedback'])
+        this.router.navigate(['/admin/gestione-feedback'])
         .then(() => {
           window.location.reload();
         })
@@ -63,22 +63,3 @@ export class GestioneFeedbackComponent implements OnInit{
   }
 
 }
-
-  /*
-  onDelete(id:number) {
-    this.feedbackS.deleteFeedback({
-      id : id
-    })
-    .subscribe((resp:any) => {
-      if(resp.rc){
-        this.router.navigate(['/admin/gestioneFeedback'])
-        .then(() => {
-          window.location.reload();
-        })
-      } else {
-        this.response = resp.msg;
-      }
-    });
-  }
-*/
-

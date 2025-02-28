@@ -46,7 +46,7 @@ import { ProdottiPerTipoComponent } from './Components/prodotti-per-tipo/prodott
 import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/gestione-prodotti.component';
 import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodotto.component';
 import { UpdateProdottoComponent } from './Dialog/update-prodotto/update-prodotto.component';
-
+import { SpinnerComponent } from './Dialog/spinner/spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,7 +78,8 @@ import { UpdateProdottoComponent } from './Dialog/update-prodotto/update-prodott
     ProdottiPerTipoComponent,
     GestioneProdottiComponent,
     CreateProdottoComponent,
-    UpdateProdottoComponent
+    UpdateProdottoComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

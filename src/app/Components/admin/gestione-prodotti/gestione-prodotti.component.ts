@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { ProdottiService } from '../../../services/prodotti.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateProdottoComponent } from '../../../Dialog/create-prodotto/create-prodotto.component';
 import { TipoProdottoService } from '../../../services/tipo-prodotto.service';
@@ -24,8 +23,6 @@ export class GestioneProdottiComponent {
     constructor(
       private serv:ProdottiService, 
       private tprodS:TipoProdottoService,
-      private router:Router, 
-      private route: ActivatedRoute, 
       private dialog:MatDialog) { }
   
     ngOnInit(): void {
@@ -66,24 +63,25 @@ export class GestioneProdottiComponent {
     });
     }
 
-    updateProd(prodottoUp:{}){
+    updateProd(prodottoUp:{}) {
       const enterAnimationDuration:string = '200ms';
       const exitAnimationDuration:string = '150ms';
 
       const dialogRef = this.dialog.open(UpdateProdottoComponent, {
-        width: '700px',
-        enterAnimationDuration,
-        exitAnimationDuration,
-        data: {
-          prodotto: prodottoUp
-        }
+      width: '700px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+      data: {
+        prodotto: prodottoUp
+      }
       });
 
       dialogRef.afterClosed()
       .subscribe((res:any) => {
-        if(res)
-          window.location.reload();
-    });
+      if(res) {
+        this.loadProdotti();
+      }
+      });
     }
 
 }
