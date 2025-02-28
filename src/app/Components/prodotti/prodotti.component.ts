@@ -10,15 +10,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './prodotti.component.css'
 })
 export class ProdottiComponent implements OnInit{
-
   response:any;
   data:any;
-
   showSearch: boolean = false;
   searchQuery: string = '';
-
   prodotti: any[] = [];
   timestamp: number = new Date().getTime();
+  page: number = 1;
+  itemsPerPage: number = 5;
 
   constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
 
