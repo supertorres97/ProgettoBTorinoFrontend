@@ -75,8 +75,8 @@ export class CarrelloComponent implements OnInit {
               this.data = resp.dati;
               for(let prod of this.data){
                 if(!prod.prodotto.disponibile)
-                  window.alert(prod.prodotto.nome + " ESAURITO");
-                  console.log("*****" + prod.prodotto.disponibile);
+                  this.showMessage(prod.prodotto.nome + " Esaurito!");
+  //                window.alert(prod.prodotto.nome + " ESAURITO");
               }
             });
           }

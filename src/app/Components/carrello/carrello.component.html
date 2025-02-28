@@ -36,8 +36,11 @@
       <div class="responsive-product">
         <span class="responsive">Prodotto:</span>
         <span>
-          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]">
+          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]" *ngIf="prodotto.disponibile">
             {{ prodotto?.prodotto?.nome }}
+          </a>
+          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]" style="color: red;" *ngIf="!prodotto.disponibile">
+            {{ prodotto?.prodotto?.nome }} (Esaurito)
           </a>
         </span>
       </div>
