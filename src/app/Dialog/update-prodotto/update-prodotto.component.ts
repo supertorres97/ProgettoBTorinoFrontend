@@ -15,7 +15,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class UpdateProdottoComponent {
     msg:string = "";
     updateProductForm:any;
-//    selectImage:File | null = null;
     responseTP:any;
     tipiProdotto:any;
     prodotto:any;
@@ -54,16 +53,6 @@ export class UpdateProdottoComponent {
         });
     }
   
-/*  
-    //serve a prendere il nome del file immagine
-    onFileSelected(event:Event):void{
-      const input = event.target as HTMLInputElement;
-      if (input?.files?.[0]) {
-        this.selectImage = input.files[0];
-        this.createProductForm.get('immagine')?.setValue(this.selectImage.name);
-      }
-    }
-*/  
     onSubmit() {
       console.log("submit");
       console.log("tipo: " + this.updateProductForm.value.tipoProdotto);
@@ -75,7 +64,6 @@ export class UpdateProdottoComponent {
         prezzo:this.updateProductForm.value.prezzo,
         stock:this.updateProductForm.value.stock,
         disponibile:this.updateProductForm.value.disponibile,
-//        img:this.createProductForm.value.immagine,
         tipo:this.updateProductForm.value.tipoProdotto
       }).subscribe((resp:any) => {
         if(!resp.rc){

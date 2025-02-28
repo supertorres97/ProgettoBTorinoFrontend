@@ -1,81 +1,163 @@
 .order-table {
-    width: 90%;
-    border-collapse: collapse;
-    border-spacing: 0 20px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: fixed; /* Aggiunto per migliorare la gestione spazi */
+}
+
+thead tr th {
+  padding-bottom: 1rem;
+  font-size: 1.2rem;
+  white-space: nowrap; /* Evita il wrapping */
+}
+
+tbody tr td {
+  height: 3rem;
+  font-size: 1.1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Evita che la descrizione vada a capo */
+}
+
+.order-table th, 
+.order-table td {
+  border-bottom: 1px solid #b44715;
+  padding: 8px;
+  text-align: center;
+}
+
+.order-table th {
+  color: #b44715;
+}
+
+.custom-font {
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap; /* Per far andare a capo quando lo spazio è poco */
+}
+
+h2 {
+  color: #333;
+  font-size: 3rem;
+  margin: 0;
+}
+
+.btn-danger, 
+.btn-det {
+  font-family: 'Poiret One', cursive;
+  background-color: #333;
+  color: #ede9e7;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.btn-danger:hover {
+  background-color: red;
+  transform: scale(1.05);
+}
+
+.btn-det:hover {
+  background-color: #b44715;
+  transform: scale(1.05);
+}
+
+.immagine {
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+}
+
+/* -------- Responsive Styles -------- */
+@media (max-width: 1024px) {
+  .order-table {
+      font-size: 1rem;
   }
-  
-  thead tr th {
-    padding-bottom: 2rem;
-    font-size: 1.2rem;
+
+  tbody tr td, thead tr th {
+      font-size: 1rem;
+      padding: 6px;
   }
-  
-  tbody tr td {
-    height: 3.5rem;
-    font-size: 1.2rem;
-  }
-  
-  .order-table th, .order-table td {
-    border-bottom: 1px solid #b44715;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .order-table th {
-    color: #b44715;
-  }
-  
-  .custom-font {
-    font-family: 'Poiret One', cursive;
-    color: #b44715;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 1.2rem;
-  }
-  
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3rem;
-  }
-  
+
   h2 {
-    color: #333;
-    font-size: 3.5rem;
+      font-size: 2.5rem;
   }
-  
-  .btn-danger {
-    font-family: 'Poiret One', cursive;
-    background-color: #333;
-    color: #ede9e7;
-    font-size: 1.2rem;
-    border-radius: 10px;
+
+  .header-container {
+      flex-direction: column;
+      gap: 1rem;
   }
-  
-  .btn-danger:hover {
-    background-color: red;
-    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .order-table {
+      display: block;
+      overflow-x: auto; /* Scroll orizzontale se la tabella è larga */
+      white-space: nowrap;
   }
-  
-  .btn-det {
-    font-family: 'Poiret One', cursive;
-    background-color: #333;
-    color: #ede9e7;
-    font-size: 1.2rem;
-    border-radius: 10px;
-    margin-right: 20px;
+
+  .order-table th, .order-table td {
+      font-size: 0.9rem;
+      padding: 5px;
   }
-  
-  .btn-det:hover {
-    background-color: #b44715;
-    transform: scale(1.05);
+
+  h2 {
+      font-size: 2rem;
   }
-  
+
+  .custom-font {
+      font-size: 1rem;
+  }
+
+  .header-container {
+      flex-direction: column;
+      align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+      font-size: 1.5rem;
+  }
+
+  .order-table th, .order-table td {
+      font-size: 0.8rem;
+      padding: 4px;
+  }
+
   .immagine {
-    width: 2rem;
-    height: 2rem;
-    cursor: pointer;
+      width: 1.5rem;
+      height: 1.5rem;
   }
+
+  .custom-font {
+      font-size: 0.9rem;
+  }
+
+  .btn-danger, 
+  .btn-det {
+      font-size: 0.9rem;
+      padding: 5px 8px;
+  }
+}
+
+/* Accorciamento descrizione con ellipsis */
+td:nth-child(4) { 
+  max-width: 200px; /* regola secondo necessità */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
