@@ -31,8 +31,7 @@
                 </figure>
             </div>
 
-            <pagination-controls class="custom-pagination" (pageChange)="page = $event">
-            </pagination-controls>
+            <pagination-controls (pageChange)="onPageChange($event)"></pagination-controls>
 
         </div>
         <aside class="col-2"></aside>

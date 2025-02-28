@@ -64,4 +64,9 @@ export class ProdottiPerTipoComponent {
       this.router.navigate(['/prodotti'], { queryParams: {} });
     }
   }
+  //porta la pagina in cima
+  onPageChange(event: number): void {
+    this.page = event;
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+  }
 }

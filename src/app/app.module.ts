@@ -102,7 +102,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   ],
   providers: [
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch()), // ✅ Replaces HttpClientModule
+    provideHttpClient(withFetch()),
     provideClientHydration(withEventReplay()),
     provideAnimationsAsync()
   ],
