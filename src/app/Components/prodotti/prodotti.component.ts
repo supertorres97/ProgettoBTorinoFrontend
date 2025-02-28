@@ -34,13 +34,13 @@ export class ProdottiComponent implements OnInit{
           this.searchQuery = nome;
           this.cercaProdotti(nome);
         } else {
-          this.getAllProdotti(); // Se non c'è parametro, carica tutto
+          this.getAllProdotti();
         }
       });
   }
 
   cercaProdotti(nome: string): void {
-    if (!nome.trim()) { // Se il nome è vuoto o solo spazi, carica tutti i prodotti
+    if (!nome.trim()) {
       this.getAllProdotti();
       return;
     }
@@ -54,10 +54,9 @@ export class ProdottiComponent implements OnInit{
     }
   });
 
-  // Aggiorna la URL con il nuovo parametro di ricerca
   this.router.navigate([], {
     relativeTo: this.route,
-    queryParams: nome ? { nome } : {}, // Se nome è vuoto, rimuove il parametro dalla URL
+    queryParams: nome ? { nome } : {},
     queryParamsHandling: 'merge'
   });
   }
@@ -91,7 +90,7 @@ export class ProdottiComponent implements OnInit{
     if (query !== '') {
       this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
     } else {
-      this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
+      this.router.navigate(['/prodotti'], { queryParams: {} });
     }
   }
   onImageError(imageUrl: string) {

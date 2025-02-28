@@ -1,11 +1,11 @@
-.col-10{
+.col-10 {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 5% 0;
 }
 
-h1{
+h1 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,30 +18,30 @@ h1{
 
 }
 
-.hr hr{
+.hr hr {
     width: 100%;
     border: 1px solid #333;
     margin-bottom: 20px;
 }
 
-.feedback{
+.feedback {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin: 3%;
     letter-spacing: 0.05em;
-    
-    gap:12%;
+
+    gap: 12%;
 }
 
-.card{
+.card {
     background: none;
     border: none;
     margin-bottom: 5%;
     width: 400px;
 }
 
-.card-header{
+.card-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -49,17 +49,21 @@ h1{
     border: none;
 }
 
-.card-header p{ display: flex; }
-
-.card-header img{ width: 40px; }
-
-.card-body{
-    font-size: x-large;
-    max-height: max-content;
-    
+.card-header p {
+    display: flex;
 }
 
-.card-footer{
+.card-header img {
+    width: 40px;
+}
+
+.card-body {
+    font-size: x-large;
+    max-height: max-content;
+
+}
+
+.card-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -69,50 +73,50 @@ h1{
     font-style: italic;
 }
 
-.card-footer img{
+.card-footer img {
     width: 27%;
     height: 3vh;
 }
 
-.box{
+.box {
     padding: 0 10%;
 }
 
-mat-form-field{
+mat-form-field {
     font-family: 'Poiret One', cursive;
     font-size: large;
 }
 
-mat-label{
+mat-label {
     font-family: 'Poiret One', cursive;
     font-size: large;
     font-weight: bold;
     color: #b44715;
 }
 
-mat-hint{
+mat-hint {
     font-family: 'Poiret One', cursive;
     font-weight: bold;
 }
 
-mat-option{
+mat-option {
     font-family: 'Poiret One', cursive;
     font-size: medium;
     font-weight: bold;
 }
 
-.box mat-form-field{
+.box mat-form-field {
     display: flex;
     justify-content: center;
     align-items: end;
     margin-top: 5%;
 }
 
-.comment h2{
+.comment h2 {
     font-size: 3rem;
 }
 
-.voto{
+.voto {
     width: 20%;
 }
 
@@ -120,14 +124,14 @@ mat-option{
     background: transparent !important;
 }
 
-.button{
+.button {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
     gap: 2vw;
 }
 
-.button button{
+.button button {
     border: 0;
     background: #b44715;
     color: #fff9ed;
@@ -135,32 +139,32 @@ mat-option{
     letter-spacing: 1px;
 }
 
-.button button:hover{
+.button button:hover {
     box-shadow: 0 4px 6px rgb(93 93 93 / 23%);
     transform: translateY(-2px);
 }
 
-.button button:active{
+.button button:active {
     background: #333;
     transform: translateY(2px);
 }
 
-.button p{ 
-    letter-spacing: 1px; 
-    margin:0;
+.button p {
+    letter-spacing: 1px;
+    margin: 0;
     font-size: 1.5rem;
     font-style: italic;
     color: red;
 }
 
-.rate-send{
+.rate-send {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: end;
 }
 
-.alert-success{
+.alert-success {
     width: 25%;
     display: flex;
     margin: 2vh auto 0;
@@ -169,39 +173,43 @@ mat-option{
     font-size: 1.3rem;
 }
 
-@media(max-width: 1500px){
-    .card{
+@media(max-width: 1500px) {
+    .card {
         width: 30%;
     }
 }
 
-@media(max-width: 1200px){
-    .feedback{
+@media(max-width: 1200px) {
+    .feedback {
         justify-content: center;
     }
-    .card{
+
+    .card {
         width: 400px;
     }
 }
 
-@media(max-width: 900px){
-    .col-10 h1{
+@media(max-width: 900px) {
+    .col-10 h1 {
         font-size: 3rem;
     }
 }
 
-@media(max-width: 768px){
-    .col-10 h1{
+@media(max-width: 768px) {
+    .col-10 h1 {
         font-size: 2.5rem;
     }
-    .card-footer img{
+
+    .card-footer img {
         width: 25%;
     }
-    .comment h2{
+
+    .comment h2 {
         font-size: 2.5rem;
         margin-top: 2rem;
     }
-    .voto{
+
+    .voto {
         width: 100px;
     }
 }

@@ -22,11 +22,11 @@ export class CardsSezioneComponent implements OnInit {
   private touchEndX: number = 0;
 
   constructor(
-    private serv: ProdottiService, 
-    private router: Router, 
-    private route: ActivatedRoute, 
+    private serv: ProdottiService,
+    private router: Router,
+    private route: ActivatedRoute,
     @Inject(PLATFORM_ID) private platformId: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.updateCardsPerPage();
@@ -46,7 +46,7 @@ export class CardsSezioneComponent implements OnInit {
         this.searchQuery = nome;
         this.cercaProdotti(nome);
       } else {
-        this.getAllProdotti(); // Se non c'è parametro, carica tutti i prodotti
+        this.getAllProdotti();
       }
     });
   }
@@ -72,7 +72,7 @@ export class CardsSezioneComponent implements OnInit {
   }
 
   updateTotalPages() {
-    this.totalPages = Array.from({ length: Math.ceil( 9 / this.cardsPerPage) });
+    this.totalPages = Array.from({ length: Math.ceil(9 / this.cardsPerPage) });
   }
 
   updateVisibleCards() {
@@ -99,7 +99,6 @@ export class CardsSezioneComponent implements OnInit {
     this.updateVisibleCards();
   }
 
-  // Gestione della ricerca dei prodotti
   cercaProdotti(nome: string): void {
     if (!nome.trim()) {
       this.getAllProdotti();
@@ -150,9 +149,9 @@ export class CardsSezioneComponent implements OnInit {
   onTouchEnd() {
     const swipeDistance = this.touchEndX - this.touchStartX;
     if (swipeDistance > 50) {
-      this.scrollCardsLeft();  // Swipe verso destra
+      this.scrollCardsLeft();
     } else if (swipeDistance < -50) {
-      this.scrollCardsRight(); // Swipe verso sinistra
+      this.scrollCardsRight();
     }
   }
 

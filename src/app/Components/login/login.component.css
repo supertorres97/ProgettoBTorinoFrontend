@@ -32,7 +32,7 @@ mat-form-field {
   background-color: #ede9e7;
 }
 
-mat-form-field + mat-form-field {
+mat-form-field+mat-form-field {
   margin-top: 8px;
 }
 
@@ -92,9 +92,9 @@ input.mat-input-element {
 }
 
 .error-box {
-  background-color: #f8d7da; /* Rosso chiaro */
-  color: #721c24; /* Rosso scuro per il testo */
-  border: 1px solid #f5c6cb; /* Bordo rosso */
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;
@@ -103,7 +103,7 @@ input.mat-input-element {
   font-weight: bold;
 }
 
-mat-label{
+mat-label {
   font-family: 'Poiret One', cursive;
   color: #b44715;
   font-size: 1.2rem;

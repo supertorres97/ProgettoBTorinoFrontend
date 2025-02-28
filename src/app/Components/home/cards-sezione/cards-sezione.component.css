@@ -8,20 +8,6 @@
   height: fit-content;
 }
 
-/* .SectionTitle h2 {
-  font-size: 2.2rem;
-  color: #fff9ed;
-  
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.UnderTitle {
-  width: 80%;
-  border: 1px solid #fff9ed;
-  margin-bottom: 20px;
-} */
-
 .Cards {
   display: flex;
   position: relative;
@@ -31,7 +17,8 @@
   padding-top: 2%;
 }
 
-.LeftButton, .RightButton {
+.LeftButton,
+.RightButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -49,7 +36,8 @@
   right: 10px;
 }
 
-.left-Img, .right-Img {
+.left-Img,
+.right-Img {
   width: 30px;
   height: 35px;
   filter: invert(96%) sepia(2%) saturate(2499%) hue-rotate(9deg) brightness(105%) contrast(100%);
@@ -64,138 +52,113 @@
 }
 
 figure {
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 325px;
-	min-width: 325px;
-	height: 45vh;
-	border-radius:5px;
-    margin-bottom: 50px;
-	box-shadow: 
-		0 1px 3px rgba(0,0,0,0.12), 
-		0 1px 2px rgba(0,0,0,0.24);
-	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
-	overflow: hidden;
-	&:hover {
-		box-shadow: 
-			0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-		h1 {
-			opacity: 0;
-			transform: scale(0.7);
-		}
-		img {
-			transform: scale(1.1);
-		}
-		figcaption {
-			bottom: 0;
-		}
-	}
-	img {
-		height: 70vh;
-		
-		transition: 0.25s;
-	}
-	figcaption {
-		position: absolute;
-		bottom: -200px;
-		left: 0;
-		width: 100%;
-		margin: 0;
-		padding: 30px;
-		background-color: rgba(0, 0, 0, 0.9);
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-		color: #fff9ed;
-		line-height: 1;
-        letter-spacing: 1px;
-		transition: 0.5s;
-		h3 {
-			display:flex;
-			justify-content: center;
-			margin: 0 0 20px;
-			padding: 0;
-		}
-        div{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            font-size: large;
-        }
-		p {
-			line-height: 1.75;
-            margin: 0;
-		}
-		.button-dettagli {
-            cursor: pointer;
-            position: relative;
-            display: inline-block;
-            transition:  0.5s;
-            text-decoration: none;
-            border: 0;
-            background: none;
-            color: #fff9ed;
-            letter-spacing: 1px;
-        }
-
-.button-dettagli:after{
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-
-.button-dettagli:hover {
-    padding-right: 12px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Ombra leggera */
-}
-
-.button-dettagli:hover::after{
-    opacity: 1;
-    right: 0;
-}
-	}
-}
-
-/* .Card-Container figure {
-  flex: 0 0 calc(33.33% - 20px); 
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgb(0, 0, 0);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 325px;
+  min-width: 325px;
+  height: 45vh;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.5s cubic-bezier(.25, .8, .25, 1);
   overflow: hidden;
-  max-width: 300px;
-}
 
-figure img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
+  &:hover {
+    box-shadow:
+      0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
 
-figcaption {
-  padding: 10px;
-  color: #fff9ed;
-  background-color: rgba(0, 0, 0, 0.7); 
-  font-family: 'Poiret One', cursive;
-  text-align: center;  
-}
+    h1 {
+      opacity: 0;
+      transform: scale(0.7);
+    }
 
-.Card-Footer a {
-  color: #fff9ed;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: color 0.3s ease, font-weight 0.3s ease;
-}
+    img {
+      transform: scale(1.1);
+    }
 
-.Card-Footer a:hover {
-  color: #fdfaf3; 
-  font-weight: bold; 
-  text-decoration: underline; 
-} */
+    figcaption {
+      bottom: 0;
+    }
+  }
+
+  img {
+    height: 70vh;
+
+    transition: 0.25s;
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: -200px;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    color: #fff9ed;
+    line-height: 1;
+    letter-spacing: 1px;
+    transition: 0.5s;
+
+    h3 {
+      display: flex;
+      justify-content: center;
+      margin: 0 0 20px;
+      padding: 0;
+    }
+
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      font-size: large;
+    }
+
+    p {
+      line-height: 1.75;
+      margin: 0;
+    }
+
+    .button-dettagli {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      transition: 0.5s;
+      text-decoration: none;
+      border: 0;
+      background: none;
+      color: #fff9ed;
+      letter-spacing: 1px;
+    }
+
+    .button-dettagli:after {
+      content: '\00bb';
+      position: absolute;
+      opacity: 0;
+      top: 0;
+      right: -20px;
+      transition: 0.5s;
+    }
+
+    .button-dettagli:hover {
+      padding-right: 12px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+      /* Ombra leggera */
+    }
+
+    .button-dettagli:hover::after {
+      opacity: 1;
+      right: 0;
+    }
+  }
+}
 
 .Carousel-Indicators {
   display: flex;
@@ -208,7 +171,6 @@ figcaption {
   width: 20px;
   height: 2px;
   background-color: #fff9ed;
-  /* border-radius: 50%; */
   cursor: pointer;
 }
 
@@ -217,19 +179,19 @@ figcaption {
   transform: scale(1.2);
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 1024px) {
   .Card-Container figure {
-    flex: 0 0 calc(325px - 20px); /* 2 card per riga su tablet */
+    flex: 0 0 calc(325px - 20px);
   }
 }
 
 @media (max-width: 768px) {
   .Card-Container figure {
-    flex: 0 0 325px; /* 1 card per riga su mobile */
+    flex: 0 0 325px;
   }
 
-  img{
+  img {
     height: 45vh;
   }
 
@@ -237,7 +199,8 @@ figcaption {
     font-size: 0.9rem;
   }
 
-  .LeftButton, .RightButton {
-    display: block; /* Rendi visibili le frecce su mobile */
+  .LeftButton,
+  .RightButton {
+    display: block;
   }
 }

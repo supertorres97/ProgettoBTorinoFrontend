@@ -19,9 +19,9 @@
   }
 
   .parallax-text {
-    position: absolute; /* Cambia da absolute a fixed per fissarlo nella viewport */
-    top: 50%; /* Posizione centrale verticale */
-    left: 50%; /* Posizione centrale orizzontale */
+    position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
     color: #fff9ed;
@@ -32,8 +32,8 @@
   
   @media (max-width: 768px) {
     .parallax {
-      background-attachment: scroll; /* Disable fixed background */
-      transform: none; /* Disable transform-based parallax */
+      background-attachment: scroll;
+      transform: none;
     }
   }
   @media (max-width: 1100px){

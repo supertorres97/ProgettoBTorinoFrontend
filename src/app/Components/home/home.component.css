@@ -1,50 +1,90 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
-body{
+
+body {
   background-color: #ede9e7;
 }
 
 .error-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
-  .popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-  }
-  
-  button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 40px 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+}
+
+.animated-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+  animation: burn 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
 
-/* --- FIRST SECTION --- */
+  50% {
+    transform: translateY(-20px);
+  }
+}
 
-/* --- CARD SECTION --- */
+@keyframes burn {
+  0% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) contrast(1) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
 
-/* --- PARALLAX SECTION --- */
+  25% {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(0.85) contrast(1.1) drop-shadow(0 0 5px rgba(255, 69, 0, 0.5));
+  }
 
-/* --- FEEDBACK SECTION --- */
+  50% {
+    transform: scale(1.2) rotate(4deg);
+    filter: brightness(0.4) contrast(1.3) drop-shadow(0 0 15px rgba(165, 42, 42, 0.7)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5)) blur(1px);
+  }
+
+  75% {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(0.85) contrast(1.1) drop-shadow(0 0 5px rgba(255, 69, 0, 0.5));
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(1) contrast(1) drop-shadow(0 0 0 rgba(0, 0, 0, 0));
+  }
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
 
 .FeedBackSection {
   height: 550px;
@@ -54,41 +94,41 @@ body{
   justify-content: center;
 }
 
-.FeedBackTitle{
+.FeedBackTitle {
   padding-bottom: 20px;
   top: 0;
-  height:15%;
+  height: 15%;
 }
 
-.FeedBackTitle h2{
+.FeedBackTitle h2 {
   font-size: 2.5rem;
   letter-spacing: 0.05em;
   font-family: 'Poiret One', cursive;
   font-weight: bold;
-  color:#b44715;
+  color: #b44715;
   text-transform: capitalize;
   text-align: center;
   padding: 50px 0;
   margin: 0;
 }
 
-.UnderTitle2{
-  width: 80%; 
-  margin: -15px auto; 
+.UnderTitle2 {
+  width: 80%;
+  margin: -15px auto;
   border: 1px solid #333;
 }
 
-.FeedBacks{
+.FeedBacks {
   height: 85%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  
+
 }
 
-.FeedBack{
+.FeedBack {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -98,38 +138,40 @@ body{
   margin-top: 50px;
 }
 
-.Feedback-Img{
+.Feedback-Img {
   position: fixed;
   top: 0;
   left: 0;
   height: 10%;
 }
 
-.FeedBack-Text, .FeedBack-Footer{
+.FeedBack-Text,
+.FeedBack-Footer {
   letter-spacing: 0.05em;
   font-family: 'Poiret One', cursive;
   font-weight: bold;
-  color:#b44715;
+  color: #b44715;
   text-transform: capitalize;
   margin: 0;
 }
 
-.FeedBack-Text h3{
+.FeedBack-Text h3 {
   font-size: 1.5rem;
   margin: 0;
   height: 20%;
 }
 
-.FeedBack-Text p{
+.FeedBack-Text p {
   font-size: 1rem;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   height: 60%;
   padding-top: 4%;
-} 
+}
 
-.quotes{
-  width: 14%; height: 4vh;
+.quotes {
+  width: 14%;
+  height: 4vh;
   filter: invert(17%) sepia(84%) saturate(1945%) hue-rotate(4deg) brightness(93%) contrast(84%);
-} 
+}

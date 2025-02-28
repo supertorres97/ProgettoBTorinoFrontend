@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-parallax-sezione',
@@ -9,7 +8,4 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
   styleUrl: './parallax-sezione.component.css'
 })
 export class ParallaxSezioneComponent{
-
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
 }

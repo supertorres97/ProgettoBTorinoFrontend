@@ -25,7 +25,7 @@ export class CarrelloComponent implements OnInit {
     private route: ActivatedRoute,
     private prodottiService: ProdottiService,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
@@ -41,7 +41,7 @@ export class CarrelloComponent implements OnInit {
     this.getCarrello();
     this.isEsaurito();
   }
-  //display del carrello
+
   getCarrello(): void {
     const userId = this.auth.getIdUtente();
     if (userId !== null) {
@@ -63,7 +63,7 @@ export class CarrelloComponent implements OnInit {
     }
   }
 
-  isEsaurito(){
+  isEsaurito() {
     const userId = this.auth.getIdUtente();
     if (userId !== null) {
       this.carrelloService.listByUtente(userId).subscribe({
@@ -71,14 +71,13 @@ export class CarrelloComponent implements OnInit {
           this.idCarrello = response.dati?.id;
           if (this.idCarrello) {
             this.carrelloService.listByCarrello(this.idCarrello)
-            .subscribe((resp:any) => {
-              this.data = resp.dati;
-              for(let prod of this.data){
-                if(!prod.prodotto.disponibile)
-                  this.showMessage(prod.prodotto.nome + " Esaurito!");
-  //                window.alert(prod.prodotto.nome + " ESAURITO");
-              }
-            });
+              .subscribe((resp: any) => {
+                this.data = resp.dati;
+                for (let prod of this.data) {
+                  if (!prod.prodotto.disponibile)
+                    this.showMessage(prod.prodotto.nome + " Esaurito!");
+                }
+              });
           }
         },
         error: () => this.showMessage('Errore nel recupero ID carrello'),
@@ -88,7 +87,6 @@ export class CarrelloComponent implements OnInit {
     }
   }
 
-  //aggiunta prodotto al carrello
   changeQuantity(amount: number, prodotto: any): void {
     const newQuantity = prodotto.quantita + amount;
     if (newQuantity >= 0) {
@@ -109,7 +107,7 @@ export class CarrelloComponent implements OnInit {
       });
     }
   }
-  //rimozione prodotto dal carrello
+
   rimuoviProdotto(idProdottoCarrello: number): void {
     this.carrelloService.removeCarrelloProdotto(idProdottoCarrello).subscribe({
       next: () => {
@@ -121,7 +119,7 @@ export class CarrelloComponent implements OnInit {
       error: () => this.showMessage('Errore durante la rimozione del prodotto'),
     });
   }
-  //svuotamento carrello
+
   svuotaCarrello(): void {
     if (this.idCarrello === null) {
       this.showMessage('Errore: ID carrello non trovato.');
@@ -137,14 +135,14 @@ export class CarrelloComponent implements OnInit {
       error: () => this.showMessage('Errore durante lo svuotamento del carrello'),
     });
   }
-  //calcolo totale carrello
+
   calcolaTotale(): number {
     return this.prodottiCarrello.reduce(
       (total, prodotto) => total + prodotto.prodotto.prezzo * prodotto.quantita,
       0
     );
   }
-  //acquisto carrello
+
   acquista(): void {
     if (!this.idCarrello) {
       this.showMessage('Errore: ID carrello non trovato.');
@@ -178,8 +176,8 @@ export class CarrelloComponent implements OnInit {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
     });
   }
 }

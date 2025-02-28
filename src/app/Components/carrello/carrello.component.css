@@ -8,27 +8,25 @@
   font-size: 1.2rem;
 }
 
-/* Titolo e pulsante svuota carrello */
 .titolo {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  position: relative; 
+  position: relative;
 }
 
 .titolo h1 {
   font-size: 2.5rem;
   color: #333;
-  flex-grow: 1; 
-  text-align: center; 
+  flex-grow: 1;
+  text-align: center;
 }
 
 .titolo-button {
   position: absolute;
-  right: 0; 
+  right: 0;
 }
 
-/* Stile per tutti i pulsanti */
 .btn-custom {
   font-family: 'Poiret One', cursive;
   font-size: 1.2rem;
@@ -40,7 +38,6 @@
   background-color: #333;
 }
 
-/* Hover specifici per ogni pulsante */
 .btn-svuota:hover {
   background-color: #b44715;
 }
@@ -53,7 +50,6 @@
   background-color: #124d12;
 }
 
-/* Carrello Vuoto */
 .alert {
   background: #f8f5f3;
   border: none;
@@ -69,14 +65,12 @@
   margin-bottom: 10px;
 }
 
-/* Tabella Carrello */
 .cart-table {
   width: 100%;
   background: #ede9e7;
   padding: 15px;
 }
 
-/* Header tabella */
 .cart-header {
   display: grid;
   grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
@@ -86,7 +80,6 @@
   text-align: center;
 }
 
-/* Righe prodotti */
 .cart-item {
   display: grid;
   grid-template-columns: 3fr 2fr 2fr 2fr 1fr;
@@ -96,7 +89,6 @@
   border-bottom: 1px solid #ddd;
 }
 
-/* Nome Prodotto */
 .cart-item a {
   color: #b44715;
   text-decoration: none;
@@ -106,7 +98,6 @@
   text-decoration: underline;
 }
 
-/* Quantità */
 .quantity-controls {
   display: flex;
   align-items: center;
@@ -126,7 +117,6 @@
   background-color: #888;
 }
 
-/* Totale e Acquista */
 .cart-footer {
   display: flex;
   justify-content: flex-end;
@@ -150,7 +140,6 @@
   display: none;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .cart-header {
     display: none;
@@ -165,36 +154,38 @@
     flex-direction: column;
     display: flex;
     flex-wrap: wrap;
-    text-align: left; /* Allinea il testo a sinistra */
+    text-align: left;
     gap: 10px;
   }
 
   .responsive-product {
     display: flex;
-    justify-content: flex-start; /* Allinea il contenuto a sinistra */
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    width: 100%; /* Assicura che l'elemento prenda tutta la larghezza disponibile */
+    width: 100%;
   }
 
   .cart-footer {
     flex-direction: column;
-    align-items: flex-end; /* Allinea il contenuto a sinistra */
+    align-items: flex-end;
     justify-content: center;
     gap: 10px;
   }
 
   .titolo {
     flex-direction: column;
-    align-items: center; /* Mantiene il contenuto centrato */
+    align-items: center;
   }
 
   .titolo-button {
-    position: static; 
-    margin-top: 10px; 
+    position: static;
+    margin-top: 10px;
   }
 
-  .totale-label, .totale-importo, .btn-acquista {
+  .totale-label,
+  .totale-importo,
+  .btn-acquista {
     margin-right: 0;
   }
 }

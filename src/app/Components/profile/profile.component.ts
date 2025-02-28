@@ -16,14 +16,14 @@ import { AuthService } from '../../auth/auth.service';
 export class UserProfileComponent implements OnInit {
   isLoading: boolean = false;
   errorMessage: string = '';
-  editMode: boolean = false; // Modalità di modifica profilo
-  passwordEditMode: boolean = false; // Modalità di modifica password
+  editMode: boolean = false;
+  passwordEditMode: boolean = false;
 
   id: number = 0;
   utente: any;
   msg: string = "";
   passwordMismatch: boolean = false;
-  currentPasswordMismatch:boolean = false;
+  currentPasswordMismatch: boolean = false;
 
   profileForm: FormGroup = new FormGroup({
     nome: new FormControl(),
@@ -47,15 +47,15 @@ export class UserProfileComponent implements OnInit {
     private credService: CredenzialiService,
     private router: Router,
     private fb: FormBuilder,
-    private dialog:MatDialog,
-    private auth:AuthService
-  ) {}
+    private dialog: MatDialog,
+    private auth: AuthService
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       const idParam = params.get("id");
       if (idParam !== null) {
-        this.id = +idParam; // equivalent di ParseInt
+        this.id = +idParam;
       }
       this.userService.getUtente(this.id)
         .subscribe((resp: any) => {
@@ -72,7 +72,7 @@ export class UserProfileComponent implements OnInit {
         });
     });
   }
-  
+
   onSubmit() {
     console.log(this.profileForm.controls['cognome'].touched);
     console.log(this.profileForm.controls['nome'].touched);
@@ -126,77 +126,75 @@ export class UserProfileComponent implements OnInit {
   onPasswordChange() {
     console.log("sono in onPasswordChange");
     this.credService.getCredenzialiByUtente(this.id)
-    .subscribe({
-      next: (credenziali: any) => {
-        // Se trovi le credenziali, usa il loro ID per aggiornare la password
-        console.log(credenziali);
-        console.log(credenziali.dati);
-        if (this.passwordForm.value.currentPassword !== credenziali.dati.password) {
-          console.log("controllo password vecchia con db");
-          console.log("old password " + this.passwordForm.value.currentPassword);
-          console.log("old password in DB " + credenziali.dati.password);
-          this.currentPasswordMismatch = true;
-          return;
-        }
-        if (this.passwordForm.value.newPassword !== this.passwordForm.value.confirmNewPassword) {
-          console.log("controllo password vecchia con db");
-          this.passwordMismatch = true;
-          return;
-        }
-        
-        if (!credenziali.dati || !credenziali.dati.id) {
-          console.error("Errore: credenziali.id è nullo!", credenziali);
-          return;
-        }
-        console.log("prima di crede")
-        const crede = {
-          id: credenziali.dati.id, // Usa l'ID delle credenziali recuperato
-          idUtente: this.id,
-          password: this.passwordForm.value.newPassword
-        };
-
-        console.log("sto per passare le credenziali al metodo")
-        // Invia la richiesta per aggiornare la password
-        this.credService.changePassword(crede)
-          .subscribe((resp: any) => {
-            if (resp.rc) {
-              this.msg = "Password aggiornata con successo!";
-              this.passwordEditMode = false;
-            } else {
-              this.msg = resp.msg;
-            }
-          });
-      },
-      error: (error: any) => {
-        console.error('Errore nel recupero delle credenziali', error);
-      }
-    });
-  }
-
-  onDeactivateCred(){
-     const enterAnimationDuration:string = '200ms';
-        const exitAnimationDuration:string = '150ms';
-    
-        const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
-          width: '250px',
-          enterAnimationDuration,
-          exitAnimationDuration
-        });
-    
-        dialogRef.afterClosed()
-        .subscribe((res:any) => {
-          if(res){
-            this.deactivateCred();
-            window.location.reload();
+      .subscribe({
+        next: (credenziali: any) => {
+          // Se trovi le credenziali, usa il loro ID per aggiornare la password
+          console.log(credenziali);
+          console.log(credenziali.dati);
+          if (this.passwordForm.value.currentPassword !== credenziali.dati.password) {
+            console.log("controllo password vecchia con db");
+            console.log("old password " + this.passwordForm.value.currentPassword);
+            console.log("old password in DB " + credenziali.dati.password);
+            this.currentPasswordMismatch = true;
+            return;
           }
-        });
+          if (this.passwordForm.value.newPassword !== this.passwordForm.value.confirmNewPassword) {
+            console.log("controllo password vecchia con db");
+            this.passwordMismatch = true;
+            return;
+          }
+
+          if (!credenziali.dati || !credenziali.dati.id) {
+            console.error("Errore: credenziali.id è nullo!", credenziali);
+            return;
+          }
+          console.log("prima di crede")
+          const crede = {
+            id: credenziali.dati.id,
+            idUtente: this.id,
+            password: this.passwordForm.value.newPassword
+          };
+
+          console.log("sto per passare le credenziali al metodo")
+          // Invia la richiesta per aggiornare la password
+          this.credService.changePassword(crede)
+            .subscribe((resp: any) => {
+              if (resp.rc) {
+                this.msg = "Password aggiornata con successo!";
+                this.passwordEditMode = false;
+              } else {
+                this.msg = resp.msg;
+              }
+            });
+        },
+        error: (error: any) => {
+          console.error('Errore nel recupero delle credenziali', error);
+        }
+      });
   }
-  
-  /*  
-  deleteCred(){
+
+  onDeactivateCred() {
+    const enterAnimationDuration: string = '200ms';
+    const exitAnimationDuration: string = '150ms';
+
+    const dialogRef = this.dialog.open(ConfirmDeleteComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration
+    });
+
+    dialogRef.afterClosed()
+      .subscribe((res: any) => {
+        if (res) {
+          this.deactivateCred();
+          window.location.reload();
+        }
+      });
+  }
+
+  deactivateCred() {
     this.credService.getCredenzialiByUtente(this.id)
-    .subscribe({
-      next: (credenziali:any) => {
+      .subscribe((credenziali: any) => {
         console.log("credenziali: " + credenziali);
         console.log("credenziali: " + credenziali.dati);
         console.log("credenziali: " + credenziali.dati.id);
@@ -205,36 +203,16 @@ export class UserProfileComponent implements OnInit {
           return;
         }
         const credReq = {
-
+          id: credenziali.dati.id
         }
-      }
-      
-        
-    });
-  }
+        this.credService.deleteCredenziali(credReq)
+          .subscribe((resp: any) => {
+            if (resp.rc) {
+              console.log("Credenziali eliminate logicamente!");
+              this.auth.logout();
+            }
+          })
+      });
 
-*/
-  deactivateCred(){
-    this.credService.getCredenzialiByUtente(this.id)
-    .subscribe((credenziali:any) => {
-      console.log("credenziali: " + credenziali);
-      console.log("credenziali: " + credenziali.dati);
-      console.log("credenziali: " + credenziali.dati.id);
-      if (!credenziali.dati || !credenziali.dati.id) {
-        console.error("Errore: credenziali.id è nullo!", credenziali);
-        return;
-      }
-      const credReq = {
-        id: credenziali.dati.id
-      }
-      this.credService.deleteCredenziali(credReq)
-      .subscribe((resp:any) => {
-        if(resp.rc){
-          console.log("Credenziali eliminate logicamente!");
-          this.auth.logout();
-        }
-      })
-    });
-      
   }
 }

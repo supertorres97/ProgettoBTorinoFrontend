@@ -1,12 +1,12 @@
-aside{
+aside {
     padding: 0;
 }
 
-.col-10{
+.col-10 {
     box-sizing: border-box;
 }
 
-.back{
+.back {
     text-decoration: none;
     font-family: 'Poiret one', cursive;
     color: #333;
@@ -15,89 +15,89 @@ aside{
     font-size: larger;
 }
 
-.back:hover{
+.back:hover {
     cursor: pointer;
     box-shadow: #333;
 }
 
-.container-fluid{
+.container-fluid {
     display: flex;
     flex-direction: row;
-    
-    padding:0;
+
+    padding: 0;
     height: 100%;
 }
 
 .image-container {
-    width: 100%; /* Occupa tutto lo spazio disponibile */
-    max-width: 45%; /* Adatta la larghezza massima a piacere */
+    width: 100%;
+    max-width: 45%;
     height: fit-content;
-    max-height: 100%; /* Altezza fissa o variabile in base alle esigenze */
-    overflow: hidden; /* Nasconde la parte dell'immagine che esce */
+    max-height: 100%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .product-img {
-    width: 100%; /* L'immagine si adatta alla larghezza del contenitore */
-    height: auto; /* Mantiene il rapporto d'aspetto */
-    object-fit: cover; /* Ritaglia l'immagine per riempire il contenitore */
-  }
+}
 
-.description{
+.product-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.description {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 55%; 
+    width: 55%;
     padding-left: 3%;
 }
 
-.paragraph{
+.paragraph {
     font-family: 'Poiret one', cursive;
 
-    h1{
+    h1 {
         font-size: 500%;
         letter-spacing: 0.05em;
         color: #b44715;
     }
 
-    p{
-    display: flex;
-    font-size: 1.6rem;
-    font-weight: 400;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra leggera */
-    direction: rtl; /* Sposta la scrollbar a sinistra */
-    text-align: left;
-    overflow-y: scroll;
-    max-height: 12em;
-    margin-top: 7%;
-    padding-left: 10px;
-    justify-content: flex-end;
+    p {
+        display: flex;
+        font-size: 1.6rem;
+        font-weight: 400;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        direction: rtl;
+        text-align: left;
+        overflow-y: scroll;
+        max-height: 12em;
+        margin-top: 7%;
+        padding-left: 10px;
+        justify-content: flex-end;
     }
 
-    p::-webkit-scrollbar{
+    p::-webkit-scrollbar {
         background: #ede9e7;
         width: 2.5px;
     }
 
-    p::-webkit-scrollbar-thumb{
+    p::-webkit-scrollbar-thumb {
         background: #333;
-        
+
     }
 }
 
-.purchase{
+.purchase {
     display: flex;
     flex-direction: row;
     font-family: 'Poiret one', cursive;
     bottom: 0;
     justify-content: space-between;
     align-items: center;
-    width:100%;
+    width: 100%;
 }
 
-.quantity{
+.quantity {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -105,10 +105,10 @@ aside{
     gap: 10%;
     width: fit-content;
     right: 0;
-    
+
 }
 
-.quantity button{
+.quantity button {
     display: inline-block;
     outline: 0;
     cursor: pointer;
@@ -121,7 +121,7 @@ aside{
     transition: transform 0.01s ease, box-shadow 0.1s ease-out;
 }
 
-.quantity button:hover{
+.quantity button:hover {
     color: #b44715;
 }
 
@@ -131,7 +131,7 @@ aside{
     color: #b44715;
 }
 
-.qty{
+.qty {
     text-align: center;
     justify-content: center;
     font-size: x-large;
@@ -139,12 +139,12 @@ aside{
     width: 1vw;
 }
 
-.price{
+.price {
     font-size: x-large;
     width: fit-content;
 }
 
-.button button{
+.button button {
     border: 0;
     background: #b44715;
     color: #fff9ed;
@@ -152,85 +152,86 @@ aside{
     letter-spacing: 1px;
 }
 
-.button button:hover{
+.button button:hover {
     box-shadow: 0 4px 6px rgb(93 93 93 / 23%);
     transform: translateY(-2px);
 }
 
-.button button:active{
+.button button:active {
     background: #333;
     transform: translateY(2px);
 }
 
+.add {
+    margin-left: 0.7rem;
+}
+
 @media (max-width: 1200px) {
     .container-fluid {
-        flex-direction: column; /* Disposizione in colonna */
+        flex-direction: column;
         align-items: center;
     }
 
     .image-container {
-        width: 100%; /* L'immagine prende tutta la larghezza */
+        width: 100%;
         min-width: 250px;
         min-height: 300px;
     }
 
     .product-img {
-        max-width: 100%; /* Occupa tutto il container */
-        
+        max-width: 100%;
+
     }
 
     .description {
-        width: 100%; /* Anche la descrizione prende tutta la larghezza */
+        width: 100%;
         max-width: 800px;
-        text-align: center; /* Centra il testo se vuoi */
+        text-align: center;
         margin-top: 2rem;
     }
 
-    .purchase{
+    .purchase {
         margin-top: 2rem;
     }
 
-    /*
-        .quantity button 40px
-        .qty x-large
-        .price x-large
-    */
-
-    .quantity button{
+    .quantity button {
         font-size: 30px;
     }
-    .qty{
+
+    .qty {
         font-size: large;
     }
-    .price{
+
+    .price {
         font-size: large;
     }
-    
-}
-
-@media(max-width: 850px){
 
 }
 
-@media(max-width: 768px){
-    .paragraph{
+@media(max-width: 850px) {}
+
+@media(max-width: 768px) {
+    .paragraph {
         margin: 2rem 0;
-        h1{
+
+        h1 {
             font-size: 400%;
         }
-        p{
+
+        p {
             font-size: 1.2rem;
             max-height: 8em;
         }
     }
 }
 
-@media(max-width: 600px){
-    .paragraph{
-        h1{
+@media(max-width: 600px) {
+    .paragraph {
+        h1 {
             font-size: 300%;
         }
-        p{
+
+        p {
             font-size: 1rem;
             max-height: 6em;
         }

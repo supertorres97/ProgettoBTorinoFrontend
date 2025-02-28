@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth/auth.service'; 
+import { AuthService } from '../../auth/auth.service';
 import { CredenzialiService } from '../../services/credenziali.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Inject, PLATFORM_ID } from '@angular/core';
@@ -9,9 +9,10 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-login',
+  standalone: false,
+
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  standalone: false
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   });
 
   logged: boolean = false;
-  errorMessage: string = ''; 
+  errorMessage: string = '';
 
   constructor(
     private cred: CredenzialiService,
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private _snackBar: MatSnackBar,
-    @Inject(PLATFORM_ID) private platformId: Object // Aggiungi questa iniezione
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.cred.signin({
         username: this.loginForm.value.username,
-        pwd: this.loginForm.value.password  
+        pwd: this.loginForm.value.password
       }).subscribe(
         (resp: any) => {
           console.log('Risposta dal backend:', resp);
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
             this.auth.setAuthentificated(true);
             if (resp.idUtente !== null && resp.idUtente !== undefined) {
               this.auth.setIdUtente(resp.idUtente);
-              
+
               if (isPlatformBrowser(this.platformId)) {
                 localStorage.setItem("idUtente", resp.idUtente.toString());
               }
@@ -88,8 +89,8 @@ export class LoginComponent implements OnInit {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
     });
   }
 }

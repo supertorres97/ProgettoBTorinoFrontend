@@ -1,5 +1,5 @@
 .footer {
-  background-color: #333; /* Colore nero per il footer */
+  background-color: #333;
   padding: 20px 0;
   display: flex;
   justify-content: center;
@@ -19,7 +19,7 @@
 
 .social-icons a {
   font-size: 2rem;
-  color: #fff; /* Colore bianco di base */
+  color: #fff;
   transition: color 0.3s ease;
 }
 
@@ -28,13 +28,13 @@
 }
 
 .social-icons a[title="Instagram"]:hover {
-  color: #E1306C; /* Colore ufficiale di Instagram */
+  color: #E1306C;
 }
 
 .social-icons a[title="Facebook"]:hover {
-  color: #1877F2; /* Colore ufficiale di Facebook */
+  color: #1877F2;
 }
 
 .social-icons a[title="LinkedIn"]:hover {
-  color: #0077B5; /* Colore ufficiale di LinkedIn */
+  color: #0077B5;
 }

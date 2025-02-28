@@ -1,175 +1,173 @@
 <div class="container mt-5">
-    <!-- Messaggio di errore -->
-    <div *ngIf="errorMessage" class="alert alert-danger">
-      {{ errorMessage }}
+  <!-- Messaggio di errore -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="msg" class="alert"
+    [ngClass]="{'alert-success': msg.includes('successo'), 'alert-danger': !msg.includes('successo')}">
+    {{ msg }}
+  </div>
+
+  <div class="card custom-font" *ngIf="!editMode && !passwordEditMode">
+    <div class="card-header">
+      <h3>Profilo Utente</h3>
     </div>
-  
-    <!-- Messaggio di successo o errore dopo l'aggiornamento -->
-    <div *ngIf="msg" class="alert" [ngClass]="{'alert-success': msg.includes('successo'), 'alert-danger': !msg.includes('successo')}">
-      {{ msg }}
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h4>Informazioni Personali</h4>
+          <p><strong>Nome:</strong> {{ utente?.nome }}</p>
+          <p><strong>Cognome:</strong> {{ utente?.cognome }}</p>
+          <p><strong>Email:</strong> {{ utente?.email }}</p>
+          <p><strong>Codice Fiscale:</strong> {{ utente?.cFiscale }}</p>
+        </div>
+
+        <div class="col-md-6">
+          <h4>Indirizzo</h4>
+          <p><strong>Via:</strong> {{ utente?.via }}</p>
+          <p><strong>CAP:</strong> {{ utente?.cap }}</p>
+          <p><strong>Città:</strong> {{ utente?.citta }}</p>
+        </div>
+      </div>
+
+      <div class="d-flex">
+        <button class="modifica-profilo btn btn-primary mt-3" (click)="editMode = true">
+          <i class="fas fa-edit"></i> Modifica Profilo
+        </button>
+
+        <button class="modifica-password btn btn-warning mt-3 ml-2" (click)="passwordEditMode = true">
+          <i class="fas fa-key"></i> Modifica Password
+        </button>
+
+        <button class="btn btn-delete mt-3 ml-2 ml-auto" (click)="onDeactivateCred()">
+          <i class="fas fa-trash"></i> Elimina account
+        </button>
+      </div>
+
     </div>
-  
-    <!-- Modalità visualizzazione -->
-    <div class="card custom-font" *ngIf="!editMode && !passwordEditMode">
+  </div>
+
+  <!-- Modalità modifica delle informazioni -->
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="editMode">
+    <div class="card custom-font">
       <div class="card-header">
-        <h3>Profilo Utente</h3>
+        <h3>Modifica Profilo</h3>
       </div>
       <div class="card-body">
         <div class="row">
           <div class="col-md-6">
-            <h4>Informazioni Personali</h4>
-            <p><strong>Nome:</strong> {{ utente?.nome }}</p>
-            <p><strong>Cognome:</strong> {{ utente?.cognome }}</p>
-            <p><strong>Email:</strong> {{ utente?.email }}</p>
-            <p><strong>Codice Fiscale:</strong> {{ utente?.cFiscale }}</p>
+            <div class="form-group">
+              <label>Nome *</label>
+              <input type="text" class="form-control" formControlName="nome" required>
+              <div *ngIf="profileForm.get('nome')?.errors?.['required']" class="text-danger"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Cognome *</label>
+              <input type="text" class="form-control" formControlName="cognome" required>
+              <div *ngIf="profileForm.get('cognome')?.errors?.['required']" class="text-danger"></div>
+            </div>
+
+            <div class="form-group">
+              <label>Email *</label>
+              <input type="email" class="form-control" formControlName="email" required>
+              <div *ngIf="profileForm.get('email')?.errors?.['required']" class="text-danger"
+                aria-placeholder="Campo obbligatorio">
+
+              </div>
+              <div *ngIf="profileForm.get('email')?.errors?.['email']" class="text-danger">
+                Inserisci un'email valida.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Codice Fiscale</label>
+              <input type="text" class="form-control" formControlName="cFiscale">
+            </div>
           </div>
-          
+
           <div class="col-md-6">
-            <h4>Indirizzo</h4>
-            <p><strong>Via:</strong> {{ utente?.via }}</p>
-            <p><strong>CAP:</strong> {{ utente?.cap }}</p>
-            <p><strong>Città:</strong> {{ utente?.citta }}</p>
+            <div class="form-group">
+              <label>Via</label>
+              <input type="text" class="form-control" formControlName="via">
+            </div>
+
+            <div class="form-group">
+              <label>CAP</label>
+              <input type="text" class="form-control" maxlength="5" formControlName="cap">
+              <small class="form-text text-muted">Esempio: 00100</small>
+            </div>
+
+            <div class="form-group">
+              <label>Città</label>
+              <input type="text" class="form-control" formControlName="citta">
+            </div>
           </div>
         </div>
-
-        <div class="d-flex">
-          <button class="modifica-profilo btn btn-primary mt-3" (click)="editMode = true">
-            <i class="fas fa-edit"></i> Modifica Profilo
-          </button>
-
-          <button class="modifica-password btn btn-warning mt-3 ml-2" (click)="passwordEditMode = true">
-            <i class="fas fa-key"></i> Modifica Password
-          </button>
-
-          <button class="btn btn-delete mt-3 ml-2 ml-auto" (click)="onDeactivateCred()"> 
-            <i class="fas fa-trash"></i> Elimina account
-          </button>
       </div>
-      
+
+      <div class="card-footer">
+        <button type="submit" class="btn" [disabled]="!profileForm.valid">
+          <i class="fas fa-save"></i> Salva modifiche
+        </button>
+        <button type="button" class="btn ml-2 annulla" (click)="onCancel()">
+          Annulla modifiche
+        </button>
       </div>
     </div>
-  
-    <!-- Modalità modifica delle informazioni -->
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="editMode">
-      <div class="card custom-font">
-        <div class="card-header">
-          <h3>Modifica Profilo</h3>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Nome *</label>
-                <input type="text" class="form-control" formControlName="nome" required>
-                <div *ngIf="profileForm.get('nome')?.errors?.['required']" class="text-danger"></div>
-              </div>
-  
-              <div class="form-group">
-                <label>Cognome *</label>
-                <input type="text" class="form-control" formControlName="cognome" required>
-                <div *ngIf="profileForm.get('cognome')?.errors?.['required']" class="text-danger"></div>
-              </div>
-  
-              <div class="form-group">
-                <label>Email *</label>
-                <input type="email" class="form-control" formControlName="email" required>
-                <div *ngIf="profileForm.get('email')?.errors?.['required']" class="text-danger" aria-placeholder="Campo obbligatorio">
-                  
-                </div>
-                <div *ngIf="profileForm.get('email')?.errors?.['email']" class="text-danger">
-                  Inserisci un'email valida.
-                </div>
-              </div>
-  
-              <div class="form-group">
-                <label>Codice Fiscale</label>
-                <input type="text" class="form-control" formControlName="cFiscale">
-              </div>
-            </div>
-  
-            <div class="col-md-6">
-              <div class="form-group">
-                <label>Via</label>
-                <input type="text" class="form-control" formControlName="via">
-              </div>
-  
-              <div class="form-group">
-                <label>CAP</label>
-                <input type="text" class="form-control" maxlength="5" formControlName="cap">
-                <small class="form-text text-muted">Esempio: 00100</small>
-              </div>
-  
-              <div class="form-group">
-                <label>Città</label>
-                <input type="text" class="form-control" formControlName="citta">
-              </div>
-            </div>
+  </form>
+
+  <!-- Modalità modifica della password -->
+  <form [formGroup]="passwordForm" (ngSubmit)="onPasswordChange()" *ngIf="passwordEditMode">
+    <div class="card custom-font">
+      <div class="card-header">
+        <h3>Modifica Password</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <label>Password attuale *</label>
+          <input type="password" class="form-control" formControlName="currentPassword" required>
+          <div *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched"
+            class="text-danger">
+            Campo obbligatorio.
+          </div>
+          <div *ngIf="currentPasswordMismatch" class="text-danger">
+            La vecchia password non coincide con quella inserita.
           </div>
         </div>
-        
-        <div class="card-footer">
-          <button type="submit" class="btn" [disabled]="!profileForm.valid">
-            <i class="fas fa-save"></i> Salva modifiche
-          </button>
-          <button type="button" class="btn ml-2 annulla"  (click)="onCancel()">
-            Annulla modifiche
-          </button>
+
+        <div class="form-group">
+          <label>Nuova Password *</label>
+          <input type="password" class="form-control" formControlName="newPassword" required>
+          <div *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched"
+            class="text-danger">
+            Campo obbligatorio.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Conferma Nuova Password *</label>
+          <input type="password" class="form-control" formControlName="confirmNewPassword" required>
+          <div
+            *ngIf="passwordForm.get('confirmNewPassword')?.invalid && passwordForm.get('confirmNewPassword')?.touched"
+            class="text-danger">
+            Campo obbligatorio.
+          </div>
+          <div *ngIf="passwordMismatch" class="text-danger">
+            Le password non coincidono.
+          </div>
         </div>
       </div>
-    </form>
 
-    <!-- Modalità modifica della password -->
-    <form [formGroup]="passwordForm" (ngSubmit)="onPasswordChange()" *ngIf="passwordEditMode">
-      <div class="card custom-font">
-        <div class="card-header">
-          <h3>Modifica Password</h3>
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label>Password attuale *</label>
-            <input type="password" class="form-control" formControlName="currentPassword" required>
-            <div *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched" class="text-danger">
-              Campo obbligatorio.
-            </div>
-            <div *ngIf="currentPasswordMismatch" class="text-danger">
-              La vecchia password non coincide con quella inserita.
-            </div>
-          </div>
-    
-          <div class="form-group">
-            <label>Nuova Password *</label>
-            <input type="password" class="form-control" formControlName="newPassword" required>
-            <div *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched" class="text-danger">
-              Campo obbligatorio.
-            </div>
-          </div>
-    
-          <div class="form-group">
-            <label>Conferma Nuova Password *</label>
-            <input type="password" class="form-control" formControlName="confirmNewPassword" required>
-            <div *ngIf="passwordForm.get('confirmNewPassword')?.invalid && passwordForm.get('confirmNewPassword')?.touched" class="text-danger">
-              Campo obbligatorio.
-            </div>
-            <div *ngIf="passwordMismatch" class="text-danger">
-              Le password non coincidono.
-            </div>
-          </div>
-        </div>
-        
-        <div class="card-footer">
-          <button type="submit" class="btn btn-success" [disabled]="!passwordForm.valid">
-            <i class="fas fa-save"></i> Salva Password
-          </button>
-          <button type="button" class="btn ml-2 annulla" (click)="passwordEditMode = false">
-            Annulla
-          </button>
-        </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!passwordForm.valid">
+          <i class="fas fa-save"></i> Salva Password
+        </button>
+        <button type="button" class="btn ml-2 annulla" (click)="passwordEditMode = false">
+          Annulla
+        </button>
       </div>
-    </form>
-  </div>
-
-
-<!--
-  <button class="btn btn-delete mt-3 ml-auto" (click)="onDeleteCred()">
-    <i></i> Elimina account
-  </button>-->
+    </div>
+  </form>
+</div>

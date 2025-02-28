@@ -6,63 +6,62 @@ import { TipoProdottoService } from '../../services/tipo-prodotto.service';
 @Component({
   selector: 'app-prodotti-per-tipo',
   standalone: false,
-  
+
   templateUrl: './prodotti-per-tipo.component.html',
   styleUrl: './prodotti-per-tipo.component.css'
 })
 export class ProdottiPerTipoComponent {
-    response:any;
-    data:any;
-    tpNome:any;
-    showSearch: boolean = false;
-    searchQuery: string = '';
-    id:any;
-    page: number = 1;
-    itemsPerPage: number = 9;
+  response: any;
+  data: any;
+  tpNome: any;
+  showSearch: boolean = false;
+  searchQuery: string = '';
+  id: any;
+  page: number = 1;
+  itemsPerPage: number = 9;
 
-    constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute, private tProdS:TipoProdottoService) { }
-  
-    ngOnInit(): void {
-      // Ascolta i cambiamenti della rotta e aggiorna i dati
-      this.route.paramMap.subscribe(params => {
-        this.id = params.get('id');
-    
-        console.log("onInit prodotti");
-        console.log("id tipo prodotto: " + this.id);
-    
-        this.tProdS.getTipoProdotto(this.id).subscribe((resp: any) => {
-          this.tpNome = resp.dati;
-        });
-    
-        this.serv.getProdottiByTipoProdotto(this.id).subscribe((resp: any) => {
-          if (!resp.rc) {
-            alert("Errore nella pagina");
-          }
-          console.log("subscribe prodotti ");
-          this.response = resp;
-          this.data = this.response.dati;
-        });
+  constructor(private serv: ProdottiService, private router: Router, private route: ActivatedRoute, private tProdS: TipoProdottoService) { }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.id = params.get('id');
+
+      console.log("onInit prodotti");
+      console.log("id tipo prodotto: " + this.id);
+
+      this.tProdS.getTipoProdotto(this.id).subscribe((resp: any) => {
+        this.tpNome = resp.dati;
       });
-    }
 
-    dettagliProdotto(id:number){
-      console.log(id);
-      this.router.navigate(['/prodotto/', id]);
-    }
+      this.serv.getProdottiByTipoProdotto(this.id).subscribe((resp: any) => {
+        if (!resp.rc) {
+          alert("Errore nella pagina");
+        }
+        console.log("subscribe prodotti ");
+        this.response = resp;
+        this.data = this.response.dati;
+      });
+    });
+  }
 
-    hideSearch() {
-      if (this.searchQuery === '') {
-        this.showSearch = false;
-      }
+  dettagliProdotto(id: number) {
+    console.log(id);
+    this.router.navigate(['/prodotto/', id]);
+  }
+
+  hideSearch() {
+    if (this.searchQuery === '') {
+      this.showSearch = false;
     }
-  
-    searchProduct() {
-      const query = this.searchQuery.trim();
-  
-      if (query !== '') {
-        this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
-      } else {
-        this.router.navigate(['/prodotti'], { queryParams: {} }); // Rimuove il parametro 'nome'
-      }
+  }
+
+  searchProduct() {
+    const query = this.searchQuery.trim();
+
+    if (query !== '') {
+      this.router.navigate(['/prodotti'], { queryParams: { nome: query } });
+    } else {
+      this.router.navigate(['/prodotti'], { queryParams: {} });
     }
+  }
 }

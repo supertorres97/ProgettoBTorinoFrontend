@@ -14,7 +14,7 @@ export class OrderGuard implements CanActivate {
     private orderService: OrdineService,
     private router: Router,
     private _snackBar: MatSnackBar
-  ) {}
+  ) { }
 
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const idUtente = this.authService.getIdUtente();
@@ -48,8 +48,8 @@ export class OrderGuard implements CanActivate {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
     });
   }
 }

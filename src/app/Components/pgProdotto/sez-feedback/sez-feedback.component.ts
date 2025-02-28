@@ -1,11 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FeedbackService } from '../../../services/feedback.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl, FormGroup, FormsModule, Validators} from '@angular/forms';
-import { OrdineService } from '../../../services/ordine.service';
 import { AuthService } from '../../../auth/auth.service';
 
 interface Rate {
@@ -115,7 +111,7 @@ export class SezFeedbackComponent implements OnInit {
         'QUATTRO': 4,
         'CINQUE': 5
     };
-    return new Array(ratings[voto ?? 'UNO'] || 0); // Restituisce un array con il numero corretto di fette
+    return new Array(ratings[voto ?? 'UNO'] || 0);
   }
 
   rating: Rate[] = [

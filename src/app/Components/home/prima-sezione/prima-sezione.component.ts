@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-prima-sezione',
@@ -9,7 +8,4 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
   styleUrl: './prima-sezione.component.css'
 })
 export class PrimaSezioneComponent {
-
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
 }

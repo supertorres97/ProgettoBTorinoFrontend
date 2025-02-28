@@ -17,7 +17,8 @@
                         <p>{{feed?.descrizione}}</p>
                     </div>
                     <div class="card-footer">
-                        <div style="display:flex; gap:10px;"><img *ngFor="let star of getCakeArray(feed?.voto)" src="cake-slice2.png" alt="Torta" style="width:22.5px; height: 22.5px;"></div>
+                        <div style="display:flex; gap:10px;"><img *ngFor="let star of getCakeArray(feed?.voto)"
+                                src="cake-slice2.png" alt="Torta" style="width:22.5px; height: 22.5px;"></div>
                         - {{feed?.utente?.nome}} {{feed?.utente?.cognome}}
                     </div>
                 </div>
@@ -31,17 +32,20 @@
                     <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
                         <mat-form-field hideRequiredMarker="true">
                             <mat-label>Feedback</mat-label>
-                            <textarea matInput #message maxlength="255" placeholder="Il nostro dolce ti ha conquistato? Lascia un commento!" formControlName="descrizione"></textarea>
+                            <textarea matInput #message maxlength="255"
+                                placeholder="Il nostro dolce ti ha conquistato? Lascia un commento!"
+                                formControlName="descrizione"></textarea>
                             <mat-hint align="end">{{message.value.length}} / 255</mat-hint>
                         </mat-form-field>
                         <div class="rate-send">
                             <mat-form-field class="voto" hideRequiredMarker="true">
                                 <mat-label>Voto</mat-label>
-                                <mat-select [(ngModel)]="selectedValue" name="rating" required formControlName="valutazione">
+                                <mat-select [(ngModel)]="selectedValue" name="rating" required
+                                    formControlName="valutazione">
                                     <mat-option>--</mat-option>
-                                @for (r of rating; track r) {
+                                    @for (r of rating; track r) {
                                     <mat-option [value]="r.value">{{r.viewValue}}</mat-option>
-                                }
+                                    }
                                 </mat-select>
                                 <mat-error *ngIf="selectedValue === ''">Inserire una valutazione</mat-error>
                             </mat-form-field>

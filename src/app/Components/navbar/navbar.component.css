@@ -1,215 +1,207 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1000; /* Assicura che rimanga sopra gli altri elementi */
-    background-color: #ede9e7;
-    padding: 13px 35px;
-    text-transform: capitalize;
-    width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #ede9e7;
+  padding: 13px 35px;
+  text-transform: capitalize;
+  width: 100%;
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .nav-links-container {
-    display: flex;
-    align-items: center;  /* Centra verticalmente gli elementi */
-    justify-content: center; /* Opzionale: centra anche orizzontalmente */
-    height: 100px; /* Imposta un'altezza per il contenitore */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
 }
 
 .nav-links {
-    display: flex;
-    align-items: center;  /* Centra verticalmente gli elementi della lista */
-    gap: 3vw; /* Aggiunge spazio tra gli elementi */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    padding-left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  list-style: none;
+  margin: 0;
+  padding-left: 10px;
 }
 
 .down-arrow {
-    height: 12.5px;
-    filter: invert(17%) sepia(84%) saturate(1945%) hue-rotate(4deg) brightness(93%) contrast(84%);
+  height: 12.5px;
+  filter: invert(17%) sepia(84%) saturate(1945%) hue-rotate(4deg) brightness(93%) contrast(84%);
 }
 
 .nav-links li {
-    display: flex;
-    align-items: center; /* Centra anche il contenuto dei `<li>` */
-    gap: 5px; /* Aggiunge spazio tra gli elementi */
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .nav-links a {
-    text-decoration: none;
-    display: flex;
-    align-items: center; /* Centra anche il contenuto dei `<li>` */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .nav-container {
-    width: 100%;
-    height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.dropdown{
-    position: relative;
+.dropdown {
+  position: relative;
 }
 
 .dropdown:hover .dropdown-menu {
-    display: block;
-    cursor: pointer;
+  display: block;
+  cursor: pointer;
 }
 
 .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #ede9e7;
-    list-style: none;
-    border: 1px solid #ccc;
-    min-width: 120px; /* Imposta una larghezza minima */
-    white-space: nowrap; /* Impedisce che il testo vada a capo */
-    z-index: 9999;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block;
-    cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
+  transform: translateX(-10px);
+  background-color: #ede9e7;
+  list-style: none;
+  font-family: 'Poiret One', cursive;
+  color: #b44715;
+  font-size: 1.2rem;
+  min-width: 150px;
+  white-space: nowrap;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 9999;
 }
 
 #collapsibleNavbar {
-    position: static; 
-    z-index: 999; 
-    background: #ede9e7; 
-    
+  position: static;
+  z-index: 999;
+  background: #ede9e7;
 }
 
 .icons {
-    display: flex;
-    align-items: center;  /* Centra verticalmente gli elementi della lista */
-    gap: 15px; /* Aggiunge spazio tra gli elementi */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-weight: 100;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 100;
+  justify-content: flex-end;
 }
 
 .icons a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .icons img {
-    width: 35px; /* Dimensione fissa */
-    height: auto; /* Mantiene il rapporto d'aspetto */
-    max-width: 100%; /* Rende l'immagine responsive */
+  width: 35px;
+  height: auto;
+  max-width: 100%;
 }
 
 .icons span {
-    font-size: 3rem;
-    font-family: 'Poiret One', cursive;
+  font-size: 3rem;
+  font-family: 'Poiret One', cursive;
 }
 
 .link {
-    letter-spacing: 0.1em;
-    font-size: 1.1rem;
-    font-family: 'Poiret One', cursive;
-    font-weight: bold;
-    color: #b44715;
-    text-transform: capitalize;
-    transition: color 0.3s ease;
+  letter-spacing: 0.1em;
+  font-size: 1.1rem;
+  font-family: 'Poiret One', cursive;
+  font-weight: bold;
+  color: #b44715;
+  text-transform: capitalize;
+  transition: color 0.3s ease;
 }
 
-#blackHover:hover h3, #blackHover:hover img {
-    filter: invert(17%) sepia(23%) saturate(0%) hue-rotate(208deg) brightness(99%) contrast(94%);
-    transition: color 0.8s ease;
+#blackHover:hover h3,
+#blackHover:hover img {
+  filter: invert(17%) sepia(23%) saturate(0%) hue-rotate(208deg) brightness(99%) contrast(94%);
+  transition: color 0.8s ease;
 }
 
-/* Stile per l'icona del profilo */
 .profile-icon img {
-    width: 35px;
-    height: auto;
-    cursor: pointer;
+  width: 35px;
+  height: auto;
+  cursor: pointer;
 }
 
-
-
-/* Stile degli elementi della dropdown */
 .dropdown-menu .dropdown-item {
-    padding: 0 15px;
-    font-size: 1.2rem;
-    color: #b44715;
-    transition: background 0.3s ease; 
+  padding: 0 15px;
+  font-size: 1.2rem;
+  color: #b44715;
+  transition: background 0.3s ease;
 }
 
-.dropdown-menu .dropdown-item:hover {
-    background-color: #ede9e7;
-}
-
-/* Colore rosso per il logout */
+.dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item.text-danger:hover {
-    background-color: #ede9e7;
+  background-color: #ede9e7;
 }
 
-/* barra di ricerca */
 .search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .search-icon {
-    cursor: pointer;
-    font-size: 20px;
-    transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 20px;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .search-input {
-    width: 200px;
-    padding: 5px;
-    border: 1px solid #ede9e7;
-    border-radius: 5px;
-    outline: none;
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #ede9e7;
+  border-radius: 5px;
+  outline: none;
 }
 
 @media (min-width: 1200px) {
-    .burger {
-        display: none !important;
-    }
-    .sidebar {
-        display: none; /* Nasconde la sidebar quando la pagina è allargata oltre 992px */
-    }
+  .burger {
+    display: none !important;
+  }
+  .sidebar {
+    display: none;
+  }
 }
 
 .burger {
-    
-    align-items: center;
-    
+  align-items: center;
 }
 
 .burger .collapse {
-    transition: width 0.3s ease;
-    overflow: hidden;
-    width: 0; /* Inizialmente nascosto */
+  transition: width 0.3s ease;
+  overflow: hidden;
+  width: 0;
 }
 
 .burger .collapse.show {
-    width: 100%; /* Espande il menu alla larghezza completa */
+  width: 100%;
 }
 
 .burger .navbar-toggler {
@@ -228,14 +220,13 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  background-color: #ede9e7; /* Colore di sfondo del menu */
+  background-color: #ede9e7;
   z-index: 5;
   transition: width 0.3s ease;
-  padding-left: 5rem; /* Aggiunge spazio tra l'icona del menu e le scritte del dropdown */
+  padding-left: 5rem;
   padding-bottom: 5rem;
 }
 
-/* Aggiungi questi stili per la sidebar */
 .sidebar {
   position: fixed;
   top: 0;
@@ -245,7 +236,6 @@ body {
   background-color: #ede9e7;
   transition: left 0.3s ease;
   z-index: 1000;
-  /* padding-top: 1.5rem; */
 }
 
 .sidebar a {
@@ -269,106 +259,69 @@ body {
 }
 
 .sidebar-nav .nav-item {
-  padding: 0px 20px;
+  padding: 0 20px;
   height: 60px;
-  list-style-type: none;
 }
 
 .sidebar-nav .nav-link {
   text-decoration: none;
   color: #b44715;
-
   transition: background 0.3s ease;
 }
 
-.nav-link{
-    cursor: pointer;
+.nav-link {
+  cursor: pointer;
 }
 
 .sidebar-nav .nav-link:hover {
   background-color: #ede9e7;
 }
 
-.text-red{
-    color:red;
-    font-weight: bold;
+.text-red {
+  color: red;
+  font-weight: bold;
 }
 
-.sidebar .text-red:hover{
-    cursor: pointer;
+.sidebar .text-red:hover {
+  cursor: pointer;
 }
 
-
-.logout-img{
-    
-    height: 20px;
-    margin-left: 1px;
-    margin-bottom: 2.5px;
-    filter: invert(11%) sepia(80%) saturate(4339%) hue-rotate(357deg) brightness(90%) contrast(100%);
+.logout-img {
+  height: 20px;
+  margin-left: 1px;
+  margin-bottom: 2.5px;
+  filter: invert(11%) sepia(80%) saturate(4339%) hue-rotate(357deg) brightness(90%) contrast(100%);
 }
 
 .accordion-item {
-    background-color: #ede9e7;
-    border: none;
-    padding: 0px 20px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+  background-color: #ede9e7;
+  border: none;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-
-
-.nav-item::marker{
-    display: none;
+.nav-item::marker {
+  display: none;
 }
 
-.accordion-header{
-    height: 40px;
+.accordion-header {
+  height: 40px;
 }
 
-.accordion-body{
-    text-decoration: none;
-}
-
-.dropdown-menu {
-    background-color: #ede9e7;
-    font-family: 'Poiret One', cursive;
-    color: #b44715;
-    font-size: 1.2rem;
-    min-width: 150px; /* Imposta una larghezza minima */
-    white-space: nowrap; /* Impedisce che il testo vada a capo */
-}
-
-/* Evita che la dropdown esca fuori dallo schermo */
-.dropdown-menu {
-    text-align: left;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    right: 0; /* Allinea la dropdown a destra */
-    left: auto; /* Evita che si allarghi troppo */
-    position: absolute; /* Evita che venga spostata in modo anomalo */
-    transform: translateX(-10px); /* Mantiene una piccola distanza dal bordo */
-    overflow: hidden; /* Assicura che rimanga visibile senza espandersi */
-}
-
-.dropdown-menu a {
-    color: #b44715; /* Imposta il colore degli anchor all'interno della dropdown-menu */
-    text-decoration: none; /* Rimuove la sottolineatura dagli anchor */
-}
-
-.dropdown-menu a:hover {
-    color: #333; /* Cambia il colore degli anchor al passaggio del mouse */
+.accordion-body {
+  text-decoration: none;
 }
 
 .dropdown-toggle::after {
-    display: none !important;
+  display: none !important;
 }
 
-.navbar-nav{
-    font-family: 'Poiret One', cursive;
-    font-size: 1.5rem;
+.navbar-nav {
+  font-family: 'Poiret One', cursive;
+  font-size: 1.5rem;
 }
 
-.nav-link:hover{
-    color:#b44715;
+.nav-link:hover {
+  color: #b44715;
 }

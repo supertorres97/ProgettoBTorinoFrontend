@@ -8,19 +8,16 @@
                     <!-- Barra di ricerca -->
                     <div class="search-box">
                         <button class="btn-search"><i class="fas fa-search"></i></button>
-                        <input class="input-search"  
-                        type="text" 
-                        [(ngModel)]="searchQuery" 
-                        (keyup.enter)="searchProduct()" 
-                        placeholder="Cerca un prodotto...">
+                        <input class="input-search" type="text" [(ngModel)]="searchQuery"
+                            (keyup.enter)="searchProduct()" placeholder="Cerca un prodotto...">
                     </div>
                 </div>
                 <hr>
             </div>
 
-            <!-- Contenitore prodotti con paginazione -->
             <div class="card-container">
-                <figure class="image-block" *ngFor="let prodotto of data | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
+                <figure class="image-block"
+                    *ngFor="let prodotto of data | paginate: { itemsPerPage: itemsPerPage, currentPage: page }">
                     <img [src]="prodotto.img" alt="immagine" />
                     <figcaption>
                         <h3>{{ prodotto.nome }}</h3>
@@ -34,10 +31,7 @@
                 </figure>
             </div>
 
-            <!-- Controlli di paginazione -->
-            <pagination-controls 
-                class="custom-pagination" 
-                (pageChange)="page = $event">
+            <pagination-controls class="custom-pagination" (pageChange)="page = $event">
             </pagination-controls>
 
         </div>

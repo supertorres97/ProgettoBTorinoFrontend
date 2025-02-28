@@ -7,8 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  
-  constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) {}
+
+  constructor(private authService: AuthService, private router: Router, private _snackBar: MatSnackBar) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const idUtenteStorage = this.authService.getIdUtente();
@@ -19,7 +19,7 @@ export class AuthGuard implements CanActivate {
     if (url.startsWith('/profile/')) {
       const idFromUrl = Number(route.paramMap.get('id'));
       console.log('isAutenticated:', idFromUrl);
-      
+
       if (!isAuthenticated) {
         this.showMessage("Devi loggarti prima di poter accedere al tuo profilo.");
         this.router.navigate(['/home']);
@@ -45,8 +45,8 @@ export class AuthGuard implements CanActivate {
   private showMessage(message: string): void {
     this._snackBar.open(message, 'Chiudi', {
       duration: 3000,
-      verticalPosition: 'bottom', // Mantiene la posizione in basso
-      horizontalPosition: 'end', // Sposta a destra
+      verticalPosition: 'bottom',
+      horizontalPosition: 'end',
     });
   }
 

@@ -23,17 +23,17 @@ import { OrderGuard } from './auth/order.guard';
 
 const routes: Routes = [
   /*----------------------------- Routes dell'utente base ------------------------------------------------*/
-  { path: '', pathMatch: 'full', redirectTo: '/home'},         // Reindirizza alla Home
-  { path: 'home', component: HomeComponent},                   // Home Page
-  { path: 'sign-in', component: SignInComponent},              // Registrazione
+  { path: '', pathMatch: 'full', redirectTo: '/home'},  // Reindirizza alla Home
+  { path: 'home', component: HomeComponent},  // Home Page
+  { path: 'sign-in', component: SignInComponent}, // Registrazione
   { path: 'login', component: LoginComponent},
-  { path: 'profile/:id', component: UserProfileComponent, canActivate:[AuthGuard]},       // Profilo utente
-  { path: 'carrello', component: CarrelloComponent},           // Carrello
-  { path: 'ordini/:id', component: StoricoOrdiniComponent, canActivate: [AuthGuard]},             //storico ordini dell'utente  
-  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent, canActivate: [OrderGuard]},     //dettalio dell'ordine
-  { path: 'prodotti', component: ProdottiComponent},            //prodotti
-  { path: 'prodotto/:id', component: PgProdottoComponent},          // Prodotto singolo
-  { path: 'prodottiPerTipo/:id', component: ProdottiPerTipoComponent},          //prodotti per tipo
+  { path: 'profile/:id', component: UserProfileComponent, canActivate:[AuthGuard]}, // Profilo utente
+  { path: 'carrello', component: CarrelloComponent},  // Carrello
+  { path: 'ordini/:id', component: StoricoOrdiniComponent, canActivate: [AuthGuard]}, //storico ordini dell'utente  
+  { path: 'dettagli-ordine/:id', component: DettaglioOrdineComponent, canActivate: [OrderGuard]}, //dettalio dell'ordine
+  { path: 'prodotti', component: ProdottiComponent},  //prodotti
+  { path: 'prodotto/:id', component: PgProdottoComponent},  // Prodotto singolo
+  { path: 'prodottiPerTipo/:id', component: ProdottiPerTipoComponent},  //prodotti per tipo
 
   /*-------------------------- Opzioni Admin ----------------------*/
   { path: 'admin/gestione-tipo-prodotto', component: GestioneTipoProdottoComponent, canActivate:[AuthGuard]},        
@@ -41,12 +41,12 @@ const routes: Routes = [
   { path: 'admin/gestione-utenti', component: GestioneUtentiComponent, canActivate:[AuthGuard]},
   { path: 'admin/dettagli-utente/:id', component: DettagliUserComponent, canActivate:[AuthGuard]},
   { path: 'admin/dettagli-ordine/:id', component: DettagliOrdineComponent, canActivate:[AuthGuard]},  
-  { path: 'admin/gestione-prodotti', component: GestioneProdottiComponent, canActivate:[AuthGuard]},           //admin gesione prodotti  
+  { path: 'admin/gestione-prodotti', component: GestioneProdottiComponent, canActivate:[AuthGuard]},  //admin gesione prodotti  
   { path: 'admin/creazione-admin', component: CreazioneComponent, canActivate:[AuthGuard]},
   { path: 'admin/gestione-feedback', component:GestioneFeedbackComponent, canActivate:[AuthGuard]},                    
   
   /*-------------------------- Pagine di errore ----------------------------------------------*/
-  { path: '**', redirectTo: '/home?error=true' },                // Redirige tutte le rotte sconosciute a /home con parametro error
+  { path: '**', redirectTo: '/home?error=true' }, // Redirige tutte le rotte sconosciute a /home con parametro error
 
 ];
 

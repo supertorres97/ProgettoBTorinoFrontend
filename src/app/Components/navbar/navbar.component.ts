@@ -123,7 +123,7 @@ updateUserStatus() {
 
   logout() {
     this.auth.logout();
-    localStorage.removeItem('idUtente'); // Rimuove idUtente per evitare problemi
+    localStorage.removeItem('idUtente');
     this.isLoggedIn = false;
     this.idUtente = null;
     this.router.navigate(['/home']);

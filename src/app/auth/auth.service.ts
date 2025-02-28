@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { CarrelloProdottoService } from '../services/carrello.prodotto.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   isAdmin = false;
@@ -22,12 +22,12 @@ export class AuthService {
 
   private loadAuthState() {
     if (isPlatformBrowser(this.platformId)) {
-      const isLoggedInValue = localStorage.getItem("isLoggedIn");
-      const isAdminValue = localStorage.getItem("isAdmin");
-      const idUtenteValue = localStorage.getItem("idUtente");
+      const isLoggedInValue = localStorage.getItem('isLoggedIn');
+      const isAdminValue = localStorage.getItem('isAdmin');
+      const idUtenteValue = localStorage.getItem('idUtente');
 
-      this.isLoggedIn = isLoggedInValue === "1";
-      this.isAdmin = isAdminValue === "1";
+      this.isLoggedIn = isLoggedInValue === '1';
+      this.isAdmin = isAdminValue === '1';
       this.idUtente = idUtenteValue ? parseInt(idUtenteValue, 10) : null;
 
       if (this.isLoggedIn && this.idUtente !== null) {
@@ -42,11 +42,11 @@ export class AuthService {
     this.isLoggedIn = true;
     this.isAdmin = isAdmin;
     this.idUtente = idUtente;
-    
+
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem("isLoggedIn", "1");
-      localStorage.setItem("isAdmin", isAdmin ? "1" : "0");
-      localStorage.setItem("idUtente", idUtente.toString());
+      localStorage.setItem('isLoggedIn', '1');
+      localStorage.setItem('isAdmin', isAdmin ? '1' : '0');
+      localStorage.setItem('idUtente', idUtente.toString());
     }
   }
 
@@ -57,10 +57,10 @@ export class AuthService {
     this.idCarrello = null;
 
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem("isLoggedIn");
-      localStorage.removeItem("isAdmin");
-      localStorage.removeItem("idUtente");
-      localStorage.removeItem("idCarrello");
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('isAdmin');
+      localStorage.removeItem('idUtente');
+      localStorage.removeItem('idCarrello');
     }
   }
 
@@ -75,27 +75,29 @@ export class AuthService {
   setRoleAdmin() {
     this.isAdmin = true;
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem("isAdmin", "1");
+      localStorage.setItem('isAdmin', '1');
     }
   }
 
   setRoleUser() {
     this.isAdmin = false;
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem("isAdmin", "0");
+      localStorage.setItem('isAdmin', '0');
     }
   }
 
   setIdCarrello(idCarrello: number) {
     this.idCarrello = idCarrello;
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem("idCarrello", idCarrello.toString());
+      localStorage.setItem('idCarrello', idCarrello.toString());
     }
   }
 
   getIdCarrello(): number | null {
     if (isPlatformBrowser(this.platformId)) {
-      return this.idCarrello || Number(localStorage.getItem("idCarrello")) || null;
+      return (
+        this.idCarrello || Number(localStorage.getItem('idCarrello')) || null
+      );
     }
     return this.idCarrello;
   }
@@ -103,26 +105,26 @@ export class AuthService {
   setIdUtente(idUtente: number) {
     this.idUtente = idUtente;
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem("idUtente", idUtente.toString());
+      localStorage.setItem('idUtente', idUtente.toString());
     }
   }
 
   getIdUtente(): number | null {
     if (isPlatformBrowser(this.platformId)) {
-      return this.idUtente || Number(localStorage.getItem("idUtente")) || null;
+      return this.idUtente || Number(localStorage.getItem('idUtente')) || null;
     }
     return this.idUtente;
   }
 
   setAuthentificated(authenticated: boolean) {
-    if(authenticated) {
+    if (authenticated) {
       this.isLoggedIn = true;
     }
     if (isPlatformBrowser(this.platformId)) {
       if (authenticated) {
-        localStorage.setItem("isLoggedIn", "1");
+        localStorage.setItem('isLoggedIn', '1');
       } else {
-        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem('isLoggedIn');
       }
     }
   }

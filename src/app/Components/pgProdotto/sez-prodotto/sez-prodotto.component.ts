@@ -3,46 +3,46 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProdottiService } from '../../../services/prodotti.service';
 import { CarrelloProdottoService } from '../../../services/carrello.prodotto.service';
-import { AuthService  } from '../../../auth/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
   selector: 'app-sez-prodotto',
   standalone: false,
-  
+
   templateUrl: './sez-prodotto.component.html',
   styleUrl: './sez-prodotto.component.css'
 })
-export class SezProdottoComponent implements OnInit{
+export class SezProdottoComponent implements OnInit {
 
-  prodotto:any;
+  prodotto: any;
   idCarrello: number | null = null;
   idUtente: number | null = null;
 
-  constructor(private serv:ProdottiService, 
-              private location: Location, 
-              private route:ActivatedRoute, 
-              private router:Router,
-              private cdr: ChangeDetectorRef, 
-              private carrelloProdottoService: CarrelloProdottoService, 
-              private auth:AuthService,
-              private _snackBar: MatSnackBar){}
+  constructor(private serv: ProdottiService,
+    private location: Location,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private carrelloProdottoService: CarrelloProdottoService,
+    private auth: AuthService,
+    private _snackBar: MatSnackBar) { }
 
-              
 
-  getCarrelloId(){
+
+  getCarrelloId() {
     const userId = this.auth.getIdUtente();
-    if(userId !== null){
-    this.carrelloProdottoService.listByUtente(userId).subscribe({
-      next: (response: any) => {
-        this.idCarrello = response.dati?.id;
-      },
-      error: (error) => {
-        console.error('Errore nel recupero del Id Carrello:', error);
-      }
-    });
-    }else{
+    if (userId !== null) {
+      this.carrelloProdottoService.listByUtente(userId).subscribe({
+        next: (response: any) => {
+          this.idCarrello = response.dati?.id;
+        },
+        error: (error) => {
+          console.error('Errore nel recupero del Id Carrello:', error);
+        }
+      });
+    } else {
       console.log("Utente non trovato");
     }
 
@@ -51,8 +51,7 @@ export class SezProdottoComponent implements OnInit{
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.serv.getProdotto(+id).subscribe((response: any) => {
-        /* console.log("Dati ricevuti:", response); // Debug in console */
-        this.prodotto = response.dati; // Estrai il vero oggetto prodotto
+        this.prodotto = response.dati;
         this.cdr.detectChanges();
       });
 
@@ -64,11 +63,11 @@ export class SezProdottoComponent implements OnInit{
     this.location.back();
   }
 
-  quantity: number = 1; // Valore iniziale
+  quantity: number = 1;
 
   changeQuantity(amount: number): void {
     const newQuantity = this.quantity + amount;
-    if (newQuantity >= 1 ) { // Impedisce di scendere sotto 1
+    if (newQuantity >= 1) {
       this.quantity = newQuantity;
       console.log('Nuova quantità:', this.quantity);
       this.cdr.detectChanges();
@@ -78,20 +77,20 @@ export class SezProdottoComponent implements OnInit{
   aggiungiAlCarrello(): void {
     this.idUtente = this.auth.getIdUtente();
     console.log("Utente: " + this.auth.getIdUtente());
-  
+
     if (this.idUtente == null || this.idUtente == 0) {
       this.router.navigate(['/login']);
-      return; // Aggiunto return per uscire dalla funzione
+      return;
     }
-  
+
     if (!this.prodotto) return;
-  
+
     const carrelloProdotto = {
       prodotto: this.prodotto.id,
       quantita: this.quantity,
       carrello: this.idCarrello
     };
-  
+
     this.carrelloProdottoService.createCarrelloProdotto(carrelloProdotto).subscribe({
       next: () => {
         const snackBarRef = this._snackBar.open('Prodotto aggiunto al carrello!', 'Vai al carrello', {
@@ -99,13 +98,13 @@ export class SezProdottoComponent implements OnInit{
           verticalPosition: 'bottom',
           horizontalPosition: 'right',
         });
-  
+
         snackBarRef.onAction().subscribe(() => {
           this.router.navigate(['/carrello']);
         });
       },
       error: () => {
-        console.error("Errore durante l'aggiunta al carrello"); 
+        console.error("Errore durante l'aggiunta al carrello");
       }
     });
   }

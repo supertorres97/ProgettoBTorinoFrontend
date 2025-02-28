@@ -1,5 +1,4 @@
 <div class="container">
-  <!-- Mostra titolo e pulsante SOLO se ci sono prodotti nel carrello -->
   <ng-container *ngIf="prodottiCarrello.length > 0">
     <div>
       <div class="titolo">
@@ -22,7 +21,6 @@
     </div>
   </ng-container>
 
-  <!-- Se il carrello ha prodotti, mostra la tabella -->
   <div class="cart-table" *ngIf="prodottiCarrello.length > 0">
     <div class="cart-header">
       <span>Prodotto</span>
@@ -36,34 +34,35 @@
       <div class="responsive-product">
         <span class="responsive">Prodotto:</span>
         <span>
-          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]" *ngIf="prodotto.disponibile">
+          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]" *ngIf="prodotto.prodotto.disponibile">
             {{ prodotto?.prodotto?.nome }}
           </a>
-          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]" style="color: red;" *ngIf="!prodotto.disponibile">
+          <a [routerLink]="['/prodotto', prodotto?.prodotto?.id]" style="color: red;"
+            *ngIf="!prodotto.prodotto.disponibile">
             {{ prodotto?.prodotto?.nome }} (Esaurito)
           </a>
         </span>
       </div>
       <div class="responsive-product">
-      <span class="responsive">Quantità:</span>
-      <div class="quantity-controls">
-        <button (click)="changeQuantity(-1, prodotto)">-</button>
-        <span>{{ prodotto.quantita }}</span>
-        <button (click)="changeQuantity(1, prodotto)">+</button>
+        <span class="responsive">Quantità:</span>
+        <div class="quantity-controls">
+          <button (click)="changeQuantity(-1, prodotto)">-</button>
+          <span>{{ prodotto.quantita }}</span>
+          <button (click)="changeQuantity(1, prodotto)" *ngIf="prodotto.quantita < prodotto.prodotto.stock">+</button>
+        </div>
       </div>
-    </div>
       <div class="responsive-product">
-      <span class="responsive">Prezzo:</span>
-      <span>{{ prodotto?.prodotto?.prezzo }} €</span>
-    </div>
+        <span class="responsive">Prezzo:</span>
+        <span>{{ prodotto?.prodotto?.prezzo }} €</span>
+      </div>
       <div class="responsive-product">
-      <span class="responsive">Totale:</span>
-      <span>{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
-    </div>
+        <span class="responsive">Totale:</span>
+        <span>{{ prodotto?.prodotto?.prezzo * prodotto?.quantita }} €</span>
+      </div>
       <div class="responsive-product">
-      <span class="responsive">Azioni:</span>
-      <button class="btn-custom btn-elimina" (click)="rimuoviProdotto(prodotto?.id)">Elimina</button>
-    </div>
+        <span class="responsive">Azioni:</span>
+        <button class="btn-custom btn-elimina" (click)="rimuoviProdotto(prodotto?.id)">Elimina</button>
+      </div>
     </div>
 
     <div class="cart-footer">
