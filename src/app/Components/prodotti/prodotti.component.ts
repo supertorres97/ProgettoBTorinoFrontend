@@ -17,7 +17,7 @@ export class ProdottiComponent implements OnInit{
   prodotti: any[] = [];
   timestamp: number = new Date().getTime();
   page: number = 1;
-  itemsPerPage: number = 5;
+  itemsPerPage: number = 9;
 
   constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
 
