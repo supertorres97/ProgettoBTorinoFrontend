@@ -1,20 +1,16 @@
-
-.test {
-    background-color: blueviolet;
-}
-
 .dialog-window {
-    width: 35%;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #ede9e7;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1000;
-    margin: 0;
-  }
+  width: 35%;
+  height: 80%;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ede9e7;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  margin: 0;
+}
   
   .dialog-content {
     display: flex;
@@ -24,7 +20,7 @@
   
   .dialog-buttons {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
   }
   
@@ -54,3 +50,58 @@
     margin-bottom: 20px;
   }
 
+
+  .custom-font {
+    font-family: 'Poiret One', cursive;
+    color: #b44715;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+    font-family: 'Poiret One', cursive;
+    background-color: #ede9e7;
+  }
+  
+  mat-form-field + mat-form-field {
+    margin-top: 8px;
+  }
+  
+  input.mat-input-element {
+    padding: 1rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+
+  mat-label{
+    font-family: 'Poiret One', cursive;
+    color: #b44715;
+    font-size: 1.2rem;
+  }
+  
+  ::ng-deep .mat-mdc-text-field-wrapper {
+    background: transparent !important;
+  }
+
+  .form-check {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 16px; /* Rimuove il padding */
+  }
+
+  .form-check-input {
+    margin-top: 10px;
+    margin-left: 32px;
+  }
+
+  mat-select{
+    width: 100%;
+    font-family: 'Poiret One', cursive;
+  }
+
+  mat-option{
+    font-family: 'Poiret One', cursive;
+  }

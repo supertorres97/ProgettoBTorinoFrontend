@@ -4,7 +4,7 @@
     <div class="image-container">
       <img class="immagine" src="plus.png" alt="Torna alla lista ordini" (click)="onCreate()">
     </div>
-    </div>
+  </div>
   <div *ngIf="isLoading">Caricamento...</div>
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
 
@@ -17,12 +17,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let tipoProdotto of tipoProdotti">
+      <tr *ngFor="let tipoProdotto of tipoProdotti" (click)="onEdit(tipoProdotto)">
         <td>{{ tipoProdotto?.id }}</td>
         <td>{{ tipoProdotto?.descrizione}}</td>
         <td>
-          <button class="btn btn-det" (click)="onEdit(tipoProdotto)">Modifica</button>
-          <button class="btn btn-danger" (click)="onDelete(tipoProdotto.id)">Cancella</button>
+          <button class="btn btn-danger" (click)="onDelete(tipoProdotto.id); $event.stopPropagation()">Cancella</button>
         </td>
       </tr>
     </tbody>
