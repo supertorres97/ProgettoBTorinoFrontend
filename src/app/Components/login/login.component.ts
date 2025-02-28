@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../auth/auth.service'; 
 import { CredenzialiService } from '../../services/credenziali.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Inject, PLATFORM_ID } from '@angular/core';
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.auth.setAutentificated();
+    this.auth.setAuthentificated(true);
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
           console.log('Risposta dal backend:', resp);
 
           if (resp.logged) {
-            this.auth.setAutentificated();
+            this.auth.setAuthentificated(true);
             if (resp.idUtente !== null && resp.idUtente !== undefined) {
               this.auth.setIdUtente(resp.idUtente);
               
@@ -61,9 +61,9 @@ export class LoginComponent implements OnInit {
 
               if (resp.ruolo.descrizione === "ADMIN") {
                 console.log("sono un admin", resp.role?.descrizione);
-                this.auth.setAdmin();
+                this.auth.setRoleAdmin();
               } else {
-                this.auth.setUser();
+                this.auth.setRoleUser();
                 console.log("sono uno user", resp.role?.descrizione);
               }
 

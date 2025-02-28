@@ -38,7 +38,7 @@ h1{
     background: none;
     border: none;
     margin-bottom: 5%;
-    width: 25%;
+    width: 400px;
 }
 
 .card-header{
@@ -81,6 +81,24 @@ h1{
 mat-form-field{
     font-family: 'Poiret One', cursive;
     font-size: large;
+}
+
+mat-label{
+    font-family: 'Poiret One', cursive;
+    font-size: large;
+    font-weight: bold;
+    color: #b44715;
+}
+
+mat-hint{
+    font-family: 'Poiret One', cursive;
+    font-weight: bold;
+}
+
+mat-option{
+    font-family: 'Poiret One', cursive;
+    font-size: medium;
+    font-weight: bold;
 }
 
 .box mat-form-field{
@@ -149,4 +167,41 @@ mat-form-field{
     text-align: center;
     justify-content: center;
     font-size: 1.3rem;
+}
+
+@media(max-width: 1500px){
+    .card{
+        width: 30%;
+    }
+}
+
+@media(max-width: 1200px){
+    .feedback{
+        justify-content: center;
+    }
+    .card{
+        width: 400px;
+    }
+}
+
+@media(max-width: 900px){
+    .col-10 h1{
+        font-size: 3rem;
+    }
+}
+
+@media(max-width: 768px){
+    .col-10 h1{
+        font-size: 2.5rem;
+    }
+    .card-footer img{
+        width: 25%;
+    }
+    .comment h2{
+        font-size: 2.5rem;
+        margin-top: 2rem;
+    }
+    .voto{
+        width: 100px;
+    }
 }

@@ -47,6 +47,8 @@ import { GestioneProdottiComponent } from './Components/admin/gestione-prodotti/
 import { CreateProdottoComponent } from './Dialog/create-prodotto/create-prodotto.component';
 import { UpdateProdottoComponent } from './Dialog/update-prodotto/update-prodotto.component';
 import { SpinnerComponent } from './Dialog/spinner/spinner.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -95,7 +97,8 @@ import { SpinnerComponent } from './Dialog/spinner/spinner.component';
     MatCheckboxModule,
     HttpClientModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    NgxPaginationModule
   ],
   providers: [
     provideClientHydration(withEventReplay()),

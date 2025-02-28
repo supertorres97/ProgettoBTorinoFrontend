@@ -1,6 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { OrdineService, Ordine } from '../../../services/ordine.service';
-import { AuthService } from '../../../services/auth.service';
+import { Component, HostListener } from '@angular/core';
+import { OrdineService } from '../../../services/ordine.service';
 import { Router } from '@angular/router';
 
 @Component({

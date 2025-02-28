@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { TipoProdottoService } from '../../services/tipo-prodotto.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -122,7 +122,7 @@ updateUserStatus() {
 }
 
   logout() {
-    this.auth.setLogout();
+    this.auth.logout();
     localStorage.removeItem('idUtente'); // Rimuove idUtente per evitare problemi
     this.isLoggedIn = false;
     this.idUtente = null;

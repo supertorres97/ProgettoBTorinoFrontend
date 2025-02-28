@@ -5,7 +5,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { CredenzialiService } from '../../services/credenziali.service';
 import { ConfirmDeleteComponent } from '../../Dialog/confirm-delete/confirm-delete.component';
 import { MatDialog } from '@angular/material/dialog';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -231,7 +231,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe((resp:any) => {
         if(resp.rc){
           console.log("Credenziali eliminate logicamente!");
-          this.auth.setLogout();
+          this.auth.logout();
         }
       })
     });

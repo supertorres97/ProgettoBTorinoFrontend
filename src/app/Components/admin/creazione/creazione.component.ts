@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 import { UserService } from '../../../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -21,7 +21,7 @@ export class CreazioneComponent {
     private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    if(this.authService.isAutentificated())
+    if(this.authService.isAuthentificated())
       this.authService.isLoggedIn = true;
     else this.authService.isLoggedIn = false;
     this.personalFormGroup = this.fb.group({
