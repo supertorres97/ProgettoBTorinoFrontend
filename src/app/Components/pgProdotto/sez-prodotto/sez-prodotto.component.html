@@ -3,8 +3,8 @@
         <aside class="col-1"></aside>
         <div class="col-10" style="padding: 3%;">
             <a (click)="goBack()" class="back"><img src="chevron-double-left.svg"/>Indietro</a>
+            
             <div class="container-fluid" *ngIf="prodotto">
-                <!-- <pre>{{ prodotto | json }}</pre> -->
                 <div class="image-container">
                     <img class="product-img" src={{prodotto?.img}} alt="product image">
                 </div>
@@ -15,18 +15,22 @@
                             {{prodotto?.descrizione}} 
                         </p>
                     </div>
-                    <div class="purchase">
+                    <div class="purchase" *ngIf="prodotto.disponibile">
                         <div class="quantity">
                             <button (click)="changeQuantity(-1)" class="remove">-</button>
                             <div class="qty">
                                 {{quantity}}
                             </div>
-                            <button (click)="changeQuantity(1)" class="add">+</button>
+                            <button (click)="changeQuantity(1)" *ngIf="quantity < prodotto?.stock" class="add">+</button>
                         </div>
                         <div class="price">{{prodotto?.prezzo * quantity}} €</div>
                         <div class="button">
                             <button (click)="aggiungiAlCarrello()"> Aggiungi </button>
                         </div>
+                    </div>
+
+                    <div class="alert alert-danger justify-content-end text-center" role="alert" *ngIf="!prodotto.disponibile">
+                        PRODOTTO ESAURITO!
                     </div>
                 </div>
             </div>

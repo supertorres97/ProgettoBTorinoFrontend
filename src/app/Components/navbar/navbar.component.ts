@@ -94,6 +94,7 @@ export class NavbarComponent implements OnInit {
 
   isNavbarOpen = false;
   isDropdownOpen = false;
+  isDropdownAOpen = false;
 
 toggleNavbar() {
   this.isNavbarOpen = !this.isNavbarOpen;
@@ -101,6 +102,9 @@ toggleNavbar() {
 
 toggleDropdown() {
   this.isDropdownOpen = !this.isDropdownOpen;
+}
+toggleDropdownA() {
+  this.isDropdownAOpen = !this.isDropdownAOpen;
 }
 
 updateUserStatus() {

@@ -311,17 +311,18 @@ body {
     background-color: #ede9e7;
     border: none;
     padding: 0px 20px;
-  
     cursor: pointer;
     transition: background 0.3s ease;
 }
+
+
 
 .nav-item::marker{
     display: none;
 }
 
 .accordion-header{
-    height: 50px;
+    height: 40px;
 }
 
 .accordion-body{

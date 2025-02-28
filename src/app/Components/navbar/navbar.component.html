@@ -80,6 +80,28 @@
             </ul>
           </div>
         </li>
+        <li class=" accordion-item" *ngIf="isAdmin && isLoggedIn">
+          <a class=" accordion-header" (click)="toggleDropdownA()">Opzopni Admin <img class="down-arrow" src="down-arrow.png" alt="down-arrow" /></a>
+          <div [@slideDown]="isDropdownAOpen ? 'open' : 'closed'"  class="accordion-collapse">
+            <ul class=" accordion-body">
+              <li class="nav-item" >
+                <a class="dropdown-item nav-link" routerLink="/admin/gestione-utenti">Gestione Utenti</a>
+              </li>
+              <li class="nav-item" >
+                <a class="dropdown-item nav-link" routerLink="/admin/gestione-ordini">Gestione Ordini</a>
+              </li>
+              <li class="nav-item" >
+                <a class="dropdown-item nav-link" routerLink="/admin/gestione-prodotti">Gestione Prodotti</a>
+              </li>
+              <li class="nav-item" >
+                <a class="dropdown-item nav-link" routerLink="/admin/gestione-tipo-prodotto">Gestione Tipo Prodotti</a>
+              </li>
+              <li class="nav-item" >
+                <a class="dropdown-item nav-link" routerLink="/admin/gestione-feedback">Gestione Feedback</a>
+              </li>
+            </ul>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/carrello">Carrello</a>
         </li>
@@ -88,19 +110,7 @@
         </li>
         <li class="nav-item" *ngIf="isLoggedIn && idUtente">
           <a class="nav-link" routerLink="/ordini/{{idUtente}}">I miei ordini</a>
-        </li>
-        <li class="nav-item" *ngIf="isAdmin && isLoggedIn">
-          <a class="nav-link" routerLink="/admin/gestione-utenti">Gestione Utenti</a>
-        </li>
-        <li class="nav-item" *ngIf="isAdmin && isLoggedIn">
-          <a class="nav-link" routerLink="/admin/gestione-ordini">Gestione Ordini</a>
-        </li>
-        <li class="nav-item" *ngIf="isAdmin && isLoggedIn">
-          <a class="nav-link" routerLink="/admin/creazione-prodotto">Creazione Prodotti</a>
-        </li>
-        <li class="nav-item" *ngIf="isAdmin && isLoggedIn">
-          <a class="nav-link" routerLink="/admin/gestione-tipo-prodotto">Gestione Tipo Prodotti</a>
-        </li>
+        </li>        
         <li class="nav-item" *ngIf="isLoggedIn">
           <a class="text-red" (click)="logout()">Logout<img class="logout-img" src="logout.png" alt="logout image"/></a>
         </li>

@@ -28,14 +28,6 @@ aside{
     height: 100%;
 }
 
-@media (max-width: 1080px){
-    .container-fluid{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-}
-
 .image-container {
     width: 100%; /* Occupa tutto lo spazio disponibile */
     max-width: 45%; /* Adatta la larghezza massima a piacere */
@@ -100,7 +92,7 @@ aside{
     flex-direction: row;
     font-family: 'Poiret one', cursive;
     bottom: 0;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width:100%;
 }
@@ -108,9 +100,11 @@ aside{
 .quantity{
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     gap: 10%;
-    width: 33%;
+    width: fit-content;
+    right: 0;
     
 }
 
@@ -147,7 +141,7 @@ aside{
 
 .price{
     font-size: x-large;
-    width: 5vw;
+    width: fit-content;
 }
 
 .button button{
@@ -166,4 +160,81 @@ aside{
 .button button:active{
     background: #333;
     transform: translateY(2px);
+}
+
+@media (max-width: 1200px) {
+    .container-fluid {
+        flex-direction: column; /* Disposizione in colonna */
+        align-items: center;
+    }
+
+    .image-container {
+        width: 100%; /* L'immagine prende tutta la larghezza */
+        min-width: 250px;
+        min-height: 300px;
+    }
+
+    .product-img {
+        max-width: 100%; /* Occupa tutto il container */
+        
+    }
+
+    .description {
+        width: 100%; /* Anche la descrizione prende tutta la larghezza */
+        max-width: 800px;
+        text-align: center; /* Centra il testo se vuoi */
+        margin-top: 2rem;
+    }
+
+    .purchase{
+        margin-top: 2rem;
+    }
+
+    /*
+        .quantity button 40px
+        .qty x-large
+        .price x-large
+    */
+
+    .quantity button{
+        font-size: 30px;
+    }
+    .qty{
+        font-size: large;
+    }
+    .price{
+        font-size: large;
+    }
+    
+}
+
+@media(max-width: 850px){
+
+}
+
+@media(max-width: 768px){
+    .paragraph{
+        margin: 2rem 0;
+        h1{
+            font-size: 400%;
+        }
+        p{
+            font-size: 1.2rem;
+            max-height: 8em;
+        }
+    }
+}
+
+@media(max-width: 600px){
+    .paragraph{
+        h1{
+            font-size: 300%;
+        }
+        p{
+            font-size: 1rem;
+            max-height: 6em;
+        }
+
+        margin-bottom: 0;
+    }
 }

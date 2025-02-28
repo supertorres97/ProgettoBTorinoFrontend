@@ -68,7 +68,7 @@ export class SezProdottoComponent implements OnInit{
 
   changeQuantity(amount: number): void {
     const newQuantity = this.quantity + amount;
-    if (newQuantity >= 1) { // Impedisce di scendere sotto 1
+    if (newQuantity >= 1 ) { // Impedisce di scendere sotto 1
       this.quantity = newQuantity;
       console.log('Nuova quantità:', this.quantity);
       this.cdr.detectChanges();
