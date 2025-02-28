@@ -5,7 +5,7 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Poiret One', cursive;
-  height: 60vh;
+  height: fit-content;
 }
 
 /* .SectionTitle h2 {
@@ -94,7 +94,7 @@ figure {
 		}
 	}
 	img {
-		height: 45vh;
+		height: 70vh;
 		
 		transition: 0.25s;
 	}
@@ -220,13 +220,17 @@ figcaption {
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
   .Card-Container figure {
-    flex: 0 0 calc(50% - 20px); /* 2 card per riga su tablet */
+    flex: 0 0 calc(325px - 20px); /* 2 card per riga su tablet */
   }
 }
 
 @media (max-width: 768px) {
   .Card-Container figure {
-    flex: 0 0 100%; /* 1 card per riga su mobile */
+    flex: 0 0 325px; /* 1 card per riga su mobile */
+  }
+
+  img{
+    height: 45vh;
   }
 
   figcaption {

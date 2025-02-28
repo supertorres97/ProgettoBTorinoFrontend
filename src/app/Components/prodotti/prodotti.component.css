@@ -88,7 +88,46 @@ div {
     border-bottom:1px solid #333;
     transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
   }
-  
+ 
+@media (max-width: 1400px){
+    .titolo-search{
+        flex-direction: column;
+        position: static;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .input-search {
+        width: 300px !important; /* Larghezza fissa sui dispositivi piccoli */
+        background-color: #ede9e7;
+        border-bottom: none;
+        transition: none;
+    }
+
+    .input-search:focus {
+        width: 300px !important; /* Nessuna espansione */
+        transition: none;
+    }
+    .search-box{
+        display: flex;
+        justify-content: center;
+        width: fit-content;
+        z-index: 1;
+        position: relative;
+        width: 100%;
+        order: 1; /* Assicura che search-box venga posizionato sotto */
+    }
+    .btn-search{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: fit-content;
+        z-index: 2;
+        position: relative;
+        order: 2; /* Assicura che il bottone venga posizionato sopra */
+    }
+}
+
 .card-title {
     font-size: x-large;
     font-weight: bold;
@@ -109,6 +148,12 @@ div {
     gap: 10.825%; /* Spazio tra le card */
     /* margin-bottom: 50px;*/
     justify-content: flex-start;
+}
+
+@media (max-width: 1900px) {
+    .card-container{
+        justify-content: center;
+    }
 }
 
 figure {
@@ -142,7 +187,7 @@ figure {
 		}
 	}
 	img {
-		height: 45vh;
+		height: 70vh;
 		
 		transition: 0.25s;
 	}

@@ -99,26 +99,58 @@ div {
         color: #b44715;
     }
     
-    /*
-    .card-container{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2%;
-        padding: 5%;
-    }
-    */
     
     .card-container{
-        width: 100%; /* Larghezza del contenitore (puoi regolarlo) */
-        /* max-width: 1200px; */ /* Massima larghezza del contenitore */
-        /* margin: 0 auto; */ /* Centra il contenitore nella pagina */
+        width: 100%; 
         display: flex;
         flex-wrap: wrap;
-        gap: 10.825%; /* Spazio tra le card */
-        /* margin-bottom: 50px;*/
+        gap: 10.825%; 
         justify-content: flex-start;
+    }
+
+    @media (max-width: 1400px){
+        .titolo-search{
+            flex-direction: column;
+            position: static;
+            justify-content: center;
+            gap: 20px;
+        }
+    
+        .input-search {
+            width: 300px !important; /* Larghezza fissa sui dispositivi piccoli */
+            background-color: #ede9e7;
+            border-bottom: none;
+            transition: none;
+        }
+    
+        .input-search:focus {
+            width: 300px !important; /* Nessuna espansione */
+            transition: none;
+        }
+        .search-box{
+            display: flex;
+            justify-content: center;
+            width: fit-content;
+            z-index: 1;
+            position: relative;
+            width: 100%;
+            order: 1; /* Assicura che search-box venga posizionato sotto */
+        }
+        .btn-search{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            z-index: 2;
+            position: relative;
+            order: 2; /* Assicura che il bottone venga posizionato sopra */
+        }
+    }
+
+    @media (max-width: 700px) {
+        .input-search::placeholder {
+            content: "Cerca..";
+        }
     }
     
     figure {
@@ -152,7 +184,7 @@ div {
             }
         }
         img {
-            height: 45vh;
+            height: 70vh;
             
             transition: 0.25s;
         }
@@ -219,7 +251,12 @@ div {
         }
     }
     
-    
+    @media (max-width: 1900px) {
+        .card-container{
+            justify-content: center;
+        }
+    }
+
     /* .card {
         width: 25%;
         height: 350px;

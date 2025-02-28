@@ -60,9 +60,9 @@ export class CardsSezioneComponent implements OnInit {
   updateCardsPerPage() {
     if (isPlatformBrowser(this.platformId)) {
       const width = window.innerWidth;
-      if (width >= 1024) {
+      if (width >= 1200) {
         this.cardsPerPage = 3;
-      } else if (width >= 768) {
+      } else if (width >= 1024) {
         this.cardsPerPage = 2;
       } else {
         this.cardsPerPage = 1;
@@ -158,7 +158,9 @@ export class CardsSezioneComponent implements OnInit {
 
   // Gestione della navigazione ai dettagli del prodotto
   dettagliProdotto(id: number) {
-    this.router.navigate(['/prodotto/', id]);
+    this.router.navigate(['/prodotto/', id]).then(() => {
+      window.scrollTo(0, 0);
+    });
   }
 }
 
