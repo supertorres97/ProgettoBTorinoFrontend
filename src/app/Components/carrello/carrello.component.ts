@@ -16,6 +16,7 @@ export class CarrelloComponent implements OnInit {
   prodotto: any;
   prodottiCarrello: any[] = [];
   idCarrello: number | null = null;
+  data: any;
 
   constructor(
     private carrelloService: CarrelloProdottoService,
@@ -38,6 +39,7 @@ export class CarrelloComponent implements OnInit {
     });
 
     this.getCarrello();
+    this.isEsaurito();
   }
   //display del carrello
   getCarrello(): void {
@@ -60,6 +62,32 @@ export class CarrelloComponent implements OnInit {
       this.showMessage('Utente non trovato');
     }
   }
+
+  isEsaurito(){
+    const userId = this.auth.getIdUtente();
+    if (userId !== null) {
+      this.carrelloService.listByUtente(userId).subscribe({
+        next: (response: any) => {
+          this.idCarrello = response.dati?.id;
+          if (this.idCarrello) {
+            this.carrelloService.listByCarrello(this.idCarrello)
+            .subscribe((resp:any) => {
+              this.data = resp.dati;
+              for(let prod of this.data){
+                if(!prod.prodotto.disponibile)
+                  alert("Prodotto " + prod.prodotto.nome + " ESAURITO");
+                  console.log("*****" + prod.prodotto.disponibile);
+              }
+            });
+          }
+        },
+        error: () => this.showMessage('Errore nel recupero ID carrello'),
+      });
+    } else {
+      this.showMessage('Utente non trovato');
+    }
+  }
+
   //aggiunta prodotto al carrello
   changeQuantity(amount: number, prodotto: any): void {
     const newQuantity = prodotto.quantita + amount;
