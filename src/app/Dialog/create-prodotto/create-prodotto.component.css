@@ -19,7 +19,7 @@
 
 .dialog-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
 }
 
@@ -48,6 +48,7 @@
 
 .checkbox {
   margin-bottom: 20px;
+  margin-left: 5px;
 }
 
 .custom-font {
@@ -56,6 +57,19 @@
   text-align: center;
   margin-top: 20px;
   font-size: 1.2rem;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.form-group label, .form-check input {
+  display: block;
+  text-align: left;
+}
+
+.form-control {
+  width: 100%;
 }
 
 @media (max-width: 768px) {

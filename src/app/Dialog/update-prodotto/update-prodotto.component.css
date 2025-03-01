@@ -83,7 +83,7 @@ mat-label {
 }
 
 ::ng-deep .mat-mdc-text-field-wrapper {
-  background: transparent !important;
+  background: #fff !important;
 }
 
 .form-check {
