@@ -14,7 +14,9 @@
             </thead>
             <tbody>
                 <tr *ngFor="let dettaglio of dettagliOrdine">
-                    <td data-label="Prodotto">{{ dettaglio.prodotto.nome }}</td>
+                    <td [routerLink]="['/prodotto', dettaglio?.prodotto?.id]" class="lista">
+                        {{ dettaglio?.prodotto?.nome }}
+                    </td>
                     <td data-label="Quantità">{{ dettaglio.quantitaFinale }}</td>
                     <td data-label="Prezzo Totale">{{ dettaglio.prezzoTotale | currency: 'EUR' }}</td>
                 </tr>

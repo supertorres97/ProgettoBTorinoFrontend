@@ -43,7 +43,7 @@ export class SezFeedbackComponent implements OnInit {
 
     this.id = this.route.snapshot.paramMap.get('id');
     this.utId = this.authS.getIdUtente();
-
+    console.log("id utente" + this.utId);
     console.log("onInit feedback");
 
     if(this.id){
@@ -90,6 +90,8 @@ export class SezFeedbackComponent implements OnInit {
       descrizione: this.feedbackForm.value.descrizione,
       voto: this.feedbackForm.value.valutazione
     };
+
+    console.log("utente id "+ feedReq.utente);
     
     this.serv.create(feedReq)
     .subscribe((resp: any) => {
