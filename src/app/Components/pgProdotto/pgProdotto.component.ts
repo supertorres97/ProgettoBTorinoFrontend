@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-pgProdotto',
@@ -11,10 +12,12 @@ export class PgProdottoComponent implements OnInit {
 
   selectedProductId = 1;
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    }
     console.log('pgProdottoComponent');
   }
     
