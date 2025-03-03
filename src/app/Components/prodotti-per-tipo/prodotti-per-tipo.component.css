@@ -291,3 +291,18 @@ figure {
         padding: 2%;
     }
 }
+
+@media (max-width: 768px) {
+    pagination-controls {
+        font-size: 0.7rem;
+    }
+
+    ::ng-deep pagination-controls ul {
+        padding: 0 !important;
+    }
+}
+
+pagination-controls {
+    display: flex;
+    justify-content: center;
+}
