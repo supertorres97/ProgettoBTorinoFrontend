@@ -5,13 +5,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-prodotti',
   standalone: false,
-  
+
   templateUrl: './prodotti.component.html',
-  styleUrl: './prodotti.component.css'
+  styleUrl: './prodotti.component.css',
 })
-export class ProdottiComponent implements OnInit{
-  response:any;
-  data:any;
+export class ProdottiComponent implements OnInit {
+  response: any;
+  data: any;
   showSearch: boolean = false;
   searchQuery: string = '';
   prodotti: any[] = [];
@@ -19,24 +19,27 @@ export class ProdottiComponent implements OnInit{
   page: number = 1;
   itemsPerPage: number = 9;
 
-  constructor(private serv:ProdottiService, private router:Router, private route: ActivatedRoute) { }
+  constructor(
+    private serv: ProdottiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.serv.listProdotti()
-      .subscribe((resp:any) => {
-        this.response = resp;
-        this.data = this.response.dati;
-      })
+    this.serv.listProdotti().subscribe((resp: any) => {
+      this.response = resp;
+      this.data = this.response.dati;
+    });
 
-      this.route.queryParams.subscribe(params => {
-        const nome = params['nome'];
-        if (nome) {
-          this.searchQuery = nome;
-          this.cercaProdotti(nome);
-        } else {
-          this.getAllProdotti();
-        }
-      });
+    this.route.queryParams.subscribe((params) => {
+      const nome = params['nome'];
+      if (nome) {
+        this.searchQuery = nome;
+        this.cercaProdotti(nome);
+      } else {
+        this.getAllProdotti();
+      }
+    });
   }
 
   cercaProdotti(nome: string): void {
@@ -44,21 +47,22 @@ export class ProdottiComponent implements OnInit{
       this.getAllProdotti();
       return;
     }
+    this.prodotti = [];
 
-  this.serv.getProdottiByNome(nome).subscribe({
-    next: (data: any) => {
-      this.prodotti = data.dati;
-    },
-    error: (err) => {
-      console.error('Errore nella ricerca dei prodotti', err);
-    }
-  });
+    this.serv.getProdottiByNome(nome).subscribe({
+      next: (data: any) => {
+        this.prodotti = data.dati;
+      },
+      error: (err) => {
+        console.error('Errore nella ricerca dei prodotti', err);
+      },
+    });
 
-  this.router.navigate([], {
-    relativeTo: this.route,
-    queryParams: nome ? { nome } : {},
-    queryParamsHandling: 'merge'
-  });
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: nome ? { nome } : {},
+      queryParamsHandling: 'merge',
+    });
   }
 
   getAllProdotti(): void {
@@ -69,11 +73,11 @@ export class ProdottiComponent implements OnInit{
       error: (err) => {
         console.error('Errore nel recupero dei prodotti', err);
         this.prodotti = [];
-      }
+      },
     });
   }
 
-  dettagliProdotto(id:number){
+  dettagliProdotto(id: number) {
     console.log(id);
     this.router.navigate(['/prodotto/', id]);
   }
@@ -99,6 +103,6 @@ export class ProdottiComponent implements OnInit{
   //porta la pagina in cima
   onPageChange(event: number): void {
     this.page = event;
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }
